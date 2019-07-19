@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hlsofttech.analysis.dao.CommonInterfaceExcLogDao">
+
+   <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="com.hlsofttech.entity.analysis.CommonInterfaceExcLog">
+      <id column="id" property="id" />
+      <result column="data_type" property="dataType" />
+      <result column="data_space" property="dataSpace" />
+      <result column="date_dt" property="dateDt" />
+      <result column="begin_time" property="beginTime" />
+      <result column="end_time" property="endTime" />
+      <result column="exc_status" property="excStatus" />
+      <result column="error_exc_num" property="errorExcNum" />
+      <result column="result" property="result" />
+      <result column="cache_status" property="cacheStatus" />
+      <result column="params" property="params" />
+      
+   </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+      data_type,
+      data_space,
+      date_dt,
+      begin_time,
+      end_time,
+      exc_status,
+      error_exc_num,
+      result,
+      cache_status,
+      params
+</sql>
+
+</mapper>

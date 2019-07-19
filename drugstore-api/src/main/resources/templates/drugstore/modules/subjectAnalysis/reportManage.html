@@ -1,0 +1,636 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<title>报告管理</title><!--analysisReportList.1查询分析报告 -->
+<link href="${ctx}/css/subjectAnalysis/tanchu.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/datacss_a.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/datacss_e_a.css" rel="stylesheet" type="text/css" />
+ <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/basic.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/style.css" rel="stylesheet" type="text/css"/>
+<link href="${ctx}/css/subjectAnalysis/style1.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/reportManage.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/js/subjectAnalysis/easydialog.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+<input type="hidden" id="userId" value="102768"/>
+<!-- jS国际化 -->
+	<input type="hidden"id ="ar1"value="没有搜索结果！">
+	<input type="hidden" id ="ar2" value="删除失败！">
+	<input type="hidden" id ="ar3" value="请求出错！">
+	<input type="hidden" id ="ar4" value="正在生成，请稍后...">
+	<div class="data_centent">
+
+
+<div class="centent_left">
+<input type="hidden" id="language" name="language" value="zh" style="display:none;" />
+<input type="hidden" id=""systemType"" name=""systemType"" value="systemType" style="display:none;" />
+<input type="hidden" id="userId" value="102768"/>
+    <a href="javascript:;" class="link_left_menu">
+	     <p class="centent_left_p" id="topicList"><img img src="${ctx}/images/subjectAnalysis/conter_left_03.png">专题列表</p><!-- 专题列表 -->
+    </a>
+	<div id="mainBox_note" class="zt_list_box">
+	<ul id="content_note" class="centent_left_lsit">
+	</ul>
+	</div>
+   
+	
+	<a href="" id="toAdd"  class="link_left_menu">
+	    <p class="centent_left_p" id="new_title"><img img src="${ctx}/images/subjectAnalysis/conter_left_06.png">新建专题</p><!-- 新建专题 -->
+	</a>
+	<a href="" id="topicManager"  class="link_left_menu">
+	    <p class="centent_left_p" id="topicManager2"><img img src="${ctx}/images/subjectAnalysis/conter_left_08.png">专题管理</p><!-- 专题管理 -->
+	</a>
+	<!-- 原来报告管理列表页面 -->
+	
+	<!-- 新的报告管理列表页面 -->
+	<a href="" id="reportList"  class="link_left_menu">
+	    <p class="centent_left_p"><img img src="${ctx}/images/subjectAnalysis/conter_left_10.png">报告管理</p><!-- 报告管理 -->
+	</a>
+</div>
+		<div class="centent_right">
+			<div class="centent_right_tab">
+				<ul>
+					<li class="on" ind="analysisReport">
+                                            <a href="http://localhost:9999/api/v1/view?to=modules/subjectAnalysis/reportManage">
+                                               分析报告<!-- 分析报告  -->
+                                            </a>
+                                        </li>
+                                        <li class="mail-push-report" ind="mailPushPeport">
+                                            <a href="http://localhost:9999/api/v1/view?to=modules/subjectAnalysis/emailReport">
+                                               邮件推送报告<!-- 邮件推送报告 -->
+                                            </a>
+                                        </li>
+				</ul>
+			</div>
+			<div class="region bgbai">
+				<div class="conter-right-top-box" style="border-bottom: none;">
+					<a href="label/queryLabelAndInfos?id=507a3ef47f5a42e2b8c241d8ce36b1bf&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1&newsFlag=&systemType=" class="right-top-box-p bakd_p op" style="padding-left:20px;margin-left:20px;">新建报告<!-- 新建报告 --></a>
+					
+					
+					<!-- 这里是目前没有实现的地方!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+					<!-- 查找 --></p>
+					<!-- 分析报告名称 -->
+                      <label class="conter-right-top-box-wenzi"></label>
+				</div>
+				<!-- 原来的报告列表 -->
+				
+				<!-- 新的报告列表 -->
+				<table class="table_ztgl table_ztgl_pl0" cellpadding="0"
+					cellspacing="0">
+					<tbody>
+						<tr>
+							
+							<th style="width:100px"><span style="width:200px;padding-left:40px;" class="span-b">报告名称</span><!-- 报告名称 --></th>
+							
+							<th style="width: 100px">最后编辑时间<!-- 最后编辑时间 --></th>
+						</tr>
+						
+					</tbody>
+				</table>
+				<p class="paging_p" style="margin-right:20px;"></p>
+			</div>
+			<div class="cl20"></div>
+			<div class="footer_box">
+				<p class="da_p">中译语通科技股份有限公司 版权所有</p> <!-- 中译语通科技（北京）有限公司 版权所有 -->
+				<p>Copyright ©2018 www.yeesight.com All rights reserved.京ICP备13002826号-9 京ICP证140152号</p>
+
+			</div>
+		</div>
+	</div>
+	
+		<!-- 分享HTML弹出框 -->
+<div id="send_email_box">
+    <div class="top_tit"><h3>邮件转发</h3></div>
+    <ul class="info_box">
+        <li>
+            <span><b>发送邮箱：</b><i>yeesight@gtcom.com.cn</i></span>
+        </li>
+        <li>
+            <b>邮件标题：</b>
+            <span><input name="title" class="title" type="text" value="" placeholder="标题" autocomplete="off"></span>
+            <span class="error"><p></p></span>
+        </li>
+        <li>
+            <b>接收邮件：</b>
+            <span class="email_list">
+                <a class="btn_addemail" href="javascript:;" data-addnum="1">+</a>
+                <span class="error"><p></p></span>
+            </span>
+        </li>
+    </ul>
+    <div class="btn_box">
+        <a class="btn_sendemail" href="javascript:;">发送</a>
+        <a class="btn_cancle" href="javascript:;">取消</a>
+    </div>
+</div>
+
+
+	<!-- 编辑数据结束 -->
+	<!-- 删除专题开始 -->
+	<div class="tanchu" id="zhuanti_del">
+		<div class="tanchu_inner" style="width: 500px;">
+			<div class="t wraperl-sm">
+				<span class="fl">删除报告</span> <!-- 删除报告 --><a href="javascript:void(0)"
+					class="fr iblock js-guanbi qhui cup"></a>
+			</div>
+			<div class="c p20">
+				<div class="clearfix tc">
+					<!--<div class="t10 lan f18 js_title">删除此报告删除此报告</div>  -->
+					<div class="t10 del-report-text">删除此报告后，该报告将从列表中移除</div><!-- 删除报告后，该报告将从列表中移除 -->
+				</div>
+				<p class="ztyl_btn m30 clearfix">
+					<a href="javascript:void(0)" class="grad js_del" onclick="guanbi()">删除报告</a><!-- 删除报告 -->
+					<a href="javascript:void(0)" onclick="guanbi()">取消</a><!-- 取消 -->
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- 删除专题结束 -->
+	<!-- 取消订阅开始 -->
+	<div class="tanchu" id="zhuanti_cancle">
+		<div class="tanchu_inner" style="width: 500px;">
+			<div class="t wraperl-sm">
+				<span class="fl">取消订阅专题</span> <!-- 取消订阅专题 --><a href="javascript:void(0)"
+					class="fr iblock js-guanbi qhui cup"></a>
+			</div>
+			<div class="c p20">
+				<div class="clearfix tc">
+					<div class="t10 lan f18 js_title">取消订阅此专题</div><!-- 取消订阅此专题 -->
+					<div class="t10">你真的要取消订阅这个专题吗？</div><!-- 你真的要取消订阅这个专题吗？ -->
+				</div>
+				<p class="ztyl_btn m30 clearfix">
+					<a href="javascript:void(0)" class="grad js_sure"
+						onclick="guanbi()">取消订阅</a><!-- 取消订阅  --><a href="javascript:void(0)"
+						onclick="guanbi()">取消</a><!-- 取消 -->
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- 取消订阅结束 -->
+	<!-- 订阅专题开始 -->
+	<div class="tanchu" id="zhuanti_dingyue">
+		<div class="tanchu_inner" style="width: 500px;">
+			<div class="t wraperl-sm">
+				<span class="fl">订阅推荐专题</span> <a href="javascript:void(0)"
+					class="fr iblock js-guanbi qhui cup"></a>
+			</div>
+			<div class="c p20">
+				<div class="clearfix">
+					<ul class="num_uls">
+						<li class="num_list"><label>一带一路</label> <a
+							href="javascript:void(0)" class="qxdy red">取消订阅</a></li>
+						<li class="num_list"><label>一带一路</label> <a
+							href="javascript:void(0)" class="dy">确定</a></li>
+						<li class="num_list"><label>一带一路</label> <a
+							href="javascript:void(0)" class="dy">确定</a></li>
+						<li class="num_list"><label>一带一路</label> <a
+							href="javascript:void(0)" class="dy">确定</a></li>
+					</ul>
+				</div>
+				<p class="ztyl_btn m30 clearfix">
+					<a href="javascript:void(0)" onclick="guanbi()">确定</a> <a
+						href="javascript:void(0)" onclick="guanbi()">取消</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- 订阅专题结束 -->
+	<!-- 弹窗结束 -->
+	<!-- js文件结束 -->
+	 <script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+    <script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+     <script src="${ctx}/js/subjectAnalysis/easydialog.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/layer.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/template.min.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/Scrollbar.js"></script>
+        <script type="text/javascript" src="${ctx}/js/subjectAnalysis/map-base.js"></script>
+        <script type="text/javascript" src="${ctx}/js/subjectAnalysis/tanchu.js"></script>
+          <script src="${ctx}/js/subjectAnalysis/con_datetime.js" type="text/javascript" ></script>
+        <script src="${ctx}/js/subjectAnalysis/jquery.ui.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/WdatePicker.js"></script>
+       <script src="${ctx}/js/subjectAnalysis/jedate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.1.js"></script>
+	<script>
+	$.fn.size=function(){ 
+		   return $(this).length;
+		}
+	 function getData(){
+	        return {"data":{"pageNo":0,"pageSize":0,"totalPages":0,"totalRows":0},"head":{"message":"操作成功","result":"true"}};
+	    }
+    function getTopicListData(){
+	        return ;
+	    }
+	 $(function(){
+	     if($('#content_note li').length>10){
+	     	 $('#mainBox_note').css({'height':'400px'});
+	     	 $('#content_note').css({'position':'absolute'});
+	     	 var addscoll_new_note=new addScroll('mainBox_note','content_note','scrDiv_note');
+	     }
+	    });
+	 $("#topicList").click(function(){
+			$("#mainBox_note").slideToggle(200);
+		});
+		function specialInfo(){
+			var category = $("#category").val();
+			var createId ="98887";// 102768;
+			var source = $("#source").val();
+
+			 $.ajax({
+				 
+	             type: "POST",
+	             url: "analysisData/queryInfoSpecial",
+	             data: {
+	            	 infoId:$("#id").val(),
+	            	 //infoId:"",
+	            	 category:category, 
+	            	 createId:createId,
+	            	 source:source
+	            	 },
+	             dataType: "json",
+	             success: function(data){
+	            	
+	            	 //console.log(data);
+	             }
+	         });
+		}
+		
+		$(function(){
+			
+		});
+		
+		// 专题列表同步加载
+		var session_usr='{"companyName":"青岛海联","createTime":1549951077499,"createTimeView":"2019-02-12 13:57:57","enterpriseId":7515,"fullName":"朱超","industry":7,"isAdmin":1,"isDelete":1,"lastLoginTime":1549951077499,"password":"","source":8,"state":1,"system":1,"thirdSource":"7","thirdUid":"D0F36A30A64EA92A765B35E86642A01B","updateTime":1549951098546,"updateTimeView":"2019-02-12 13:58:18","userId":102768,"userName":"8_D0F36A30A64EA92A765B35E86642A01B","userType":1}';
+		var nowLanguage = $("#language").val();
+		var str='';
+		$.ajax({
+			url:"analysisMap/queryTopicListWithPage",
+			data:{pageNo:0,xxx:new Date().getTime()},
+			type:"get",
+			dataType:"json",
+			async: false,
+			success:function(data){
+				
+				var list = [];
+				var defaultList = [];
+				var createList = []
+				for(var k=0;k<data.results.length;k++){
+					/* if(data.results[k].state==null){
+						defaultList.push(data.results[k]);
+					}else{ */
+						createList.push(data.results[k]);
+					//}
+				}
+				list=defaultList.concat(createList);
+				for (var i = 0; i < list.length; i++) {
+	                var title=list[i].srcShortTitle||list[i].srcTitle;
+	           	        	var systemType = $("#systemType").val();
+	           	        	str+='<li data="'+list[i].id+'" data-srcid="'+list[i].srcId+'">'
+	           	        		 +'<a data-state="'+list.state+'" href="analysisData/index?id='+list[i].id+'&opType='+list[i].opType+'&srcId='+list[i].srcId+'&source='+list[i].source+'&systemType='+systemType+'">'
+							     +title+'</a>'
+						    if(session_usr!='' && list[i].state==null){
+						    	str+='<img data-optype="'+list[i].opType+'" src="images/yayaya_23.png" alt="" style="float:right; padding:12px 0 0 10px;">';
+						    }
+					     	str+='</li>';
+	       	        	/*}
+	  	        	});*/
+	   	        }
+	   	        $("#content_note").html(str);
+	        }
+		});
+	
+$(function(){
+			
+			$('.link_left_menu').find('p').removeClass('on');
+			$('#reportList').find('p').addClass('on');
+			$('.table_list li').click(function(){
+											$(this).addClass('on').siblings().removeClass('on');
+											$(this).find('.postion_box').show().parent().siblings().find('.postion_box').hide();
+									});
+			$('.paging_p a').click(function() {
+									$(this).addClass('on').siblings().removeClass('on');
+								});
+			
+			$('.ss_span').click(function() {
+									$('.gy_a').hide();
+									$('.select_box').removeClass('hide');
+									$(this).removeClass('ss_span').addClass('sq_span');
+									$(this).html('收起工具');
+								});
+			
+			$(".tabw").slide({
+				titCell : ".hd p",
+				trigger : "click",
+				titOnClassName : "onp"
+			});
+			
+			$(".table_ztgl tr").hover(function() {
+										$(this).addClass('on');
+									}, function() {
+										$(this).removeClass('on');
+									});
+});
+$(function(){
+    //分页
+    showpage(".paging_p");
+    function showpage(pagebox,viewnum){//viewnum 当前显示多少组页，可自定义
+ 	   var pageNo=0//当前页
+	       var pageSize=0//每页数量
+	       var totalPage=0//总页数
+	       var totalRows=0//总记录数
+	       if(parseInt(totalRows)!=0){
+		       $(pagebox).empty();
+		       if(typeof(viewnum) == "undefined"){viewnum=10;};
+		       
+		       $(pagebox).append('<a href="label/labelReport/queryReportList?id=507a3ef47f5a42e2b8c241d8ce36b1bf&createId=102768&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1&pageNo='+ (((parseInt(pageNo)-1) >= 1) ? (parseInt(pageNo)-1) : pageNo) +'">&lt;</a>');
+		       var viep=pageNo-parseInt((parseInt(viewnum)+1)/2);
+		       for(var i=1;i<=viewnum;i++){
+		    	   if((viep+i)>=1 && (viep+i)<=totalPage){
+		    	   var strpage='<a class="[class]" href="label/labelReport/queryReportList?id=507a3ef47f5a42e2b8c241d8ce36b1bf&createId=102768&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1&pageNo='+(viep+i)+'">'+(viep+i)+'</a>'
+		    	           if((viep+i)==parseInt(pageNo)){
+		    	        	   strpage=strpage.replace("[class]","on");
+		    	           }
+		    			   $(pagebox).append(strpage);
+		    	   }
+		       }
+		       if(parseInt(pageNo)!=parseInt(totalPage)){
+			       $(pagebox).append('<a href="label/labelReport/queryReportList?id=507a3ef47f5a42e2b8c241d8ce36b1bf&createId=102768&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1&pageNo='+(((parseInt(pageNo)+1)<= parseInt(totalPage)) ? (parseInt(pageNo)+1) : pageNo)+'">&gt;</a>');
+
+		       }else{
+			       $(pagebox).append('<a href="javascript:void(0)" id="lastatag">&gt;</a>');
+			       $(pagebox).on("click","#lastatag",function(){
+			    	   $(this).removeAttr("class");
+			    	   $(this).prev().attr("class","on");
+			       });
+		       }
+	       }else{
+	    	   $(".paging_p").hide();
+	       }
+    }
+
+         $(".right_td input").click(function(){
+                 var _self = this;
+                 if ($(this).next().hasClass('CheckBoxLabelClass')) {
+                         $(this).next().removeClass("CheckBoxLabelClass");
+                         $(this).next().addClass("CheckBoxSelected");
+                         //$(this).checked('checked');
+                         //在此地添加执行的函数
+                         console.log("开启状态执行你的代码");
+                         $(this).parents("tr").removeClass("off");
+                         //在此地添加执行的函数
+                 } else if ($(this).next().hasClass('CheckBoxSelected')) {
+
+                         //$(this).prev().checked('false');
+                         //在此地添加执行的函数
+                         $("#zhuanti_cancle .js_title").html($(this).parents("tr").find(".left_td span:first").html());
+                         tanchu("#zhuanti_cancle");
+                         $("#zhuanti_cancle .js_sure").on("click",function() {
+                                                 $(_self).parents("tr").addClass("off");
+                                                 $(_self).next().removeClass("CheckBoxSelected");
+                                                 $(_self).next().addClass("CheckBoxLabelClass");
+                                                 $(_self).removeClass('checked','checked');
+                                         })
+                         $("#zhuanti_cancle .ztyl_btn") .find('a') .eq(1) .bind("click",function() {
+                                                                 $("#zhuanti_cancle .js_sure").unbind("click");
+                                                         });
+                         //在此地添加执行的函数
+                 }
+
+         });
+
+		$('.paging_p a').click(function() {
+			$(this).addClass('on').siblings().removeClass('on');
+		});
+		$('.table_ztgl tr').click(function() {
+			$(this).addClass('on').siblings().removeClass('on');
+		});
+});
+	
+/* 点击打开邮件发送窗口 */
+function shareReport(repId){
+	reportId = repId;
+		$("input.title").val("");
+	    $('.email_list .error p').text('');
+	    $("input.title").parent().next().find('p').text('');
+	    if($('.email_list .inp_txt').length){
+	        $('.email_list .inp_txt').remove();
+	    }
+		easyDialog.open({
+	        container : 'send_email_box',
+	        fixed : true
+	    });
+		
+}
+	var reportId="";
+
+$(function(){
+	var basePath = "http://buzz.yeesight.com:80/";
+//添加邮箱
+$('.btn_addemail').bind('click',function(){
+    if($('.inp_txt').length<10){
+        var num=parseInt($(this).attr("data-addnum"));
+        $('.email_list .btn_addemail').before('<input class="inp_txt" name="email_'+num+'" type="text" value="" placeholder="邮箱地址" autocomplete="off" maxlength="32">');
+        $(this).attr("data-addnum",num+1);
+    }else{
+        $(this).parent().find('.error p').text('只能添加10个邮件！');
+        //easyDialog.open({container : {content : '<center>只能添加10个邮件！</center>'},  autoClose : 2000 });
+   }
+});
+
+/* 关闭发送邮件窗口 */
+$('.btn_cancle').unbind().bind('click',function(){
+    easyDialog.close();
+    return false;
+});
+
+/* 邮箱格式校验 */
+var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;//邮箱正则
+$('.email_list').on("blur",".inp_txt",function(){
+    if(!reg.test($(this).val())){
+        $('.email_list .error p').text('邮箱有误！');
+    }else{
+        $('.email_list .error p').text('');
+    }
+});
+
+/*点击发送按钮发送邮件 */
+$('.btn_sendemail').unbind('click').bind('click',function(){
+	
+    if($("input.title").val()==''){
+        $("input.title").parent().next().find('p').text('请输入邮件标题!                                                                    ');
+    }else{
+    	$("input.title").parent().next().find('p').text('');
+    }    
+    var title = $("input.title").val();
+    
+    if($('.email_list .inp_txt').length==0){
+        $('.email_list .error p').text('请添加邮箱!                                                                            ');
+        return;
+    }
+    var email="";
+    $.each($('.email_list .inp_txt'),function(i,o){
+        if($(o).val()!='' && $.trim($(o).val()).length>3 && reg.test($.trim($(o).val()))){
+            email += "," + $(o).val();
+        }
+    });
+    email = email.substr(1);
+    emails = email.split(",")
+    if(emails.length==0){
+        $('.email_list .error p').text('请至少填写一个!                                                                   ');
+        return;
+    }
+    //发送
+     //var subject =basePath+"label/labelReport/queryReport?id="+reportId;
+     var subject ='<a href='+basePath+"label/labelReport/queryReport?id="+reportId+'>点击查看</a>';
+    if(emails.length && $('.error p').text() == "" && $("input.title").val().replace(/\s+/g,"")){
+        easyDialog.open({container : {content : '发送中...                                                                                    '}});
+		
+        var ajax_data={
+                'text':subject,//标题
+                'email':email,//邮箱
+                'subject':title
+        };
+        var ajax_url = "analysisModel/spread/sendReportEmail";
+        ajaxTest(ajax_url,ajax_data);
+    }
+});
+
+	function ajaxTest(ajax_url,ajax_data){
+		var flag = 1;
+	        if(flag){
+	                $.ajax({
+	                        url: ajax_url,
+	                        type: "POST",
+	                        dataType:"json",
+	                        data: ajax_data,
+	                        beforeSend: function(){
+	                                flag=0
+	                        },
+	                        success: function(result){
+	                        	 if(result && result.head && result.head.result=='true'){
+	                        	 	easyDialog.open({container : {content : '<center>发送成功!                                                                             </center>'},  autoClose : 2000 });
+	                        	 }else{
+	                                easyDialog.open({container : {content : '<center>发送失败!                                                                                </center>'},  autoClose : 2000 });
+	                            }
+	                            
+	                            flag=1;
+	                        }
+	                });
+	        }
+	}
+});
+	function akeywatch(url,keyword,beginDate,endDate){
+	
+			layer.open({
+                scrollbar: false,
+                type: 2,
+                title: '',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                closeBtn: 0,
+                area: ['100%', '100%'],            
+				content:url+"?keyword="+keyword+"&beginDate="+beginDate+"&endDate="+endDate
+            });	
+			$(".layui-layer-content").css("width","100%");
+			$(".layui-layer-setwin a").css("display","none");
+	}
+/* 查看报告 */
+function openReportDialog(param){
+	layer.open({
+		skin:'theme',
+        id: 'view_iframe',
+        scrollbar:false,
+        type: 2,
+        title: false,
+        closeBtn:1,
+        maxmin: false,
+        shadeClose: true, //点击遮罩关闭层
+        area: ['1000px', '100%'],
+		content:"label/labelReport/queryReport?id="+param,
+		success: function(layero, index){//回调函数
+            	
+              	 var body = layer.getChildFrame('body', index);
+              	    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+              	    //console.log(body.html()) //得到iframe页的body内容
+              	     body.find('.shejiao_crowd_center_right').css("margin","0px 80px 0px");
+              		// body.find('.shejiao_crowd_center_left').css("margin-left","-198px");
+              		 body.find('.one').css("display","none");
+              		 body.find('.shejiao_crowd_center_right').css("margin","0px");
+              		 body.find('.fr').css("padding-right","100px");
+              		 body.find('.text').css("padding-top","20px");
+              		// body.find('.chart-img-echarts').css({"overflow":"hidden","width":"850px"});
+              		
+              	
+         }
+		
+    });
+}
+
+
+/* 下载报告 */
+function downLoadReport(param){
+	layer.open({
+		skin:'theme',
+        id: 'view_iframe',
+        scrollbar:false,
+        type: 2,
+        title: false,
+        closeBtn:0,
+        maxmin: false,
+        shadeClose: false, //点击遮罩关闭层
+        area: ['0%', '0%'],
+		content:"label/labelReport/downLoadReport?id="+param,
+		time: 20000, //5秒后自动关闭
+		success:function(data){
+		}
+    });
+	downLoadMessage();
+}
+function downLoadMessage (){
+	 easyDialog.open({
+		  container : {
+		    content : '<center>正在生成，请稍后...</center>'
+		  },
+		  autoClose : 20000
+		});
+		
+	setTimeout(function () {
+		easyDialog.open({
+			  container : {
+			    content : '<center>PDF生成成功!</center>'
+			  },
+			  autoClose : 1000
+			})
+	}
+		, 20000);
+}
+/* 删除报告 */
+function delReport(reportId){
+	var that=this;
+	tanchu("#zhuanti_del");//弹出
+	$('.js_del').bind('click',function(){
+		var ajax_data={"id":reportId};
+		$.get('label/labelReport/deleteReport',ajax_data,function(result){
+			if(result.head && result.head.result){
+				$(that).closest("tr").remove();
+				window.location.reload();
+			}else{
+				alert($("#ar2").val());
+			}
+		},"json");
+	});
+}
+
+	
+	</script>
+	
+	
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>登录</title>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/login.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/account/common.css">
+    <link rel="stylesheet" href="/css/modules/account/loginForApplacation.css">
+</head>
+<body id="denglu">
+<#include "${ctx}/yeesight/tpl/header.html" />
+
+<div class="login">
+
+    <form id="loginform" method="post" action="">
+
+        <div class="login_Box login_Box_header">
+            <h3 class="flt">登录</h3>
+            <a class="frt" href="${ctx}/api/v1/view?to=modules/account/register_0">新用户注册</a>
+        </div>
+        <div class="line clear"></div>
+        <div class="login_Box">
+            <div class="formGroup">
+                <i class="iconfont icon-youjian"></i>
+                <input autocomplete="off" class="divSearch user" type="text" name="usercode" placeholder="请输入用户名或邮箱">
+            </div>
+            <div class="formGroup">
+                <i class="iconfont icon-suo"></i>
+                <input autocomplete="off" class="divSearch pwd" type="password" name="password" placeholder="请输入密码">
+            </div>
+            <div class="rember">
+                <a href="${ctx}/api/v1/view?to=modules/account/resetpwd" class="frl">忘记密码？</a>
+            </div>
+
+
+            <div class="divBtn">
+                <input id="submit" type="button" value="登录" class="frt">
+            </div>
+            <div class="tips">
+                温馨提示：建议使用谷歌浏览器访问系统！
+            </div>
+        </div>
+    </form>
+</div><!--login-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+<script src=" ${ctx}/js/modules/account/html5shiv.js"></script>
+<script src=" ${ctx}/js/modules/account/respond.min.js"></script>
+<script src=" ${ctx}/js/modules/account/browser.js"></script>
+<![endif]-->
+<script type="text/javascript" src=" ${ctx}/js/modules/account/jquery.js"></script>
+<script src=" ${ctx}/js/modules/account/jquery.validate.min.js"></script>
+<script src=" ${ctx}/js/modules/account/messages_zh.js"></script>
+<script src=" ${ctx}/plugins/layer/layer.js"></script>
+<script src=" ${ctx}/js/common.js"></script>
+
+
+<script>
+    $(function () {
+        document.onkeydown = function(e){
+            if(!e) e = window.event;//
+            if((e.keyCode || e.which) == 13){
+                document.getElementById("submit").click();
+            }
+        }
+
+        let login = {
+            init() {
+                this.verificationForm();
+                this.submit();
+            },
+            // 验证表单
+            verificationForm() {
+                $('#loginform').validate({
+                    rules: {
+                        usercode: {
+                            required: true,
+                            // email: true,
+                        },
+                        password: {
+                            required: true,
+                        }
+                    },
+                    messages: {
+                        usercode: {
+                            required: '*请输入邮箱地址',
+                            // email: '*请输入正确的邮箱地址',
+                        },
+                        password: {
+                            required: '*请输入密码'
+                        }
+                    },
+                });
+            },
+            //提交
+            submit() {
+                $("#submit").click(function () {
+                    if (!$('#loginform').valid()) {
+                        return;
+                    }
+                    Public.message('请稍候...');
+                    $.post('/loginAndRegister/login', {
+                        email: $('[name=usercode]').val(),
+                        password: $('[name=password]').val(),
+                    }, function (data) {
+                        console.log(data);
+                        if (data.result === 'true') {
+                            sessionStorage.loginInfo = JSON.stringify(data.data);
+                            location.href = sessionStorage.interceptUrl?Public.basePath + sessionStorage.interceptUrl:Public.basePath+'to=index';
+                        } else {
+                            // 邮箱不存在和密码不正确的提示不在同一字段
+                            Public.message(data.msg || data.errorMsg);
+                            return false;
+                        }
+                    })
+                });
+            }
+        };
+        login.init();
+    });
+</script>
+</body>
+</html>

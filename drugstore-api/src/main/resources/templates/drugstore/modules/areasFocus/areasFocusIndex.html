@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Cn">
+<head>
+    <meta charset="UTF-8">
+    <title>领域聚焦</title>
+	<link href="${ctx}/css/subjectAnalysis/tanchu.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="${ctx}/css/modules/areasFocus/areasFocusIndex.css" />
+	<link rel="stylesheet" href="${ctx}/plugins/swiper/swiper.min.css">
+    <!--<link rel="stylesheet" href="${ctx}/css/tpl/heardes.css"/>-->
+</head>
+<body class="social-critical">
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="social">
+    <!--左上角的数据区域-->
+    <div class="field-num">
+        <ul class="domain">
+        	<!--<li class="active"><i class="iconfont icon-zhengzhi"></i>政治</li>-->
+			<!--<li><i class="iconfont icon-jingji"></i>经济</li>-->
+			<!--<li><i class="iconfont icon-shehui"></i>社会</li>-->
+        	<!--<li><i class="iconfont icon-xinnengyuan"></i>能源</li>-->
+			<!--<li><i class="iconfont icon-nongye"></i>农业</li>-->
+			<!--<li><i class="iconfont icon-wenhua"></i>人文</li>-->
+        	<!--<li><i class="iconfont icon-keji"></i>科技</li>-->
+        </ul>
+        <div class="subscription">
+        	+ 订阅
+        </div>
+    </div> 
+    <!--右侧的最新言论-->
+    <ul class="new-comment">
+        <li class="ul">
+        	<h3>
+        		<span class="title">热门推荐</span>
+				<a href="view?to=modules/areasFocus/areaFocusList&class=hots" class="more">MORE</a>
+        	</h3>
+        	<ul class="hotNewsList">
+				
+        	</ul>
+        </li>
+        <li class="ul">
+        	<h3>
+        		<span class="title">最新资讯</span>
+				<a href="view?to=modules/areasFocus/areaFocusList&class=news" class="more">MORE</a>
+        	</h3>
+        	<ul class="newNewsList">
+			
+        	</ul>
+        </li>
+        <li class="ul">
+        	<h3>
+        		<span class="title">知识产权</span>
+        		<a href="view?to=modules/areasFocus/areaFocusList&class=equity" class="more">MORE</a>
+        	</h3>
+        	<ul class="ipList">
+		
+        	</ul>
+        </li>
+    </ul>
+    <!--底部的领导人言论-->
+    <!--<div class="leader-comment">-->
+
+    <!--</div>-->
+    <!--主体内容-->
+    <ul class="ball"></ul>
+	<!--切换主体内容组件-->
+	<div class="change-ball">
+		<div class="change-ball-top">
+			<div class="media active">媒体</div>
+			<div class="character">人物</div>
+		</div>
+		<div class="change-ball-bottom hide">
+			<!-- <div class="change-source">
+				
+			</div> -->
+			<!--媒体选择轮播-->
+			<div class="media-select">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+					
+					</div>
+				</div>
+
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+			<!--<div class="change-subscription">
+				<i class="iconfont icon-next next"></i>
+				<i class="iconfont icon-prev prev"></i>
+			</div>-->
+		</div>
+	</div>
+	<!--订阅弹出框-->
+	<!--<div class="subscription-alert">-->
+		<!--<div class="subscription-top">-->
+			<!--<ul class="subscription-box">-->
+				<!--<li class="active">政治</li>-->
+				<!--<li>经济</li>-->
+				<!--<li>社会</li>-->
+				<!--<li>科技</li>-->
+				<!--<li>农业</li>-->
+				<!--<li>能源</li>-->
+				<!--<li>知识产权</li>-->
+			<!--</ul>-->
+			<!--<div class="select-info">-->
+				<!--已选<span id="selected">0</span>-->
+				<!--/-->
+				<!--剩余<span id="remaining">5</span>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<ul class="subscription-center">-->
+		<!--</ul>-->
+		<!--<div class="subscription-bottom">-->
+			<!--<div class="button-large button-confirm subscription-complete">完成订阅</div>-->
+			<!--<div class="button-large button-cancel subscription-cancel">取消订阅</div>-->
+		<!--</div>-->
+		<!--<div class="close iconfont icon-close"></div>-->
+	<!--</div>-->
+	<div class="tanchu" id="zhuanti_selectarea">
+		<div class="tanchu_inner">
+			<div class="t wraperl-sm">
+				<span class="fl">选择媒体</span>
+			</div>
+			<div class="c p20">
+				<div class="subscription-box">
+					<div class="subscription-top">
+						<ul class="subscription-tab">
+						</ul>
+						<div class="select-count">
+							已选&ensp;<span id="selected">0</span>
+							&ensp;/&ensp;
+							剩余&ensp;<span id="remaining">5</span>
+						</div>
+					</div>
+					<ul class="subscription-center">
+					</ul>
+				</div>
+				<div class="ztyl_btn m30 clearfix subscription-bottom">
+					<div class="default-btn-enter subscription-complete">完成订阅</div>
+					<div class="default-btn-cancel subscription-cancel">取消订阅</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹出框遮罩层-->
+<!--<div class="subscription-mask"></div>-->
+<script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/tanchu.js"></script>
+<script src="${ctx}/js/modules/areasFocus/areasFocusIndex.js"></script>
+<script src="${ctx}/plugins/swiper/swiper.min.js"></script>
+<script>
+   
+</script>
+
+</body>
+</html>

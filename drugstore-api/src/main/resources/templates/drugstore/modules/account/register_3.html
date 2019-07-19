@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>激活邮箱</title>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/login.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/account/common.css">
+    <link rel="stylesheet" href="/css/modules/account/loginForApplacation.css">
+    <style>
+        .login_Box h3{
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+
+
+<div class="login">
+    <form method="post" action="${ctx}/api/v1/view?to=modules/account/denglu">
+        <div class="login_Box login_Box_header">
+            <h3 class="ct">注册成功，恭喜您！</h3>
+        </div>
+        <div class="line "></div>
+        <div class="login_Box login_Box_bottom">
+            <div class="reg_divBtn">
+                <p>登录账号为您注册的邮箱: <strong id="email" class="main-blue"></strong></p>
+                <a href="${ctx}/api/v1/view?to=modules/account/denglu"><input id="go" type="button" value="开始使用"></a>
+            </div>
+        </div>
+    </form><!--form-->
+</div><!--logo-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+<script src=" ${ctx}/js/modules/account/html5shiv.js"></script>
+<script src=" ${ctx}/js/modules/account/respond.min.js"></script>
+<script src=" ${ctx}/js/modules/account/browser.js"></script>
+<![endif]-->
+<script type="text/javascript" src=" ${ctx}/js/modules/account/jquery.js"></script>
+<script>
+    $(function () {
+        let emailCode = JSON.parse(sessionStorage.getItem('emailCode'));
+        $('#email').text(emailCode.email);
+    })
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+
+<head>
+    <title>报告管理</title>
+    <!--seo优化-->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/datacss_e.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/plugins/pagination/pagination.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="${ctx}/css/iconfont.css">
+    <!--<link rel="stylesheet" href="${ctx}/css/tpl/heardes.css">-->
+    <link rel="stylesheet" href="${ctx}/css/modules/subjectAnalysis/reportList.css">
+ 
+    <style>
+        /* #emotionZoushi canvas{width:420px !important;}
+    	#emotionQushi canvas{width:420px !important;} */
+        .positive_center {
+            height: 308px;
+        }
+
+        .mainpositivelist ul {
+            padding-top: 0px;
+        }
+
+        .maincountNegativelist ul {
+            padding-top: 0px;
+        }
+
+        .shejiaopositive-del ul {
+            padding-top: 10px;
+        }
+
+        .shejiaonegative-del ul {
+            padding-top: 10px;
+        }
+        .listCont span i {
+            cursor: pointer;
+            margin: 0 9px;
+            color:#284e8c;
+            font-size: 16px;
+            }
+        .listCont span i:hover{
+            color: #008aff;
+        }
+            .listCont span {
+            float:left;
+            width:20%;
+                height: 40px;
+                line-height: 40px;
+            }
+            .listCont span:first-child {
+                width:40%;
+                padding-left:50px;
+            }
+           .wrapperLoading {
+           	color:#008aff;
+           }
+    </style>
+</head>
+
+<body class="subject-analysis">
+    <#include "${ctx}/yeesight/tpl/header.html" />
+    <div class="data_centent">
+        <div class="aside-menu">
+            <#include "${ctx}/yeesight/tpl/asideLeft.html" />
+        </div>
+        <div class="centent_right">
+            <div class="centent_right_tab">
+                <!--<i class="iconfont icon-location"></i>-->
+                <!--<span>专题分析</span>/-->
+                <span>报告管理</span>
+            </div>
+            <div class="emotion">
+                <div class="searchRow">
+                    <div class="searchBox">
+                        <input type="text" placeholder="请输入报告标题" style="color:#fff" class="search-input">
+                        <button class="search-btn"><i class="iconfont icon-search"></i></button>
+                    </div>
+                    <div id="addNewReport" style="display:none">
+                        <span>+ </span>新建报告
+                    </div>
+                </div>
+                <div class="reportList">
+                    <ul class="listHeader">
+                        <li>报告名称</li>
+                        <li>生成时间</li>
+                        <li>最后编辑日期</li>
+                        <li>操作</li>
+                    </ul>
+                    <div class="wrapperLoading">
+	                    <ul class="listContent">
+							
+	                    </ul>
+	                    <div class="loading"></div>
+                   </div>
+                </div>
+                <div id="wrapper" class="m-style"></div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <!--********************************************************-->
+    <script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+    <script type="text/javascript" src="${ctx}/plugins/pagination/jquery.pagination.js"></script>
+    <script type="text/javascript">
+        setHeaderActive();
+        // 设置页头
+        function setHeaderActive() {
+            var headerArr = $('.header-right nav a');
+            $.each(headerArr, function (index, item) {
+                if ($(item).html() === "专题分析") {
+                    $(item).addClass('active');
+                }
+            })
+        }
+        getReportList();
+        function getReportList(pageNum=1,reportName){
+            //报告管理列表绑数
+            const pageSize = 10;
+            Public.loading(true)
+            $.ajax({
+                token:Public.token,
+                url:'/api/reportSettingInfo/list',
+                data:{pageNum,pageSize,reportName,userId:Public.userId},
+                type:'get',
+                success:data=>{
+                    if(data.success){
+                    	Public.loading(false)
+                        let list = data.data.list;
+                        let html = ''
+                        list.forEach((item,index)=>{
+                            let createDate = item.createDate?Public.timestampToTime(item.createDate,'/',true):''
+                            let updateDate = item.updateDate?Public.timestampToTime(item.updateDate,'/',true):''
+                            html += '<li class="listCont" data-id='+item.id+'>'+
+                                       ' <span>'+item.title+'</span>'+
+                                       ' <span>'+createDate+'</span>'+
+                                       ' <span>'+updateDate+'</span>'+
+                                       '<span>'+
+                                          '<i title="编辑" class="iconfont icon-edit"></i>'+
+                                            '<i title="删除" class="iconfont icon-shanchu"></i>'+
+                                             '<i title="下载" class="iconfont icon-Group-"></i>'+
+                                          /*  '<i class="iconfont icon-youjian"></i>'+ */
+                                     	 '</span>'+
+                               	   '</li>'
+                        })
+                        	
+                       	 $(".listContent").html(html)
+                        	
+                        let total = data.data.total
+                        let pageCount = Math.ceil(total/pageSize)
+                        $('#wrapper').pagination({
+                            current:pageNum,
+                            pageCount,
+                            callback: function(pagination) { //回调函数 当我们点击页数执行的方法
+                                let pageNum = pagination.getCurrent();
+                                getReportList(pageNum)
+                            }
+                        })
+
+                    }
+                }
+            })
+        }
+        
+        $(".search-btn").on('click',()=>{
+        	let reportName = $(".search-input").val()
+        	getReportList(1,reportName)
+        })
+		 $(".search-input").on('keyup',(e)=>{
+			 if(e.keyCode === 13){
+			    let reportName = $(".search-input").val()
+	        	getReportList(1,reportName)
+			 }
+		 })
+        // 删除某个报告
+        $(".listContent").on("click","i.icon-shanchu",function(e){
+            layer.confirm('确认删除？',{title:false},function(index){
+                let id = $(e.target).parents(".listCont").attr("data-id");
+                console.log(id)
+                $.ajax({
+                    token:Public.token,
+                    url:'/api/reportSettingInfo/delete/'+id,
+                    type:'post',
+                    success:data=>{
+                        if(data.success){
+                            Public.message("删除成功！")
+                            getReportList();
+                        }
+                    }
+                })
+            })
+        })
+        
+        
+     /*    $("#addNewReport").click(function(){
+        	window.open(Public.basePath + 'to=modules/subjectAnalysis/addReport');
+        }) */
+        
+        $(".listContent").on("click",".icon-edit",function(e){
+        	let reportId = $(this).parents(".listCont").data("id");
+        	window.open(Public.basePath + 'to=modules/subjectAnalysis/addReport&reportId='+reportId)
+        })
+        $(".listContent").on("click",".icon-Group-",function(e){
+        	let reportId = $(this).parents(".listCont").data("id");
+        	window.open(Public.basePath + 'to=modules/subjectAnalysis/addReport&reportId='+reportId+'&download=')
+        })
+        
+    </script>
+
+
+    <!--********************************************************-->
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+    <title>情感分析</title>
+    <!--seo优化-->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/subjectAnalysis/datacss_e.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="${ctx}/css/iconfont.css">
+    <link rel="stylesheet" href="${ctx}/css/tpl/heardes.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/subjectAnalysis/emotionAnalysis.css">
+
+    <style>
+    	/* #emotionZoushi canvas{width:420px !important;}
+    	#emotionQushi canvas{width:420px !important;} */
+    	.positive_center{
+    	height:308px;
+    	}
+    	.mainpositivelist ul{
+    	padding-top: 0px;
+    	}
+    	.maincountNegativelist ul{
+    	padding-top: 0px;
+    	}
+    	.shejiaopositive-del ul{
+    	padding-top: 10px;
+    	}
+    	.shejiaonegative-del ul{
+    	padding-top: 10px;
+    	}
+    </style>
+</head>
+
+<body class="subject-analysis">
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="data_centent">
+	<div class="aside-menu">
+		<#include "${ctx}/yeesight/tpl/asideLeft.html" />
+	</div>
+    <div class="centent_right">
+         <div class="centent_right_tab">
+            <#include "${ctx}/yeesight/tpl/subjectNav.html" />
+        </div>
+        <div class="emotion">
+            <div class="emotion_total">
+                <div class="region_title emotion_title">
+                    <h2>总体情感分布</h2>
+                    <!--<span>-->
+                        <!--&lt;!&ndash; <img src="${ctx}/images/subjectAnalysis/analysis_05.png" class="icon-udn" style="margin-right:3px;"> &ndash;&gt;-->
+                        <!--<h1 class="gy_seld"><i class="iconfont icon-meiti"></i>&nbsp<span class="gy_seld_span">媒体类型</span>&nbsp<i class="iconfont icon-jiantouarrow486"></i></h1>-->
+                        <!--<ul class="f_select meiti_name1">-->
+                      		<!--<li class="hober_li" name="A">全部</li>-->
+                      		<!--<li class="hober_li" name="weibo">微博</li>-->
+                      		<!--<li class="hober_li" name="weixin">微信</li>-->
+                      		<!--<li class="hober_li" name="twitter">twitter</li>-->
+                      		<!--<li class="hober_li" name="facebook">facebook</li>-->
+                        <!--</ul>-->
+                    <!--</span>-->
+                </div>
+                <div class="emotion_total_center" style="height:306px;" id="emotionPrecent"></div>
+            </div>
+            <div class="emotion_total emotion_total_right">
+                <div class="region_title emotion_title">
+                    <h2>情感走势</h2>
+                    <!--<span>-->
+                        <!--&lt;!&ndash; <img src="${ctx}/images/subjectAnalysis/analysis_05.png" class="icon-udn" style="margin-right:3px;"> &ndash;&gt;-->
+                        <!--<h1 class="gy_seld"><i class="iconfont icon-meiti"></i>&nbsp<span class="gy_seld_span">媒体类型</span>&nbsp<i class="iconfont icon-jiantouarrow486"></i></h1>-->
+                        <!--<ul class="f_select meiti_name2">-->
+                            <!--<li class="hober_li" name="A">全部</li>-->
+                      		<!--<li class="hober_li" name="weibo">微博</li>-->
+                      		<!--<li class="hober_li" name="weixin">微信</li>-->
+                      		<!--<li class="hober_li" name="twitter">twitter</li>-->
+                      		<!--<li class="hober_li" name="facebook">facebook</li>-->
+                        <!--</ul>-->
+                    <!--</span>-->
+                </div>
+                <div class="emotion_total_center" id="emotionQushi" style="height:306px;"></div>
+            </div>
+            <div class="emotion_total">
+                <div class="region_title emotion_title">
+                    <h2>不同媒体类型情感分布</h2>
+                </div>
+                <div class="emotion_total_center" style="height:306px;" id="diffemotionPrecent"></div>
+            </div>
+
+            <div class="emotion_total emotion_total_right">
+                <div class="region_title emotion_title">
+                    <h2>不同区域情感对比</h2>
+                    <!--<span>-->
+                          <!--&lt;!&ndash; <img src="${ctx}/images/subjectAnalysis/analysis_05.png" class="icon-udn" style="margin-right:3px;"> &ndash;&gt;-->
+                        <!--<h1 class="gy_seld"><i class="iconfont icon-meiti"></i>&nbsp<span class="gy_seld_span">媒体类型</span>&nbsp<i class="iconfont icon-jiantouarrow486"></i></h1>-->
+                          <!--<ul class="f_select meiti_name4">-->
+                            <!--<li class="hober_li" name="A">全部</li>-->
+                      		<!--<li class="hober_li" name="weibo">微博</li>-->
+                      		<!--<li class="hober_li" name="weixin">微信</li>-->
+                      		<!--<li class="hober_li" name="twitter">twitter</li>-->
+                      		<!--<li class="hober_li" name="facebook">facebook</li>-->
+                          <!--</ul>-->
+                    <!--</span>-->
+                </div>
+                <div class="emotion_total_center" id="emotionZoushi" style="height:306px;"></div>
+            </div>
+            <div class="emotion_total allbillboard">
+                <div class="region_title emotion_title">
+                    <h2>主流媒体最有影响力榜单</h2>
+
+                </div>
+                <div id="mediaEmotionalRank" class="emotion_total_center billboard">
+                    <!-- <div class="positive">
+                        <h2>正面情感</h2>
+                        <div class="positive_center mainpositivelist" style="overflow: hidden;">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="positive negative">
+                        <h2>负面情感</h2>
+                        <div class="positive_center maincountNegativelist" style="overflow: hidden;">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <div class="billboard_left">
+                        <ul class="media-green">
+                            <li>正面情感</li>
+                        </ul>
+                        <ul class="media-red">
+                            <li>负面情感</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="emotion_total emotion_total_right allbillboard">
+                <div class="region_title emotion_title">
+                    <h2>社交媒体最有影响力情感榜单</h2>
+
+                </div>
+                <div id="socialEmotionalRank" class="emotion_total_center billboard">
+                    <!-- <div class="positive">
+                        <h2>正面情感</h2>
+                        <div class="positive_center shejiaopositive-del" style="overflow: hidden;">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="positive negative">
+                        <h2>负面情感</h2>
+                        <div class="positive_center shejiaonegative-del" style="overflow: hidden;">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <div class="billboard_right">
+                        <ul class="social-green">
+                            <li>正面情感</li>
+                        </ul>
+                        <ul class="social-red">
+                            <li>负面情感</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--********************************************************-->
+        <!-- <div class="footer_box">
+            <p class="da_p">中译语通科技股份有限公司 版权所有</p>
+
+            <p>Copyright ©2018 www.yeesight.com All rights reserved.京ICP备13002826号-9 京ICP证140152号</p>
+
+        </div> -->
+    </div>
+</div>
+
+
+<!--********************************************************-->
+		<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+	    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+	    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+	   <script type="text/javascript" src="${ctx}/js/subjectAnalysis/SpecialList05.js"></script>
+	    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/common.js"></script>
+
+
+<!--********************************************************-->
+</body>
+</html>

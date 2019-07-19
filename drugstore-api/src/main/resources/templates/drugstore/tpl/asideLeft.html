@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <link rel="stylesheet" href="${ctx}/css/modules/areaFocusIndex/areaFocusIndex.css"> -->
+		<style>
+			.centent_lefts h3{padding:7px 20px 8px 20px;font-weight:bold;background:rgba(0,138,255,0.2);}
+			.centent_lefts h3 i{margin-right:10px;font-size: 22px;}
+			.lists{background:rgba(0,138,255,0.06);}
+			.menu-lists .menus h5{padding: 3px 0 2px 28px;font-weight:normal;cursor:pointer;position: relative;border-left: solid 5px #008aff00;}
+			/*.menu-lists .menus h5.on{border-left:5px solid #008aff;background:rgba(0,138,255,0.06);position: relative;}*/
+			.menu-lists .menus h5>span{padding: 0 5px;}
+			/*.menu-lists .menus h5.on>span .icon-xiala{transform:rotate(0deg);
+				-ms-transform:rotate(0deg);
+				-moz-transform:rotate(0deg);
+				-webkit-transform:rotate(0deg);}*/
+			.menu-lists .menus h5>span .icon-xiala{display: inline-block;font-size: 12px;}
+			.menu-lists .menus>ul{display:none;}
+			.menu-lists .menus>ul>li{height:40px;padding:5px 0 5px 70px;font-size:14px;cursor:pointer;position: relative;border-left: 5px solid rgba(0,0,0,0);}
+			.menu-lists .menus>ul>li>span{padding:0 5px;}
+			.menu-lists .menus>ul>li.show{background:rgba(0,138,255,0.06);border-left: 5px solid #008aff;}
+			.add-class{position:relative;padding:20px 0;}
+			.add-class span{display:inline-block;width:62%;height:32px;margin-left:19%;line-height:30px;border:1px dashed #008AFF;border-radius:4px;text-align:center;cursor:pointer;}
+			.add-class .import{position:absolute;z-index:-1;display:-webkit-flex;display:flex;opacity:0;align-items:center;top:36px;left:-2px;width:100%;height:46px;background:rgba(9,17,44,0.8);box-shadow: 2px 2px 2px rgba(0,0,0,0.5);}
+			.add-class .import.show{opacity:1;z-index:10;}
+			.add-class .import span{margin:0 16% 0 4%;color:#008aff;border:1px solid rgba(0,138,255,0.6);border-radius:2px;}
+			.add-class .import i{margin-right:2%;cursor:pointer;}
+			.add-class .import i.icon-check{color:#00e546;}
+			.add-class .import i.icon-error-bold{color:#e5004f;}
+			.add-subject,.report-list{padding:3px 20px;margin-bottom:2px;background:rgba(0,138,255,0.1);}
+			.add-subject i,.report-list i{margin-right:10px;}
+			.icon-banshou {position: absolute;right: 6px; top: 5px; display: none;color: #008aff;font-size: 20px;}
+			h5>.icon-banshou {top: 9px;}
+
+			.operate-sub-menu {width: 110px; position: absolute;background: #213d6e;right: -100px;top:28px;z-index: 999;display: none;}
+			.operate-sub-menu>li {text-align: center; padding: 5px 6px;border-bottom: solid 1px #09112c;height:32px;line-height:22px;}
+			.operate-sub-menu>li:hover {background:#008aff;}
+			.operate-sub-menu.on{display: block;}
+			.operate-main-menu {width: 110px; position: absolute;background: #213d6e;right: -100px;top:28px;z-index: 999;display: none;color:#fff;}
+			.operate-main-menu>li {text-align: center; padding: 5px 6px;border-bottom: solid 1px #09112c;height:32px;line-height:22px;}
+			.operate-main-menu>li:hover {background:#008aff;}
+			.operate-main-menu.on{display: block;}
+			.hidden{display:none;}
+			.icon-liebiao{font-size: 20px;}
+
+	 		.subject-name {
+	 		    display: inline-block;
+			    width: 1.3rem;
+		        height: 29px;
+   				 line-height: 29px;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+	 		}
+		</style>
+	</head>
+	<body>
+		<div class="centent_lefts">
+			<div class="add-subject font16"><a class="main-blue"><span class="font18"><i class="iconfont icon-liebiao"></i></span>专题列表</a></div>
+			<div class="lists">
+				<ul class="menu-lists">
+				</ul>
+				<div class="add-class">
+					<span class="main-blue font16 add">+ 添加分类</span>
+					<div class="import font16">
+						<span class="add-name"></span>
+						<i class="iconfont icon-check"></i>
+						<i class="iconfont icon-error-bold"></i>
+					</div>
+				</div>
+			</div>
+			<div class="add-subject font16"><a href="view?to=modules/subjectAnalysis/addSubject" target="_self" class="main-blue"><span class="font18"><i class="iconfont icon-xinjian"></i></span>新建专题</a></div>
+			<div class="report-list font16"><a href="view?to=modules/subjectAnalysis/reportList" class="main-blue"><span class="font18"><i class="iconfont icon-liebiao1"></i></span>报告管理</a></div>
+
+		</div>
+		<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="${ctx}/plugins/layer/layer.js"></script>
+		<script type="text/javascript" src="${ctx}/js/subjectAnalysis/asideLeft.js"></script>
+	</body>
+</html>

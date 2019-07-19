@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>我的订阅</title>
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/plugins/pagination/pagination.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/userCenter/mySubscription.css">
+</head>
+
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="data_centent">
+    <aside class="aside-menu color-box-bg">
+        <#include "${ctx}/yeesight/tpl/userCenterAsideLeft.html" />
+    </aside>
+    <div class="centent_right">
+        <div class="page-header color-main">我的订阅</div>
+        <div class="subscription-count">
+            <div class="subscription-count-right">
+                <select class="form form-triangle">
+                    <option value="org">原文</option>
+                    <option value="edit">中文译文</option>
+                </select>
+                <div class="subscription-num">
+                    共订阅
+                    <span class="total-num color-main">0</span>
+                    篇
+                </div>
+            </div>
+        </div>
+        <div class="page-container">
+            <div class="list-header">
+                <div class="list-header-left">
+                    <i class="select-icon iconfont"></i>
+                    <div>全选</div>
+                    <div>
+                        已选择&ensp;
+                        <span class="select-num color-main">0</span>
+                        &ensp;篇
+                    </div>
+                </div>
+                <div class="handle-grounp">
+                    <div class="export">
+                        <a href="javascript:void(0)">
+                        <i class="iconfont icon-fenxiangdaochu"></i>
+                        导出
+                        </a>
+                    </div>
+                    <!--<div class="delete">-->
+                        <!--<i class="iconfont icon-shanchu"></i>-->
+                        <!--删除-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="list-main">
+            </div>
+            <div class="list-pagination">
+                <div id="wrapper-pagination" class="m-style">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="${ctx}/plugins/pagination/jquery.pagination.js"></script>
+<script type="text/javascript" src="${ctx}/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/modules/userCenter/userCenterList.js"></script>
+<script type="text/javascript" src="${ctx}/js/modules/userCenter/mySubscription.js"></script>
+<script>
+    //左侧导航
+    setLeftActive();
+    function setLeftActive() {
+        var leftArr = $('.left-nav ul>li');
+        $.each(leftArr, function (index, item) {
+            if ($(item).text() === '我的订阅') {
+                $(item).addClass('active');
+            }
+        })
+    }
+</script>
+
+</body>
+
+</html>

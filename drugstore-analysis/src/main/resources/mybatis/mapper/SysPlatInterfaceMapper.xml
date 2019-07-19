@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hlsofttech.analysis.dao.SysPlatInterfaceDao">
+
+   <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="com.hlsofttech.entity.analysis.SysPlatInterface">
+      <result property="id" column="id" /><!-- 主键 -->
+      <result property="platId" column="plat_id" /><!-- 平台主键 -->
+      <result property="appKey" column="app_key" /><!-- 应用key -->
+      <result property="type" column="type" /><!-- 类型：1-算法、2-翻译 -->
+      <result property="backStatus" column="back_status" /><!-- 状态：9-审核中、1-审核通过、0-审核失败 -->
+      <result property="interfCode" column="interf_code" /><!-- 接口 -->
+      <result property="interfName" column="interf_name" /><!-- 接口名称 -->
+      <result property="validityBegin" column="validity_begin" /><!-- 有效开始时间 -->
+      <result property="validityEnd" column="validity_end" /><!-- 有效截止时间 -->
+      <result property="createBy" column="create_by" /><!-- 创建者 -->
+      <result property="createDate" column="create_date" /><!-- 创建时间 -->
+      <result property="updateBy" column="update_by" /><!-- 更新者 -->
+      <result property="updateDate" column="update_date" /><!-- 更新时间 -->
+      <result property="remarks" column="remarks" /><!-- 备注信息 -->
+      <result property="delFlag" column="del_flag" /><!-- 删除标记 -->
+   </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+      plat_id,
+      app_key,
+      type,
+      back_status,
+      interf_code,
+      interf_name,
+      validity_begin,
+      validity_end,
+      create_by,
+      create_date,
+      update_by,
+      update_date,
+      remarks,
+      del_flag,
+</sql>
+
+
+  <!-- 表中所有列 -->
+  <sql id="all_cls">
+    t.id,t.plat_id,t.app_key,t.type,t.back_status,
+    t.interf_code,t.interf_name,t.validity_begin,t.validity_end,t.create_by,
+    t.create_date,t.update_by,t.update_date,t.remarks,t.del_flag
+  </sql>
+  <!-- 基本引用sql -->
+  <sql id="sql_all_cls">
+    select
+    <include refid="all_cls" />
+    from sys_plat_interface t
+  </sql>
+  <!-- 查询条件 -->
+  <sql id="sql_where_cls">
+    <if test="model.id!=null and model.uuid != '' ">and t.id = #{model.id}</if>
+    <if test="model.platId!=null and model.platId != '' ">and t.plat_id = #{model.platId}</if>
+    <if test="model.appKey!=null and model.appKey != '' ">and t.app_key = #{model.appKey}</if>
+    <if test="model.type!=null ">and t.type = #{model.type}</if>
+    <if test="model.backStatus!=null ">and t.back_status = #{model.backStatus}</if>
+    <if test="model.interfCode!=null and model.interfCode != '' ">and t.interf_code = #{model.interfCode}</if>
+    <if test="model.interfName!=null and model.interfName != '' ">and t.interf_name = #{model.interfName}</if>
+    <if test="model.validityBegin!=null ">and t.validity_begin = #{model.validityBegin}</if>
+    <if test="model.validityEnd!=null ">and t.validity_end = #{model.validityEnd}</if>
+    <if test="model.createBy!=null and model.createBy != '' ">and t.create_by = #{model.createBy}</if>
+    <if test="model.createDate!=null ">and t.create_date = #{model.createDate}</if>
+    <if test="model.updateBy!=null and model.updateBy != '' ">and t.update_by = #{model.updateBy}</if>
+    <if test="model.updateDate!=null ">and t.update_date = #{model.updateDate}</if>
+    <if test="model.remarks!=null and model.remarks != '' ">and t.remarks = #{model.remarks}</if>
+    <if test="model.delFlag!=null and model.delFlag != '' ">and t.del_flag = #{model.delFlag}</if>
+  </sql>
+  <sql id="sql_like_cls">
+    <if test="model.cdateBegin!=null and model.cdateBegin != '' "><![CDATA[ and t.created_date >= #{model.cdateBegin}]]></if>
+    <if test="model.cdateEnd!=null and model.cdateEnd != '' "><![CDATA[ and t.created_date <= #{model.cdateEnd}]]></if>
+  </sql>
+  <!-- 带条件查询list -->
+  <select id="searchList" resultMap="BaseResultMap">
+    select
+    <include refid="all_cls" />
+    ,spi.name platName,spi.description,spi.secret_key secretKey
+    ,asd.dict_label statusName
+    from sys_plat_interface t
+    left join sys_plat_info spi on spi.app_key=t.app_key
+    left join (SELECT dict_value,dict_label FROM admin_sys_dict_data where dict_type='sys_plat_status') asd ON asd.dict_value= t.back_status
+    where 1=1
+    <include refid="sql_where_cls" />
+    <include refid="sql_like_cls" />
+    order by ifnull(t.update_date,t.create_date) desc
+  </select>
+
+</mapper>

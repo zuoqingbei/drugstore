@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			.centent_right_tab li.on a{ color:#8dcbff; }
+			.centent_right_tab li.on{background:rgba(0,138,255,0.06)}
+		</style>
+	</head>
+	<body>
+		<ul class="center-nav">
+            <li><a href="javascript:;" target="_self" class="font16 main-blue" id="reportAnalysis">专题概况</a></li>
+			<li><a href="javascript:;" target="_self" class="font16 main-blue" id="dataView">数据概览</a></li>
+			<li><a href="javascript:;" target="_self" class="font16 main-blue" id="spreadAnalysis">传播分析</a></li>
+			<li><a href="javascript:;" target="_self" class="font16 main-blue" id="regionAnalysis">区域分析</a></li>
+			<li><a href="javascript:;" target="_self" class="font16 main-blue" id="emotionAnalysis">情感分析</a></li>
+			 <!--<li><a href="javascript:;" target="_self" class="font16 main-blue" id="userAnalysis">用户分析</a></li>-->
+        </ul>
+        
+        <script>
+        	$(".center-nav").on("click",'li a',function(){
+        		sessionStorage.removeItem("keywords")        		
+        		let id = $(this).attr("id");
+        		let classifyId = '';
+        		let url = '';
+        		if(location.search.split('&')[1]){
+				   classifyId = location.search.split('&')[1].split('=')[1];
+				}
+        		switch (id){
+        			case 'reportAnalysis':
+    			   		url = classifyId?Public.basePath + 'to=modules/subjectAnalysis/reportAnalysis&classifyId='+classifyId:Public.basePath + 'to=modules/subjectAnalysis/reportAnalysis';
+    					break;
+        			case 'dataView':
+        			    url = classifyId?Public.basePath + 'to=modules/subjectAnalysis/dataView&classifyId='+classifyId:Public.basePath + 'to=modules/subjectAnalysis/dataView';
+        				break;
+        			case 'spreadAnalysis':
+        			    url = classifyId?Public.basePath + 'to=modules/subjectAnalysis/spreadAnalysis&classifyId='+classifyId:Public.basePath + 'to=modules/subjectAnalysis/spreadAnalysis';
+        				break;
+        			case 'regionAnalysis':
+        			    url = classifyId?Public.basePath + 'to=modules/subjectAnalysis/regionAnalysis&classifyId='+classifyId:Public.basePath + 'to=modules/subjectAnalysis/regionAnalysis';
+        				break;
+        			case 'emotionAnalysis':
+        			    url = classifyId?Public.basePath + 'to=modules/subjectAnalysis/emotionAnalysis&classifyId='+classifyId:Public.basePath + 'to=modules/subjectAnalysis/emotionAnalysis';
+        				break;
+        			case 'userAnalysis':
+        			    url = classifyId?Public.basePath + 'to=modules/subjectAnalysis/userAnalysis&classifyId='+classifyId:Public.basePath + 'to=modules/subjectAnalysis/userAnalysis';
+        				break;
+        			default:
+        				break;
+        				
+        		}
+        		location.href = url;
+        	})
+        </script>
+	</body>
+</html>

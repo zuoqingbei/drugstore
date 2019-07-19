@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+    <title>用户分析</title>
+    <!--seo优化-->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css"/>
+
+	<link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/css/modules/subjectAnalysis/userAnalysisHeader.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+	    #user_favoritor{position:relative}
+		#user_favoritor a{position:absolute;top:0px;left:0px;font-weight:bold;padding:3px 6px;font;padding:3px 6px; max-width:80px; overflow: hidden;word-break: keep-all;}
+		#user_favoritor a:hover{border:1px solid #2e95f3;background:#2e95f3;border-radius:5px;color:#FFFFFF !important;}
+		#area_fenxi>div{right:80px !important;}
+		.crowd_center.social .no-data{
+			background: rgba(0,138,255,0.06);
+		}
+    </style>
+</head>
+
+<body class="subject-analysis">
+	<#include "${ctx}/yeesight/tpl/header.html" />
+	<div class="data_centent">
+		<div class="aside-menu">
+			<#include "${ctx}/yeesight/tpl/asideLeft.html" />
+		</div>
+	    <div class="centent_right">
+	        <div class="centent_right_tab">
+	           <#include "${ctx}/yeesight/tpl/subjectNav.html" />
+	        </div>
+	        <div class="region">
+	            <div class="region_title">
+	                <h2 class="main-blue font16">用户地域分析</h2>
+	            </div>
+	            <div style="width:100%;height:410px;overflow: hidden;background:rgba(0,138,255,0.06);margin-bottom: .1rem" id="area_fenxi1" >
+	            	<!-- specialList06_1----// 地域分布 -->
+	            	<div class="user_center" style="width:100%;height:375px;" id="area_fenxi">
+		            </div>
+	            </div>
+	            <div class="crowd_center">
+
+	                <div class="crowd_center_left"  style="height:324px; width:50%;">
+
+	                    <h3 class="main-blue font16">性别分布</h3>
+
+	                    <div class="crowd_center_left_centent" style="height:260px;width:100%;" id="user_sex">
+	                    </div>
+	                </div>
+	                <div class="crowd_center_right"  style="height:324px;width:50%;padding-left: .1rem;">
+						<div class="wrap">
+	                    	<h3 class="main-blue font16" >兴趣爱好</h3>
+	                    	<div class="crowd_center_left_centent" style="height:260px;width:100%;" id="user_favoritor">
+	                    	</div>
+						</div>
+	                </div>
+	            </div>
+	                <!-- 意见领袖 specialList6_1    -->
+	            <div class="region_title social-lader">
+	                <h2 class="main-blue font16">社交意见领袖</h2>
+	            </div>
+	            <div class="crowd_center social">
+	                <!--暂时屏蔽推特脸书数据-->
+	                <div class="crowd_center_left social">
+	                    <h3 class="white font14"><i class="iconfont icon-tubiao214 main-blue"></i>微博</h3>
+	                    <div class="popu_center_left_centent">
+	                        <ul class="weibolist">
+	                        </ul>
+	                    </div>
+	                </div>
+	                <div class="crowd_center_left social">
+	                    <h3 class="white font14"><i class="iconfont icon-facebook main-blue"></i>Facebook</h3>
+	                    <div class="popu_center_left_centent">
+	                        <ul class="fblist">
+	                        </ul>
+	                    </div>
+	                </div>
+                    <div class="crowd_center_right social">
+                        <h3 class="white font14"><i class="iconfont icon-twitter main-blue"></i>Twitter</h3>
+                        <div class="popu_center_left_centent">
+                            <ul class="twlist">
+                            </ul>
+                        </div>
+                    </div>
+
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+	<script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/SpecialList06_1.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/common.js"></script>
+	<script type="text/template" id="tmp_yj">
+    <li>
+        <b class="{num_color}">{num}</b>
+        <img src="{headimg}" alt=""/>
+        <p>
+            <span class="crowd_title"><a href="javascript:void(0)" title="">{bloggername}</a></span>
+            <span>{sex}&nbsp;&nbsp;&nbsp;&nbsp;{addr}</span>
+            <span>粉丝 {fans}</span>
+        </p>
+        <span class="popularity blue">{buzzcount}</span>
+    </li>
+	</script>
+</body>
+</html>

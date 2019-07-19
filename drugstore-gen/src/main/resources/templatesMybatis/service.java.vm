@@ -1,0 +1,44 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import com.github.pagehelper.PageInfo;
+
+/**
+ * @date ${date}
+ * @author ${author}
+ * $!{table.comment}服务类
+ */
+public interface ${table.serviceName}{
+
+
+	 /**
+     * @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}新增或者修改
+     */
+	${entity} saveOrUpdate(${entity} entity);
+	/**
+     * @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}逻辑删除
+     */
+	boolean deleteLogic(String id);
+	
+	/**
+     * @date   2018-10-11
+     * @author ${author}
+     * @todo   $!{table.comment}单条数据查询
+     */
+	${entity} getById(String id);
+	
+	/**
+     * @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}分页查询
+     */
+	PageInfo<${entity}> pageList(${entity} entity,Integer pageNum,Integer pageSize);
+	
+	
+
+
+}

@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+    <title>传播分析</title>
+    <meta content="" >
+    <link href="${ctx}/css/subjectAnalysis/tanchu.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/datacss_e.css" rel="stylesheet" type="text/css" />
+    <!-- easyDialog -->
+    <link href="${ctx}/js/subjectAnalysis/easydialog.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/css/subjectAnalysis/basic.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/subjectAnalysis/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+
+    <link href="${ctx}/css/modules/subjectAnalysis/spreadAnalysisHeader.css" rel="stylesheet" type="text/css"/>
+
+    <style type="text/css">
+        em{font-style: normal;}
+        /*转载量弹出框*/
+        .anchu{width:1000px;height:auto;font-size:12px;color:#333333}
+        .tchtop{width:1000px;height:60px;line-height:60px;font-size:12px;background:#ebebeb;}
+        .tchzhz{width:auto;display:inline-block;margin-left:30px;}
+        .tchgb{font-size:30px;float:right;margin-right:30px;}
+        .tchnr{width:940px;border-bottom:#f1f1f1 solid 1px;padding:30px 30px 0 30px;font-size:12px}
+        .tchzw{display:inline-block;width:150px;line-height:30px;}
+        .tchtext{line-height:25px;}
+        .tchgj{display:inline-block;width:150px;}
+        .tchlyu{display:inline-block;width:150px;}
+        .tchshiji{display:inline-block;width:200px;float:right;text-align: right;}
+        .tchlist{background:#fff;color:#333333;}
+        .page1{height:50px;padding:30px;background:#fff;}
+        .textcen{text-align: center;}
+        .tanchu-title a,.tanchu-source{color:#2e95f3;}
+        .tanchu-source{padding: 5px 0;}
+        .tanchu-source-time{padding-left:20px;color:#959595;}
+
+        .maploading{
+            width:100%;height:100%;
+            background:#fff;
+        }
+        .maploading .maploading-img{
+            width:50px;
+            height:50px;
+            margin:auto;
+            padding-top: 10px;
+            background:url(images/loading.gif) no-repeat center white;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            border-radius: 5px;
+        }
+        #bdlistone .link_zixun{
+            width:321px;
+            display:inline-block;
+            height:24px;
+            overflow:hidden;
+        }
+        /*#bdlistone .link_zixun:hover {
+            color: #fff;
+        }*/
+        #bdlistone .biaop-conter-left2-list li span a.link_zixun:hover {
+            color: #2e95f3;
+        }
+    </style>
+
+    <style>
+        .timeAxis{height:80px;width:840px;margin:0 auto;margin-top:20px;position:relative;}
+        .timeAxis ul {display: flex;justify-content: center;width: 100%;}
+        .timeAxis ul li{flex: 1;}
+        .timeAxis .week{position:absolute; top:0px; left:0px; height:30px; line-height:30px;}
+        .timeAxis .week li{max-width:120px; text-align:center;color:#fff;}
+        .timeAxis .proc{width:840px; background:#183666;height:10px; overflow:hidden; position:absolute; top:30px; left:0px;}
+        .timeAxis .proc li.before{float:left; border-left:#f7f7f7 3px solid;width:117px;height:10px;}
+        .timeAxis .proc li.analysis{border-left:#cbe5fc 3px solid;max-width:117px;height:10px;background:#008aff; cursor:pointer;}
+        .timeAxis .proc li.after{float:left; border-left:#f7f7f7 3px solid;width:117px;height:10px;}
+        .timeAxis .date{position:absolute; top:40px; left:0px; height:30px; line-height:30px;}
+        .timeAxis .date li{max-width:120px;float:left;text-align:center;color:#fff;}
+        .timeAxis .current{position:absolute; z-index:100; top:25px; left:215px;background:url('../../../images/sjzselbg.png') center no-repeat;width:50px; height:25px;}
+    </style>
+    <style type="text/css">
+        .centent_left_lsit li{overflow:hidden; text-overflow: ellipsis;white-space: nowrap; padding-right: 12px;width:auto;}
+        .centent_left_lsit li a{float:left;height: 40px;line-height: 40px;color: #fff;font-size: 12px;text-decoration: none;width: 95px;display: inline-block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+        .centent_left_lsit li.on a{background: #3d5368; }
+        .centent_left_lsit li:hover a{ color:#eeeeee;}
+        .zt_list_box{height:auto; width: 190px; position: relative;overflow: hidden; display: block;}
+        .centent_left_lsit{  width: 190px;position: relative; display: block; z-index: 99;}
+        .scrDiv_note{width: 5px; position: absolute;top: 0; background: #5c7591;cursor: pointer;}
+        .wraperl {
+             margin: 0;
+            padding: 5px 10px;
+        }
+        .f36 {
+            font-size: 26px;
+        }
+        img.mr10 {
+             margin-right: 0;
+        }
+        .t50 {
+            margin-top: 35px;
+        }
+        .qybbe:last-child .wrap{
+            border-bottom: 1px solid rgba(141,203,255,0.2);;
+        }
+        .cl20 {
+            height: 32px;
+            line-height: 32px;
+            background: #008aff10;
+        }
+        .cl20 a {
+            float: right;
+            margin-right: 100px;
+            font-size: 14px;
+            color: #008aff;
+        }
+        .right-top-box-p {
+        	padding:0 20px;
+        }
+    </style>
+
+</head>
+
+<body class="subject-analysis">
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="data_centent">
+
+   	<div class="aside-menu">
+		<#include "${ctx}/yeesight/tpl/asideLeft.html" />
+	</div>
+    <div class="centent_right">
+        <div class="centent_right_tab">
+            <#include "${ctx}/yeesight/tpl/subjectNav.html" />
+        </div>
+
+        <div class="region bgbai">
+            <div id="spread-tab" class="conter-right-top-box pl20">
+                <p class="right-top-box-p cup onp font16 main-blue">资讯</p>
+                <p class="right-top-box-p cup font16 main-blue">社交</p>
+            </div>
+            <div class="clearfix wraperl">
+
+                <div class="">
+                    <div class="bbe wraperh wraperl  font16 main-blue">
+                      	  时间走势（<span class="start-date"></span>&nbsp;至 &nbsp;<span class="end-date"></span>）
+                    </div>
+                    <!--时间走势-->
+                    <div id="sjzs" style="width: 100%;height: 300px;"></div>
+                </div>
+            </div>
+            <div class="clearfix wraperh-md wraperl-md divc" style="height:110px;padding:0px;">
+                <div class="timeAxis">
+                    <ul class="week">
+                    </ul>
+                    <ul class="proc">
+                    </ul>
+                    <ul class="date">
+                    </ul>
+                    <div id="timeSelStatus" class="current"></div>
+                </div>
+            </div>
+            <div class="clearfix wraperl">
+                <div class="bbe wraperh wraperl font16 main-blue"><!-- 主流媒体传播热点话题 -->主流媒体传播变动<span style="margin-left:100px;" class="sp_time"></span></div>
+                <div id="cbrdht"  style="height:300px;"></div>
+            </div>
+            <div class="clearfix wraperl">
+                <div class="bbe wraperh wraperl font16 main-blue">主流媒体地域分析<span style="margin-left:100px;" class="sp_time"></span></div>
+                <div id="mtfbbh" style="width: 100%;height:500px;"></div>
+            </div>
+            <div class="tabw">
+                <div class="conter-right-top-box hd">
+                    <p class="right-top-box-p cup font16 main-blue" >权重媒体排名（Top5）<span style="margin-left:100px;line-height:41px;" class="sp_time"></span></p>
+
+                </div>
+                <div class="bdlist qybdlist">
+                	<div class="qytitle font14 white"><span>排序</span><span class="qymeidia">媒体</span><span>权重值</span></div>
+                    <div id="bdlistone" class="inner">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cl20"></div>
+    <!--弹出框
+	<div class="masksite show">
+    	<div class="site">
+    		<h3 class="font12"><span>南充新闻网  相关报道共有437520条</span><span class="closed font16 main-blue"><i class="iconfont icon-close"></i></span></h3>
+    		<ul class="newsList">
+    			<li class="list">
+    				<h5>一带一路</h5>
+    				<div class="new-site"><span class="main-blue">南充新闻网</span><span>2019-12-04</span></div>
+    				<div class="text font12">上来就是了归结为or感觉熟练度反光镜善良恭敬算了大概萨菲罗斯豆腐干可</div>
+    				<div class="country"><span class="language">中文</span><span class="guojia">中国</span></div>
+    			</li>
+    			<li class="list">
+    				<h5>一带一路</h5>
+    				<div class="new-site"><span class="main-blue">南充新闻网</span><span>2019-12-04</span></div>
+    				<div class="text font12">上来就是了归结为or感觉熟练度反光镜善良恭敬算了大概萨菲罗斯豆腐干可</div>
+    				<div class="country"><span class="language">中文</span><span class="guojia">中国</span></div>
+    			</li>
+    			<li class="list">
+    				<h5>一带一路</h5>
+    				<div class="new-site"><span class="main-blue">南充新闻网</span><span>2019-12-04</span></div>
+    				<div class="text font12">上来就是了归结为or感觉熟练度反光镜善良恭敬算了大概萨菲罗斯豆腐干可</div>
+    				<div class="country"><span class="language">中文</span><span class="guojia">中国</span></div>
+    			</li>
+    			<li class="list">
+    				<h5>一带一路</h5>
+    				<div class="new-site"><span class="main-blue">南充新闻网</span><span>2019-12-04</span></div>
+    				<div class="text font12">上来就是了归结为or感觉熟练度反光镜善良恭敬算了大概萨菲罗斯豆腐干可</div>
+    				<div class="country"><span class="language">中文</span><span class="guojia">中国</span></div>
+    			</li>
+    		</ul>
+    	</div>
+    </div>-->
+    <div class="maskReport">
+        <div class="report">
+            <div class="report-main">
+                <div class="half china">
+                    <h3 class="font16"></h3>
+                    <div class="source">
+                        <span class="font12">来源: <span class="main-blue font12"></span></span>
+                    </div>
+                    <div class="text font16 content">
+                        <p></p>
+                    </div>
+                    <div class="more main-blue font12"><a href="" target="_blank"><span>查看原文>></span></a></div>
+                    <p class="small mt-10" style="color: #456886">本文版权及观点归原文著作权人，不代表平台立场</p>
+                </div>
+                <div class="half english">
+                    <h3 id="title-original" class="font16"></h3>
+                    <div class="source">
+                        <span class="font12">来源: <span class="main-blue font12"></span></span>
+                    </div>
+                    <div class="text font16 content">
+                        <p></p>
+                    </div>
+                    <div class="more main-blue font12"><a href="" target="_blank"><span>View Source>></span></a></div>
+                    <p class="small mt-10" style="color: #456886">本文版权及观点归原文著作权人，不代表平台立场</p>
+                </div>
+            </div>
+            <span class="closed main-blue"><i class="iconfont icon-close"></i></span>
+            <span class="collect btn-right main-blue favorite"><i class="iconfont icon-uninterested"></i></span>
+            <span class="edit btn-right main-blue"><i class="iconfont icon-edit-no"></i></span>
+        </div>
+    </div>
+    <div class="tanchu" id="tanchu">
+        <div class="tanchu_inner">
+            <div class="t wraperl-sm">
+                <span class="fl tanchu-title"></span>
+                <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup subscription-close">
+                    <i class="iconfont icon-guanbi1"></i>
+                </a>
+            </div>
+            <div class="c p20">
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/js/subjectAnalysis/easydialog.js" type="text/javascript"></script>
+<script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/layer.js"></script>
+<script src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/Scrollbar.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/pointChart.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/tanchu.js"></script>
+
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/news.js"></script>
+
+<script type="text/javascript">
+var dateRange = [];
+
+
+	   dateRange.push('2019-02-11 18:21:59,2019-02-18 18:21:59');
+
+	   dateRange.push('2019-02-18 18:21:59,2019-02-25 18:21:59');
+
+	   dateRange.push('2019-02-25 18:21:59,2019-03-04 18:21:59');
+
+	   dateRange.push('2019-03-04 18:21:59,2019-03-11 18:21:59');
+
+
+var dateMonthStart = '2019-02-09 18:21:59';
+var dateMonthEnd = '2019-03-11 18:21:59';
+var dateRangeAllStr = '2019-02-09,2019-02-10,2019-02-11,2019-02-12,2019-02-13,2019-02-14,2019-02-15,2019-02-16,2019-02-17,2019-02-18,2019-02-19,2019-02-20,2019-02-21,2019-02-22,2019-02-23,2019-02-24,2019-02-25,2019-02-26,2019-02-27,2019-02-28,2019-03-01,2019-03-02,2019-03-03,2019-03-04,2019-03-05,2019-03-06,2019-03-07,2019-03-08,2019-03-09,2019-03-10,2019-03-11';
+</script>
+<script type="text/javascript">
+	var spread_new19 ="暂无数据";
+	var spread_new20 ="数据量";
+	var spread_new21 ="传播";
+	var spread_new10 ="至";
+	var spread_weibo7 ="排序";
+	var spread_new22 ="媒体";
+	var spread_new23 ="权重值";
+	var spread_new24 ="转载";
+	var spread_weibo12 ="查看更多";
+	var search_zl56 = "转载量";
+	var spread_new25 = "转载文章";
+</script>
+
+<script type="text/javascript">
+    var session_usr='{"companyName":"中译语通","createTime":1551854104304,"createTimeView":"2019-03-06 14:35:04","enterpriseId":7585,"fullName":"仇杨","industry":9,"isAdmin":1,"isDelete":1,"lastLoginTime":1551854104304,"password":"","source":8,"state":1,"system":1,"thirdSource":"7","thirdUid":"C7B5CC26B1C94AC921F5E639BC159E6C","updateTime":1551854134424,"updateTimeView":"2019-03-06 14:35:34","userId":102805,"userName":"8_C7B5CC26B1C94AC921F5E639BC159E6C","userType":1}';
+    $('#toAdd,#topicManager,#reportList').unbind();
+    if(session_usr==''){
+        $('#toAdd').attr('href','javascript:;');
+        $('#topicManager').attr('href','javascript:;');
+        $('#reportList').attr('href','javascript:;');
+
+        $('#toAdd,#topicManager,#reportList').unbind().bind('click',function(){
+            loginClick();
+            return true;
+        });
+    }
+
+
+
+    $("#topicList").click(function(){
+        $("#mainBox_note").slideToggle(200);
+    });
+    function specialInfo(){
+        var category = $("#category").val();
+        var createId ="98887";// 102805;
+        var source = $("#source").val();
+
+        $.ajax({
+            type: "POST",
+            url: "analysisData/queryInfoSpecial",
+            data: {
+                infoId:$("#id").val(),
+                //infoId:"",
+                category:category,
+                createId:createId,
+                source:source
+            },
+            dataType: "json",
+            success: function(data){
+                //console.log(data);
+
+            }
+        });
+    }
+
+    $(function(){
+
+    });
+</script>
+<script>
+    // $(function(){
+    //     $('.table_list li').click(function(){
+    //         $(this).addClass('on').siblings().removeClass('on');
+    //         $(this).find('.postion_box').show().parent().siblings().find('.postion_box').hide();
+    //
+    //     });
+    //     $('.paging_p a').click(function(){
+    //         $(this).addClass('on').siblings().removeClass('on');
+    //     });
+    //     $('.ss_span').click(function(){
+    //         $('.gy_a').hide();
+    //         $('.select_box').removeClass('hide');
+    //         $(this).removeClass('ss_span').addClass('sq_span');
+    //         $(this).html('收起工具');
+    //     });
+    //     // tab
+    //     $(".tabw").slide({titCell:".hd p",trigger:"click",titOnClassName:"onp"})
+    // });
+</script>
+
+</body>
+</html>

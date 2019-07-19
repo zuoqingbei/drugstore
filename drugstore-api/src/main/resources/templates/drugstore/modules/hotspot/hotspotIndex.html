@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Cn">
+<head>
+    <meta charset="UTF-8">
+    <title>丝路热点</title>
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/hotspot/hotspotIndexs.css" />
+			
+</head>
+<body>
+<div class="sentiment">
+    <#include "${ctx}/yeesight/tpl/header.html" />
+    <div class="main">
+        <div class="mfleft pointer countries">
+            <span class="mIn selective">全部国家</span>
+            <i class="iconfont icon-jiantouarrow486 choose-country"></i>
+            <div class="countryBox">
+                <ul class="flex font14 choose-arr">
+                    <li class="pointer on main-blue all">全部</li>
+                    <li class="pointer main-blue">ABCDE</li>
+                    <li class="pointer main-blue">FGHIJ</li>
+                    <li class="pointer main-blue">KLMNO</li>
+                    <li class="pointer main-blue">PQRST</li>
+                    <li class="pointer main-blue">UVWXYZ</li>
+                </ul>
+                <i class="iconfont icon-error-bold main-blue font18 closed"></i>
+                <ul class="countryDetail">
+
+                </ul>
+            </div>
+        </div>
+        <div class="world">
+
+            <div id="world"></div>
+            <div id="echartTips"></div>
+        </div>
+        <ul class="fieldList mClear">
+            <li class="mfleft">领域&nbsp;:</li>
+            <li class="mfleft pointer active" ><span class="lingyu">ALL</span></li>
+        </ul>
+        <div class="newLists">
+            <ul class="nav mClear">
+                <li class="mfleft mt-c pointer active main-blue">
+                		新闻资讯
+                	<span class="mIn"></span>
+                </li>
+                <li class="mfleft mt-c pointer main-blue">
+                	时事热点
+                    <span class="mIn"></span>
+                </li>
+            </ul>
+            <ul class="lists">
+
+            </ul>
+            <div class="more mt-c pointer">+ 查看更多</div>
+        </div>
+        <div class="trend">
+            <h3 class="font24 main-blue">丝路态势</h3>
+            <div class="growing">
+            	<span class="addNum span main-blue font12">昨日新增 <span class=" green totalnums"></span><span class="green font14 unit">万条</span></span>
+            	<span class="span rate main-blue font12"><span class=" green nums"></span><span class="green font14 unit">%</span><span class="font18 jiantou">
+                    <!--<i class="iconfont icon-jiantouarrow504 add-jiantou"></i>-->
+                </span></span>
+            </div>
+            <div id="trend"></div>
+        </div>
+        <div class="breviary">
+            <h3 class="font24 main-blue">数据分布</h3>
+            <div class="pies">
+            	<div class="social half">
+            		<div id="social" class="socials"></div>
+            		<p class=" main-blue  flex">
+                        <span class="mt-c">新闻</span>
+                        <span class="mt-c">社交</span>
+                    </p>
+            	</div>
+            </div>
+        </div>
+        <div class="chose-time">
+            <div class="term">
+                <span class="mIn pointer sevenDay">最近7天</span>
+                <span class="mIn pointer month">本月</span>
+            </div>
+            <div class="mClear ul">
+            	<span class="left main-blue san mIn"><i class="iconfont icon-shixiangzuojiantou-"></i></span>
+
+                <ul class="mfleft mClear navbot">
+
+                </ul>
+                <span class="right main-blue san mIn"><i class="iconfont icon-shixiangyoujiantou-"></i></span>
+
+                <div class="mask-div">
+                    <span class="mIn"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/plugins/echarts-all.js"></script>
+<script src="${ctx}/plugins/country.js"></script>
+<script src="${ctx}/js/modules/hotspot/hotspotIndex.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大数据创新平台</title>
+    <link rel="stylesheet" href="${ctx}/css/singlePage/index.css" />
+    <link rel="stylesheet" href="${ctx}/css/iconfont.css">
+    <style>
+    	.icon-jiantouarrow479 {
+    		color:#00e546;
+    	}
+    	.icon-jiantouarrow504 {
+    		color:#e5004f;
+    	}
+    </style>
+</head>
+
+<body>
+    <#include "${ctx}/yeesight/tpl/header.html" />
+    <main>
+        <div class="data-left-con">
+            <div class="real-time-data">
+                <p class="real-time-data-title">实时数据</p>
+                <div class="data-con">
+                    <div class="data-num"></div>
+                    <!--<span class="data-num"></span>-->
+                    <div class="data-rate"><span class="data-rate-num"></span><i class=""></i></div>
+                </div>
+                <div class="data-table-con">
+                    <table class="data-table">
+                        <thead>
+                            <th class="data-table-line-1">排名</th>
+                            <th class="data-table-line-2">国家</th>
+                            <th class="data-table-line-3">数据量</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="data-trend">
+                 <p class="data-trend-tit">数据走势</p>
+                <div id="data-trend-chart"></div>
+            </div>
+        </div>
+        <div class="earth3d-center-con">
+            <div class="chartBox" id="earth"></div>
+            <!-- 引用ulab3D球图 -->
+            <!-- <iframe src="${ctx}/plugins/earth3D/sphereMap.html" frameborder="0" width="100%" height="100%"></iframe> -->
+        </div>
+        <div class="filed-right-con">
+            <div class="filed-right-top"></div>
+            <div class="filed-right-bottom"></div>
+        </div>
+    </main>
+
+    <script>
+        // 获取请求路径,用于JS中拼接请求地址
+        let ctx = "${ctx}";
+    </script>
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script src="${ctx}/plugins/echarts.js"></script>
+    <script src="${ctx}/plugins/echarts-gl.js"></script>
+    <script src="${ctx}/plugins/world.js"></script>
+    <!-- 引入echarts主题 -->
+    <script src="${ctx}/plugins/theme.js"></script>
+    <script src="${ctx}/js/index.js"></script>
+</body>
+
+</html>

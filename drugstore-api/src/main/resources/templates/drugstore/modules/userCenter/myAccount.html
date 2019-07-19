@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>我的账号</title>
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/css/modules/userCenter/myAccount.css">
+</head>
+
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="data_centent">
+    <aside class="aside-menu color-box-bg">
+        <#include "${ctx}/yeesight/tpl/userCenterAsideLeft.html" />
+    </aside>
+    <div class="centent_right">
+        <div class="page-header color-main">我的账户</div>
+        <div class="page-container">
+            <div class="module">
+                <header class="module-header">
+                	<span class="base-info active">基本资料</span>
+                	<span class="account-password">账户密码</span>
+                </header>
+                <div class="module-body">
+                	<form id="base-info" action="" class="base-info-form">
+                		<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>姓名：</span></label>
+							<input id="userName" name="userName" class="form" placeholder="请输入您的姓名"/>
+                		</div>
+                		<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>性别：</span></label>
+							<input type="radio"  name="sex_radio" value="0" checked="checked" id="man-radio"/><label class="radio-label" for="man-radio">男士</label>
+							<input type="radio"  name="sex_radio" value="1" id="women-radio"/><label class="radio-label" for="women-radio">女士</label>
+							<input type="radio"  name="sex_radio" value="2" id="secret-radio"/><label class="radio-label" for="secret-radio">保密</label>
+                		</div>
+                		<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>邮箱：</span></label>
+							<input id="email" name="email" class="form" placeholder="请输入您的邮箱" autocomplete="off"/>
+                		</div>
+                		<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>所属行业：</span></label>
+							<select class="form form-triangle" id="industry" name="industry">
+								<option value="" disabled selected style='display:none;'>请选择您的所属行业</option>
+							</select>
+                		</div>
+                		<div class="form-list">
+                			<label><span>所学专业：</span></label>
+							<select class="form form-triangle" id="profession" name="profession">
+								<option value="" disabled selected style='display:none;'>请选择您的所学专业</option>
+							</select>
+                		</div>
+                		<div class="form-list">
+                			<label><span>学历：</span></label>
+							<select class="form form-triangle" id="degree" name="degree">
+								<option value="" disabled selected style='display:none;'>请选择您的学历</option>
+							</select>
+                		</div>
+                		<div class="form-list">
+                			<label><span>年龄：</span></label>
+							<select class="form form-triangle" id="age" name="age">
+								<option value="" disabled selected style='display:none;'>请选择您的年龄</option>
+							</select>
+                		</div>
+                		<div class="form-list">
+                			<label><span>关注领域：</span></label>
+                			<div class="checkbox-box">
+                			</div>
+                		</div>
+                	</form>
+                	<form id="password-form" action="" class="account-password-form" style="display: none">
+	                	<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>原密码：</span></label>
+							<input name="old_password" id="old_password" class="form" placeholder="请输入您的原密码"/>
+                		</div>
+	                	<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>新密码：</span></label>
+							<input name="new_password" id="new_password" class="form" placeholder="请输入8-16位密码，包含字母及数字"/>
+                		</div>
+	                	<div class="form-list">
+                			<label><span class="star-symbol">*</span><span>新密码确认：</span></label>
+							<input name="rep_password" id="rep_password" class="form" placeholder="请再次输入您的新密码"/>
+                		</div>
+                	</form>
+
+                	<div class="btn-group">
+                		<a class="default-btn-enter" id="commit" style="margin-right: 40px;">保存</a>
+                		<!--<a class="default-btn-cancel">取消</a>-->
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/plugins/layer/layer.js"></script>
+<script src=" ${ctx}/js/modules/denglu/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/modules/userCenter/userCenterList.js"></script>
+<script type="text/javascript" src="${ctx}/js/modules/userCenter/myAccount.js"></script>
+
+</body>
+
+</html>

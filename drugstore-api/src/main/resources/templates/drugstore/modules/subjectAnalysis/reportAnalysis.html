@@ -1,0 +1,763 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>专题分析</title>
+	<link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+	<link href="${ctx}/css/subjectAnalysis/datacss_e.css" rel="stylesheet" type="text/css" />
+	<link href="${ctx}/css/subjectAnalysis/jqcloud.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="${ctx}/css/subjectAnalysis/reportAnalysis.css">
+	<link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+	<link rel="stylesheet" href="${ctx}/css/modules/subjectAnalysis/reportAnalysisHeader.css">
+
+</head>
+<body class="subject-analysis">
+	<#include "${ctx}/yeesight/tpl/header.html" />
+	<div class="data_centent">
+	<!--左侧列表-->
+		<div class="aside-menu">
+			<#include "${ctx}/yeesight/tpl/asideLeft.html" />
+		</div>
+
+		<!--主体内容-->
+		<div class="centent_right">
+			<div class="centent_right_tab">
+				<#include "${ctx}/yeesight/tpl/subjectNav.html" />
+			</div>
+			<div class="region region_nomin">
+				<!--世界地图 --数据填充在本文件内部-->
+				<div class="region_title">
+					<h2 class="font16 main-blue">数据地图</h2>
+					<p id="addReport"><a href="javascript:;" target="_blank">一键生成报告</a></p>
+				</div>
+				<div class="region_center_hauto">
+					<!--放置地图 -->
+					<div id="biaop-top-box-img"></div>
+					<!--地图左侧国家列表-->
+					<div class="biaop-conter-left-dingw">
+
+					</div>
+					<!--地图右下部数据量-->
+					 <div class="biaop-top-box-bottom">
+						 <!--数据赋值的js--analysisDataSearch.js-->
+						<ul class="nums">
+							<li>
+								<span class="font14 white">总数</span>
+								<span class="total-num num"></span>
+							</li>
+							<li>
+								<span class="font14 white">今日数据</span>
+								<span class="today-num num"></span>
+							</li>
+							<li>
+								<span class="font14 white">媒体数据</span>
+								<span class="media-num num"></span>
+							</li>
+							<li>
+								<span class="font14 white">社交数据</span>
+								<span class="social-num num"></span>
+							</li>
+						</ul>
+					</div>
+
+				    <div style="height:30px; font-size:14px;text-align: center;" class="font16 white">总数据源</div>
+					<!--需要自己在写js去赋值-->
+					<p class="biaop-top-box-p">
+						<a href="javascript:;" class="font14 white">
+							<span class="country-count main-blue">0</span>国家
+						</a>
+						<a href="javascript:;" class="font14 white">
+							<span id="addSou" class="media-count main-blue">0</span>媒体数据源
+						</a>
+						<a href="javascript:;" class="font14 white">
+							<span class="social-count main-blue">0</span>社交数据源
+						</a>
+					</p>
+				</div>
+			</div>
+            <div id="country" style="display: none;">[{"dicDesc":"BLWY国家","dicName":"玻利维亚","dicValue":"玻利维亚","language":"zh","type":"GJ"},{"dicDesc":"BMDQD国家","dicName":"百慕大群岛","dicValue":"百慕大群岛","language":"zh","type":"GJ"},{"dicDesc":"BN国家","dicName":"贝宁","dicValue":"贝宁","language":"zh","type":"GJ"},{"dicDesc":"BLZ国家","dicName":"伯利兹","dicValue":"伯利兹","language":"zh","type":"GJ"},{"dicDesc":"BLS国家","dicName":"比利时","dicValue":"比利时","language":"zh","type":"GJ"},{"dicDesc":"BGLS国家","dicName":"白俄罗斯","dicValue":"白俄罗斯","language":"zh","type":"GJ"},{"dicDesc":"BBDS国家","dicName":"巴巴多斯","dicValue":"巴巴多斯","language":"zh","type":"GJ"},{"dicDesc":"MJLG国家","dicName":"孟加拉国","dicValue":"孟加拉国","language":"zh","type":"GJ"},{"dicDesc":"BL国家","dicName":"巴林","dicValue":"巴林","language":"zh","type":"GJ"},{"dicDesc":"BHM国家","dicName":"巴哈马","dicValue":"巴哈马","language":"zh","type":"GJ"},{"dicDesc":"ASBJ国家","dicName":"阿塞拜疆","dicValue":"阿塞拜疆","language":"zh","type":"GJ"},{"dicDesc":"ODL国家","dicName":"奥地利","dicValue":"奥地利","language":"zh","type":"GJ"},{"dicDesc":"ODLY国家","dicName":"澳大利亚","dicValue":"澳大利亚","language":"zh","type":"GJ"},{"dicDesc":"ASS国家","dicName":"阿森松","dicValue":"阿森松","language":"zh","type":"GJ"},{"dicDesc":"YMNY国家","dicName":"亚美尼亚","dicValue":"亚美尼亚","language":"zh","type":"GJ"},{"dicDesc":"AGT国家","dicName":"阿根廷","dicValue":"阿根廷","language":"zh","type":"GJ"},{"dicDesc":"ATGHBBD国家","dicName":"安提瓜和巴布达","dicValue":"安提瓜和巴布达","language":"zh","type":"GJ"},{"dicDesc":"AGLD国家","dicName":"安圭拉岛","dicValue":"安圭拉岛","language":"zh","type":"GJ"},{"dicDesc":"ADEKHG国家","dicName":"安道尔共和国","dicValue":"安道尔共和国","language":"zh","type":"GJ"},{"dicDesc":"AEJLY国家","dicName":"阿尔及利亚","dicValue":"阿尔及利亚","language":"zh","type":"GJ"},{"dicDesc":"AEBNY国家","dicName":"阿尔巴尼亚","dicValue":"阿尔巴尼亚","language":"zh","type":"GJ"},{"dicDesc":"AFH国家","dicName":"阿富汗","dicValue":"阿富汗","language":"zh","type":"GJ"},{"dicDesc":"BZWN国家","dicName":"博茨瓦纳","dicValue":"博茨瓦纳","language":"zh","type":"GJ"},{"dicDesc":"BX国家","dicName":"巴西","dicValue":"巴西","language":"zh","type":"GJ"},{"dicDesc":"WL国家","dicName":"文莱","dicValue":"文莱","language":"zh","type":"GJ"},{"dicDesc":"BJLY国家","dicName":"保加利亚","dicValue":"保加利亚","language":"zh","type":"GJ"},{"dicDesc":"BJNFS国家","dicName":"布基纳法索","dicValue":"布基纳法索","language":"zh","type":"GJ"},{"dicDesc":"MD国家","dicName":"缅甸","dicValue":"缅甸","language":"zh","type":"GJ"},{"dicDesc":"BLD国家","dicName":"布隆迪","dicValue":"布隆迪","language":"zh","type":"GJ"},{"dicDesc":"KML国家","dicName":"喀麦隆","dicValue":"喀麦隆","language":"zh","type":"GJ"},{"dicDesc":"JND国家","dicName":"加拿大","dicValue":"加拿大","language":"zh","type":"GJ"},{"dicDesc":"KMQD国家","dicName":"开曼群岛","dicValue":"开曼群岛","language":"zh","type":"GJ"},{"dicDesc":"ZFKHG国家","dicName":"中非共和国","dicValue":"中非共和国","language":"zh","type":"GJ"},{"dicDesc":"ZD国家","dicName":"乍得","dicValue":"乍得","language":"zh","type":"GJ"},{"dicDesc":"ZL国家","dicName":"智利","dicValue":"智利","language":"zh","type":"GJ"},{"dicDesc":"ZG国家","dicName":"中国","dicValue":"中国","language":"zh","type":"GJ"},{"dicDesc":"GLBY国家","dicName":"哥伦比亚","dicValue":"哥伦比亚","language":"zh","type":"GJ"},{"dicDesc":"GG国家","dicName":"刚果","dicValue":"刚果","language":"zh","type":"GJ"},{"dicDesc":"KKQD国家","dicName":"库克群岛","dicValue":"库克群岛","language":"zh","type":"GJ"},{"dicDesc":"GSDLJ国家","dicName":"哥斯达黎加","dicValue":"哥斯达黎加","language":"zh","type":"GJ"},{"dicDesc":"GB国家","dicName":"古巴","dicValue":"古巴","language":"zh","type":"GJ"},{"dicDesc":"SPLS国家","dicName":"塞浦路斯","dicValue":"塞浦路斯","language":"zh","type":"GJ"},{"dicDesc":"JK国家","dicName":"捷克","dicValue":"捷克","language":"zh","type":"GJ"},{"dicDesc":"DM国家","dicName":"丹麦","dicValue":"丹麦","language":"zh","type":"GJ"},{"dicDesc":"BJT国家","dicName":"吉布提","dicValue":"吉布提","language":"zh","type":"GJ"},{"dicDesc":"DMNJGHG国家","dicName":"多米尼加共和国","dicValue":"多米尼加共和国","language":"zh","type":"GJ"},{"dicDesc":"EGDE国家","dicName":"厄瓜多尔","dicValue":"厄瓜多尔","language":"zh","type":"GJ"},{"dicDesc":"AJ国家","dicName":"埃及","dicValue":"埃及","language":"zh","type":"GJ"},{"dicDesc":"SEWD国家","dicName":"萨尔瓦多","dicValue":"萨尔瓦多","language":"zh","type":"GJ"},{"dicDesc":"ASNY国家","dicName":"爱沙尼亚","dicValue":"爱沙尼亚","language":"zh","type":"GJ"},{"dicDesc":"ASEBY国家","dicName":"埃塞俄比亚","dicValue":"埃塞俄比亚","language":"zh","type":"GJ"},{"dicDesc":"FJ国家","dicName":"斐济","dicValue":"斐济","language":"zh","type":"GJ"},{"dicDesc":"FL国家","dicName":"芬兰","dicValue":"芬兰","language":"zh","type":"GJ"},{"dicDesc":"FG国家","dicName":"法国","dicValue":"法国","language":"zh","type":"GJ"},{"dicDesc":"FSGYN国家","dicName":"法属圭亚那","dicValue":"法属圭亚那","language":"zh","type":"GJ"},{"dicDesc":"JP国家","dicName":"加蓬","dicValue":"加蓬","language":"zh","type":"GJ"},{"dicDesc":"GBY国家","dicName":"冈比亚","dicValue":"冈比亚","language":"zh","type":"GJ"},{"dicDesc":"GLJY国家","dicName":"格鲁吉亚","dicValue":"格鲁吉亚","language":"zh","type":"GJ"},{"dicDesc":"DG国家","dicName":"德国","dicValue":"德国","language":"zh","type":"GJ"},{"dicDesc":"JN国家","dicName":"加纳","dicValue":"加纳","language":"zh","type":"GJ"},{"dicDesc":"ZBLT国家","dicName":"直布罗陀","dicValue":"直布罗陀","language":"zh","type":"GJ"},{"dicDesc":"XL国家","dicName":"希腊","dicValue":"希腊","language":"zh","type":"GJ"},{"dicDesc":"GLND国家","dicName":"格林纳达","dicValue":"格林纳达","language":"zh","type":"GJ"},{"dicDesc":"GD国家","dicName":"关岛","dicValue":"关岛","language":"zh","type":"GJ"},{"dicDesc":"WDML国家","dicName":"危地马拉","dicValue":"危地马拉","language":"zh","type":"GJ"},{"dicDesc":"JNY国家","dicName":"几内亚","dicValue":"几内亚","language":"zh","type":"GJ"},{"dicDesc":"GYN国家","dicName":"圭亚那","dicValue":"圭亚那","language":"zh","type":"GJ"},{"dicDesc":"HD国家","dicName":"海地","dicValue":"海地","language":"zh","type":"GJ"},{"dicDesc":"HDLS国家","dicName":"洪都拉斯","dicValue":"洪都拉斯","language":"zh","type":"GJ"},{"dicDesc":"XG国家","dicName":"香港","dicValue":"香港","language":"zh","type":"GJ"},{"dicDesc":"XYL国家","dicName":"匈牙利","dicValue":"匈牙利","language":"zh","type":"GJ"},{"dicDesc":"BD国家","dicName":"冰岛","dicValue":"冰岛","language":"zh","type":"GJ"},{"dicDesc":"YD国家","dicName":"印度","dicValue":"印度","language":"zh","type":"GJ"},{"dicDesc":"YDNXY国家","dicName":"印度尼西亚","dicValue":"印度尼西亚","language":"zh","type":"GJ"},{"dicDesc":"YL国家","dicName":"伊朗","dicValue":"伊朗","language":"zh","type":"GJ"},{"dicDesc":"YLK国家","dicName":"伊拉克","dicValue":"伊拉克","language":"zh","type":"GJ"},{"dicDesc":"AEL国家","dicName":"爱尔兰","dicValue":"爱尔兰","language":"zh","type":"GJ"},{"dicDesc":"YSL国家","dicName":"以色列","dicValue":"以色列","language":"zh","type":"GJ"},{"dicDesc":"YDL国家","dicName":"意大利","dicValue":"意大利","language":"zh","type":"GJ"},{"dicDesc":"KTDW国家","dicName":"科特迪瓦","dicValue":"科特迪瓦","language":"zh","type":"GJ"},{"dicDesc":"YMJ国家","dicName":"牙买加","dicValue":"牙买加","language":"zh","type":"GJ"},{"dicDesc":"RB国家","dicName":"日本","dicValue":"日本","language":"zh","type":"GJ"},{"dicDesc":"YD国家","dicName":"约旦","dicValue":"约旦","language":"zh","type":"GJ"},{"dicDesc":"JBZ国家","dicName":"柬埔寨","dicValue":"柬埔寨","language":"zh","type":"GJ"},{"dicDesc":"HSKST国家","dicName":"哈萨克斯坦","dicValue":"哈萨克斯坦","language":"zh","type":"GJ"},{"dicDesc":"KNY国家","dicName":"肯尼亚","dicValue":"肯尼亚","language":"zh","type":"GJ"},{"dicDesc":"HG国家","dicName":"韩国","dicValue":"韩国","language":"zh","type":"GJ"},{"dicDesc":"KWT国家","dicName":"科威特","dicValue":"科威特","language":"zh","type":"GJ"},{"dicDesc":"JEJSST国家","dicName":"吉尔吉斯斯坦","dicValue":"吉尔吉斯斯坦","language":"zh","type":"GJ"},{"dicDesc":"LG国家","dicName":"老挝","dicValue":"老挝","language":"zh","type":"GJ"},{"dicDesc":"LTWY国家","dicName":"拉脱维亚","dicValue":"拉脱维亚","language":"zh","type":"GJ"},{"dicDesc":"LBN国家","dicName":"黎巴嫩","dicValue":"黎巴嫩","language":"zh","type":"GJ"},{"dicDesc":"LST国家","dicName":"莱索托","dicValue":"莱索托","language":"zh","type":"GJ"},{"dicDesc":"LBLY国家","dicName":"利比里亚","dicValue":"利比里亚","language":"zh","type":"GJ"},{"dicDesc":"LBY国家","dicName":"利比亚","dicValue":"利比亚","language":"zh","type":"GJ"},{"dicDesc":"LZDSD国家","dicName":"列支敦士登","dicValue":"列支敦士登","language":"zh","type":"GJ"},{"dicDesc":"LTW国家","dicName":"立陶宛","dicValue":"立陶宛","language":"zh","type":"GJ"},{"dicDesc":"LSB国家","dicName":"卢森堡","dicValue":"卢森堡","language":"zh","type":"GJ"},{"dicDesc":"OM国家","dicName":"澳门","dicValue":"澳门","language":"zh","type":"GJ"},{"dicDesc":"MDJSJ国家","dicName":"马达加斯加","dicValue":"马达加斯加","language":"zh","type":"GJ"},{"dicDesc":"MLW国家","dicName":"马拉维","dicValue":"马拉维","language":"zh","type":"GJ"},{"dicDesc":"MLXY国家","dicName":"马来西亚","dicValue":"马来西亚","language":"zh","type":"GJ"},{"dicDesc":"MEDF国家","dicName":"马尔代夫","dicValue":"马尔代夫","language":"zh","type":"GJ"},{"dicDesc":"ML国家","dicName":"马里","dicValue":"马里","language":"zh","type":"GJ"},{"dicDesc":"MET国家","dicName":"马耳他","dicValue":"马耳他","language":"zh","type":"GJ"},{"dicDesc":"MLYQD国家","dicName":"马里亚那群岛","dicValue":"马里亚那群岛","language":"zh","type":"GJ"},{"dicDesc":"MTNK国家","dicName":"马提尼克","dicValue":"马提尼克","language":"zh","type":"GJ"},{"dicDesc":"MLQS国家","dicName":"毛里求斯","dicValue":"毛里求斯","language":"zh","type":"GJ"},{"dicDesc":"MXG国家","dicName":"墨西哥","dicValue":"墨西哥","language":"zh","type":"GJ"},{"dicDesc":"MEDW国家","dicName":"摩尔多瓦","dicValue":"摩尔多瓦","language":"zh","type":"GJ"},{"dicDesc":"MNG国家","dicName":"摩纳哥","dicValue":"摩纳哥","language":"zh","type":"GJ"},{"dicDesc":"MG国家","dicName":"蒙古","dicValue":"蒙古","language":"zh","type":"GJ"},{"dicDesc":"MTSLTD国家","dicName":"蒙特塞拉特岛","dicValue":"蒙特塞拉特岛","language":"zh","type":"GJ"},{"dicDesc":"MLG国家","dicName":"摩洛哥","dicValue":"摩洛哥","language":"zh","type":"GJ"},{"dicDesc":"MSBK国家","dicName":"莫桑比克","dicValue":"莫桑比克","language":"zh","type":"GJ"},{"dicDesc":"NMBY国家","dicName":"纳米比亚","dicValue":"纳米比亚","language":"zh","type":"GJ"},{"dicDesc":"NL国家","dicName":"瑙鲁","dicValue":"瑙鲁","language":"zh","type":"GJ"},{"dicDesc":"NBE国家","dicName":"尼泊尔","dicValue":"尼泊尔","language":"zh","type":"GJ"},{"dicDesc":"HSADLS国家","dicName":"荷属安的列斯","dicValue":"荷属安的列斯","language":"zh","type":"GJ"},{"dicDesc":"HL国家","dicName":"荷兰","dicValue":"荷兰","language":"zh","type":"GJ"},{"dicDesc":"XXL国家","dicName":"新西兰","dicValue":"新西兰","language":"zh","type":"GJ"},{"dicDesc":"NJLG国家","dicName":"尼加拉瓜","dicValue":"尼加拉瓜","language":"zh","type":"GJ"},{"dicDesc":"NRE国家","dicName":"尼日尔","dicValue":"尼日尔","language":"zh","type":"GJ"},{"dicDesc":"NRLY国家","dicName":"尼日利亚","dicValue":"尼日利亚","language":"zh","type":"GJ"},{"dicDesc":"CX国家","dicName":"朝鲜","dicValue":"朝鲜","language":"zh","type":"GJ"},{"dicDesc":"NW国家","dicName":"挪威","dicValue":"挪威","language":"zh","type":"GJ"},{"dicDesc":"AM国家","dicName":"阿曼","dicValue":"阿曼","language":"zh","type":"GJ"},{"dicDesc":"BJST国家","dicName":"巴基斯坦","dicValue":"巴基斯坦","language":"zh","type":"GJ"},{"dicDesc":"BNM国家","dicName":"巴拿马","dicValue":"巴拿马","language":"zh","type":"GJ"},{"dicDesc":"BBYXJNY国家","dicName":"巴布亚新几内亚","dicValue":"巴布亚新几内亚","language":"zh","type":"GJ"},{"dicDesc":"BLG国家","dicName":"巴拉圭","dicValue":"巴拉圭","language":"zh","type":"GJ"},{"dicDesc":"ML国家","dicName":"秘鲁","dicValue":"秘鲁","language":"zh","type":"GJ"},{"dicDesc":"FLB国家","dicName":"菲律宾","dicValue":"菲律宾","language":"zh","type":"GJ"},{"dicDesc":"BL国家","dicName":"波兰","dicValue":"波兰","language":"zh","type":"GJ"},{"dicDesc":"FSBLNXY国家","dicName":"法属玻利尼西亚","dicValue":"法属玻利尼西亚","language":"zh","type":"GJ"},{"dicDesc":"PTY国家","dicName":"葡萄牙","dicValue":"葡萄牙","language":"zh","type":"GJ"},{"dicDesc":"BDLG国家","dicName":"波多黎各","dicValue":"波多黎各","language":"zh","type":"GJ"},{"dicDesc":"KTE国家","dicName":"卡塔尔","dicValue":"卡塔尔","language":"zh","type":"GJ"},{"dicDesc":"LNW国家","dicName":"留尼旺","dicValue":"留尼旺","language":"zh","type":"GJ"},{"dicDesc":"LMXY国家","dicName":"罗马尼亚","dicValue":"罗马尼亚","language":"zh","type":"GJ"},{"dicDesc":"ELS国家","dicName":"俄罗斯","dicValue":"俄罗斯","language":"zh","type":"GJ"},{"dicDesc":"SLXY国家","dicName":"圣卢西亚","dicValue":"圣卢西亚","language":"zh","type":"GJ"},{"dicDesc":"SWSTD国家","dicName":"圣文森特岛","dicValue":"圣文森特岛","language":"zh","type":"GJ"},{"dicDesc":"DSMY国家","dicName":"东萨摩亚(美)","dicValue":"东萨摩亚(美)","language":"zh","type":"GJ"},{"dicDesc":"XSMY国家","dicName":"西萨摩亚","dicValue":"西萨摩亚","language":"zh","type":"GJ"},{"dicDesc":"SMLN国家","dicName":"圣马力诺","dicValue":"圣马力诺","language":"zh","type":"GJ"},{"dicDesc":"SDMHPLXB国家","dicName":"圣多美和普林西比","dicValue":"圣多美和普林西比","language":"zh","type":"GJ"},{"dicDesc":"STALB国家","dicName":"沙特阿拉伯","dicValue":"沙特阿拉伯","language":"zh","type":"GJ"},{"dicDesc":"SNJE国家","dicName":"塞内加尔","dicValue":"塞内加尔","language":"zh","type":"GJ"},{"dicDesc":"SSE国家","dicName":"塞舌尔","dicValue":"塞舌尔","language":"zh","type":"GJ"},{"dicDesc":"SLLA国家","dicName":"塞拉利昂","dicValue":"塞拉利昂","language":"zh","type":"GJ"},{"dicDesc":"XJP国家","dicName":"新加坡","dicValue":"新加坡","language":"zh","type":"GJ"},{"dicDesc":"SLFK国家","dicName":"斯洛伐克","dicValue":"斯洛伐克","language":"zh","type":"GJ"},{"dicDesc":"SLWNY国家","dicName":"斯洛文尼亚","dicValue":"斯洛文尼亚","language":"zh","type":"GJ"},{"dicDesc":"SLMQD国家","dicName":"所罗门群岛","dicValue":"所罗门群岛","language":"zh","type":"GJ"},{"dicDesc":"SML国家","dicName":"索马里","dicValue":"索马里","language":"zh","type":"GJ"},{"dicDesc":"NF国家","dicName":"南非","dicValue":"南非","language":"zh","type":"GJ"},{"dicDesc":"XBY国家","dicName":"西班牙","dicValue":"西班牙","language":"zh","type":"GJ"},{"dicDesc":"SLLK国家","dicName":"斯里兰卡","dicValue":"斯里兰卡","language":"zh","type":"GJ"},{"dicDesc":"SWST国家","dicName":"圣文森特","dicValue":"圣文森特","language":"zh","type":"GJ"},{"dicDesc":"SD国家","dicName":"苏丹","dicValue":"苏丹","language":"zh","type":"GJ"},{"dicDesc":"SLN国家","dicName":"苏里南","dicValue":"苏里南","language":"zh","type":"GJ"},{"dicDesc":"SWSL国家","dicName":"斯威士兰","dicValue":"斯威士兰","language":"zh","type":"GJ"},{"dicDesc":"RD国家","dicName":"瑞典","dicValue":"瑞典","language":"zh","type":"GJ"},{"dicDesc":"RS国家","dicName":"瑞士","dicValue":"瑞士","language":"zh","type":"GJ"},{"dicDesc":"XLY国家","dicName":"叙利亚","dicValue":"叙利亚","language":"zh","type":"GJ"},{"dicDesc":"TJKST国家","dicName":"塔吉克斯坦","dicValue":"塔吉克斯坦","language":"zh","type":"GJ"},{"dicDesc":"TSNY国家","dicName":"坦桑尼亚","dicValue":"坦桑尼亚","language":"zh","type":"GJ"},{"dicDesc":"TG国家","dicName":"泰国","dicValue":"泰国","language":"zh","type":"GJ"},{"dicDesc":"DG国家","dicName":"多哥","dicValue":"多哥","language":"zh","type":"GJ"},{"dicDesc":"TJ国家","dicName":"汤加","dicValue":"汤加","language":"zh","type":"GJ"},{"dicDesc":"TLNDHDBG国家","dicName":"特立尼达和多巴哥","dicValue":"特立尼达和多巴哥","language":"zh","type":"GJ"},{"dicDesc":"TNS国家","dicName":"突尼斯","dicValue":"突尼斯","language":"zh","type":"GJ"},{"dicDesc":"TEQ国家","dicName":"土耳其","dicValue":"土耳其","language":"zh","type":"GJ"},{"dicDesc":"TKMST国家","dicName":"土库曼斯坦","dicValue":"土库曼斯坦","language":"zh","type":"GJ"},{"dicDesc":"WGD国家","dicName":"乌干达","dicValue":"乌干达","language":"zh","type":"GJ"},{"dicDesc":"WKL国家","dicName":"乌克兰","dicValue":"乌克兰","language":"zh","type":"GJ"},{"dicDesc":"ALBLHQZG国家","dicName":"阿拉伯联合酋长国","dicValue":"阿拉伯联合酋长国","language":"zh","type":"GJ"},{"dicDesc":"YG国家","dicName":"英国","dicValue":"英国","language":"zh","type":"GJ"},{"dicDesc":"MG国家","dicName":"美国","dicValue":"美国","language":"zh","type":"GJ"},{"dicDesc":"WLG国家","dicName":"乌拉圭","dicValue":"乌拉圭","language":"zh","type":"GJ"},{"dicDesc":"WZBKST国家","dicName":"乌兹别克斯坦","dicValue":"乌兹别克斯坦","language":"zh","type":"GJ"},{"dicDesc":"WNRL国家","dicName":"委内瑞拉","dicValue":"委内瑞拉","language":"zh","type":"GJ"},{"dicDesc":"YN国家","dicName":"越南","dicValue":"越南","language":"zh","type":"GJ"},{"dicDesc":"YM国家","dicName":"也门","dicValue":"也门","language":"zh","type":"GJ"},{"dicDesc":"NSLF国家","dicName":"南斯拉夫","dicValue":"南斯拉夫","language":"zh","type":"GJ"},{"dicDesc":"JBBW国家","dicName":"津巴布韦","dicValue":"津巴布韦","language":"zh","type":"GJ"},{"dicDesc":"ZYE国家","dicName":"扎伊尔","dicValue":"扎伊尔","language":"zh","type":"GJ"},{"dicDesc":"ZBY国家","dicName":"赞比亚","dicValue":"赞比亚","language":"zh","type":"GJ"},{"dicDesc":"国家","dicName":"其他","dicValue":"其他","language":"zh","type":"GJ"},{"dicDesc":"TWL国家","dicName":"图瓦卢","dicValue":"图瓦卢","language":"zh","type":"GJ"}]</div>
+			<!--主流媒体观点-->
+			<div class="region">
+				<div class="biaop-conter">
+					<div class="biaop-conter-left1">
+						<p class="biaop-conter-dd-xia font16 main-blue">媒体数据走势</p>
+						<!--媒体数据走势面积图--数据赋值js在analysisDataSearch.js的132行-->
+						<div id="tuzhangs" name='' data-id="" ></div>
+					</div>
+					<div class="biaop-conter-right1">
+						<p class="biaop-conter-dd-xia font16 main-blue">媒体数据情感</p>
+						<!--媒体数据情感元饼图--js赋值在analysisDataSearch.js的437行-->
+						<div id="container" name=''></div>
+					</div>
+					<div class="clear"></div>
+					<div class="biaop-conter-left2 tabw">
+						<!--新闻列表-->
+						<div class="conter-right-top-box hd">
+							<p class="add-padding font16 main-blue" >权重媒体排名（Top3）</p>
+						</div>
+						<div class="bd bduser">
+						 <div class="inner list-one1">
+							 <!--//权重媒体排名&#45;&#45;js赋值在analysisDataSearch.js的611行-->
+							<ul id="media-rank" class="ul-rank">
+
+							</ul>
+							<p class="biaop-conter-left2-list-p cup"><a href="" id="rankByPower">查看更多 >></a></p>
+                         </div>
+
+                    </div>
+				</div>
+				<div class="biaop-conter-right2">
+					<div class="conter-right-top-boxs">
+						<p class="add-padding font16 main-blue">媒体数据命中</p>
+                        <ul id="mtsjmz" class="biaop-conter-right2-ul mtsjmz">
+
+                        </ul>
+					</div>
+				</div>
+					<div class="biaop-conter-right3">
+						<div class="conter-right-top-boxs">
+							<p class="add-padding font16 main-blue">关键词云</p>
+							<div id="bdagecloud"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--社交观点-->
+			<div class="region">
+				<div class="biaop-conter">
+					<div class="biaop-conter-left1">
+						<p class="biaop-conter-dd-xia  font16 main-blue">社交数据走势</p>
+						<div id="tuzhang-2"></div>
+					</div>
+
+					<div class="biaop-conter-right1">
+						<p class="biaop-conter-dd-xia  font16 main-blue">社交数据情感</p>
+						<div id="container-2"></div>
+					</div>
+					<div class="clear"></div>
+					<div class="biaop-conter-left2 tabw">
+						<div class="conter-right-top-box hd">
+							<p class="add-padding   font16 main-blue" >意见领袖排名（Top3）</p>
+						</div>
+						<div class="bd bduser">
+							<div class="inner social-list-one">
+                                <div class="sjsj-left" id="social-rank">
+								</div>
+								<p class="biaop-conter-left2-list-ps cup"><a href="" target="_blank" id="rankHeader" class=" main-blue">查看更多 >></a></p>
+							</div>
+						</div>
+					</div>
+					<!--社交数据命中柱形图-->
+					<div class="biaop-conter-right2">
+						<div class="conter-right-top-boxs">
+							<p class="add-padding   font16 main-blue">社交数据命中</p>
+							<ul id="biaogexia" class="biaop-conter-right2-ul"></ul>
+						</div>
+					</div>
+					<!--用户关键词云-->
+					<div class="biaop-conter-right3">
+						<div class="conter-right-top-boxs">
+                            <p class="font16 main-blue add-padding">用户关键词云</p>
+							<div id="bdagecloud2"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="cl20"></div>
+
+		</div>
+	</div>
+	<div class="maskReport">
+    	<div class="report">
+    		<div class="report-main">
+    			<div class="half china">
+    				<h3 class="font16"></h3>
+    				<div class="source">
+    					<span class="font12">来源: <span class="main-blue font12"></span></span>
+    				</div>
+    				<div class="text font12 content">
+						<p></p>
+					</div>
+    				<div class="more main-blue font12"><a href="" target="_blank"><span>查看原文>></span></a></div>
+					<p class="small mt-10" style="color: #456886">本文版权及观点归原文著作权人，不代表平台立场</p>
+    			</div>
+    			<div class="half english">
+    				<h3 id="title-original" class="font16"></h3>
+    				<div class="source">
+    					<span class="font12">来源: <span class="main-blue font12"></span></span>
+    				</div>
+					<div class="text font12 content">
+						<p></p>
+					</div>
+    				<div class="more main-blue font12"><a href="" target="_blank"><span>View Source>></span></a></div>
+					<p class="small mt-10" style="color: #456886">本文版权及观点归原文著作权人，不代表平台立场</p>
+    			</div>
+    		</div>
+    		<span class="closed main-blue"><i class="iconfont icon-close"></i></span>
+			<span class="collect btn-right main-blue favorite"><i class="iconfont icon-uninterested"></i></span>
+    		<span class="edit btn-right main-blue"><i class="iconfont icon-edit-no"></i></span>
+    	</div>
+    </div>
+	<span id="listnct" style="display:none" ></span>
+
+
+    <div class="reportBox" id="reportBox">
+        <div class="re_title">
+            <h5>一键生成报告</h5>
+            <img src="images/close.png" alt="" class="re_close">
+        </div>
+        <div class="re_content">
+            <label><input type="radio" name="choose" checked="checked" id="checkTrue">一键生成分析模型自动展示（报告展示所有模型）</label>
+            <label><input type="radio" name="choose" id="checkFalse">分析模型自定义展示</label>
+            <div class="re_btn">
+                <p class="re_sure addClass">确定</p>
+                <p class="re_cancel">取消</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="goReportBox" id="goReportBox">
+        <div class="go_title">
+            <h5>一键生成报告展示</h5>
+            <img src="images/close.png" alt="" class="go_close">
+        </div>
+        <div class="go_content">
+            <P class="go_txt">您的报告已经生成，请前往报告管理中心查看</P>
+            <div class="go_btn">
+                <p class="go_sure addClass">确定</p>
+                <p class="go_cancel">取消</p>
+            </div>
+        </div>
+    </div>
+
+		<!-- js文件开始-->
+	<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/layer.js"></script>
+	<script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+	<script src="${ctx}/js/subjectAnalysis/easydialog.min.js" type="text/javascript"></script>
+	<script src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+	<script src="${ctx}/js/subjectAnalysis/common.js"></script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/SpecialList10.js"></script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/flags.js"></script>
+	<!-- <script src="${ctx}/js/subjectAnalysis/jedate.min.js"></script>
+		<script src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.js"></script>-->
+	<script src="${ctx}/js/common.js"></script>
+	<script src="${ctx}/js/subjectAnalysis/analysisDataSearch.js"></script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/Scrollbar.js"></script>
+	<script src="${ctx}/js/subjectAnalysis/tag.js"></script>
+	<script src="${ctx}/js/subjectAnalysis/reportAnalysis.js"></script>
+
+	<script type="text/javascript">
+
+        var listarr = $('.centent_right_tab ul li');
+        $.each(listarr,function(i,v){
+        	let text = $(v).children('a').html();
+        	if(text == '专题概况'){
+        		console.log(i)
+        		$('.centent_right_tab ul li').eq(i).addClass('on')
+        	}
+        })
+        var session_usr='';
+        $('#toAdd,#topicManager,#reportList').unbind();//解除以前绑定的方法
+        //首先判断是否登录,没有登录的情况下,跳转到登录页面
+        if(session_usr==''){
+            $('#toAdd').attr('href','javascript:;');
+            $('#topicManager').attr('href','javascript:;');
+            $('#reportList').attr('href','javascript:;');
+
+            $('#toAdd,#topicManager,#reportList').unbind().bind('click',function(){
+                loginClick();
+                return true;
+            });
+        }
+        // 专题列表同步加载
+        //获取登录人创建的专题信息列表
+        var nowLanguage = $("#language").val();
+        var str='';
+        $.ajax({
+            url:"analysisMap/queryTopicListWithPage",
+            data:{pageNo:0,xxx:new Date().getTime()},
+            type:"get",
+            dataType:"json",
+            async: false,
+            success:function(data){
+                var list = [];
+                var defaultList = [];
+                var createList = []
+                for(var k=0;k<data.results.length;k++){
+                    createList.push(data.results[k]);
+                }
+                list=defaultList.concat(createList);
+                for (var i = 0; i < list.length; i++) {
+                    var title=list[i].srcShortTitle||list[i].srcTitle;
+                    var systemType = $("#systemType").val();
+
+                    str+='<li data="'+list[i].id+'" data-srcid="'+list[i].srcId+'">'
+                        +'<a data-state="'+list.state+'" href="analysisData/index?id='+list[i].id+'&opType='+list[i].opType+'&srcId='+list[i].srcId+'&source='+list[i].source+'&systemType='+systemType+'">'
+                        +title+'</a>'
+                    if(session_usr!='' && list[i].state==null){
+                        str+='<img data-optype="'+list[i].opType+'" src="images/yayaya_23.png" alt="" style="float:right; padding:12px 0 0 10px;">';
+                    }
+                    str+='</li>';
+
+                }
+                $("#content_note").html(str);
+
+
+
+                (function ($) {
+                    $.getUrlParam = function (name) {
+                        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        if (r != null) return unescape(r[2]); return null;
+                    }
+                })(jQuery);
+                var srcId = $.getUrlParam("srcId");
+                var id = $.getUrlParam("id");
+                var isHasCurrTopic = 0;
+                $.each($("#content_note li"),function(k,v){
+                    if($(v).find("a").attr("href").split("?")[1].split("&")[0].slice(3) == id || $(v).find("a").attr("href").split("?")[1].split("&")[0].slice(3) == srcId){
+                        isHasCurrTopic = 1;
+                        $(v).addClass("on");
+                        return;
+                    }
+                });
+
+                if(isHasCurrTopic == 0 && $('#newsFlagId').val()!=-1){
+
+                }
+
+            }
+        });
+        //关闭打开专题列表
+        $("#topicList").click(function(){
+            $("#mainBox_note").slideToggle(200);
+        });
+        function specialInfo(){
+            var category = $("#category").val();
+            var createId ="98887";// ;
+            var source = $("#source").val();
+
+            $.ajax({
+                type: "POST",
+                url: "analysisData/queryInfoSpecial",
+                data: {
+                    infoId:$("#id").val(),
+                    //infoId:"",
+                    category:category,
+                    createId:createId,
+                    source:source
+                },
+                dataType: "json",
+                success: function(data){
+                    //console.log(data);
+
+                }
+            });
+        }
+
+	</script>
+	<script type="text/javascript" >
+
+		//区域分布预警数据判断
+		var dataWarn = 0;
+		if(dataWarn<=0){
+			 $('.dot').css("display","none");
+		}else{
+			$('.dot').css("display","block");
+		}
+
+		/*数字分隔号*/
+			 //地图总数据
+
+//            var fensiMap= 0;
+			var fensiMap = 8262564;
+			$('.8262564').text(numsplits(fensiMap));
+		   //媒体数据
+			var fensiMedia= 4224423;
+			//console.log("媒体数据",fensiMedia);
+			$('.4224423').text(numsplits(fensiMedia));
+		   //今日数据
+			var fensiDay= 0;
+			//console.log("今日数据",fensiDay);
+			$('.0').text(numsplits(fensiDay));
+		   //社交数据
+			var fensiSocial= 4038141;
+			//console.log("社交数据",fensiSocial);
+			$('.4038141').text(numsplits(fensiSocial));
+
+			//获取url参数
+			(function ($) {
+				$.getUrlParam = function (name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);
+					if (r != null) return unescape(r[2]); return null;
+				}
+			})(jQuery);
+
+			 //数字格式化
+				function numsplits(num) {
+					var decimalPart = '';
+					num = num.toString();
+					if (num.indexOf('.') != -1) {
+					  decimalPart = '.' + num.split('.')[1];
+					  num = parseInt(num.split('.')[0]);
+					}
+					var array = num.toString().split('');
+					var index = -3;
+					while (array.length + index > 0) {
+					  // 从单词的最后每隔三个数字添加逗号
+					  array.splice(index, 0, ',');
+					  index -= 4;
+					}
+					return array.join('') + decimalPart;
+				}
+        </script>
+		<script>
+			$(function() {
+
+				 regionAnalysisAjax();
+				var a=1;
+				//地区分布
+				var listNCT=[{"cityName":"北京","count":7861462,"countNegative":171771,"countNeutral":4811416,"countPositive":2792985,"countryCode":"China","countryName":"中国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":39.90280833,"longItudes":116.4011556,"radio":"     95.15%"},{"cityName":"华盛顿","count":288234,"countNegative":20515,"countNeutral":187782,"countPositive":79418,"countryCode":"United States","countryName":"美国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.90719167,"longItudes":77.03686944,"radio":"      3.49%"},{"cityName":"伦敦","count":60341,"countNegative":1133,"countNeutral":28132,"countPositive":30955,"countryCode":"United Kingdom","countryName":"英国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":51.50735,"longItudes":0.12775833,"radio":"      0.73%"},{"cityName":"渥太华","count":7426,"countNegative":470,"countNeutral":3547,"countPositive":3360,"countryCode":"Canada","countryName":"加拿大","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":45.42153056,"longItudes":75.69719444,"radio":"      0.09%"},{"cityName":"柏林","count":4316,"countNegative":243,"countNeutral":2053,"countPositive":2017,"countryCode":"Germany","countryName":"德国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":52.52000556,"longItudes":13.40495278,"radio":"      0.05%"},{"cityName":"新德里","count":4267,"countNegative":1129,"countNeutral":1547,"countPositive":1579,"countryCode":"India","countryName":"印度","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":28.61393889,"longItudes":77.20902222,"radio":"      0.05%"},{"cityName":"罗马","count":2895,"countNegative":113,"countNeutral":1102,"countPositive":1680,"countryCode":"Italy","countryName":"意大利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.90278333,"longItudes":12.49636667,"radio":"      0.04%"},{"cityName":"首尔","count":2575,"countNegative":63,"countNeutral":1494,"countPositive":1002,"countryCode":"Korea","countryName":"韩国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":37.56653611,"longItudes":126.9779694,"radio":"      0.03%"},{"cityName":"堪培拉","count":2233,"countNegative":365,"countNeutral":918,"countPositive":943,"countryCode":"Australia","countryName":"澳大利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.282,"longItudes":149.1286833,"radio":"      0.03%"},{"cityName":"吉隆坡","count":2160,"countNegative":225,"countNeutral":1309,"countPositive":620,"countryCode":"Malaysia","countryName":"马来西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":3.13900278,"longItudes":101.6868556,"radio":"      0.03%"},{"cityName":"加拉加斯","count":2116,"countNegative":57,"countNeutral":1035,"countPositive":998,"countryCode":"Venezuela","countryName":"委内瑞拉","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":10.48059444,"longItudes":66.90360556,"radio":"      0.03%"},{"cityName":"莫斯科","count":2076,"countNegative":156,"countNeutral":1081,"countPositive":827,"countryCode":"Russia","countryName":"俄罗斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":55.755825,"longItudes":37.6173,"radio":"      0.03%"},{"cityName":"东京","count":1878,"countNegative":69,"countNeutral":832,"countPositive":970,"countryCode":"Japan","countryName":"日本","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.68948611,"longItudes":139.6917056,"radio":"      0.02%"},{"cityName":"富纳富提","count":1815,"countNegative":12,"countNeutral":1173,"countPositive":626,"countryCode":"Tuvalu","countryName":"图瓦卢","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":8.52006667,"longItudes":179.1981278,"radio":"      0.02%"},{"cityName":"新加坡","count":1274,"countNegative":206,"countNeutral":574,"countPositive":486,"countryCode":"Singapore","countryName":"新加坡","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":1.35208333,"longItudes":103.8198361,"radio":"      0.02%"},{"count":1181,"countNegative":231,"countNeutral":359,"countPositive":590,"countryName":"其他","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.01%"},{"cityName":"伊斯兰堡","count":1158,"countNegative":216,"countNeutral":408,"countPositive":531,"countryCode":"Pakistan","countryName":"巴基斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.72938889,"longItudes":73.09314722,"radio":"      0.01%"},{"cityName":"多哈","count":947,"countNegative":20,"countNeutral":892,"countPositive":35,"countryCode":"Qatar","countryName":"卡塔尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.28544722,"longItudes":51.53103889,"radio":"      0.01%"},{"cityName":"巴黎","count":721,"countNegative":169,"countNeutral":287,"countPositive":264,"countryCode":"France","countryName":"法国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":48.85661389,"longItudes":2.35222222,"radio":"      0.01%"},{"cityName":"雅加达","count":651,"countNegative":38,"countNeutral":378,"countPositive":234,"countryCode":"Indonesia","countryName":"印度尼西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.20876389,"longItudes":106.8456,"radio":"      0.01%"},{"cityName":"波多诺伏","count":638,"countNegative":5,"countNeutral":146,"countPositive":487,"countryCode":"Benin","countryName":"贝宁","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.49685833,"longItudes":2.62885278,"radio":"      0.01%"},{"cityName":"阿姆斯特丹","count":614,"countNegative":31,"countNeutral":502,"countPositive":80,"countryCode":"Netherlands","countryName":"荷兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":52.37021667,"longItudes":4.89516667,"radio":"      0.01%"},{"cityName":"利雅得","count":606,"countNegative":32,"countNeutral":490,"countPositive":84,"countryCode":"Saudi Arabia","countryName":"沙特阿拉伯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":24.71355278,"longItudes":46.67529444,"radio":"      0.01%"},{"cityName":"斯德哥尔摩","count":575,"countNegative":7,"countNeutral":219,"countPositive":347,"countryCode":"Sweden","countryName":"瑞典","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":59.32932222,"longItudes":18.06858056,"radio":"      0.01%"},{"cityName":"墨西哥城","count":573,"countNegative":40,"countNeutral":246,"countPositive":287,"countryCode":"Mexico","countryName":"墨西哥","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":19.43260833,"longItudes":99.13320833,"radio":"      0.01%"},{"cityName":"马德里","count":569,"countNegative":28,"countNeutral":219,"countPositive":322,"countryCode":"Spain","countryName":"西班牙","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":40.416775,"longItudes":3.70378889,"radio":"      0.01%"},{"cityName":"曼谷","count":537,"countNegative":97,"countNeutral":239,"countPositive":201,"countryCode":"Thailand","countryName":"泰国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.75633056,"longItudes":100.5017639,"radio":"      0.01%"},{"cityName":"里斯本","count":533,"countNegative":142,"countNeutral":162,"countPositive":229,"countryCode":"Portugal","countryName":"葡萄牙","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.72225278,"longItudes":9.13933611,"radio":"      0.01%"},{"cityName":"开罗","count":469,"countNegative":31,"countNeutral":192,"countPositive":232,"countryCode":"Egypt","countryName":"埃及","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":30.04441944,"longItudes":31.23571111,"radio":"      0.01%"},{"cityName":"布拉迪斯拉发","count":418,"countNegative":2,"countNeutral":220,"countPositive":194,"countryCode":"Slovakia","countryName":"斯洛伐克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":48.14859722,"longItudes":17.10774722,"radio":"      0.01%"},{"cityName":"科伦坡","count":399,"countNegative":113,"countNeutral":126,"countPositive":158,"countryCode":"Sri Lanka","countryName":"斯里兰卡","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.92707778,"longItudes":79.86124167,"radio":"      0.00%"},{"cityName":"内比都","count":398,"countNegative":47,"countNeutral":286,"countPositive":65,"countryCode":"Burma","countryName":"缅甸","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":19.74892222,"longItudes":96.15269722,"radio":"      0.00%"},{"cityName":"巴拿马城","count":356,"countNegative":75,"countNeutral":102,"countPositive":178,"countryCode":"Panama","countryName":"巴拿马","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.10117778,"longItudes":79.40286389,"radio":"      0.00%"},{"cityName":"马尼拉","count":339,"countNegative":76,"countNeutral":124,"countPositive":138,"countryCode":"Philippines","countryName":"菲律宾","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.59951111,"longItudes":120.9842194,"radio":"      0.00%"},{"cityName":"都柏林","count":295,"countNegative":48,"countNeutral":139,"countPositive":108,"countryCode":"Ireland","countryName":"爱尔兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":53.34980556,"longItudes":6.26030833,"radio":"      0.00%"},{"cityName":"布达佩斯","count":294,"countNegative":4,"countNeutral":184,"countPositive":105,"countryCode":"Hungary","countryName":"匈牙利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":47.49791111,"longItudes":19.04023611,"radio":"      0.00%"},{"cityName":"惠灵顿","count":272,"countNegative":20,"countNeutral":152,"countPositive":97,"countryCode":"New Zealand","countryName":"新西兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.28646111,"longItudes":174.7762361,"radio":"      0.00%"},{"cityName":"伯尔尼","count":230,"countNegative":34,"countNeutral":69,"countPositive":127,"countryCode":"Switzerland","countryName":"瑞士","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":46.947975,"longItudes":7.44744722,"radio":"      0.00%"},{"cityName":"安卡拉","count":227,"countNegative":60,"countNeutral":70,"countPositive":97,"countryCode":"Turkey","countryName":"土耳其","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":39.93336389,"longItudes":32.85974167,"radio":"      0.00%"},{"cityName":"达卡","count":222,"countNegative":47,"countNeutral":93,"countPositive":80,"countryCode":"Bangladesh","countryName":"孟加拉国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":23.81033333,"longItudes":90.41251944,"radio":"      0.00%"},{"cityName":"阿布扎比","count":222,"countNegative":30,"countNeutral":93,"countPositive":99,"countryCode":"阿联酋","countryName":"阿联酋","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":24.299175,"longItudes":54.69727778,"radio":"      0.00%"},{"cityName":"比勒陀利亚","count":221,"countNegative":38,"countNeutral":87,"countPositive":96,"countryCode":"South Africa","countryName":"南非","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.74786667,"longItudes":28.22927222,"radio":"      0.00%"},{"cityName":"圣菲波哥大","count":219,"countNegative":18,"countNeutral":125,"countPositive":76,"countryCode":"Colombia","countryName":"哥伦比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":4.71098889,"longItudes":74.07209167,"radio":"      0.00%"},{"cityName":"巴库","count":187,"countNegative":22,"countNeutral":74,"countPositive":89,"countryCode":"Azerbaijan","countryName":"阿塞拜疆","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":40.40926111,"longItudes":49.86709167,"radio":"      0.00%"},{"cityName":"阿斯塔纳","count":181,"countNegative":12,"countNeutral":92,"countPositive":77,"countryCode":"Kazakhstan","countryName":"哈萨克斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":51.16052222,"longItudes":71.47035556,"radio":"      0.00%"},{"cityName":"德黑兰","count":164,"countNegative":42,"countNeutral":66,"countPositive":56,"countryCode":"Iran","countryName":"伊朗","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.68919722,"longItudes":51.38897222,"radio":"      0.00%"},{"cityName":"金边","count":158,"countNegative":8,"countNeutral":88,"countPositive":62,"countryCode":"Cambodia","countryName":"柬埔寨","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":11.54487222,"longItudes":104.8921667,"radio":"      0.00%"},{"cityName":"加德满都","count":154,"countNegative":88,"countNeutral":39,"countPositive":27,"countryCode":"Nepal","countryName":"尼泊尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":27.71724444,"longItudes":85.32396111,"radio":"      0.00%"},{"cityName":"雅典","count":140,"countNegative":24,"countNeutral":62,"countPositive":53,"countryCode":"Greece","countryName":"希腊","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":37.98391667,"longItudes":23.72936111,"radio":"      0.00%"},{"cityName":"河内","count":138,"countNegative":9,"countNeutral":67,"countPositive":61,"countryCode":"Vietnam","countryName":"越南","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":21.02776389,"longItudes":105.8341611,"radio":"      0.00%"},{"cityName":"华沙","count":137,"countNegative":28,"countNeutral":64,"countPositive":45,"countryCode":"Poland","countryName":"波兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":52.229675,"longItudes":21.01222778,"radio":"      0.00%"},{"cityName":"圣地亚哥","count":136,"countNegative":3,"countNeutral":46,"countPositive":81,"countryCode":"Chile","countryName":"智利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.44888889,"longItudes":70.66926667,"radio":"      0.00%"},{"cityName":"巴西利亚","count":133,"countNegative":7,"countNeutral":68,"countPositive":57,"countryCode":"Brazil","countryName":"巴西","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.79422778,"longItudes":47.88216667,"radio":"      0.00%"},{"cityName":"明斯克","count":132,"countNegative":12,"countNeutral":53,"countPositive":67,"countryCode":"Belarus","countryName":"白俄罗斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":53.90453889,"longItudes":27.561525,"radio":"      0.00%"},{"cityName":"阿布贾","count":122,"countNegative":22,"countNeutral":44,"countPositive":55,"countryCode":"Nigeria","countryName":"尼日利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.07647778,"longItudes":7.398575,"radio":"      0.00%"},{"cityName":"布鲁塞尔","count":95,"countNegative":25,"countNeutral":51,"countPositive":19,"countryCode":"Belgium","countryName":"比利时","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":50.85033889,"longItudes":4.35171111,"radio":"      0.00%"},{"cityName":"耶路撒冷","count":80,"countNegative":7,"countNeutral":29,"countPositive":43,"countryCode":"Israel","countryName":"以色列","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":31.76831944,"longItudes":35.21371111,"radio":"      0.00%"},{"cityName":"波德戈里察","count":77,"countNeutral":57,"countPositive":20,"countryCode":"黑山","countryName":"黑山","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":42.43041944,"longItudes":19.25936389,"radio":"      0.00%"},{"cityName":"乌兰巴托","count":76,"countNegative":1,"countNeutral":58,"countPositive":16,"countryCode":"Mongolia","countryName":"蒙古","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":47.8864,"longItudes":106.9057444,"radio":"      0.00%"},{"count":72,"countNegative":12,"countNeutral":19,"countPositive":41,"countryName":"孟加拉","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"基辅","count":67,"countNegative":4,"countNeutral":20,"countPositive":43,"countryCode":"Ukraine","countryName":"乌克兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":50.4501,"longItudes":30.5234,"radio":"      0.00%"},{"cityName":"索非亚","count":65,"countNegative":9,"countNeutral":28,"countPositive":27,"countryCode":"Bulgaria","countryName":"保加利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":42.69770833,"longItudes":23.32186667,"radio":"      0.00%"},{"cityName":"维也纳","count":64,"countNegative":7,"countNeutral":19,"countPositive":38,"countryCode":"Austria","countryName":"奥地利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":48.208175,"longItudes":16.37381944,"radio":"      0.00%"},{"cityName":"安曼","count":63,"countNegative":13,"countNeutral":16,"countPositive":33,"countryCode":"Jordan","countryName":"约旦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":31.95657778,"longItudes":35.94569444,"radio":"      0.00%"},{"cityName":"比什凯克","count":59,"countNegative":5,"countNeutral":14,"countPositive":40,"countryCode":"吉尔吉斯斯坦","countryName":"吉尔吉斯斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":42.87462222,"longItudes":74.56976111,"radio":"      0.00%"},{"cityName":"拿骚","count":59,"countNegative":15,"countNeutral":13,"countPositive":31,"countryCode":"Bahamas","countryName":"巴哈马","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.04798333,"longItudes":77.35541389,"radio":"      0.00%"},{"cityName":"麦纳麦","count":59,"countNegative":14,"countNeutral":17,"countPositive":28,"countryCode":"Bahrain","countryName":"巴林","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":26.22851667,"longItudes":50.58605,"radio":"      0.00%"},{"count":57,"countNeutral":47,"countPositive":10,"countryName":"Saint Helena","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"马斯喀特","count":54,"countNegative":12,"countNeutral":23,"countPositive":19,"countryCode":"Oman","countryName":"阿曼","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":23.58588889,"longItudes":58.40592222,"radio":"      0.00%"},{"cityName":"布加勒斯特","count":50,"countNegative":8,"countNeutral":19,"countPositive":23,"countryCode":"Romania","countryName":"罗马尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":44.42676667,"longItudes":26.10253889,"radio":"      0.00%"},{"cityName":"塔什干","count":37,"countNegative":4,"countNeutral":17,"countPositive":16,"countryCode":"Uzbekistan","countryName":"乌兹别克斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.29949444,"longItudes":69.24007222,"radio":"      0.00%"},{"cityName":"哥本哈根","count":37,"countNegative":17,"countNeutral":5,"countPositive":15,"countryCode":"Denmark","countryName":"丹麦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":55.67609722,"longItudes":12.56833611,"radio":"      0.00%"},{"cityName":"布宜诺斯艾利斯","count":36,"countNegative":5,"countNeutral":11,"countPositive":20,"countryCode":"Argentina","countryName":"阿根廷","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":34.60368333,"longItudes":58.38155833,"radio":"      0.00%"},{"cityName":"内罗毕","count":35,"countNegative":11,"countNeutral":5,"countPositive":19,"countryCode":"Kenya","countryName":"肯尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":1.29206667,"longItudes":36.82194722,"radio":"      0.00%"},{"cityName":"布拉格","count":34,"countNegative":2,"countNeutral":23,"countPositive":9,"countryCode":"Czech Republic","countryName":"捷克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":50.07553889,"longItudes":14.4378,"radio":"      0.00%"},{"cityName":"喀布尔","count":32,"countNegative":5,"countNeutral":8,"countPositive":19,"countryCode":"Afghanistan","countryName":"阿富汗","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":34.55535,"longItudes":69.20748611,"radio":"      0.00%"},{"cityName":"第比利斯","count":29,"countNeutral":16,"countPositive":12,"countryCode":"Georgia","countryName":"格鲁吉亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.71513889,"longItudes":44.82709722,"radio":"      0.00%"},{"cityName":"阿克拉","count":29,"countNegative":3,"countNeutral":12,"countPositive":13,"countryCode":"Ghana","countryName":"加纳","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":5.60371667,"longItudes":0.18696389,"radio":"      0.00%"},{"cityName":"赫尔辛基","count":29,"countNegative":6,"countNeutral":10,"countPositive":13,"countryCode":"Finland","countryName":"芬兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":60.16985556,"longItudes":24.93837778,"radio":"      0.00%"},{"cityName":"贝鲁特","count":29,"countNegative":11,"countNeutral":6,"countPositive":12,"countryCode":"Lebanon","countryName":"黎巴嫩","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.88862778,"longItudes":35.49548056,"radio":"      0.00%"},{"cityName":"哈拉雷","count":28,"countNegative":6,"countNeutral":8,"countPositive":14,"countryCode":"Zimbabwe","countryName":"津巴布韦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.82516667,"longItudes":31.03351111,"radio":"      0.00%"},{"cityName":"奥斯陆","count":28,"countNegative":10,"countNeutral":12,"countPositive":6,"countryCode":"Norway","countryName":"挪威","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":59.91386944,"longItudes":10.75224444,"radio":"      0.00%"},{"count":27,"countNeutral":25,"countPositive":2,"countryName":"密克罗尼西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"马普托","count":19,"countNeutral":5,"countPositive":14,"countryCode":"Mozambique","countryName":"莫桑比克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.89196667,"longItudes":32.60513611,"radio":"      0.00%"},{"cityName":"万象","count":19,"countNegative":9,"countNeutral":7,"countPositive":3,"countryCode":"Laos","countryName":"老挝","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.97570556,"longItudes":102.6331028,"radio":"      0.00%"},{"cityName":"乔治敦","count":18,"countNegative":1,"countNeutral":7,"countPositive":10,"countryCode":"Cayman Islands","countryName":"开曼群岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.80128056,"longItudes":58.155125,"radio":"      0.00%"},{"cityName":"贝尔格莱德","count":18,"countNegative":1,"countNeutral":7,"countPositive":10,"countryCode":"塞尔维亚","countryName":"塞尔维亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":44.78656667,"longItudes":20.44892222,"radio":"      0.00%"},{"cityName":"萨格勒布","count":16,"countNegative":3,"countNeutral":3,"countPositive":10,"countryCode":"克罗地亚","countryName":"克罗地亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":45.81501111,"longItudes":15.98191944,"radio":"      0.00%"},{"cityName":"雷克雅未克","count":16,"countNegative":5,"countNeutral":5,"countPositive":6,"countryCode":"Iceland","countryName":"冰岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":64.12651944,"longItudes":21.81743889,"radio":"      0.00%"},{"cityName":"亚松森","count":15,"countNeutral":14,"countPositive":1,"countryCode":"Paraguay","countryName":"巴拉圭","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.26373889,"longItudes":57.575925,"radio":"      0.00%"},{"cityName":"尼科西亚","count":15,"countNegative":5,"countNeutral":6,"countPositive":4,"countryCode":"Cyprus","countryName":"塞浦路斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.18556667,"longItudes":33.38227778,"radio":"      0.00%"},{"cityName":"雅温得","count":12,"countNeutral":9,"countPositive":3,"countryCode":"Cameroon","countryName":"喀麦隆","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":3.84803333,"longItudes":11.502075,"radio":"      0.00%"},{"cityName":"蒙得维的亚","count":12,"countNegative":4,"countNeutral":4,"countPositive":4,"countryCode":"Uruguay","countryName":"乌拉圭","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":34.90111389,"longItudes":56.16453056,"radio":"      0.00%"},{"cityName":"利马","count":11,"countNeutral":10,"countPositive":1,"countryCode":"Peru","countryName":"秘鲁","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":12.046375,"longItudes":77.04279444,"radio":"      0.00%"},{"count":11,"countNeutral":2,"countPositive":9,"countryName":"波黑","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"埃里温","count":11,"countNegative":1,"countNeutral":8,"countPositive":2,"countryCode":"Armenia","countryName":"亚美尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":40.17918611,"longItudes":44.49910278,"radio":"      0.00%"},{"cityName":"巴格达","count":10,"countNeutral":8,"countPositive":2,"countryCode":"Iraq","countryName":"伊拉克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.31280556,"longItudes":44.36148889,"radio":"      0.00%"},{"cityName":"维尔纽斯","count":10,"countNegative":1,"countNeutral":2,"countPositive":7,"countryCode":"Lithuania","countryName":"立陶宛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":54.68715556,"longItudes":25.27965278,"radio":"      0.00%"},{"cityName":"杜尚别","count":10,"countNeutral":3,"countPositive":7,"countryCode":"Tajikistan","countryName":"塔吉克斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.55977222,"longItudes":68.78703889,"radio":"      0.00%"},{"count":10,"countNegative":2,"countNeutral":5,"countPositive":3,"countryName":"直布罗陀","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"里加","count":9,"countNegative":2,"countNeutral":2,"countPositive":5,"countryCode":"Latvia","countryName":"拉脱维亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":56.94965,"longItudes":24.10518611,"radio":"      0.00%"},{"cityName":"斯里巴加湾市","count":9,"countNegative":2,"countNeutral":5,"countPositive":2,"countryCode":"Brunei","countryName":"文莱","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":4.90305278,"longItudes":114.9398222,"radio":"      0.00%"},{"cityName":"塔林","count":9,"countNegative":1,"countNeutral":4,"countPositive":4,"countryCode":"Estonia","countryName":"爱沙尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":59.43696111,"longItudes":24.753575,"radio":"      0.00%"},{"cityName":"基多","count":9,"countNegative":4,"countNeutral":3,"countPositive":2,"countryCode":"Ecuador","countryName":"厄瓜多尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.18065278,"longItudes":78.46783889,"radio":"      0.00%"},{"cityName":"苏瓦","count":9,"countNegative":2,"countNeutral":3,"countPositive":4,"countryCode":"Fiji","countryName":"斐济","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":18.12480833,"longItudes":178.4500778,"radio":"      0.00%"},{"cityName":"达累斯萨拉姆","count":8,"countNegative":1,"countNeutral":4,"countPositive":3,"countryCode":"Tanzania","countryName":"坦桑尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.79235278,"longItudes":39.20832778,"radio":"      0.00%"},{"cityName":"阿加尼亚","count":7,"countNeutral":1,"countPositive":6,"countryCode":"Guam","countryName":"关岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.47628333,"longItudes":144.7502222,"radio":"      0.00%"},{"cityName":"拉巴特","count":7,"countNegative":2,"countNeutral":5,"countryCode":"Morocco","countryName":"摩洛哥","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.97159167,"longItudes":6.84981389,"radio":"      0.00%"},{"cityName":"科威特城","count":7,"countNegative":3,"countNeutral":2,"countPositive":2,"countryCode":"Kuwait","countryName":"科威特","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":29.37585833,"longItudes":47.97740556,"radio":"      0.00%"},{"cityName":"特古西加尔巴","count":6,"countNegative":2,"countPositive":4,"countryCode":"Honduras","countryName":"洪都拉斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.072275,"longItudes":87.19213611,"radio":"      0.00%"},{"cityName":"圣何塞","count":6,"countNeutral":2,"countPositive":4,"countryCode":"Costa Rica","countryName":"哥斯达黎加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":37.33820833,"longItudes":121.8863278,"radio":"      0.00%"},{"cityName":"路易港","count":5,"countNegative":1,"countNeutral":4,"countryCode":"Mauritius","countryName":"毛里求斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":20.16089167,"longItudes":57.50122222,"radio":"      0.00%"},{"cityName":"卢森堡市","count":5,"countNegative":1,"countNeutral":4,"countryCode":"Luxembourg","countryName":"卢森堡","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":49.61162222,"longItudes":6.13193333,"radio":"      0.00%"},{"cityName":"维拉港","count":5,"countNeutral":2,"countPositive":3,"countryCode":"瓦努阿图","countryName":"瓦努阿图","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.73325,"longItudes":168.327325,"radio":"      0.00%"},{"cityName":"温得和克","count":5,"countNegative":3,"countNeutral":1,"countPositive":1,"countryCode":"Namibia","countryName":"纳米比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":22.56088056,"longItudes":17.06575556,"radio":"      0.00%"},{"cityName":"坎帕拉","count":5,"countNegative":1,"countNeutral":2,"countPositive":2,"countryCode":"Uganda","countryName":"乌干达","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.34759722,"longItudes":32.58251944,"radio":"      0.00%"},{"count":4,"countPositive":4,"countryName":"Cocos (Keeling) Islands","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"卡斯特里","count":4,"countNeutral":1,"countPositive":3,"countryCode":"Saint Lueia","countryName":"圣卢西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.01010833,"longItudes":60.98746944,"radio":"      0.00%"},{"cityName":"科纳克里","count":4,"countNegative":1,"countNeutral":3,"countryCode":"Guinea","countryName":"几内亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.64118611,"longItudes":13.5784,"radio":"      0.00%"},{"cityName":"帕拉马里博","count":4,"countNeutral":3,"countPositive":1,"countryCode":"Surinam","countryName":"苏里南","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":5.85203611,"longItudes":55.20382778,"radio":"      0.00%"},{"cityName":"拉巴斯","count":3,"countNeutral":3,"countryCode":"Bolivia","countryName":"玻利维亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":16.48968889,"longItudes":68.11929444,"radio":"      0.00%"},{"count":3,"countPositive":3,"countryName":"圣基茨和尼维斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"利隆圭","count":3,"countNegative":3,"countryCode":"Malawi","countryName":"马拉维","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.96261111,"longItudes":33.77411944,"radio":"      0.00%"},{"cityName":"大马士革","count":3,"countNeutral":3,"countryCode":"Syria","countryName":"叙利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.51380833,"longItudes":36.27652778,"radio":"      0.00%"},{"count":3,"countNeutral":3,"countryName":"特里尼达和多巴哥","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"卢萨卡","count":3,"countNegative":1,"countPositive":2,"countryCode":"Zambia","countryName":"赞比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.387525,"longItudes":28.32281667,"radio":"      0.00%"},{"cityName":"金斯敦","count":3,"countNeutral":1,"countPositive":2,"countryCode":"Jamaica","countryName":"牙买加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.160025,"longItudes":61.22481667,"radio":"      0.00%"},{"cityName":"马累","count":3,"countNegative":1,"countNeutral":2,"countryCode":"Maldives","countryName":"马尔代夫","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":4.17549722,"longItudes":73.50934722,"radio":"      0.00%"},{"cityName":"斯科普里","count":3,"countNegative":1,"countPositive":2,"countryCode":"马其顿","countryName":"马其顿","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.99734722,"longItudes":21.42799444,"radio":"      0.00%"},{"cityName":"亚的斯亚贝巴","count":3,"countNeutral":1,"countPositive":2,"countryCode":"Ethiopia","countryName":"埃塞俄比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":8.98060278,"longItudes":38.75776111,"radio":"      0.00%"},{"cityName":"卢布尔雅那","count":3,"countNegative":1,"countNeutral":1,"countPositive":1,"countryCode":"Slovenia","countryName":"斯洛文尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":46.05694722,"longItudes":14.50575278,"radio":"      0.00%"},{"cityName":"霍尼亚拉","count":2,"countNeutral":2,"countryCode":"Solomon Islands","countryName":"所罗门群岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.44563889,"longItudes":159.9729,"radio":"      0.00%"},{"cityName":"基加利","count":2,"countNeutral":2,"countryCode":"卢旺达","countryName":"卢旺达","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":1.97057778,"longItudes":30.10442778,"radio":"      0.00%"},{"cityName":"阿尔及尔","count":2,"countNeutral":2,"countryCode":"Algeria","countryName":"阿尔及利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":36.75376944,"longItudes":3.05879167,"radio":"      0.00%"},{"cityName":"维多利亚","count":2,"countNeutral":2,"countryCode":"Seychelles","countryName":"塞舌尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.23265278,"longItudes":72.35150833,"radio":"      0.00%"},{"cityName":"蒙罗维亚","count":2,"countNegative":1,"countPositive":1,"countryCode":"Liberia","countryName":"利比里亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.29074444,"longItudes":10.760525,"radio":"      0.00%"},{"cityName":"哈瓦那","count":2,"countNegative":1,"countNeutral":1,"countryCode":"Cuba","countryName":"古巴","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":23.11359167,"longItudes":82.36659444,"radio":"      0.00%"},{"cityName":"喀土穆","count":2,"countNegative":1,"countNeutral":1,"countryCode":"Sudan","countryName":"苏丹","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.50065556,"longItudes":32.5599,"radio":"      0.00%"},{"cityName":"弗里敦","count":1,"countNeutral":1,"countryCode":"Sierra Leone","countryName":"塞拉利昂","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":8.46567778,"longItudes":13.23172222,"radio":"      0.00%"},{"cityName":"瓦莱塔","count":1,"countPositive":1,"countryCode":"Malta","countryName":"马耳他","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.89890833,"longItudes":14.51455278,"radio":"      0.00%"},{"cityName":"贝尔莫潘","count":1,"countNegative":1,"countryCode":"Belize","countryName":"伯利兹","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.25101111,"longItudes":88.75901944,"radio":"      0.00%"},{"cityName":"布琼布拉","count":1,"countNegative":1,"countryCode":"Burundi","countryName":"布隆迪","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":3.36137778,"longItudes":29.35987778,"radio":"      0.00%"},{"count":1,"countPositive":1,"countryName":"Curaçao","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"巴马科","count":1,"countNeutral":1,"countryCode":"Mali","countryName":"马里","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":12.63923056,"longItudes":8.00288889,"radio":"      0.00%"},{"count":1,"countPositive":1,"countryName":"南斯拉夫","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"布里奇顿","count":1,"countPositive":1,"countryCode":"Barbados","countryName":"巴巴多斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.11322222,"longItudes":59.59880833,"radio":"      0.00%"},{"cityName":"萨那","count":1,"countNegative":1,"countryCode":"Yemen","countryName":"也门","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.36944444,"longItudes":44.19100556,"radio":"      0.00%"},{"cityName":"地拉那","count":1,"countPositive":1,"countryCode":"Albania","countryName":"阿尔巴尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.32754722,"longItudes":19.81869722,"radio":"      0.00%"},{"count":1,"countNeutral":1,"countryName":"多米尼加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":" 0.00%"},{"cityName":"基希讷乌","count":1,"countNeutral":1,"countryCode":"Moldova","countryName":"摩尔多瓦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":47.01045278,"longItudes":28.86381111,"radio":"      0.00%"},{"cityName":"的黎波里","count":1,"countPositive":1,"countryCode":"Libya","countryName":"利比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":32.88720833,"longItudes":13.19133889,"radio":"      0.00%"},{"cityName":"乔治敦","count":1,"countNeutral":1,"countryCode":"Guyana","countryName":"圭亚那","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.80128056,"longItudes":58.155125,"radio":"      0.00%"},{"cityName":"达喀尔","count":1,"countNegative":1,"countryCode":"Senegal","countryName":"塞内加尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.76450556,"longItudes":17.36602778,"radio":"0.00%"},{"cityName":"努库阿洛法","count":1,"countNeutral":1,"countryCode":"Tonga","countryName":"汤加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":21.13934167,"longItudes":175.2049472,"radio":" 0.00%"}];
+
+        $.each(listNCT,function(k,v){
+			if(v.countryName=="香港"){
+				v.countryName="中国香港";
+			}else if(v.countryName=="澳门"){
+				v.countryName="中国澳门";
+			}else if(v.countryName=="台湾"){
+				v.countryName="中国台湾";
+			}
+		});
+        var browserLan="";//浏览器语言
+        if (navigator.userLanguage) {
+            browserLan = navigator.userLanguage.substring(0, 2).toLowerCase();
+        } else {
+            browserLan = navigator.language.substring(0, 2).toLowerCase();
+        }
+
+		// var temp='<ul class="biaop-top-box-left">'
+		// 	+'<li class="main-blue"><i class="iconfont icon-location"></i>'
+		// 	+'<img class="biaop-top-box-left-img"src="images/flags/[countryName]@2x.png">'
+		// 	+'<span class="font14 white">{countryName}</span>'
+		// 	+'</li>'
+		// 	+'<li><a class="ditushuju font14 white" href="javascript:;">666</a><a href="javascript:;" class="font14 white">{radio}</a></li></ul>';
+		//
+		// $('.biaop-conter-left-dingw').empty();
+		// for(var k in listNCT){
+		//     if(listNCT[k].countryName=="其他"){
+		//     	listNCT.splice(k,1);
+		//     }
+		// }
+		// for(var item in listNCT){
+		// 	if(item>3){
+		// 		break;
+		// 	}
+		//     listNCT[item].count=listNCT[item].count.toString().NumberSplit();//逗号隔开
+		//     $('.biaop-conter-left-dingw').append(myApp.replaceData(temp,listNCT[item]).replace('[countryName]',flag_Zh_Img[listNCT[item].countryName.toString()]));
+		// }
+
+		$('.gy_seld').click(function() {
+			$(this).next().toggle();
+			$(this).parent().siblings().find('ul').hide();
+			$('.f_select').find('.hober_li').click(function() {
+				var str = $(this).html();
+				$(this).parent().hide();
+				$(this).parent().prev().html(str);
+
+			});
+			$('.true_a').click(function() {
+				var mun1 = $(".li_tleft").eq(0).find('input').val();
+				var mun2 = $(".li_tleft").eq(1).find('input').val();
+				$(this).parent().prev().html(mun1 + '到' + mun2);
+				$(this).parent().hide();
+			});
+		});
+		// tab切换
+		//$(".tabw").slide({
+			//titCell : ".hd p",
+			//trigger : "click",
+			//titOnClassName : "onp"
+		//})
+	});
+
+	 // 数据地球(分布排名)
+    function regionAnalysisAjax(param) {
+        var browserLan="";
+        if (navigator.userLanguage) {
+            browserLan = navigator.userLanguage.substring(0, 2).toLowerCase();
+        } else {
+            browserLan = navigator.language.substring(0, 2).toLowerCase();
+        }
+        var data = {
+            id: $.getUrlParam("id"),
+            srcId: $.getUrlParam("srcId"),
+            opType: $.getUrlParam("opType"),
+            source: $.getUrlParam("source"),
+            times: $(".ms_lso").prev().attr("times"),
+            beginDate: $(".ms_lso").prev().attr("data-begindate"),
+            endDate: $(".ms_lso").prev().attr("data-endDate")
+
+        };
+        if (param) {
+            data = $.extend({}, data, param);
+        }
+        $.ajax({
+            url: "analysisModel/region/data",
+            type: "get",
+            dataType: "json",
+            data: data,
+            success: function (data) {
+                countryAndEmotionDistrubuteChartData(data);
+            }
+        });
+    }
+
+    function countryAndEmotionDistrubuteChartData(data) {
+        var j = 0;
+        var step = 4;
+        $.each(data.regionRankingDesc.country, function (i, val) {
+            var countryName = val;
+            var count = data.regionRankingDesc.count[i];
+            if (j < step) {
+            //alert("qqqqqqq"+count);
+            count=numspilt(count);
+            $('.ditushuju').eq(i).html(count);
+            }
+        });
+    }
+  //   let totalNum = $('.nums .total-num').html();
+	// $('.nums .total-num').html(numspilt(totalNum,3));
+	// let todayNum = $('.nums .today-num').html();
+	// $('.nums .today-num').html(numspilt(todayNum,3));
+	// let mediaNum = $('.nums .media-num').html();
+	// $('.nums .media-num').html(numspilt(mediaNum,3));
+	// let socialNum = $('.nums .social-num').html();
+	// $('.nums .social-num').html(numspilt(socialNum,3));
+  // //数字千分位方法,传数字
+	// function numspilt(num,n){
+	// 	if(isNaN(num)){return ''}
+	// 	var n=n;
+	// 	if(n){
+	// 		var numstr=Number(num).toFixed(n).toString();
+	// 	}else{
+	// 		var numstr=Number(num).toString();
+	// 	}
+	// 	var numstr1=numstr.split('.')[0];//整数部分
+	// 	var numstr2=numstr.split('.')[1];//小数部分
+	// 	if(numstr1>=0){
+	// 		var numstr1=numstr.split('.')[0];//整数部分
+	// 	}else{
+	// 		var numstr1=numstr.substring(1).split('.')[0];//整数部分
+	// 	}
+	// 	 var array = numstr1.toString().split('');
+	// 	  var index = -3;
+	// 	  while (array.length + index > 0) {
+	// 		// 从单词的最后每隔三个数字添加逗号
+	// 		  array.splice(index, 0, ',');
+	// 		index -= 4;
+	// 	  } ;
+	// 	  if(num>=0){
+	// 		var numstr3=array.join('')
+	// 	  }else{var numstr3='-'+array.join('')}
+	// 	  //if(numstr2){
+	// 		//var jgnum= numstr3+'.'+numstr2;
+	// 	  //}else{
+	// 	    var jgnum= numstr3
+	// 	  //}
+	// 	  return jgnum
+	// };
+
+var myChart2 = echarts.init(document.getElementById('container-2'));
+option = {
+	 backgroundColor:"#fff",
+    legend: {
+        y: 220,
+        data:['积极','消极','消极',]
+    },
+    toolbox: {
+        show : false,
+	feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+	color:['#28a60b', '#cc5e5e','#2e95f3']  ,
+
+    series : [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius : '60%',
+            center: ['50%', '40%'],
+			 itemStyle: {
+                normal: {
+                    label: {
+						 position : 'inner',
+						 textStyle: {
+								color: '#fff',
+						},
+                        show: true,
+                        formatter: '{d}%'
+                    },
+                    labelLine: {
+                        show: false
+                    }
+                }
+			},
+
+            data:[]
+        }
+    ]
+};
+		var mainmedianame='';  //提示框标题
+
+
+    var listNCSD = [{"cityName":"北京","count":7861462,"countNegative":171771,"countNeutral":4811416,"countPositive":2792985,"countryCode":"China","countryName":"中国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":39.90280833,"longItudes":116.4011556,"radio":"     95.15%"},{"cityName":"华盛顿","count":288234,"countNegative":20515,"countNeutral":187782,"countPositive":79418,"countryCode":"United States","countryName":"美国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.90719167,"longItudes":77.03686944,"radio":"      3.49%"},{"cityName":"伦敦","count":60341,"countNegative":1133,"countNeutral":28132,"countPositive":30955,"countryCode":"United Kingdom","countryName":"英国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":51.50735,"longItudes":0.12775833,"radio":"      0.73%"},{"cityName":"渥太华","count":7426,"countNegative":470,"countNeutral":3547,"countPositive":3360,"countryCode":"Canada","countryName":"加拿大","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":45.42153056,"longItudes":75.69719444,"radio":"      0.09%"},{"cityName":"柏林","count":4316,"countNegative":243,"countNeutral":2053,"countPositive":2017,"countryCode":"Germany","countryName":"德国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":52.52000556,"longItudes":13.40495278,"radio":"      0.05%"},{"cityName":"新德里","count":4267,"countNegative":1129,"countNeutral":1547,"countPositive":1579,"countryCode":"India","countryName":"印度","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":28.61393889,"longItudes":77.20902222,"radio":"      0.05%"},{"cityName":"罗马","count":2895,"countNegative":113,"countNeutral":1102,"countPositive":1680,"countryCode":"Italy","countryName":"意大利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.90278333,"longItudes":12.49636667,"radio":"      0.04%"},{"cityName":"首尔","count":2575,"countNegative":63,"countNeutral":1494,"countPositive":1002,"countryCode":"Korea","countryName":"韩国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":37.56653611,"longItudes":126.9779694,"radio":"      0.03%"},{"cityName":"堪培拉","count":2233,"countNegative":365,"countNeutral":918,"countPositive":943,"countryCode":"Australia","countryName":"澳大利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.282,"longItudes":149.1286833,"radio":"      0.03%"},{"cityName":"吉隆坡","count":2160,"countNegative":225,"countNeutral":1309,"countPositive":620,"countryCode":"Malaysia","countryName":"马来西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":3.13900278,"longItudes":101.6868556,"radio":"      0.03%"},{"cityName":"加拉加斯","count":2116,"countNegative":57,"countNeutral":1035,"countPositive":998,"countryCode":"Venezuela","countryName":"委内瑞拉","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":10.48059444,"longItudes":66.90360556,"radio":"      0.03%"},{"cityName":"莫斯科","count":2076,"countNegative":156,"countNeutral":1081,"countPositive":827,"countryCode":"Russia","countryName":"俄罗斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":55.755825,"longItudes":37.6173,"radio":"      0.03%"},{"cityName":"东京","count":1878,"countNegative":69,"countNeutral":832,"countPositive":970,"countryCode":"Japan","countryName":"日本","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.68948611,"longItudes":139.6917056,"radio":"      0.02%"},{"cityName":"富纳富提","count":1815,"countNegative":12,"countNeutral":1173,"countPositive":626,"countryCode":"Tuvalu","countryName":"图瓦卢","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":8.52006667,"longItudes":179.1981278,"radio":"      0.02%"},{"cityName":"新加坡","count":1274,"countNegative":206,"countNeutral":574,"countPositive":486,"countryCode":"Singapore","countryName":"新加坡","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":1.35208333,"longItudes":103.8198361,"radio":"      0.02%"},{"count":1181,"countNegative":231,"countNeutral":359,"countPositive":590,"countryName":"其他","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.01%"},{"cityName":"伊斯兰堡","count":1158,"countNegative":216,"countNeutral":408,"countPositive":531,"countryCode":"Pakistan","countryName":"巴基斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.72938889,"longItudes":73.09314722,"radio":"      0.01%"},{"cityName":"多哈","count":947,"countNegative":20,"countNeutral":892,"countPositive":35,"countryCode":"Qatar","countryName":"卡塔尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.28544722,"longItudes":51.53103889,"radio":"      0.01%"},{"cityName":"巴黎","count":721,"countNegative":169,"countNeutral":287,"countPositive":264,"countryCode":"France","countryName":"法国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":48.85661389,"longItudes":2.35222222,"radio":"      0.01%"},{"cityName":"雅加达","count":651,"countNegative":38,"countNeutral":378,"countPositive":234,"countryCode":"Indonesia","countryName":"印度尼西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.20876389,"longItudes":106.8456,"radio":"      0.01%"},{"cityName":"波多诺伏","count":638,"countNegative":5,"countNeutral":146,"countPositive":487,"countryCode":"Benin","countryName":"贝宁","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.49685833,"longItudes":2.62885278,"radio":"      0.01%"},{"cityName":"阿姆斯特丹","count":614,"countNegative":31,"countNeutral":502,"countPositive":80,"countryCode":"Netherlands","countryName":"荷兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":52.37021667,"longItudes":4.89516667,"radio":"      0.01%"},{"cityName":"利雅得","count":606,"countNegative":32,"countNeutral":490,"countPositive":84,"countryCode":"Saudi Arabia","countryName":"沙特阿拉伯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":24.71355278,"longItudes":46.67529444,"radio":"      0.01%"},{"cityName":"斯德哥尔摩","count":575,"countNegative":7,"countNeutral":219,"countPositive":347,"countryCode":"Sweden","countryName":"瑞典","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":59.32932222,"longItudes":18.06858056,"radio":"      0.01%"},{"cityName":"墨西哥城","count":573,"countNegative":40,"countNeutral":246,"countPositive":287,"countryCode":"Mexico","countryName":"墨西哥","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":19.43260833,"longItudes":99.13320833,"radio":"      0.01%"},{"cityName":"马德里","count":569,"countNegative":28,"countNeutral":219,"countPositive":322,"countryCode":"Spain","countryName":"西班牙","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":40.416775,"longItudes":3.70378889,"radio":"      0.01%"},{"cityName":"曼谷","count":537,"countNegative":97,"countNeutral":239,"countPositive":201,"countryCode":"Thailand","countryName":"泰国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.75633056,"longItudes":100.5017639,"radio":"      0.01%"},{"cityName":"里斯本","count":533,"countNegative":142,"countNeutral":162,"countPositive":229,"countryCode":"Portugal","countryName":"葡萄牙","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.72225278,"longItudes":9.13933611,"radio":"      0.01%"},{"cityName":"开罗","count":469,"countNegative":31,"countNeutral":192,"countPositive":232,"countryCode":"Egypt","countryName":"埃及","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":30.04441944,"longItudes":31.23571111,"radio":"      0.01%"},{"cityName":"布拉迪斯拉发","count":418,"countNegative":2,"countNeutral":220,"countPositive":194,"countryCode":"Slovakia","countryName":"斯洛伐克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":48.14859722,"longItudes":17.10774722,"radio":"      0.01%"},{"cityName":"科伦坡","count":399,"countNegative":113,"countNeutral":126,"countPositive":158,"countryCode":"Sri Lanka","countryName":"斯里兰卡","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.92707778,"longItudes":79.86124167,"radio":"      0.00%"},{"cityName":"内比都","count":398,"countNegative":47,"countNeutral":286,"countPositive":65,"countryCode":"Burma","countryName":"缅甸","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":19.74892222,"longItudes":96.15269722,"radio":"      0.00%"},{"cityName":"巴拿马城","count":356,"countNegative":75,"countNeutral":102,"countPositive":178,"countryCode":"Panama","countryName":"巴拿马","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.10117778,"longItudes":79.40286389,"radio":"      0.00%"},{"cityName":"马尼拉","count":339,"countNegative":76,"countNeutral":124,"countPositive":138,"countryCode":"Philippines","countryName":"菲律宾","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.59951111,"longItudes":120.9842194,"radio":"      0.00%"},{"cityName":"都柏林","count":295,"countNegative":48,"countNeutral":139,"countPositive":108,"countryCode":"Ireland","countryName":"爱尔兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":53.34980556,"longItudes":6.26030833,"radio":"      0.00%"},{"cityName":"布达佩斯","count":294,"countNegative":4,"countNeutral":184,"countPositive":105,"countryCode":"Hungary","countryName":"匈牙利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":47.49791111,"longItudes":19.04023611,"radio":"      0.00%"},{"cityName":"惠灵顿","count":272,"countNegative":20,"countNeutral":152,"countPositive":97,"countryCode":"New Zealand","countryName":"新西兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.28646111,"longItudes":174.7762361,"radio":"      0.00%"},{"cityName":"伯尔尼","count":230,"countNegative":34,"countNeutral":69,"countPositive":127,"countryCode":"Switzerland","countryName":"瑞士","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":46.947975,"longItudes":7.44744722,"radio":"      0.00%"},{"cityName":"安卡拉","count":227,"countNegative":60,"countNeutral":70,"countPositive":97,"countryCode":"Turkey","countryName":"土耳其","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":39.93336389,"longItudes":32.85974167,"radio":"      0.00%"},{"cityName":"达卡","count":222,"countNegative":47,"countNeutral":93,"countPositive":80,"countryCode":"Bangladesh","countryName":"孟加拉国","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":23.81033333,"longItudes":90.41251944,"radio":"      0.00%"},{"cityName":"阿布扎比","count":222,"countNegative":30,"countNeutral":93,"countPositive":99,"countryCode":"阿联酋","countryName":"阿联酋","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":24.299175,"longItudes":54.69727778,"radio":"      0.00%"},{"cityName":"比勒陀利亚","count":221,"countNegative":38,"countNeutral":87,"countPositive":96,"countryCode":"South Africa","countryName":"南非","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.74786667,"longItudes":28.22927222,"radio":"      0.00%"},{"cityName":"圣菲波哥大","count":219,"countNegative":18,"countNeutral":125,"countPositive":76,"countryCode":"Colombia","countryName":"哥伦比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":4.71098889,"longItudes":74.07209167,"radio":"      0.00%"},{"cityName":"巴库","count":187,"countNegative":22,"countNeutral":74,"countPositive":89,"countryCode":"Azerbaijan","countryName":"阿塞拜疆","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":40.40926111,"longItudes":49.86709167,"radio":"      0.00%"},{"cityName":"阿斯塔纳","count":181,"countNegative":12,"countNeutral":92,"countPositive":77,"countryCode":"Kazakhstan","countryName":"哈萨克斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":51.16052222,"longItudes":71.47035556,"radio":"      0.00%"},{"cityName":"德黑兰","count":164,"countNegative":42,"countNeutral":66,"countPositive":56,"countryCode":"Iran","countryName":"伊朗","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.68919722,"longItudes":51.38897222,"radio":"      0.00%"},{"cityName":"金边","count":158,"countNegative":8,"countNeutral":88,"countPositive":62,"countryCode":"Cambodia","countryName":"柬埔寨","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":11.54487222,"longItudes":104.8921667,"radio":"      0.00%"},{"cityName":"加德满都","count":154,"countNegative":88,"countNeutral":39,"countPositive":27,"countryCode":"Nepal","countryName":"尼泊尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":27.71724444,"longItudes":85.32396111,"radio":"      0.00%"},{"cityName":"雅典","count":140,"countNegative":24,"countNeutral":62,"countPositive":53,"countryCode":"Greece","countryName":"希腊","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":37.98391667,"longItudes":23.72936111,"radio":"      0.00%"},{"cityName":"河内","count":138,"countNegative":9,"countNeutral":67,"countPositive":61,"countryCode":"Vietnam","countryName":"越南","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":21.02776389,"longItudes":105.8341611,"radio":"      0.00%"},{"cityName":"华沙","count":137,"countNegative":28,"countNeutral":64,"countPositive":45,"countryCode":"Poland","countryName":"波兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":52.229675,"longItudes":21.01222778,"radio":"      0.00%"},{"cityName":"圣地亚哥","count":136,"countNegative":3,"countNeutral":46,"countPositive":81,"countryCode":"Chile","countryName":"智利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.44888889,"longItudes":70.66926667,"radio":"      0.00%"},{"cityName":"巴西利亚","count":133,"countNegative":7,"countNeutral":68,"countPositive":57,"countryCode":"Brazil","countryName":"巴西","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.79422778,"longItudes":47.88216667,"radio":"      0.00%"},{"cityName":"明斯克","count":132,"countNegative":12,"countNeutral":53,"countPositive":67,"countryCode":"Belarus","countryName":"白俄罗斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":53.90453889,"longItudes":27.561525,"radio":"      0.00%"},{"cityName":"阿布贾","count":122,"countNegative":22,"countNeutral":44,"countPositive":55,"countryCode":"Nigeria","countryName":"尼日利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.07647778,"longItudes":7.398575,"radio":"      0.00%"},{"cityName":"布鲁塞尔","count":95,"countNegative":25,"countNeutral":51,"countPositive":19,"countryCode":"Belgium","countryName":"比利时","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":50.85033889,"longItudes":4.35171111,"radio":"      0.00%"},{"cityName":"耶路撒冷","count":80,"countNegative":7,"countNeutral":29,"countPositive":43,"countryCode":"Israel","countryName":"以色列","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":31.76831944,"longItudes":35.21371111,"radio":"      0.00%"},{"cityName":"波德戈里察","count":77,"countNeutral":57,"countPositive":20,"countryCode":"黑山","countryName":"黑山","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":42.43041944,"longItudes":19.25936389,"radio":"      0.00%"},{"cityName":"乌兰巴托","count":76,"countNegative":1,"countNeutral":58,"countPositive":16,"countryCode":"Mongolia","countryName":"蒙古","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":47.8864,"longItudes":106.9057444,"radio":"      0.00%"},{"count":72,"countNegative":12,"countNeutral":19,"countPositive":41,"countryName":"孟加拉","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"基辅","count":67,"countNegative":4,"countNeutral":20,"countPositive":43,"countryCode":"Ukraine","countryName":"乌克兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":50.4501,"longItudes":30.5234,"radio":"      0.00%"},{"cityName":"索非亚","count":65,"countNegative":9,"countNeutral":28,"countPositive":27,"countryCode":"Bulgaria","countryName":"保加利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":42.69770833,"longItudes":23.32186667,"radio":"      0.00%"},{"cityName":"维也纳","count":64,"countNegative":7,"countNeutral":19,"countPositive":38,"countryCode":"Austria","countryName":"奥地利","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":48.208175,"longItudes":16.37381944,"radio":"      0.00%"},{"cityName":"安曼","count":63,"countNegative":13,"countNeutral":16,"countPositive":33,"countryCode":"Jordan","countryName":"约旦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":31.95657778,"longItudes":35.94569444,"radio":"      0.00%"},{"cityName":"比什凯克","count":59,"countNegative":5,"countNeutral":14,"countPositive":40,"countryCode":"吉尔吉斯斯坦","countryName":"吉尔吉斯斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":42.87462222,"longItudes":74.56976111,"radio":"      0.00%"},{"cityName":"拿骚","count":59,"countNegative":15,"countNeutral":13,"countPositive":31,"countryCode":"Bahamas","countryName":"巴哈马","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.04798333,"longItudes":77.35541389,"radio":"      0.00%"},{"cityName":"麦纳麦","count":59,"countNegative":14,"countNeutral":17,"countPositive":28,"countryCode":"Bahrain","countryName":"巴林","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":26.22851667,"longItudes":50.58605,"radio":"      0.00%"},{"count":57,"countNeutral":47,"countPositive":10,"countryName":"Saint Helena","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"马斯喀特","count":54,"countNegative":12,"countNeutral":23,"countPositive":19,"countryCode":"Oman","countryName":"阿曼","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":23.58588889,"longItudes":58.40592222,"radio":"      0.00%"},{"cityName":"布加勒斯特","count":50,"countNegative":8,"countNeutral":19,"countPositive":23,"countryCode":"Romania","countryName":"罗马尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":44.42676667,"longItudes":26.10253889,"radio":"      0.00%"},{"cityName":"塔什干","count":37,"countNegative":4,"countNeutral":17,"countPositive":16,"countryCode":"Uzbekistan","countryName":"乌兹别克斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.29949444,"longItudes":69.24007222,"radio":"      0.00%"},{"cityName":"哥本哈根","count":37,"countNegative":17,"countNeutral":5,"countPositive":15,"countryCode":"Denmark","countryName":"丹麦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":55.67609722,"longItudes":12.56833611,"radio":"      0.00%"},{"cityName":"布宜诺斯艾利斯","count":36,"countNegative":5,"countNeutral":11,"countPositive":20,"countryCode":"Argentina","countryName":"阿根廷","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":34.60368333,"longItudes":58.38155833,"radio":"      0.00%"},{"cityName":"内罗毕","count":35,"countNegative":11,"countNeutral":5,"countPositive":19,"countryCode":"Kenya","countryName":"肯尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":1.29206667,"longItudes":36.82194722,"radio":"      0.00%"},{"cityName":"布拉格","count":34,"countNegative":2,"countNeutral":23,"countPositive":9,"countryCode":"Czech Republic","countryName":"捷克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":50.07553889,"longItudes":14.4378,"radio":"      0.00%"},{"cityName":"喀布尔","count":32,"countNegative":5,"countNeutral":8,"countPositive":19,"countryCode":"Afghanistan","countryName":"阿富汗","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":34.55535,"longItudes":69.20748611,"radio":"      0.00%"},{"cityName":"第比利斯","count":29,"countNeutral":16,"countPositive":12,"countryCode":"Georgia","countryName":"格鲁吉亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.71513889,"longItudes":44.82709722,"radio":"      0.00%"},{"cityName":"阿克拉","count":29,"countNegative":3,"countNeutral":12,"countPositive":13,"countryCode":"Ghana","countryName":"加纳","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":5.60371667,"longItudes":0.18696389,"radio":"      0.00%"},{"cityName":"赫尔辛基","count":29,"countNegative":6,"countNeutral":10,"countPositive":13,"countryCode":"Finland","countryName":"芬兰","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":60.16985556,"longItudes":24.93837778,"radio":"      0.00%"},{"cityName":"贝鲁特","count":29,"countNegative":11,"countNeutral":6,"countPositive":12,"countryCode":"Lebanon","countryName":"黎巴嫩","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.88862778,"longItudes":35.49548056,"radio":"      0.00%"},{"cityName":"哈拉雷","count":28,"countNegative":6,"countNeutral":8,"countPositive":14,"countryCode":"Zimbabwe","countryName":"津巴布韦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.82516667,"longItudes":31.03351111,"radio":"      0.00%"},{"cityName":"奥斯陆","count":28,"countNegative":10,"countNeutral":12,"countPositive":6,"countryCode":"Norway","countryName":"挪威","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":59.91386944,"longItudes":10.75224444,"radio":"      0.00%"},{"count":27,"countNeutral":25,"countPositive":2,"countryName":"密克罗尼西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"马普托","count":19,"countNeutral":5,"countPositive":14,"countryCode":"Mozambique","countryName":"莫桑比克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.89196667,"longItudes":32.60513611,"radio":"      0.00%"},{"cityName":"万象","count":19,"countNegative":9,"countNeutral":7,"countPositive":3,"countryCode":"Laos","countryName":"老挝","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.97570556,"longItudes":102.6331028,"radio":"      0.00%"},{"cityName":"乔治敦","count":18,"countNegative":1,"countNeutral":7,"countPositive":10,"countryCode":"Cayman Islands","countryName":"开曼群岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.80128056,"longItudes":58.155125,"radio":"      0.00%"},{"cityName":"贝尔格莱德","count":18,"countNegative":1,"countNeutral":7,"countPositive":10,"countryCode":"塞尔维亚","countryName":"塞尔维亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":44.78656667,"longItudes":20.44892222,"radio":"      0.00%"},{"cityName":"萨格勒布","count":16,"countNegative":3,"countNeutral":3,"countPositive":10,"countryCode":"克罗地亚","countryName":"克罗地亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":45.81501111,"longItudes":15.98191944,"radio":"      0.00%"},{"cityName":"雷克雅未克","count":16,"countNegative":5,"countNeutral":5,"countPositive":6,"countryCode":"Iceland","countryName":"冰岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":64.12651944,"longItudes":21.81743889,"radio":"      0.00%"},{"cityName":"亚松森","count":15,"countNeutral":14,"countPositive":1,"countryCode":"Paraguay","countryName":"巴拉圭","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":25.26373889,"longItudes":57.575925,"radio":"      0.00%"},{"cityName":"尼科西亚","count":15,"countNegative":5,"countNeutral":6,"countPositive":4,"countryCode":"Cyprus","countryName":"塞浦路斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.18556667,"longItudes":33.38227778,"radio":"      0.00%"},{"cityName":"雅温得","count":12,"countNeutral":9,"countPositive":3,"countryCode":"Cameroon","countryName":"喀麦隆","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":3.84803333,"longItudes":11.502075,"radio":"      0.00%"},{"cityName":"蒙得维的亚","count":12,"countNegative":4,"countNeutral":4,"countPositive":4,"countryCode":"Uruguay","countryName":"乌拉圭","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":34.90111389,"longItudes":56.16453056,"radio":"      0.00%"},{"cityName":"利马","count":11,"countNeutral":10,"countPositive":1,"countryCode":"Peru","countryName":"秘鲁","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":12.046375,"longItudes":77.04279444,"radio":"      0.00%"},{"count":11,"countNeutral":2,"countPositive":9,"countryName":"波黑","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"埃里温","count":11,"countNegative":1,"countNeutral":8,"countPositive":2,"countryCode":"Armenia","countryName":"亚美尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":40.17918611,"longItudes":44.49910278,"radio":"      0.00%"},{"cityName":"巴格达","count":10,"countNeutral":8,"countPositive":2,"countryCode":"Iraq","countryName":"伊拉克","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.31280556,"longItudes":44.36148889,"radio":"      0.00%"},{"cityName":"维尔纽斯","count":10,"countNegative":1,"countNeutral":2,"countPositive":7,"countryCode":"Lithuania","countryName":"立陶宛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":54.68715556,"longItudes":25.27965278,"radio":"      0.00%"},{"cityName":"杜尚别","count":10,"countNeutral":3,"countPositive":7,"countryCode":"Tajikistan","countryName":"塔吉克斯坦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.55977222,"longItudes":68.78703889,"radio":"      0.00%"},{"count":10,"countNegative":2,"countNeutral":5,"countPositive":3,"countryName":"直布罗陀","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"里加","count":9,"countNegative":2,"countNeutral":2,"countPositive":5,"countryCode":"Latvia","countryName":"拉脱维亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":56.94965,"longItudes":24.10518611,"radio":"      0.00%"},{"cityName":"斯里巴加湾市","count":9,"countNegative":2,"countNeutral":5,"countPositive":2,"countryCode":"Brunei","countryName":"文莱","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":4.90305278,"longItudes":114.9398222,"radio":"      0.00%"},{"cityName":"塔林","count":9,"countNegative":1,"countNeutral":4,"countPositive":4,"countryCode":"Estonia","countryName":"爱沙尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":59.43696111,"longItudes":24.753575,"radio":"      0.00%"},{"cityName":"基多","count":9,"countNegative":4,"countNeutral":3,"countPositive":2,"countryCode":"Ecuador","countryName":"厄瓜多尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.18065278,"longItudes":78.46783889,"radio":"      0.00%"},{"cityName":"苏瓦","count":9,"countNegative":2,"countNeutral":3,"countPositive":4,"countryCode":"Fiji","countryName":"斐济","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":18.12480833,"longItudes":178.4500778,"radio":"      0.00%"},{"cityName":"达累斯萨拉姆","count":8,"countNegative":1,"countNeutral":4,"countPositive":3,"countryCode":"Tanzania","countryName":"坦桑尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.79235278,"longItudes":39.20832778,"radio":"      0.00%"},{"cityName":"阿加尼亚","count":7,"countNeutral":1,"countPositive":6,"countryCode":"Guam","countryName":"关岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.47628333,"longItudes":144.7502222,"radio":"      0.00%"},{"cityName":"拉巴特","count":7,"countNegative":2,"countNeutral":5,"countryCode":"Morocco","countryName":"摩洛哥","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.97159167,"longItudes":6.84981389,"radio":"      0.00%"},{"cityName":"科威特城","count":7,"countNegative":3,"countNeutral":2,"countPositive":2,"countryCode":"Kuwait","countryName":"科威特","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":29.37585833,"longItudes":47.97740556,"radio":"      0.00%"},{"cityName":"特古西加尔巴","count":6,"countNegative":2,"countPositive":4,"countryCode":"Honduras","countryName":"洪都拉斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.072275,"longItudes":87.19213611,"radio":"      0.00%"},{"cityName":"圣何塞","count":6,"countNeutral":2,"countPositive":4,"countryCode":"Costa Rica","countryName":"哥斯达黎加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":37.33820833,"longItudes":121.8863278,"radio":"      0.00%"},{"cityName":"路易港","count":5,"countNegative":1,"countNeutral":4,"countryCode":"Mauritius","countryName":"毛里求斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":20.16089167,"longItudes":57.50122222,"radio":"      0.00%"},{"cityName":"卢森堡市","count":5,"countNegative":1,"countNeutral":4,"countryCode":"Luxembourg","countryName":"卢森堡","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":49.61162222,"longItudes":6.13193333,"radio":"      0.00%"},{"cityName":"维拉港","count":5,"countNeutral":2,"countPositive":3,"countryCode":"瓦努阿图","countryName":"瓦努阿图","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.73325,"longItudes":168.327325,"radio":"      0.00%"},{"cityName":"温得和克","count":5,"countNegative":3,"countNeutral":1,"countPositive":1,"countryCode":"Namibia","countryName":"纳米比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":22.56088056,"longItudes":17.06575556,"radio":"      0.00%"},{"cityName":"坎帕拉","count":5,"countNegative":1,"countNeutral":2,"countPositive":2,"countryCode":"Uganda","countryName":"乌干达","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.34759722,"longItudes":32.58251944,"radio":"      0.00%"},{"count":4,"countPositive":4,"countryName":"Cocos (Keeling) Islands","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"卡斯特里","count":4,"countNeutral":1,"countPositive":3,"countryCode":"Saint Lueia","countryName":"圣卢西亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.01010833,"longItudes":60.98746944,"radio":"      0.00%"},{"cityName":"科纳克里","count":4,"countNegative":1,"countNeutral":3,"countryCode":"Guinea","countryName":"几内亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.64118611,"longItudes":13.5784,"radio":"      0.00%"},{"cityName":"帕拉马里博","count":4,"countNeutral":3,"countPositive":1,"countryCode":"Surinam","countryName":"苏里南","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":5.85203611,"longItudes":55.20382778,"radio":"      0.00%"},{"cityName":"拉巴斯","count":3,"countNeutral":3,"countryCode":"Bolivia","countryName":"玻利维亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":16.48968889,"longItudes":68.11929444,"radio":"      0.00%"},{"count":3,"countPositive":3,"countryName":"圣基茨和尼维斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"利隆圭","count":3,"countNegative":3,"countryCode":"Malawi","countryName":"马拉维","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.96261111,"longItudes":33.77411944,"radio":"      0.00%"},{"cityName":"大马士革","count":3,"countNeutral":3,"countryCode":"Syria","countryName":"叙利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":33.51380833,"longItudes":36.27652778,"radio":"      0.00%"},{"count":3,"countNeutral":3,"countryName":"特里尼达和多巴哥","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"卢萨卡","count":3,"countNegative":1,"countPositive":2,"countryCode":"Zambia","countryName":"赞比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.387525,"longItudes":28.32281667,"radio":"      0.00%"},{"cityName":"金斯敦","count":3,"countNeutral":1,"countPositive":2,"countryCode":"Jamaica","countryName":"牙买加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.160025,"longItudes":61.22481667,"radio":"      0.00%"},{"cityName":"马累","count":3,"countNegative":1,"countNeutral":2,"countryCode":"Maldives","countryName":"马尔代夫","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":4.17549722,"longItudes":73.50934722,"radio":"      0.00%"},{"cityName":"斯科普里","count":3,"countNegative":1,"countPositive":2,"countryCode":"马其顿","countryName":"马其顿","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.99734722,"longItudes":21.42799444,"radio":"      0.00%"},{"cityName":"亚的斯亚贝巴","count":3,"countNeutral":1,"countPositive":2,"countryCode":"Ethiopia","countryName":"埃塞俄比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":8.98060278,"longItudes":38.75776111,"radio":"      0.00%"},{"cityName":"卢布尔雅那","count":3,"countNegative":1,"countNeutral":1,"countPositive":1,"countryCode":"Slovenia","countryName":"斯洛文尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":46.05694722,"longItudes":14.50575278,"radio":"      0.00%"},{"cityName":"霍尼亚拉","count":2,"countNeutral":2,"countryCode":"Solomon Islands","countryName":"所罗门群岛","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":9.44563889,"longItudes":159.9729,"radio":"      0.00%"},{"cityName":"基加利","count":2,"countNeutral":2,"countryCode":"卢旺达","countryName":"卢旺达","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":1.97057778,"longItudes":30.10442778,"radio":"      0.00%"},{"cityName":"阿尔及尔","count":2,"countNeutral":2,"countryCode":"Algeria","countryName":"阿尔及利亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":36.75376944,"longItudes":3.05879167,"radio":"      0.00%"},{"cityName":"维多利亚","count":2,"countNeutral":2,"countryCode":"Seychelles","countryName":"塞舌尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":38.23265278,"longItudes":72.35150833,"radio":"      0.00%"},{"cityName":"蒙罗维亚","count":2,"countNegative":1,"countPositive":1,"countryCode":"Liberia","countryName":"利比里亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.29074444,"longItudes":10.760525,"radio":"      0.00%"},{"cityName":"哈瓦那","count":2,"countNegative":1,"countNeutral":1,"countryCode":"Cuba","countryName":"古巴","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":23.11359167,"longItudes":82.36659444,"radio":"      0.00%"},{"cityName":"喀土穆","count":2,"countNegative":1,"countNeutral":1,"countryCode":"Sudan","countryName":"苏丹","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.50065556,"longItudes":32.5599,"radio":"      0.00%"},{"cityName":"弗里敦","count":1,"countNeutral":1,"countryCode":"Sierra Leone","countryName":"塞拉利昂","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":8.46567778,"longItudes":13.23172222,"radio":"      0.00%"},{"cityName":"瓦莱塔","count":1,"countPositive":1,"countryCode":"Malta","countryName":"马耳他","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":35.89890833,"longItudes":14.51455278,"radio":"      0.00%"},{"cityName":"贝尔莫潘","count":1,"countNegative":1,"countryCode":"Belize","countryName":"伯利兹","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":17.25101111,"longItudes":88.75901944,"radio":"      0.00%"},{"cityName":"布琼布拉","count":1,"countNegative":1,"countryCode":"Burundi","countryName":"布隆迪","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":3.36137778,"longItudes":29.35987778,"radio":"      0.00%"},{"count":1,"countPositive":1,"countryName":"Curaçao","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"巴马科","count":1,"countNeutral":1,"countryCode":"Mali","countryName":"马里","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":12.63923056,"longItudes":8.00288889,"radio":"      0.00%"},{"count":1,"countPositive":1,"countryName":"南斯拉夫","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"布里奇顿","count":1,"countPositive":1,"countryCode":"Barbados","countryName":"巴巴多斯","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":13.11322222,"longItudes":59.59880833,"radio":"      0.00%"},{"cityName":"萨那","count":1,"countNegative":1,"countryCode":"Yemen","countryName":"也门","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":15.36944444,"longItudes":44.19100556,"radio":"      0.00%"},{"cityName":"地拉那","count":1,"countPositive":1,"countryCode":"Albania","countryName":"阿尔巴尼亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":41.32754722,"longItudes":19.81869722,"radio":"      0.00%"},{"count":1,"countNeutral":1,"countryName":"多米尼加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":0.0,"longItudes":0.0,"radio":"      0.00%"},{"cityName":"基希讷乌","count":1,"countNeutral":1,"countryCode":"Moldova","countryName":"摩尔多瓦","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":47.01045278,"longItudes":28.86381111,"radio":"      0.00%"},{"cityName":"的黎波里","count":1,"countPositive":1,"countryCode":"Libya","countryName":"利比亚","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":32.88720833,"longItudes":13.19133889,"radio":"      0.00%"},{"cityName":"乔治敦","count":1,"countNeutral":1,"countryCode":"Guyana","countryName":"圭亚那","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":6.80128056,"longItudes":58.155125,"radio":"      0.00%"},{"cityName":"达喀尔","count":1,"countNegative":1,"countryCode":"Senegal","countryName":"塞内加尔","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":14.76450556,"longItudes":17.36602778,"radio":"      0.00%"},{"cityName":"努库阿洛法","count":1,"countNeutral":1,"countryCode":"Tonga","countryName":"汤加","infoId":"625b88dea74f45f51806acf0afa99b88","latitudes":21.13934167,"longItudes":175.2049472,"radio":"0.00%"}];
+    var listNCSDx = [];//世界地图的数据存放
+
+	for(var key in listNCSD){
+		listNCSDx.push({name:listNCSD[key].countryCode,value:listNCSD[key].count})
+	}
+	if(listNCSDx.length == 0){// 此判断用于解决max: listNCSDx[0].value,没数据js报错
+		listNCSDx[0] = {name:" ",value:" "};
+	}
+	// 7.30 解决美国和韩国英文名称和echarts名称不匹配 王威
+		for(var k in listNCSDx){
+		if(listNCSDx[k].name=="United States") listNCSDx[k].name="United States of America";
+		if(listNCSDx[k].name=="Korea") listNCSDx[k].name="South Korea";
+		if(listNCSDx[k].name==undefined){
+			listNCSDx.splice(k,1);
+		}
+	}
+
+	// 标签云
+	function createRandomItemStyle() {
+    return {
+        normal: {
+            color: 'rgb(' + [
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160)
+            ].join(',') + ')'
+        }
+    };
+}
+</script>
+	<!-- js文件结束 -->
+
+	<script type="text/javascript">
+		$(function(){
+		var session_usr='';
+		$('#addReport a').unbind();
+//		if(session_usr==''){
+//			$('#addReport a').attr('href','javascript:;');
+//			$('#addReport a').unbind().bind('click',function(){
+//				loginClick();
+//				return true;
+//			})
+//		}
+
+		$('.go_close').on('click',function(){
+			easyDialog.close();
+		})
+		$('.go_cancel').on('click',function(){
+			easyDialog.close();
+		})
+		//鼠标滑动按钮修改样式
+		$('.re_btn').on('mouseover','p',function(){
+			$(this).addClass('addClass');
+			$(this).siblings("p").removeClass("addClass");
+		})
+		$('.go_btn').on('mouseover','p',function(){
+			$(this).addClass('addClass');
+			$(this).siblings("p").removeClass("addClass");
+		})
+
+		//获取localStorage里的关键词方法
+		function getEmKeyword(){//传入含em标签的元素
+			//用于替换社交关键词
+			if(localStorage.kwds){
+				var keywords = localStorage.kwds.replace(/\,/g," ");
+			}
+			//用于替换社交关键词结束
+			return keywords;
+		}
+		//获取localStorage里的关键词方法结束
+
+
+		//加千分位
+		function parseNum(num){
+			var list = new String(num).split('').reverse();
+			for(var i = 0; i < list.length; i++){
+				if(i % 4 == 3){
+					list.splice(i, 0, ',');
+				}
+			}
+			var outNum = list.reverse().join('');
+			if(outNum == '100,001'){
+				return '100,000+';
+			}else {
+				return outNum;
+			}
+		}
+		var oldNum = $("#addSou").html();
+		$("#addSou").html(parseNum(oldNum));
+		//加千分位结束
+
+		//$("#rankHeader").live("click",function(){
+			//localStorage.rankTypeS = "3";
+		//});
+		//$("#rankByPower").live("click",function(){
+			//localStorage.rankType = "3";
+		//});
+		//$("#rankByRepeat").live("click",function(){
+			//localStorage.rankType = "4";
+		//});
+		//$("#rankSend").live("click",function(){
+		//	localStorage.rankTypeS = "4";
+		//});
+		$("#content_note li").each(function(k,v){
+			if( $(v).attr("class")=="on" ){
+				var eleA=$(v).find("a");
+				if(eleA.attr("data-state")==4 || eleA.attr("data-state")==5){
+					$(".today-data").hide();
+					$("._today-data").show().html("--");
+				}
+			}
+		});
+		(function ($) {
+			$.getUrlParam = function (name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]); return null;
+			}
+		})(jQuery);
+		var srcId = $.getUrlParam("srcId");
+		var id = $.getUrlParam("id");
+		var isHasCurrTopic = 0;
+		$.each($("#content_note li"),function(k,v){
+			if($(v).find("a").attr("href").split("?")[1].split("&")[0].slice(3) == id || $(v).find("a").attr("href").split("?")[1].split("&")[0].slice(3) == srcId){
+				isHasCurrTopic = 1;
+				$(v).addClass("on");
+				return;
+			}
+		});
+		if(isHasCurrTopic == 0 && $('#newsFlagId').val()!=-1){
+	//		window.location.href =basePath + $("#content_note li").eq(0).find("a").attr("href");
+			$("#content_note li").eq(0).addClass("on");
+		}
+	});
+	</script>
+
+</body>
+</html>

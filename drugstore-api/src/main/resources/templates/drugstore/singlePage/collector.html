@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>采编</title>
+    <link rel="stylesheet" href="${ctx}/css/iconfont.css">
+    <link rel="stylesheet" href="${ctx}/css/singlePage/collector.css">
+    <style>
+        .translate-box{
+            height: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="collector">
+    <div class="close"><a href="javascript:;"><i class="iconfont icon-close"></i></a></div>
+    <div class="mt"><h3>目前处于资讯编辑模式，您可以保存编辑后的资讯</h3></div>
+    <div class="mc mb-30">
+        <div class="formbox">
+            <dl class="mt-30"><dt>标题</dt><dd><input id="title" type="text" class="collector-form form"></dd></dl>
+            <dl class="mt-20"><dt>时间</dt><dd id="createDate">---</dd></dl>
+            <dl class="mt-20"><dt>来源</dt><dd id="meiti">--</dd></dl>
+            <dl class="mt-20"><dt>语言</dt><dd id="language">--</dd></dl>
+            <dl class="mt-20"><dt>国家</dt><dd id="country">--</dd></dl>
+        </div>
+        <div class="edui-container mt-30">
+            <div id="editor">
+                <p class="default-content"></p>
+            </div>
+        </div>
+        <div class="btnbox container-flex">
+            <div class="btn btn-info btn-lg default-btn-enter">保存为我的采编</div>
+            <div class="btn btn-danger btn-lg default-btn-cancel">取消采编</div>
+        </div>
+    </div>
+    <div class="translate-box">
+        <div id="translatitle"></div>
+        <div id="translate"></div>
+    </div>
+</div>
+<script src="${ctx}/plugins/wangEditor/wangEditor.min.js"></script>
+<script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/plugins/layer/layer.js"></script>
+<script src="${ctx}/js/common.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // 取消点击事件
+        $('.btn-danger,.icon-close').on('click', function () {
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+            parent.$('body').removeClass('hidden')
+        });
+
+        // 保存点击事件
+        $('.btn-info').on('click', function () {
+            setNews();
+            layer.msg('保存成功')
+            parent.layer.msg('保存成功', {shade: 0.3})
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index);
+            parent.$('body').removeClass('hidden')
+            parent.$('.edit').find('i').removeClass('icon-edit-no').addClass('icon-edit-no1');
+            parent.content = editor.txt.html();
+        });
+
+    });
+
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create();
+
+    // 保存编辑
+    function setNews() {
+        var title = $('#title').val();
+        var content = editor.txt.html();
+        var translatitle = $('#translatitle').val();
+        var translate = $('#translate').val();
+        var newsId = $('#editor').attr('data-newsid');
+        var id = $('#editor').attr('data-id');
+        var type = $('#editor').attr('data-type');
+        var meiti = $('#meiti').html();
+        var country = $('#country').html();
+        var language = $('#language').html();
+        var createDate = new Date($('#createDate').html());
+        $.ajax({
+            headers: {
+                "token": Public.token//此处放置请求到的用户token
+            },
+            url: '/api/accountNewsEdit/saveOrUpdate',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                userId: Public.userId,
+                newsId: newsId,
+                editTitle: title,
+                editText: content,
+                meiti: meiti,
+                country: country,
+                language: language,
+                type: type,
+                orgFyContent: translate,
+                orgFyTitle: translatitle,
+                createDate: createDate
+            },
+            success: (data) => {
+                if(data.success === true){
+                    layer.msg('保存成功');
+                } else {
+                    Public.message(data);
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

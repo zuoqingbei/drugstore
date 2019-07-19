@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>丝路热点-趋势列表</title>
+    <link rel="stylesheet" href="${ctx}/plugins/swiper/swiper.min.css">
+    <link href="${ctx}/plugins/pagination/pagination.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/hotspot/hotspotTrendList.css">
+ 	<style>
+    	.sk-fading-circle {
+    		    top: 2rem!important;
+    	}
+    </style>
+</head>
+<body>
+    <#include "${ctx}/yeesight/tpl/header.html" />
+    <div class="container clearfix mt-30">
+        <div class="fl">
+            <div class="select fl mr-15 country">
+                <span class="mIn selective form">全部国家</span>
+                <i class="iconfont icon-35_xiangxiajiantou choose-country"></i>
+                <div class="countryBox">
+                    <ul class="flex font14 choose-arr">
+                        <li class="pointer on main-blue all">全部</li>
+                        <li class="pointer main-blue">ABCDE</li>
+                        <li class="pointer main-blue">FGHIJ</li>
+                        <li class="pointer main-blue">KLMNO</li>
+                        <li class="pointer main-blue">PQRST</li>
+                        <li class="pointer main-blue">UVWXYZ</li>
+                    </ul>
+                    <i class="iconfont icon-error-bold main-blue font18 closed"></i>
+                    <ul class="countryDetail">
+
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="divselect" >
+                <cite>- 媒体类型</cite>
+                <ul class="select_list">
+                    <li ><a href="javascript:;" id="">媒体不限</a></li>
+                </ul>
+                <input name="type" type="hidden" value="" class="inputselect" />
+            </div>-->
+            <div class="data container-flex fl">
+                <input id="start-date" name="start" class="form form-triangle" type="text" placeholder="开始时间" value="">
+                <div class="data-gap"><i></i></div>
+                <input id="end-date" name="end" class="form form-triangle" type="text" placeholder="结束时间" value="">
+            </div>
+            <div class="select fr ml-15">
+                <select id="translate" class="form form-triangle">
+                    <option value="1">原文</option>
+                    <option value="2">中文译文</option>
+                </select>
+            </div>
+        </div>
+        <div class="fr field">
+            <ul id="domain" class="field-list big container-flex">
+                <li class="item active" data-val="">ALL</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container clearfix mt-20">
+        <div class="mainbar fl clearfix">
+            <p class="num-total">
+                共 <span class="nums"></span> 条
+            </p>
+            <ul class="top-list clearfix">
+
+
+            </ul>
+            <div id="pagination" class="m-style mt-15"></div>
+        </div>
+        <div class="sidebar fr hidden clearfix">
+            <div class="wrapper">
+                <div class="info color-box-bg">
+                   
+                </div>
+                <div class="relative color-box-bg mt-10">
+                    <h3 class="big color-main">相关资讯</h3>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="trend color-box-bg mt-10">
+                    <h3 class="big color-main">发展态势</h3>
+                    <div id="trend-line">
+
+                    </div>
+                </div>
+                <div class="trend color-box-bg mt-10">
+                    <h3 class="big color-main">传播路径</h3>
+                    <div id="trend-bar">
+
+                    </div>
+                </div>
+                <div class="trend color-box-bg mt-10 right-world">
+                    <div id="trend-world">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script src="${ctx}/plugins/laydate/laydate.js"></script>
+    <script src="${ctx}/plugins/layer/layer.js"></script>
+    <script src="${ctx}/plugins/swiper/swiper.min.js"></script>
+    <script src="${ctx}/plugins/pagination/jquery.pagination.js"></script>
+    <script src="${ctx}/plugins/echarts.js"></script>
+    <script src="${ctx}/plugins/world.js"></script>
+    <script src="${ctx}/plugins/country.js"></script>
+    <script src="${ctx}/js/modules/hotspot/hotspotTrendList.js"></script>
+</body>
+</html>

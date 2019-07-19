@@ -1,0 +1,126 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import com.alibaba.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.hlsofttech.utils.UUIDUtils;
+import com.hlsofttech.common.Constant;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import java.util.Date;
+import java.util.List;
+import org.apache.commons.lang.StringUtils;
+/**
+ * @date ${date}
+ * @author ${author}
+ * $!{table.comment}服务实现类
+ */
+@Service(version = Constant.VERSION,group="$!{package.Xml}",timeout=Constant.TIMEOUT)
+@org.springframework.stereotype.Service
+public class ${table.serviceImplName} implements ${table.serviceName},Constant {
+
+    @Autowired
+    private ${table.mapperName} ${table.entityPath}Dao;
+    
+     /**
+     * @date ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}新增或者修改
+     */
+    @Override
+	public ${entity} saveOrUpdate(${entity} entity) {
+		if(StringUtils.isBlank(entity.getId())){
+			//新增
+			entity.setId(UUIDUtils.getUuid());
+			entity.setCreateDate(new Date());
+			if(${table.entityPath}Dao.insert(entity)>0){
+				return entity;
+			}
+			return null;
+		}else{
+			entity.setUpdateDate(new Date());
+			if(${table.entityPath}Dao.updateById(entity)>0){
+				return entity;
+			}
+			return null;
+		}
+	}
+
+	/**
+     * @date ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}逻辑删除
+     */
+	@Override
+	public boolean deleteLogic(String id) {
+		${entity} entity=new ${entity}();
+		entity.setId(id);
+		entity.setDelFlag(DEL_FLAG);
+		entity.setUpdateDate(new Date());
+		return ${table.entityPath}Dao.updateById(entity)>0;
+	}
+
+	/**
+     * @date ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}单条数据查询
+     */
+	@Override
+	public ${entity} getById(String id) {
+		return ${table.entityPath}Dao.selectById(id);
+	}
+
+	/**
+     * @date   @date ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}分页查询
+     */
+	@Override
+	public PageInfo<${entity}> pageList(${entity} entity, Integer pageNum,
+			Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		EntityWrapper<${entity}> wrapper = searchWrapper(entity);
+		List<${entity}> list = ${table.entityPath}Dao.selectList(wrapper);
+		PageInfo<${entity}> page = new PageInfo<${entity}>(list);
+		return page;
+	}
+    
+	
+	 /**
+     * @date ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}构建查询条件-以后扩展
+     */
+    private EntityWrapper<${entity}> searchWrapper(${entity} entity) {
+		EntityWrapper<${entity}> wrapper = new EntityWrapper<${entity}>();
+		wrapper.where("del_flag={0}", UN_DEL_FLAG);
+		#foreach($field in ${table.fields})
+		#if(${field.propertyType.equals("boolean")})
+		#set($getprefix="is")
+		#else
+		#set($getprefix="get")
+		#end
+		//根据${field.comment}模糊查询
+		if(entity.${getprefix}${field.capitalName}()!=null&&StringUtils.isNotBlank(String.valueOf(entity.${getprefix}${field.capitalName}()))){
+			wrapper.like("${field.name}", String.valueOf(entity.${getprefix}${field.capitalName}()));
+		}
+		#end
+		if(entity.getStartDate()!=null){
+			wrapper.ge("create_date", entity.getStartDate());
+		}
+		if(entity.getEndDate()!=null){
+			wrapper.le("create_date", entity.getEndDate());
+		}
+		if(StringUtils.isNotBlank(entity.getOrderBy())){
+			wrapper.orderBy(entity.getOrderBy(), entity.isAsc());
+		}else{
+			wrapper.orderBy("create_date", false);
+		}
+		//System.out.println(wrapper.originalSql());
+		return wrapper;
+	}
+   
+}

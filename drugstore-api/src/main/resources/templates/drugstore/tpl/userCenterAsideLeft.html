@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>用户中心左侧菜单</title>
+    <link rel="stylesheet" href="${ctx}/css/modules/userCenter/userCenterLeftSide.css">
+</head>
+<body>
+    <div class="left">
+        <div class="left-nav">
+            <ul>
+                <li><i class="iconfont icon-user"></i>我的账号</li>
+                <li><i class="iconfont icon-compile"></i>我的采编</li>
+                <li><i class="iconfont icon-tag"></i>我的收藏</li>
+                <li><i class="iconfont icon-xingxing1"></i>我的订阅</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function(){
+            $('.left-nav ul>li').click(function(){
+                // $(this).addClass('active').siblings().removeClass('active');
+                switch($(this).text())
+                {
+                    case '我的账号':
+                        location.href = 'view?to=modules/userCenter/myAccount';
+                        break;
+                    case '我的采编':
+                        location.href = 'view?to=modules/userCenter/myEditing';
+                        break;
+                    case '我的收藏':
+                        location.href = 'view?to=modules/userCenter/myCollection';
+                        break;
+                    case '我的订阅':
+                        location.href = 'view?to=modules/userCenter/mySubscription';
+                        break;
+                    default:
+                        break;
+                }
+            })
+        })
+    </script>
+</body>
+</html>

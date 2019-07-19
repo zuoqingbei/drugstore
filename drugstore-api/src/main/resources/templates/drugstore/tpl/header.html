@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大数据创新平台</title>
+    <link rel="stylesheet" href="${ctx}/css/iconfont.css">
+    <link rel="stylesheet" href="${ctx}/css/echartsLoading.css">
+    <link rel="stylesheet" href="${ctx}/css/loading.css">
+</head>
+<body>
+    <header>
+        <h1>
+            <span>一带一路跨语言大数据创新平台</span>
+        </h1>
+        <div class="header-right">
+            <nav>
+                <a href="view?to=index" class="nav-link">首页</a>
+                <a href="view?to=modules/hotspot/hotspotIndex" class="nav-link">丝路热点</a>
+                <a href="view?to=modules/areasFocus/areasFocusIndex" class="nav-link">领域聚焦</a>
+                <a href="view?to=modules/search/searchIndex" class="nav-link">聚合发现</a>
+                <a href="javascript:;" class="nav-link subject-analysize">专题分析</a>
+            </nav>
+            <div class="header-user">
+                <a href="view?to=modules/account/denglu" class="header-user-a login new-message" id="loginBtn">登录</a>
+                <a hidden href="view?to=modules/userCenter/myAccount" class="header-user-a login new-message" id="userBtn"></a>
+                <a hidden id="newMessage" href="view?to=modules/userCenter/mySubscription" class="header-user-a iconfont icon-xitongxiaoxi new-message"><i></i></a>
+                <a hidden target="_blank" class="header-user-a iconfont icon-user"></a>
+                <ul class="user-box">
+                    <li><a href="view?to=modules/userCenter/myAccount"><i class="iconfont icon-user"></i>我的账号</a></li>
+                    <li><a href="view?to=modules/userCenter/myEditing"><i class="iconfont icon-compile"></i>我的采编</a></li>
+                    <li><a href="view?to=modules/userCenter/myCollection"><i class="iconfont icon-tag"></i>我的收藏</a></li>
+                    <li><a href="view?to=modules/userCenter/mySubscription"><i class="iconfont icon-xingxing1"></i>我的订阅</a></li>
+                    <li id="logoutBtn"><a><i class="iconfont icon-exit"></i>退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!--<div class="mask">-->
+    	<!--<div class="logins">-->
+    		<!--<h3>用户登录</h3>-->
+    		<!--<form>-->
+    			<!--<label for="username">邮箱/手机号</label>-->
+    			<!--<input type="text" id="username" name="user">-->
+    			<!--<label for="password">密码</label>-->
+    			<!--<input type="password" id="password" name="password"/>-->
+    			<!--<div class="remeber">-->
+    				<!--<input type="checkbox"/>-->
+    				<!--<span>记住密码</span>-->
+    			<!--</div>-->
+    			<!--<button type="button" class="btn">登录</button>-->
+    		<!--</form>-->
+    	<!--</div>-->
+    <!--</div>-->
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script src="${ctx}/js/common.js"></script>
+    <script>
+    	$("nav").on("click",'a',function(){
+    		sessionStorage.removeItem("keywords")
+    	})
+    	$('.header-user .login').on('click',function(){
+    		$('.mask').addClass('show');
+    	})
+    	$('.mask .btn').on('click',function(){
+    		$('.mask.show').removeClass('show');
+    	})
+        $('.icon-user').on('click', function () {
+            if($('.user-box').css('display') === 'block') {
+                $('.user-box').css('display', 'none')
+            }else {
+                $('.user-box').css('display', 'block')
+            }
+        })
+        $(".subject-analysize").on("click",function(){
+        	if(sessionStorage.loginInfo){
+        		location.href = Public.basePath + 'to=modules/subjectAnalysis/reportAnalysis'
+        	}else {
+        		
+       		    sessionStorage.interceptUrl = 'to=modules/subjectAnalysis/reportAnalysis';
+	        	Public.LoginToIntercept();
+        	}
+        });
+
+        let loginInfo ={};
+    	if(sessionStorage.loginInfo){
+            loginInfo = JSON.parse(sessionStorage.loginInfo);
+        }
+        $("a.icon-user").hide();
+    	if(Object.keys(loginInfo).length>0){//登录成功
+
+    	    $("a.icon-user").show();
+            $("#newMessage").show();
+            $("#loginBtn").hide();
+            $("#userBtn").text(loginInfo.sysuser.userName).show();
+
+        }else{//没有登录
+            $("a.icon-user").hide();
+            $("#loginBtn").show();
+            $("#newMessage").hide();
+            $("#userBtn").text("").hide();
+        }
+
+    	$("#logoutBtn").click(function(){
+    		if(sessionStorage.loginInfo){
+                loginInfo = JSON.parse(sessionStorage.loginInfo);
+            }
+            $.post('/logout', {
+                emailCode: loginInfo.sysuser.email ? loginInfo.sysuser.email : loginInfo.sysuser.userCode,
+            }, function (data) {
+                if (data) {
+                    sessionStorage.loginInfo = '';
+                    location.href = Public.basePath + 'to=index'
+                } else {
+                    Public.message('退出登录失败');
+                }
+            });
+        })
+    </script>
+</body>
+</html>

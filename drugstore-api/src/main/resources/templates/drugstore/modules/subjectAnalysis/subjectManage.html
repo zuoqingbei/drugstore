@@ -1,0 +1,930 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>专题管理</title><!-- 专题管理 -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+      <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/datacss_e.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/subjectManage.css" rel="stylesheet" type="text/css" />
+        <link href="${ctx}/js/subjectAnalysis/easydialog.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/tanchu.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<input type="hidden" id ="urlpath" value="">
+<input type="hidden" id ="systemType" value="">
+
+<div style="display:none">
+   <form action="login?systemType=" id="loginJumpFormId" method="post">
+        <input type="hidden" name="url" id="jumpUrlId">
+   </form>
+</div>
+
+    <div class="data_centent">
+
+<div class="centent_left">
+<input type="hidden" id="language" name="language" value="zh" style="display:none;" />
+<input type="hidden" id=""systemType"" name=""systemType"" value="systemType" style="display:none;" />
+<input type="hidden" id="userId" value="102768"/>
+    <a href="javascript:;" class="link_left_menu">
+	     <p class="centent_left_p" id="topicList"><img img src="${ctx}/images/subjectAnalysis/conter_left_03.png">专题列表</p><!-- 专题列表 -->
+    </a>
+	<div id="mainBox_note" class="zt_list_box">
+	<ul id="content_note" class="centent_left_lsit">
+	</ul>
+	</div>
+	
+	<a href="" id="toAdd"  class="link_left_menu">
+	    <p class="centent_left_p" id="new_title"><img img src="${ctx}/images/subjectAnalysis/conter_left_06.png">新建专题</p><!-- 新建专题 -->
+	</a>
+	<a href="" id="topicManager"  class="link_left_menu">
+	    <p class="centent_left_p" id="topicManager2"><img img src="${ctx}/images/subjectAnalysis/conter_left_08.png">专题管理</p><!-- 专题管理 -->
+	</a>
+	<!-- 原来报告管理列表页面 -->
+	
+	<!-- 新的报告管理列表页面 -->
+	<a href="" id="reportList"  class="link_left_menu">
+	    <p class="centent_left_p"><img img src="${ctx}/images/subjectAnalysis/conter_left_10.png">报告管理</p><!-- 报告管理 -->
+	</a>
+</div>
+        <div class="centent_right">
+            <!--选项卡-->
+            <div class="centent_right_tab">
+                <ul>
+                    <li class="on">专题列表</li><!-- 专题管理 -->
+                </ul>
+            </div>
+            <div class="region bgbai">
+                <!--内容页无数据-->
+                <div class="no_region">
+                        <div class="no_specbox">
+                             <h4>您还没有任何专题，您可以点击以下按钮添加或订阅专题</h4><!-- 您还没有任何专题，您可以点击以下按钮添加或订阅专题 -->
+                             <ul>
+                                 <li><a class="btn_addspec" title="<!-- 添加专题 -->添加专题" href="subject/toAdd?id=507a3ef47f5a42e2b8c241d8ce36b1bf&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1&newsFlag=&systemType="><i class="ico_addspec"></i><b><!-- 添加专题 -->添加专题</b></a></li>
+                                 <li><a class="btn_dingyue" title="<!-- 订阅专题 -->订阅专题" href="javascript:;"><i class="ico_dingyue"></i><b><!-- 订阅专题 -->订阅专题</b></a></li>
+                             </ul>
+                        </div>
+                </div>	
+                <!--内容页 有数据的-->
+                <div class="has_region">
+	                <div class="conter-right-top-box" style="border-bottom:none;">
+	                    <p class="right-top-box-p bakd_p op" style="padding:0 20px;"><a href="subject/toAdd?id=507a3ef47f5a42e2b8c241d8ce36b1bf&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1&newsFlag=&systemType="><!-- 添加专题 -->添加专题</a></p>
+	                    <p class="right-top-box-p baxc_p op" style="padding:0 20px;">订阅专题</p><!-- 订阅专题 -->
+						<!-- 搜索 -->
+	                    <input type="text" name="title" class="conter-right-top-box-input t5" placeholder="查找专题"/><!-- 查找专题 -->
+                        <input type="button" id="sousuo" value="搜索"/><!-- 搜索 -->
+
+                        <label class="conter-right-top-box-wenzi"></label>
+	                </div>
+	                <table class="table_ztgl" cellpadding="0" cellspacing="0">
+	                    <thead>
+	                         <tr>
+	                             <th><!-- 专题名称 -->专题名称</th>
+	                            <th><!-- 累计消耗数据量 -->累计消耗数据量<br><!-- 媒体 -->媒体 | <!-- 社交 -->社交</th>
+	                            <th><!-- 累计消耗译点 -->累计消耗译点<br><!--<img src="images/hdd_03.png">--></th>
+	                            <th><!-- 数据上限（译点） -->数据上限（译点）</th>
+	                            <th><!-- 创建时间 -->创建时间</th>
+	                            <th><!-- 修改时间 -->修改时间</th>
+	                            <th><!-- 开关 -->开关</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody   id='tableid'>
+								<!---->
+	                    </tbody>
+	                </table>
+	                <!--分页-->
+	                <p class="paging_p pagelist_box"></p> 
+                </div>
+            </div>
+            <div class="clear"></div>
+	        <div class="footer_box">
+				<p class="da_p">中译语通科技股份有限公司 版权所有</p> <!-- 中译语通科技（北京）有限公司 版权所有 -->
+	                <p>Copyright ©2018 www.yeesight.com All rights reserved.京ICP备13002826号-9 京ICP证140152号</p>
+	        </div>
+        </div>
+    </div>
+    
+ 
+    <!-- 编辑数据上线开始 -->
+    <div id="zhuanti_data" style="display: none;">
+        <div class="tanchu_inner" style="width:500px;">
+            <div class="t wraperl-sm">
+                <span class="fl">					<!-- 编辑数据 -->
+                    <span class="js_title mr10">编辑数据</span>专题<!-- 专题 -->
+                </span>
+                <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+            </div>
+            <div class="c p20">
+                <div class="clearfix form-01">        <!-- 请在此处设置数据上限，该专题消耗的译点达到设置上限后数据不再更新 -->
+                	<p style=" height: 30px; color: #aaaaaa;">编辑数据。</p>
+                    <p>
+                        <label class="w120"><!-- 数据上限（译点） -->数据上限（译点）</label>
+                        <input type="text" name="txt_specialName" value="" class="txt_input" />
+                        <input type="hidden" id="sjsxid"  value="" />
+                    </p>
+                </div>
+                <p class="ztyl_btn m30 clearfix">
+                    <a href="javascript:;" class="ztsj">确定</a>
+                    <a href="javascript:;" class="btn_cancel">取消</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑数据结束 -->
+    <!-- 删除专题开始 -->
+    <div id="zhuanti_del" style="display: none;">
+           <div class="tanchu_inner" style="width:500px;">
+            <div class="t wraperl-sm">    <!-- 删除专题 -->
+                <span class="fl">删除专题</span>
+                <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+            </div>
+            <div class="c p20">
+                <div class="clearfix tc">             <!-- 删除此专题 -->
+                    <div class="t10 lan f18 js_title">删除此专题</div>
+                    <div class="t10">你真的要删除这个专题吗？</div>
+                </div>                               <!-- 你真的要删除这个专题吗 -->
+                <p class="ztyl_btn m30 clearfix">               <!-- 删除 -->
+                    <a href="javascript:;" class="grad js_del">删除</a>
+                    <a href="javascript:;" class="btn_cancel">取消</a>
+                </p>                                          <!-- 取消 -->
+            </div>
+        </div>
+    </div>
+    <!-- 删除专题结束 -->
+    <!-- 取消订阅开始 -->
+    <div id="zhuanti_cancle" style="display: none;">
+        <div class="tanchu_inner" style="width:500px;">
+            <div class="t wraperl-sm">      <!-- 取消订阅专题 -->
+                <span class="fl">取消订阅专题</span>
+                <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+            </div>
+            <div class="c p20">
+                <div class="clearfix tc">              <!-- 取消订阅此专题 -->
+                    <div class="t10 lan f18 js_title">取消订阅此专题</div>
+                    <div class="t10">你真的要取消订阅这个专题吗？</div>
+                </div>               <!-- 你真的要取消订阅这个专题吗 -->
+                <p class="ztyl_btn m30 clearfix">                                     <!-- 取消订阅 -->
+                    <a href="javascript:void(0)" class="grad js_sure" onclick="guanbi()">取消订阅</a>
+                    <a href="javascript:void(0)" onclick="guanbi()">取消</a>
+                </p>                                                   <!-- 取消 -->
+            </div>
+        </div>
+    </div>
+    <!-- 取消订阅结束 -->
+    <!-- 订阅专题开始 -->
+    <div id="zhuanti_dingyue" style="display: none;">
+        <div class="tanchu_inner" style="width:500px;">
+            <div class="t wraperl-sm">
+                 <span class="fl">订阅推荐专题</span>
+                <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+            </div>
+            <div class="c p20">
+                <div class="clearfix">
+                    <ul class="num_uls" style="min-height: 245px"></ul>
+                    <p class="paging_p dy_pagebox"></p>
+                </div>
+                <p class="ztyl_btn m30 clearfix">
+                    <!--<a href="javascript:;" onclick="guanbi()">确定</a>-->
+                    <a href="javascript:;" class="btn_cancel">取消</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 订阅专题结束 -->
+	<!-- 操作成功弹出层信息 -->    
+	<div id="common_tanchu" style="display: none;">
+	    <div class="tanchu_inner" style="width:500px;">
+	        <div class="t wraperl-sm">
+	            <span class="fl ">信息</span>
+	            <a href="javascript:;" class="fr iblock js-guanbi qhui cup"></a>
+	        </div>
+	        <div class="c p20">
+	        	 <div class="clearfix tc">
+	                   <div class="t10 lan f18 common_message">操作成功!</div>
+	            </div>
+	            <!--<p class="ztyl_btn m30 clearfix">
+	                 <a href="javascript:;">确定</a>
+	            </p>-->
+	        </div>
+	    </div>
+	</div>
+	<!-- 操作成功弹出层信息-->
+
+
+<div id="common_tanchu2" style="display: none;">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+            <span class="fl ">信息</span>
+            <a href="javascript:;" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix tc">
+                <div class="t10 lan f18 common_message">数据上线设置失败!</div>
+            </div>
+            <!--<p class="ztyl_btn m30 clearfix">
+                 <a href="javascript:;">确定</a>
+            </p>-->
+        </div>
+    </div>
+</div>
+	
+	
+	
+<!-- js文件开始 -->
+<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+  <script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+   <script src="${ctx}/js/subjectAnalysis/easydialog.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+  <script type="text/javascript" src="${ctx}/js/subjectAnalysis/layer.js"></script>
+   <script type="text/javascript" src="${ctx}/js/subjectAnalysis/template.min.js"></script>
+   <script type="text/javascript" src="${ctx}/js/subjectAnalysis/Scrollbar.js"></script>
+      <script type="text/javascript" src="${ctx}/js/subjectAnalysis/map-base.js"></script>
+      <script type="text/javascript" src="${ctx}/js/subjectAnalysis/tanchu.js"></script>
+        <script src="${ctx}/js/subjectAnalysis/con_datetime.js" type="text/javascript" ></script>
+      <script src="${ctx}/js/subjectAnalysis/jquery.ui.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/AddSpecial.js"></script>
+  <script type="text/javascript" src="${ctx}/js/subjectAnalysis/WdatePicker.js"></script>
+    <script src="${ctx}/js/subjectAnalysis/jedate.min.js"></script>
+ <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/DateSlider.js"></script>
+<!-- 拖拽排序插件 -->
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.dragsort-0.5.2.js"></script>
+
+
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/managerSpecial.js"></script>
+<script type="text/javascript">
+$.fn.size=function(){ 
+	   return $(this).length;
+	}
+
+$(function(){
+    if($('#content_note li').length>10){
+    	 $('#mainBox_note').css({'height':'400px'});
+    	 $('#content_note').css({'position':'absolute'});
+    	 var addscoll_new_note=new addScroll('mainBox_note','content_note','scrDiv_note');
+    }
+   });
+
+$("#topicList").click(function(){
+	$("#mainBox_note").slideToggle(200);
+});
+function specialInfo(){
+	var category = $("#category").val();
+	var createId ="98887";// 102768;
+	var source = $("#source").val();
+
+	 $.ajax({
+		 
+         type: "POST",
+         url: "analysisData/queryInfoSpecial",
+         data: {
+        	 infoId:$("#id").val(),
+        	 //infoId:"",
+        	 category:category, 
+        	 createId:createId,
+        	 source:source
+        	 },
+         dataType: "json",
+         success: function(data){
+        	
+        	 //console.log(data);
+         }
+     });
+}
+
+
+// 专题列表同步加载
+var session_usr='{"companyName":"青岛海联","createTime":1549951077499,"createTimeView":"2019-02-12 13:57:57","enterpriseId":7515,"fullName":"朱超","industry":7,"isAdmin":1,"isDelete":1,"lastLoginTime":1549951077499,"password":"","source":8,"state":1,"system":1,"thirdSource":"7","thirdUid":"D0F36A30A64EA92A765B35E86642A01B","updateTime":1549951098546,"updateTimeView":"2019-02-12 13:58:18","userId":102768,"userName":"8_D0F36A30A64EA92A765B35E86642A01B","userType":1}';
+var nowLanguage = $("#language").val();
+var str='';
+$.ajax({
+	url:"analysisMap/queryTopicListWithPage",
+	data:{pageNo:0,xxx:new Date().getTime()},
+	type:"get",
+	dataType:"json",
+	async: false,
+	success:function(data){
+		
+		var list = [];
+		var defaultList = [];
+		var createList = []
+		for(var k=0;k<data.results.length;k++){
+			/* if(data.results[k].state==null){
+				defaultList.push(data.results[k]);
+			}else{ */
+				createList.push(data.results[k]);
+			//}
+		}
+		list=defaultList.concat(createList);
+		for (var i = 0; i < list.length; i++) {
+            var title=list[i].srcShortTitle||list[i].srcTitle;
+       	        	var systemType = $("#systemType").val();
+       	        	str+='<li data="'+list[i].id+'" data-srcid="'+list[i].srcId+'">'
+       	        		 +'<a data-state="'+list.state+'" href="analysisData/index?id='+list[i].id+'&opType='+list[i].opType+'&srcId='+list[i].srcId+'&source='+list[i].source+'&systemType='+systemType+'">'
+					     +title+'</a>'
+				    if(session_usr!='' && list[i].state==null){
+				    	str+='<img data-optype="'+list[i].opType+'" src="images/yayaya_23.png" alt="" style="float:right; padding:12px 0 0 10px;">';
+				    }
+			     	str+='</li>';
+   	        	/*}
+	        	});*/
+	        }
+	        $("#content_note").html(str);
+    }
+});
+	//初始化
+	$('.link_left_menu').find('p').removeClass('on');
+	$('#topicManager').find('p').addClass('on');
+ 
+     var push_pageno=1;
+     var push_pagesize=5;
+ 
+     var my_pageno=1;
+     var my_pagesize=10;
+     var my_title='';
+     
+ 
+     
+     //获取推荐订阅列表
+     function get_pushtopic(){
+    	
+        $('.num_uls').empty();
+        $('.num_uls').html('<li style="text-align: center;"><img alt="" src="images/loading.gif"/></li>');
+        
+     	var ajax_url='subject/pushTopic';
+     	var ajax_data={
+     	    'category':2,//1资讯，2专题
+     	    'pageNo':push_pageno,
+     	    'pageSize':push_pagesize
+     	};
+     	$.post(ajax_url,ajax_data,function(result){//console.log('/* 获取推送的专题 */获取推送的专题=',result);
+     	    $('.num_uls').empty();
+            if(result.head.result && result.head.result=='true'){
+            	if(result.data.results){
+            	    $.each(result.data.results, function(i,o) {
+					     	var html='<li class="num_list">'
+							         +'<label>'+o.srcTitle+'</label>';
+							         if(o.isSubscibe==0){
+							                html+='<a href="javascript:;" data-id="'+ o.srcId +'" id="'+o.id+'" source="'+o.source+'" class="dy">订阅</a>';
+                                          //  $('.centent_left_lsit li[data-srcid="'+ o.srcId +'"]').remove();
+							         }else if(o.isSubscibe==1){
+							                html+='<a href="javascript:;" data-id="'+o.srcId+'" id="'+o.id+'" source="'+o.source+'" class="red">取消订阅</a>';
+							         }
+						        html+='</li>';
+            	            $('.num_uls').append(html);
+            	    });
+            	    showpage('.dy_pagebox',result.data.pageNo,result.data.totalPages,10);
+			     	        $('.dy_pagebox a').unbind().bind('click',function(){
+			     	               push_pageno=$(this).attr('data-page');
+			     	               get_pushtopic();
+			     	});
+            	}
+            }else{//发生错误
+                 $('.num_uls').html('<li style="text-align: center;"></li>');
+            }
+     	});
+     }
+ 
+     //获取我的专题
+     function get_mytopic(){
+         var html='';
+        $('.table_ztgl tbody').empty();
+        $('.table_ztgl tbody').html('<tr><td colspan="7"><img alt="" src="images/loading.gif"/></td></tr>');
+
+        var ajax_url='subject/myTopicToManager';
+     	var ajax_data={
+     	    'title':my_title,//关键词
+     	    'pageNo':my_pageno,
+     	    'pageSize':my_pagesize
+     	};
+     	$.post(ajax_url,ajax_data,function(data){//console.log('/* 获取我的专题 */获取我的专题=',data);
+            if(my_pageno==1 && data.data.results.length<1 && my_title==''){
+                $('.no_region').show();
+                $('.has_region').hide();
+            }
+            var list = [];
+            var defaultList = [];
+            var createList = []
+            for(var k=0;k<data.data.results.length;k++){
+                /* if(data.results[k].state==null){
+                 defaultList.push(data.results[k]);
+                 }else{ */
+                createList.push(data.data.results[k]);
+                //}
+            }
+            //console.log(createList)
+            list=defaultList.concat(createList);
+            //console.log(list.length)
+            for (var i = 0; i < list.length; i++) {
+                        $('.table_ztgl tbody').empty();
+                        //var title=(res.zhContent=='' ? _data.content : res.zhContent )
+                var title=list[i].srcShortTitle||list[i].srcTitle;
+                        var systemType =$("#systemType").val();
+                        if(data.head && data.head.result=='true'){
+                            if(list[i]){
+                               // $.each(list[i].data.results,function(i,o){
+                                     html+='<tr  data-id="'+list[i].id+'" sjsx="'+list[i].srcId+'" sjsx1="'+list[i].consumeLimit+'" source="'+list[i].source+'">'
+                                        +'<td class="left_td"><div class="box">'
+                                            /* 预览专题 */
+                                        +'<span class="g2e9"><a style="color: #2e95f3;" title="预览专题" href="analysisData/index?id='+ list[i].id +'&opType='+list[i].opType+'&srcId='+ list[i].srcId +'&source='+ list[i].source +'&systemType='+systemType+'">'+title+'</a></span>';
+                                    if(list[i].opType==1){
+                                        /* 订阅的专题 */
+                                        html+='<img title="订阅的专题" alt="/* 订阅的专题 */订阅的专题" src="images/yayaya_23.png" class="icon_ims">';
+                                    }
+                                    html+='<b class="icon_pd">';
+                                    if(list[i].opType==2){
+                                        /* 修改 */
+                                        html+='<a class="zt_edit" title="修改" href="javascript:;"><img src="images/yayaya_10.png"></a>';
+                                    }
+                                    /* 删除 */
+                                    html+='<a class="zt_delete" title="删除" href="javascript:;"><img src="images/yayaya_12.png"></a>'
+                                    if(list[i].opType==2){
+                                        /* 修改数据上线 */
+                                        html+='<a class="zt_countup" title="修改数据上限" href="javascript:;"><img src="images/yayaya_14.png"></a>'
+                                    }
+
+                                    html+='</b>'
+                                        +'</div></td>'
+                                        +'<td><b>'+list[i].newAllDatas+'</b>&nbsp;|&nbsp;<b>'+list[i].socialAllDatas+'</b></td>'
+                                        +'<td>'+numsplit(((parseFloat(list[i].newAllDatas.toString().replace(/,/g,''))+parseFloat(list[i].socialAllDatas.toString().replace(/,/g,'')))*0.10).toFixed(2)) +'</td>' //累计消耗译点
+
+                                        +'<td>'+(list[i].consumeLimit?numsplit(list[i].consumeLimit.toString().replace(/,/g,'')):'0')+'</td>'  //numsplit((o.consumeLimit?(parseFloat(o.consumeLimit.toString().replace(/,/g,''))).toFixed(2):parseFloat('0').toFixed(2)))
+
+                                        +'<td data="'+ list[i].createTimeView +'">'+list[i].createTimeView+'</td>'
+                                        +'<td data="'+ list[i].updateTimeView +'">'+list[i].updateTimeView+'</td>'
+                                        +'<td class="right_td">';
+
+                                    //html+='<input name="chk_'+i+'" type="checkbox" class="CheckBoxClass"/>';
+                                    html+='<label data-opType="'+list[i].opType+'" data-isPolling="'+ list[i].isPolling +'" class="'+ ((list[i].isPolling=='0')?'CheckBoxLabelClass':'CheckBoxSelected') +'"></label>';
+                                    html+='</td>'
+                                        +'</tr>';
+
+
+                                $('.table_ztgl tbody').append(html);
+                               // });
+
+                                showpage('.pagelist_box',data.data.pageNo,data.data.totalPages,10);
+                                $('.pagelist_box a').unbind().bind('click',function(){
+                                    my_pageno=$(this).attr('data-page');
+                                    get_mytopic();
+                                });
+                            }
+                        }else{
+                            $('.table_ztgl tbody').html('<tr><td colspan="7" align="center">center"获取我的专题发生错误！</td></tr>');
+                        }
+
+                    }
+
+                });
+
+         /*}
+
+     	});*/
+     }
+ 
+	//分页功能
+    function showpage(pagebox,pageNo,totalPage,viewnum){//viewnum 当前显示多少组页，可自定义
+           $(pagebox).empty();
+    	   if(!pageNo){pageNo=1;}
+    	   if(!totalPage){totalPage=1;} 
+    	   if(totalPage==1){return;}
+    	   if(!viewnum){viewnum=10;};
+	       
+           
+	       if(pageNo>1){
+	              $(pagebox).append('<a data-page="'+ (((parseInt(pageNo)-1) >= 1) ? (parseInt(pageNo)-1) : pageNo) +'" href="javascript:;">&lt;</a>');
+	       }
+	       var viep=pageNo-parseInt((parseInt(viewnum)+1)/2);
+	       for(var i=1;i<=viewnum;i++){
+	    	   if((viep+i)>=1 && (viep+i)<=totalPage){
+	    	   var strpage='<a data-page="'+ (viep+i) +'" class="[class]" href="javascript:;">'+(viep+i)+'</a>'
+	    	           if((viep+i)==parseInt(pageNo)){
+	    	        	   strpage=strpage.replace("[class]","on");
+	    	           }
+	    			   $(pagebox).append(strpage);
+	    	   }
+	       }
+	       if(pageNo<totalPage){
+	           $(pagebox).append('<a data-page="'+ (((parseInt(pageNo)+1)<= parseInt(totalPage)) ? (parseInt(pageNo)+1) : pageNo) +'" href="javascript:;">&gt;</a>');
+           }
+    }
+   
+    //回调刷新
+	var callFn = function(){
+         my_pageno=1;
+	     get_mytopic();
+    };
+ 
+$(function(){
+    //初始化显示
+    get_mytopic();
+ 
+
+	//鼠标悬停事件
+	$(".table_ztgl").on('mouseover mouseout','tr',function(event){
+	   if(event.type == "mouseover"){//鼠标悬浮
+	        $(this).addClass('on');
+	   }else if(event.type == "mouseout"){//鼠标离开
+	         $(this).removeClass('on');
+	   }
+	});
+	//搜索专题
+	$(".t5").keydown(function() {
+        if (event.keyCode == "13") {
+            my_title=$(this).val();
+            //if(my_title.length<=0){return false;}
+            my_pageno=1;
+			get_mytopic();
+        }
+    });
+    
+
+    //编辑
+    $(document).ready(function(){
+        $('.table_ztgl').on('click','.icon_pd .zt_edit',function(e){
+            e.stopPropagation();
+            var systemType =$("#systemType").val();
+            window.location.href=basePath + "analysisData/queryInfoSpecialForEdit?id="+$(this).closest("tr").attr("data-id")+"&systemType="+systemType;
+        });
+    })
+
+	//删除
+	$('.table_ztgl').on('click','.icon_pd .zt_delete',function(e){
+		 e.stopPropagation();
+		        var _self=this;
+				var trIndex=$(this).closest("tr").index();
+				$('#zhuanti_del .js_del').attr('data-id',$(this).closest("tr").attr("data-id"));
+				$('#zhuanti_del .js_del').attr('data-srcid',$(this).closest("tr").attr("sjsx"));
+				$('#zhuanti_del .js_del').attr('data-source',$(this).closest("tr").attr("source"));
+				easyDialog.open({
+				      container : 'zhuanti_del',
+				      fixed : true
+			    });
+	});
+	//删除专题
+	$(".js_del").bind('click',function(e){
+		 e.stopPropagation();
+		var that=this;
+	    var param={};
+	    param.id=$(this).attr("data-id");
+	    param.source=$(this).attr("data-source");
+	   
+		$.post("analysisData/deleteMyTopicsEntity",param,function(result){
+			if(result.head.result && result.head.result=='true'){
+			       $('.table_ztgl tbody tr[data-id="'+param.id+'"]').remove();
+		           $(".common_message").html("删除专题成功!");
+
+		           //删除左侧的里面的专题
+		           $('.centent_left_lsit li[data-srcid="'+ $(that).attr('data-srcid') +'"]').remove();
+		    }else{
+		           $(".common_message").html("删除专题失败!");
+		    }
+		    easyDialog.open({
+				  container : 'common_tanchu',
+				  autoClose : 1000,
+				  fixed : true,
+				  callback : callFn
+			 });
+			 
+		});
+		
+
+	});
+
+	//修改数据上线
+	$('.table_ztgl').on('click','.icon_pd .zt_countup',function(e){
+		 e.stopPropagation();
+	        var trIndex=$(this).closest("tr").index();
+		    $("#zhuanti_data .js_title").html($(this).parents("tr").find(".left_td span:first").html());
+ 
+		    var sjsx=$(this).closest("tr").attr("sjsx1");//上线
+		    var sBalance = parseFloat(sjsx).toString();
+		    
+		    $("#zhuanti_data .ztsj").attr('data-id',$(this).closest("tr").attr("data-id"));
+		    $('#zhuanti_data input[name="txt_specialName"]').val(sBalance);//input输入框
+		    $('#zhuanti_data #sjsxid').val($(this).closest("tr").attr("sjsx"));
+ 
+		    easyDialog.open({
+				      container : 'zhuanti_data',
+				      fixed : true
+			    });
+		    
+		    
+	});
+	//数据上线确定
+	$(".ztsj").click(function(){
+	    var param={};
+		param.id=$(this).attr('data-id');
+		$(".common_message").html("数据上线设置失败!");
+        if($('#zhuanti_data input[name="txt_specialName"]').val() >= 0){
+            param.consumeLimit=$('#zhuanti_data input[name="txt_specialName"]').val();
+
+            $.post("analysisData/editConsumeLimit",param,function(result){//console.log(result);
+                if(result.head.result && result.head.result=='true'){
+                    $(".common_message").html("数据上线设置成功!");
+                }else{
+                    $(".common_message").html("数据上线设置失败!");
+                }
+                easyDialog.open({
+                    container : 'common_tanchu',
+                    autoClose : 1000,
+                    fixed : true,
+                    callback : callFn
+                });
+            });
+        }else{
+            easyDialog.open({
+                container : 'common_tanchu2',
+                autoClose : 1000,
+                fixed : true,
+                callback : callFn
+            });
+        }
+
+
+	});
+	
+	
+	//专题操作是否更新接口
+	$(".table_ztgl").on('click','.right_td label',function(){
+	    if($(this).attr('data-opType')=='1'){//订阅的
+	         $(".common_message").html("订阅专题不能取消更新!");
+	         easyDialog.open({
+				  container : 'common_tanchu',
+				  autoClose : 1000,
+				  fixed : true
+			 });
+		     
+	    }else if($(this).attr('data-opType')=='2'){//自己的
+	    	var that=this;
+			var param={};
+			param.id=$(this).closest("tr").attr("data-id");
+			if($(this).attr('data-isPolling')==0){
+			    param.isPolling=1;
+			}else{
+				param.isPolling=0;
+			}
+			$.post("analysisData/updateCustomThemesEntity",param,function(result){
+			    if(result.head.result && result.head.result=='true'){
+			           $(".common_message").html("操作成功！");
+			           if($(that).attr('data-isPolling')==0){
+			                $(that).attr('data-isPolling','1');
+							$(that).removeClass("CheckBoxLabelClass").addClass("CheckBoxSelected");
+						}else{
+							$(that).attr('data-isPolling','0');
+							$(that).removeClass("CheckBoxSelected").addClass("CheckBoxLabelClass");
+						}
+			    }else{
+			           $(".common_message").html("操作失败！");
+			    }
+			    easyDialog.open({
+						  container : 'common_tanchu',
+						  autoClose : 1000,
+						  fixed : true//,
+//						  callback : callFn
+			    });
+ 
+			});
+	    	
+	    }
+	});
+	
+ 
+	//弹出层按钮
+	$(document).on('click','.js-guanbi,.btn_cancel',function(){
+	      easyDialog.close();
+	});
+ 
+ 
+ 
+    //订阅专题接口
+    $('.baxc_p,.btn_dingyue').bind('click',function(){
+             push_pageno=1;
+    	     get_pushtopic();
+             easyDialog.open({
+				  container : 'zhuanti_dingyue',
+				  fixed : true
+			 });
+    });
+	//订阅按钮
+	$('.num_uls').on('click','.dy',function(){
+		var that=this;
+		var param={};
+		param.srcId=$(this).attr("id");
+		param.source=$(this).attr("source");
+		$.post("analysisData/addSubscriptionMyTopics",param,function(result){
+		    //console.log(result);
+		    if(result.head.result && result.head.result=='true'){
+		    	leftAjax();
+		    	 $('.no_region').hide();
+				   $('.has_region').show();
+                $(".common_message").html("订阅成功!");
+ 
+		    }else{
+		           $(".common_message").html("订阅失败!");
+		    }
+		    easyDialog.open({
+				  container : 'common_tanchu',
+				  autoClose : 1000,
+				  fixed : true,
+				  callback : callFn
+			 });
+		});
+	});
+	//取消订阅
+	$('.num_uls').on('click','.red',function(){
+	    var param={};
+		param.srcId=$(this).attr("id");
+    	param.source=$(this).attr("source");
+    	$.post("analysisData/deleteUnsubscribeEntity",param,function(result){
+		    if(result.head.result && result.head.result=='true'){
+		           $(".common_message").html("取消订阅成功!");
+ 
+		           //删除左侧的里面的专题
+		           $('.centent_left_lsit li[data-srcid="'+ param.srcId +'"]').remove();
+		           
+		    }else{
+		           $(".common_message").html("取消订阅失败!");
+		    }
+		    easyDialog.open({
+				  container : 'common_tanchu',
+				  autoClose : 1000,
+				  fixed : true,
+				  callback : callFn
+			 });
+		});
+	});
+
+});
+//数字格式化
+function numsplit(num) {
+			var decimalPart = '';  
+  num = num.toString();
+  if (num.indexOf('.') != -1) {
+    decimalPart = '.' + num.split('.')[1];  
+    num = parseInt(num.split('.')[0]);  
+  }  
+  var array = num.toString().split('');  
+  var index = -3;  
+  while (array.length + index > 0) {  
+    // 从单词的最后每隔三个数字添加逗号  
+    array.splice(index, 0, ',');  
+    index -= 4;  
+  }  
+  return array.join('') + decimalPart;  
+}
+
+$("#sousuo").click(function(){
+	my_title=$('.conter-right-top-box-input').val();
+   // if(my_title.length<=0){return false;}
+    my_pageno=1;
+	get_mytopic();
+});
+/*刷新左侧列表  */
+function  leftAjax(){
+
+	var session_usr='{"companyName":"青岛海联","createTime":1549951077499,"createTimeView":"2019-02-12 13:57:57","enterpriseId":7515,"fullName":"朱超","industry":7,"isAdmin":1,"isDelete":1,"lastLoginTime":1549951077499,"password":"","source":8,"state":1,"system":1,"thirdSource":"7","thirdUid":"D0F36A30A64EA92A765B35E86642A01B","updateTime":1549951098546,"updateTimeView":"2019-02-12 13:58:18","userId":102768,"userName":"8_D0F36A30A64EA92A765B35E86642A01B","userType":1}';
+	var nowLanguage = $("#language").val();
+	
+	var str='';
+	$.ajax({
+		url:"analysisMap/queryTopicListWithPage",
+		data:{pageNo:0,xxx:new Date().getTime()},
+		type:"get",
+		dataType:"json",
+		async: false,
+		success:function(data){
+			//console.log("刷新左侧列表")
+		 	var list = [];
+			var defaultList = [];
+			var createList = []
+			//console.log(data)
+			for(var k=0;k<data.results.length;k++){
+					
+					createList.push(data.results[k]);
+			}
+			list=defaultList.concat(createList);
+			for (var i = 0; i < list.length; i++) {
+
+                var title=list[i].srcShortTitle||list[i].srcTitle;
+           	        	str+='<li data="'+list[i].id+'" data-srcid="'+list[i].srcId+'">'
+           	        		 +'<a data-state="'+list.state+'" href="analysisData/index?id='+list[i].id+'&opType='+list[i].opType+'&srcId='+list[i].srcId+'&source='+list[i].source+'">'
+						     +title+'</a>'
+					    if(session_usr!='' && list[i].state==null){
+					    	str+='<img data-optype="'+list[i].opType+'" src="images/yayaya_23.png" alt="" style="float:right; padding:12px 0 0 10px;">';
+					    }
+				     	str+='</li>';
+       	        	/*}
+  	        	}); */
+   	        }
+			//console.log(str)
+   	        $("#content_note").html(str);
+        }
+	});
+
+}
+
+
+
+/* 表格拖拽排序 */
+
+$(function(){
+
+
+
+
+
+	 $("#tableid").dragsort({
+	        dragSelector : "tr",  //可以不用设置，他会根据$("#tableid")的类型来决定是tr还是li
+	        dragEnd : function(){
+
+	        	 
+	        	
+	        	var backInfoId=null;
+	        	var num=null;
+	        	var userId=$("#userId").val();
+	        	var ThisId=$(this).attr("data-id");//自己的id
+	        	var PrevId=$(this).prev().attr("data-id");//上一个id
+	        	var NextId=$(this).next().attr("data-id");//下一个id
+	        	 /*console.log(ThisId+"zj");
+	        	 console.log(PrevId+"ss"); 
+	        	 console.log(NextId+"xx"); */
+	        	if(PrevId==undefined){
+	        		//alert("if")
+	        		backInfoId=NextId;
+	        		//console.log(backInfoId)
+	        		num="1";
+	        	}else if(NextId==undefined){
+	        		//alert("else if")
+	        		backInfoId=PrevId;
+	        		
+	        		num="2";
+	        	}else{
+	        		//alert("else")
+	        		backInfoId=NextId;
+	        		num="1";
+	        	}
+	        	//alert(userId)
+	           // console.log($(this));  //拖动完成的回调函数，$(this)当前拖动对象
+	           // var ajax_url=$("#urlpath").val();//192.168.59.14:9300/yeesight/api/myTopics/updateInfoSort
+	      
+	            var  message={
+	        		  
+	        		    "head": {
+	        		        "token": "",
+	        		        "client": "",
+	        		        "version": "v1"
+	        		    },
+	        		    "message": {
+	        		    	"frontInfoId": ThisId,
+		        	        "backInfoId": backInfoId,
+		        	        "userId": userId,
+		        	       "order":num
+	        		    }
+	        		};
+			
+	        // console.log("1111111111111111111111111111111---",message);
+	         
+	         $.ajax({
+	        	 url:"subject/myTopics/updateInfoSort",
+	        	 type:"POST",
+	        	dataType:"json",	        	
+	        	
+	  			data:{paramsinfo:JSON.stringify(message)},
+	        	 success:function(data){
+	        		 //console.log("success");
+	        		 //console.log(data);
+	        		 leftAjax();
+	        			// 专题列表同步加载
+	        	 },
+	        	 error:function(err){
+	        		 console.log("fail");
+	        		 console.log(err);
+	        	 }
+	        	 
+	        	 
+	         }) 
+	        
+	         
+	         	 
+	            
+	        },
+	        scrollSpeed:0,  //默认为5，数值越大拖动的速度越快，为0则拖动时页面不会滚动"99476",
+	    });
+
+	
+	
+})
+
+
+
+</script>
+
+</body>
+</html>
+
+
+

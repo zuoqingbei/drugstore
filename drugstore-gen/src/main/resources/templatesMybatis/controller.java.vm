@@ -1,0 +1,107 @@
+package ${package.Controller};
+
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${entity};
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import com.github.pagehelper.PageInfo;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.hlsofttech.rsp.Result;
+import com.hlsofttech.annotation.AuthPower;
+import com.hlsofttech.common.Constant;
+/**
+ *
+ * @date ${date}
+ * @author ${author}
+ * @todo $!{table.comment}路由
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@Api(tags="$!{table.comment}",value = "$!{table.comment}",description="$!{table.comment} @author ${author}")
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} extends BaseController{
+#end
+    private final Logger logger = LoggerFactory.getLogger(${table.controllerName}.class);
+
+    @Reference(version = Constant.VERSION,group="$!{package.Xml}",timeout=Constant.TIMEOUT)
+    public ${table.serviceName} i${entity}Service;
+    
+  
+    /**
+     * @date   @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}新增或者修改
+     */
+    @SuppressWarnings("rawtypes")
+	@AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
+	@ApiOperation(value = "$!{table.comment}新增或者修改", notes = "$!{table.comment}新增或者修改", httpMethod = "POST")
+	@PostMapping("/api/${table.entityPath}/creation")
+	public Result creation(${entity} entity) {
+		if((entity=i${entity}Service.saveOrUpdate(entity))!=null){
+    		return Result.newSuccessResult(entity);
+    	}
+    	return Result.newFailureResult();
+	}
+	
+    /**
+     * @date   @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}逻辑删除
+     */
+	@SuppressWarnings("rawtypes")
+	@AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
+	@ApiOperation(value = "删除$!{table.comment}", notes = "删除$!{table.comment}", httpMethod = "DELETE")
+	@DeleteMapping("/api/${table.entityPath}/delete/{id}")
+	public Result deleteLogic(@PathVariable("id") String id) {
+		return Result.newSuccessResult(i${entity}Service.deleteLogic(id));
+	}
+	/**
+     * @date   @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}单条数据查询
+     */
+	@AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
+	@ApiOperation(value = "$!{table.comment}单条数据查询", notes = "$!{table.comment}单条数据查询", httpMethod = "GET")
+	@GetMapping(value = "/api/${table.entityPath}/{id}")
+	public Result<${entity}> getById(@PathVariable("id") String id) {
+		if(i${entity}Service.deleteLogic(id)){
+			return Result.newSuccessResult();
+		}
+		return Result.newFailureResult();
+	}
+	/**
+     * @date   @date   ${date}
+     * @author ${author}
+     * @todo   $!{table.comment}数据分页查询
+     */
+	@AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
+	@ApiOperation(value = "$!{table.comment}数据分页查询", notes = "$!{table.comment}数据分页查询", httpMethod = "GET")
+	@GetMapping(value = "/api/${table.entityPath}/list")
+	public Result<PageInfo<${entity}>> pageList(${entity} entity, @RequestParam(value="pageNum",required = false,defaultValue="1") Integer pageNum,
+			@RequestParam(value="pageSize",required = false,defaultValue="10") Integer pageSize) {
+		return Result.newSuccessResult(i${entity}Service.pageList(entity,pageNum,pageSize));
+	}
+    
+  
+}
+

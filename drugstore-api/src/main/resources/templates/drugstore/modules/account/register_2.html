@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/login.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/account/common.css">
+    <link rel="stylesheet" href="/css/modules/account/loginForApplacation.css">
+</head>
+<style>
+    .img1 {
+        right: 1px;
+    }
+
+    body > .login {
+
+    }
+</style>
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="login reg_login" autocomplete="off">
+    <form id="registerform" method="post" action="${ctx}/api/v1/view?to=modules/account/register_3">
+        <div class="login_Box login_Box_header">
+            <h3 class="ct">新用户注册</h3>
+        </div>
+        <div class="line "></div>
+        <div class="login_Box_img login_Box_img3"></div>
+
+
+        <div class="login_Box login_Box_bottom">
+            <input value="" autocomplete="off" name='username' class="divSearch reg_divSearch" type="text"
+                   placeholder="请输入用户名">
+            <span class="selectIcon"></span>
+            <select name='sex' class="divSearch reg_divSearch placeholder">
+                <option value="">请选择性别</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+            <!--<span class="selectIcon"></span>-->
+            <select style="display: none" name='industry' class="divSearch reg_divSearch placeholder">
+                <option value="">所属行业</option>
+                <option value="政治">政治</option>
+                <option value="经济">经济</option>
+                <option value="文化">文化</option>
+                <option value="IT">IT</option>
+            </select>
+
+            <input value="" id='password' name='password' class="divSearch reg_divSearch" type="password"
+                   placeholder="密码" maxlength="50"  autocomplete="new-password">
+
+            <input value="" name='affirmpwd' class="divSearch reg_divSearch" type="password" placeholder="确认密码"
+                   maxlength="50">
+
+            <div class="reg_divBtn">
+                <input id="submit" type="button" value="完成">
+                <p>已有账号? <a href="${ctx}/api/v1/view?to=modules/account/denglu">直接登录</a></p>
+            </div>
+        </div><!--login_Box_bottom-->
+    </form><!--form-->
+</div><!--logo-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+<script src=" ${ctx}/js/modules/account/html5shiv.js"></script>
+<script src=" ${ctx}/js/modules/account/respond.min.js"></script>
+<script src=" ${ctx}/js/modules/account/browser.js"></script>
+<![endif]-->
+<script src=" ${ctx}/js/common.js"></script>
+<script src=" ${ctx}/js/modules/account/jquery.validate.min.js"></script>
+<script src=" ${ctx}/js/modules/account/messages_zh.js"></script>
+<script src=" ${ctx}/plugins/layer/layer.js"></script>
+
+<script>
+    //验证表单
+    console.log(Public)
+    $(function () {
+        let register_2 = {
+            init() {
+                this.emailCode = JSON.parse(sessionStorage.getItem('emailCode'));
+                this.verificationForm();
+                this.submit();
+            },
+            verificationForm() {
+                $('#registerform').validate({
+                    errorElement: "div",
+                    rules: {
+                        username: {
+                            required: true,
+                        },
+                        password: {
+                            required: true,
+                            minlength:6
+                        },
+                        affirmpwd: {
+                            required: true,
+                            equalTo: "#password",
+                        },
+                        sex: {
+                            required: true,
+                        },
+                        industry: {
+                            required: true,
+                        }
+                    },
+                    messages: {
+                        username: {
+                            required: '*请输入用户名',
+                        },
+                        password: {
+                            required: '*请输入密码',
+                            minlength:'*密码不能少于6位'
+                        }
+                        ,
+                        affirmpwd: {
+                            required: '*请输入确定密码',
+                            equalTo: '*密码前后输入不一致',
+                        },
+                        sex: {
+                            required: '*请选择性别',
+                        },
+                        industry: {
+                            required: '*请选择行业',
+                        }
+                    }
+                });
+            },
+            submit() {
+                let that = this;
+                $("#submit").click(function () {
+                    if (!$('#registerform').valid()) {
+                        return;
+                    }
+                    $.post('/loginAndRegister/registerSave', {
+                        emailCode: that.emailCode.email,
+                        name: $('[name=username]').val(),
+                        sex: $('[name=sex]').val(),
+                        industry: $('[name=industry]').val(),
+                        verificationCode: $('[name=verificationCode]').val(),
+                        password: $('[name=password]').val(),
+                    }, function (data) {
+                        if (data.result === 'true') {
+                            location.href = '${ctx}/api/v1/view?to=modules/account/register_3';
+                        } else {
+                            Public.message(data.errorMsg);
+                            return false;
+                        }
+                    })
+                })
+            }
+        };
+        register_2.init();
+        //下拉框未选择时的样式和placeholder
+        $('select').change(function () {
+            if(!$(this).val()){
+                $(this).addClass('placeholder')
+            }else{
+                $(this).removeClass('placeholder')
+            }
+        })
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,836 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>新建专题</title><!-- 保存专题 -->
+    <meta charset="utf-8">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/datacss_e.css" rel="stylesheet" type="text/css" />
+     <link href="${ctx}/js/subjectAnalysis/easydialog.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx}/css/subjectAnalysis/tanchu.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="${ctx}/css/subjectAnalysis/jedate.css">
+    <link type="text/css" rel="stylesheet" href="${ctx}/css/subjectAnalysis/addSubject_old.css">
+
+    <link type="text/css" rel="stylesheet" href="${ctx}/css/modules/subjectAnalysis/addSubject.css">
+
+</head>
+
+<body>
+	<#include "${ctx}/yeesight/tpl/header.html" />
+    <div class="data_centent">
+    	<div class="aside-menu">
+			<#include "${ctx}/yeesight/tpl/asideLeft.html" />
+		</div>
+        <div class="centent_right">
+        	<!--标题-->
+            <div class="centent_right_tab color-border">
+                <ul>
+		           <li class="on">
+		           		<!--<i class="iconfont icon-location" style="color: #008aff;"></i>-->
+		           		<!--<a href="view?to=modules/subjectAnalysis/reportAnalysis">专题分析/</a>-->
+		           		<a class="nav-a" href="view?to=modules/subjectAnalysis/addSubject">新建专题</a>
+		           </li>
+                </ul>
+            </div>
+            <!--专题统计数据-->
+            <div class="region bgbai">
+                <!--专题管理-->
+                <div class="tabw color-box-bg">
+                    <div class="conter-right-top-box hd wraperl-md">						<!-- 基本设置 -->
+	                        <p class="right-top-box-p cup onp" style=" padding: 0 20px;">基本设置</p>
+	                        <!--<p class="right-top-box-p cup" style=" padding: 0 20px;">&lt;!&ndash; 数据源设置 &ndash;&gt;数据源设置</p>-->
+                    </div>
+
+                    <div class="bd">
+                        <div class="jbsz_box inner">
+                            <form class="form-01">
+                           	 <input type="hidden" name="createId" value="98935"/>
+                           	 <input type="hidden" name="createId1" value="102768"/>
+                           	 	 <div class="xzfl"><!-- 选择分类 -->
+                                    <label>选择分类：</label>
+                                	<select name="" class="form xzfl-select form-triangle input-yl">
+
+                                	</select>
+                                </div>
+                                <div class="ztmc">
+                                    <label><!-- 专题名称 -->专题名称：</label>
+                                    <input type="text" name="txt_specialName" autocomplete="off" placeholder="请输入专题名称" class="txt_input form" maxlength="30" id="ztmc" value="">
+                                </div>
+                                <div class="gjc">
+                                    <label><!-- 关键词 -->关键词：</label>
+                                       <input type="radio" name="keyword-radio" value="0" checked id="simple-word">  <label for="simple-word" class="radiolabel" style="margin-right: 30px;">简单关键词</label>
+                                       <input type="radio" name="keyword-radio" value="1" id="fz-word" disabled style="color:#57657e;cursor:default"><!-- 高级关键词 -->  <label style="color:#57657e;cursor:default" for="fz-word" class="radiolabel">高级关键词</label>
+                                </div>
+                                	<!-- 简单关键词 -->
+                               	    <label><!-- 关键词 -->包含：</label>
+                                   <textarea class="jin_input  form contains" value="" name=""  placeholder="多个关键词用逗号隔开" ></textarea><br />
+                               	    <label><!-- 关键词 -->不包含：</label>
+                                   <textarea class="jin_input  form not_contains" value="" name=""  placeholder="多个关键词用逗号隔开" ></textarea>
+
+                                   <!-- 复杂关键词 -->
+                                   <div class="fzgjcbox">
+	                                   <div class="dygjc">
+	                                   		<label>地域关键词：</label>
+	                                   		<textarea class="dygjc_input  form" value="" name=""  placeholder="多个关键词用逗号隔开" ></textarea>
+	                                   		<span style="clear: both;"></span>
+	                                   </div>
+	                                   <div class="dyLi">
+	                                   		<span class="add-word-btn">+ 添加关键词</span>
+	                                   		<span class="dyli-dy">
+	                                   			地域关系：
+	                                   			  <input type="radio" name="diyu-radio" value="0" checked id="dy-huo">  <label for="dy-huo" class="radiolabel">或</label>
+	                                      		 <input type="radio" name="diyu-radio" value="1" id="dy-yu">  <label for="dy-yu" class="radiolabel">与</label>
+	                                   		</span>
+	                                   </div>
+
+	                                   <div class="rwgjc">
+	                                   		<label>人物关键词：</label>
+	                                   		<textarea class="rwgjc_input  form" value="" name=""  placeholder="多个关键词用逗号隔开" ></textarea>
+	                                   		<span style="clear: both;"></span>
+	                                   </div>
+	                                   <div class="rwLi">
+	                                   		<span class="add-word-btn">+ 添加关键词</span>
+	                                   		<span class="rwli-dy">
+	                                   			人物关系：
+	                                   			  <input type="radio" name="rw-radio" value="0" checked id="rw-huo">  <label for="rw-huo" class="radiolabel">或</label>
+	                                      		 <input type="radio" name="rw-radio" value="1" id="rw-yu">  <label for="rw-yu" class="radiolabel">与</label>
+	                                   		</span>
+	                                   </div>
+
+	                                   <div class="sjgjc">
+	                                   		<label>事件关键词：</label>
+	                                   		<textarea class="sjgjc_input  form" value="" name=""  placeholder="多个关键词用逗号隔开" ></textarea>
+	                                   		<span style="clear: both;"></span>
+	                                   </div>
+	                                   <div class="dyLi">
+	                                   		<span class="add-word-btn">+ 添加关键词</span>
+	                                   		<span class="sjli-dy">
+	                                   			事件关系：
+	                                   			  <input type="radio" name="sj-radio" value="0" checked id="sj-huo">  <label for="sj-huo" class="radiolabel">或</label>
+	                                      		 <input type="radio" name="sj-radio" value="1" id="sj-yu">  <label for="sj-yu" class="radiolabel">与</label>
+	                                   		</span>
+	                                   </div>
+	                             </div>
+                                <div class="sjfw_start">
+                                    <label><!-- 时间范围 -->时间范围：</label>				<!-- 开始时间 -->
+                                    <input id="dateinfo1" name="txt_startTime" class="txt_input form"  value="" placeholder="起始日期"  autocomplete="off"/>
+                                    <i class="iconfont icon-yuyueriqi"></i>
+                                    <b class="hui_b"><!-- 不选择，默认30天 -->不选择，默认30天</b>
+                                </div>
+                                <span class="error"></span>
+                                <div class="sjfw_end">
+                                    <label>时间范围：</label>													<!-- 结束时间 -->
+                                    <input id="dateinfo2" readonly name="txt_endTime" class="txt_input form" value="" placeholder="结束日期" autocomplete="off"/>
+                                 	   <i class="iconfont icon-yuyueriqi"></i>
+                                    <b class="hui_b"><!-- 不选择，默认实时更新 -->不选择，默认实时更新</b>
+                                </div>
+                                <span class="error"></span>
+                            </form>
+                        </div>
+                        <div class="xwsjy_box inner">
+                            <h2 class="xwsjy_h color-box-bg"><!-- 媒体数据源 -->媒体数据源</h2>
+                            <p class="sjysz_p">
+                                <input type="radio" name="dataSource" value="0" checked id="ds-scope">  <label for="ds-scope" class="radiolabel" style="margin-right: 30px;">数据源范围</label>
+                                <input type="radio" name="dataSource" value="1" id="dx-scope" disabled> <label for="dx-scope" class="radiolabel">定向检测数据源</label>
+                            </p>
+                            <!--数据源范围筛选-没有选择数据源范围-->
+                            <ul class="num_uls data_check_left">
+                                <li class="mexuh_p">
+                                        你还没有选择数据源范围<!-- 你还没有选择数据源范围 --><b></b>
+                                </li>
+                                <li class="num_list diqufanwei">
+                                    <label><!-- 地区范围 -->地区范围</label>
+                                    <!--<b>你还没有选择地区范围</b>--><!-- 全选-->
+                                    <b><span data-name="全选" data-dicdesc="" data-dicvalue=""><!-- 全选 -->全选</span></b>
+                                    <a class="js_filterarea"><!-- 选择 -->选择</a>
+                                </li>
+                                <li class="num_list yuyanfenlei">
+                                    <label><!-- 语言分类 -->语言分类</label>
+                                    <!--<b>你还没有选择语言分类</b>-->
+                                    <b><span data-name="全选" data-shortname="" data-srcvalue=""><!-- 全选 -->全选</span></b>
+                                    <a class="js_filterlau"><!-- 选择 -->选择</a>
+                                </li>
+                                <li class="num_list meitijibie">
+                                    <label><!-- 媒体级别 -->媒体级别</label>
+                                    <!--<b>你还没有选择媒体级别</b>-->
+                                    <b><span data-value=""><!-- 不限 -->不限</span></b>
+                                    <a class="js_medialevel"><!-- 选择 -->选择</a>
+                                </li>
+                            </ul>
+
+                        <!--筛选具体数据源-->
+                        <div class="num_box data_check_right">
+                            <h3 class="msxz_h"><!-- 你还没有选择任何具体数据源 -->你还没有选择任何具体数据源</h3>
+                            <p class="msxz_p g2e9"><!-- 马上选择 --><span class="qulickSel" style="cursor:pointer;">马上选择</span></p>
+                            <div class="xzyh_box">
+                                <p class="num_pks" >
+                                    <label><!-- 你选中了 -->你选中了<b id="sjy_1">0</b><!-- 条数据源 -->条数据源</label>
+                                    <a><!-- 重新选择 -->重新选择</a>
+                                </p>
+                                <table class="chese_tab chese_tab_final" cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th><!-- 媒体名称 -->媒体名称</th>
+                                            <th><!-- 地区 -->地区</th>
+                                            <th><!-- 语言 -->语言</th>
+                                            <th><!-- 影响力 -->影响力</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--筛选具体数据源-->
+                        <h2 class="xwsjy_h color-box-bg"><!-- 社交数据源 -->社交数据源</h2>
+                        <ul class="num_uls">
+                            <li class="mexuh_p checked">
+                                	<!-- 你选择了以下社交数据源 -->你选择了以下社交数据源
+                                <b></b>
+                            </li>
+                            <li class="num_list shejiaoshuju">
+                                <label><!-- 社交数据源 -->社交数据源</label>
+                                <b>
+                                </b>
+                                <a><!-- 选择 -->选择</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                 </div>
+	            <p class="ztyl_btn ">
+	                <a title="保存专题" href="javascript:;" class="bczt default-btn-enter"><!-- 保存专题 -->保存专题</a>
+		            <a title="取消新建" href="javascript:;" class="qxxj default-btn-cancel" onclick="tanchu('#zhuanti_quxiaoxinjian')"><!-- 取消新建 -->取消保存</a>
+	            </p>
+            </div>
+            <!--专题管理--> </div>
+        <div style="  clear: both;font-size: 0; height: 1px;overflow: hidden;"></div>
+    </div>
+</div>
+<div style="display:none">
+	<span class="token"></span>
+	<span class="id"></span>
+	<span id="editData"></span>
+</div>
+<input type="hidden" id="language" name="language" value="zh" style="display:none;" />
+
+<!-- 弹窗开始 -->
+
+
+<!-- 取消新建专题开始 -->
+<div class="tanchu" id="zhuanti_quxiaoxinjian">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+
+            <span class="fl"><!-- 取消新建专题 -->取消操作</span>
+
+
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix tc">
+                <div class="t10 lan f18" style="display: none;"></div>
+
+		           <div class="t10"><!-- 是否取消新建专题 -->是否取消操作？</div>
+
+
+
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:;" class="small-btn-enter quxiaoxinjian" ><!-- 是 -->是</a>
+		           <a href="javascript:void(0)" onclick="guanbi()" class="small-btn-cancel"><!-- 否 -->否</a>
+
+
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 余额不足开始 -->
+<div class="tanchu" id="zhuanti_yuebuzu">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+
+		           <span class="fl"><!-- 新建专题提示 -->新建专题提示</span>
+
+
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20 t20">
+            <div class="clearfix" style="padding:0px 50px;">
+                <div class="t10">
+                    <span class="ml25 red fr">
+                        <!-- <img src="images/warning.png" alt="" class="mr5" />
+                        	余额不足 -->
+                    </span>
+                    		<!-- 当前流量余额 -->当前流量余额<span class="ml25 lan f26 dangqianyue"></span>
+                </div>
+                <div class="t10">
+                   		 <!-- 本次即将消耗 -->本次即将消耗<span class="ml25 lan n_countshl"></span>
+                </div>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" class="bczttj" onclick="guanbi()"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" onclick="guanbi()"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 余额不足结束 -->
+<!-- 删除专题开始 -->
+<div class="tanchu" id="zhuanti_del">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 删除专题提示 -->删除专题提示</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix tc">
+                <div class="t10 lan f18">一带一路</div>
+                <div class="t10"><!-- 你真的要删除这个专题吗 -->你真的要删除这个专题吗？</div>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" class="grad" onclick="guanbi()"><!-- 删除 -->删除</a>
+                <a href="javascript:void(0)" onclick="guanbi()"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 删除专题结束 -->
+<!-- 地区范围开始 -->
+<div class="tanchu" id="zhuanti_selectarea">
+    <div class="tanchu_inner" style="width:900px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 地区范围 -->地区范围</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <ul class="f_choice f_choice_static">
+                    <li class="choice_selected">
+                        <p><!-- 已选地区 -->已选地区</p>
+
+                    </li>
+                    <li class="choice_li">
+                        <a class="diqu-allselect" style="float: left;margin-right: 10px;color:#2E95F3;"><!-- 全选 -->全选</a>
+                        <p class="on">A</p>
+                        <p>B</p>
+                        <p>C</p>
+                        <p>D</p>
+                        <p>E</p>
+                        <p>F</p>
+                        <p>G</p>
+                        <p>H</p>
+                        <p>I</p>
+                        <p>J</p>
+                        <p>L</p>
+                        <p>M</p>
+                        <p>N</p>
+                        <p>O</p>
+                        <p>P</p>
+                        <p>Q</p>
+                        <p>R</p>
+                        <p>S</p>
+                        <p>T</p>
+                        <p>U</p>
+                        <p>V</p>
+                        <p>W</p>
+                        <p>X</p>
+                        <p>Y</p>
+                        <p>Z</p>
+                    </li>
+                    <li class="choice_notselected">
+                        <!--<p class="sel">阿尔巴尼亚</p>
+                        <p class="sel on">阿尔及利亚</p>-->
+                    </li>
+                </ul>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" class="small-btn-enter" style=""><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" class="small-btn-cancel"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 地区范围结束 -->
+<!-- 百分比设置开始 -->
+<div class="tanchu" id="zhuanti_radio">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 资讯总量变化检测 -->资讯总量变化检测</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <div class="t10"><!-- 较上周平均值增加百分比 -->较上周平均值增加百分比<input type="text" name="" class="itext ml25" /></div>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" class="grad" onclick="guanbi()"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" onclick="guanbi()"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 百分比设置结束 -->
+<!-- 敏感词设置开始 -->
+<div class="tanchu" id="zhuanti_sensitive">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 添加敏感词 -->添加敏感词</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix tc">
+                <div class="t10"><!-- 敏感词 -->敏感词<input type="text" name="" class="itext ml25"/></div>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" class="grad" ><!-- 添加 -->添加</a>
+                <a href="javascript:void(0)" ><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 敏感词设置结束 -->
+<!-- 语言分类开始 -->
+<div class="tanchu" id="zhuanti_selectlau">
+    <div class="tanchu_inner" style="width:900px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 语言分类 -->语言分类</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <ul class="f_choice f_choice_static">
+                    <li class="choice_selected">
+                        <p><!-- 已选语言 -->已选语言</p>
+
+                    </li>
+                    <li class="choice_li">
+                        <a class="yuyan-allselect" style="float: left;margin-right: 10px;color:#2E95F3;"><!-- 全选 -->全选</a>
+                        <p class="on">A</p>
+                        <p>B</p>
+                        <p>C</p>
+                        <p>D</p>
+                        <p>E</p>
+                        <p>F</p>
+                        <p>G</p>
+                        <p>H</p>
+                        <p>I</p>
+                        <p>J</p>
+                        <p>L</p>
+                        <p>M</p>
+                        <p>N</p>
+                        <p>O</p>
+                        <p>P</p>
+                        <p>Q</p>
+                        <p>R</p>
+                        <p>S</p>
+                        <p>T</p>
+                        <p>U</p>
+                        <p>V</p>
+                        <p>W</p>
+                        <p>X</p>
+                        <p>Y</p>
+                        <p>Z</p>
+                    </li>
+                    <li class="choice_notselected">
+                        <!--<p class="sel">阿尔巴尼亚语</p>
+                        <p class="sel on">阿尔及利亚语</p>-->
+                    </li>
+                </ul>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)"  class="small-btn-enter"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" class="small-btn-cancel"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 语言分类结束 -->
+<!-- 领域分类开始 -->
+<div class="tanchu" id="zhuanti_selectlingyu">
+    <div class="tanchu_inner" style="width:590px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 领域分类 -->领域分类</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="choice_selected" style="padding-bottom: 0;">
+            <p><!-- 已选领域 -->已选领域</p>
+            <p class="sel on"><!-- 安圭拉岛语 -->安圭拉岛语<i class="iconfont icon-guanbi"></i></p>
+            <p class="sel on"><!-- 阿根廷语 -->阿根廷语<i class="iconfont icon-guanbi"></i></p>
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <p class="wraperh"><!-- 选择以下数据源领域，再次点击取消选择 -->选择以下数据源领域，再次点击取消选择</p>
+                <ul class="f_choice f_choice_static wautoi duoxuan">
+                    <li class="choice_notselected pl0i">
+
+                        <p class="sel">政治</p>
+
+                        <p class="sel">军事</p>
+
+                        <p class="sel">科技</p>
+
+                        <p class="sel">经济</p>
+
+                        <p class="sel">文化</p>
+
+                        <p class="sel">体育</p>
+
+                        <p class="sel">社会</p>
+
+                        <p class="sel">娱乐</p>
+
+                        <p class="sel">综合</p>
+
+                    </li>
+                </ul>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" onclick="guanbi()"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" onclick="guanbi()"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 领域分类结束 -->
+<!-- 媒体级别开始 -->
+<div class="tanchu" id="zhuanti_selectlevel">
+    <div class="tanchu_inner" style="width:590px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 媒体级别 -->媒体级别</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <ul class="filterlevel f14">
+                    <li class="sel on">
+                       <span data-value=""><!-- 不限 -->不限</span>
+                    </li>
+                    <li class="sel">
+                       <span data-value="5"><!-- 五级 -->五级</span><small class="ml25 qhui f12"><!-- 此为媒体最高级别 -->此为媒体最高级别</small>
+                    </li>
+                    <li class="sel">
+                       <span data-value="4"><!-- 四级 -->四级</span>
+                    </li>
+                    <li class="sel">
+                       <span data-value="3"><!-- 三级 -->三级</span>
+                    </li>
+                    <li class="sel">
+                       <span data-value="2"><!-- 二级 -->二级</span>
+                    </li>
+                    <li class="sel">
+                       <span data-value="1"><!-- 一级 -->一级</span>
+                    </li>
+                </ul>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" onclick="guanbi()" class="small-btn-enter"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" onclick="guanbi()" class="small-btn-cancel"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 媒体级别结束 -->
+<!-- 社交数据源开始 -->
+<div class="tanchu" id="zhuanti_selectshejiao">
+    <div class="tanchu_inner" style="width:590px;">
+        <div class="t wraperl-sm">
+            <span class="fl"><!-- 社交数据源 -->社交数据源</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="choice_selected sociallyxz1" style="padding-bottom: 0;">
+            <p><!-- 已选社交 -->已选社交</p>
+
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <p class="wraperh"><!-- 选择以下数据源领域 -->选择以下数据源领域</p>
+                <ul class="f_choice f_choice_static wautoi duoxuan">
+                    <li class="choice_notselected pl0i sociallyxz">
+                        <p class="sel" data-value="13"><!-- 微信 -->微信</p>
+                        <p class="sel" data-value="14"><!-- 微博 -->微博</p>
+
+
+                            <p class="sel" data-value="10">Facebook</p>
+                            <p class="sel" data-value="9">Twitter</p>
+
+                    </li>
+                </ul>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a href="javascript:void(0)" class="small-btn-enter"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" class="small-btn-cancel"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 操作成功对话框 -->
+<div class="tanchu" id="common_tanchu">
+    <div class="tanchu_inner" style="width:500px;">
+        <div class="t wraperl-sm">
+            <span class="fl "><!-- 信息 -->信息</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="c p20">
+        	 <div class="clearfix tc">
+                <div class="t10 lan f18 common_message"><!-- 操作成功 -->操作成功！</div>
+            </div>
+            <p class="ztyl_btn m30 clearfix">
+                <a class="common_message_btn" href="subject/toManager?id=507a3ef47f5a42e2b8c241d8ce36b1bf&opType=1&srcId=625b88dea74f45f51806acf0afa99b88&source=1"><!-- 确定 -->确定</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- 筛选具体数据源 -->
+<div class="tanchu" id="data-select-tanchu" style="width:100%;height:100%;background:rgba(0,0,0,.7);">
+
+	<style type="text/css">
+		.select-data-tr:hover{ background-color: #fafafa;}
+	</style>
+    <div class="tanchu_inner" style="width:800px">
+        <div class="t wraperl-sm">
+            <span class="fl "><!-- 选择具体数据源 -->选择具体数据源</span>
+            <a href="javascript:void(0)" class="fr iblock js-guanbi qhui cup"></a>
+        </div>
+        <div class="choice_selected" style="padding-bottom: 0;">
+            <p><!-- 已选数据源 -->已选数据源</p>
+            <div class="shejiaotanchu">
+            </div>
+        </div>
+        <div class="c p20">
+            <div class="clearfix">
+                <p class="sel" style="padding: 5px 0;cursor:auto;">
+                            &nbsp;&nbsp;<!-- 关键词 -->关键词：&nbsp;&nbsp;
+                            <input id="search-data" type="text" placeholder="请输入关键词搜索数据源" class="form" style="float: none;width: 50%;color: #fff"/>
+                            <a style="padding:5px 20px;  vertical-align: middle; display: inline-block;   padding: 4px 34px;margin: 0 7.5px;  " id="choice_selected"><!-- 查找 -->查找</a>
+                </p>
+                <table class="chese_tab chese_tab_tanchu" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th><!-- 名称 -->名称</th>
+                            <th><!-- 域名 -->域名</th>
+                            <th><!-- 地区 -->地区</th>
+                            <th><!-- 语言 -->语言</th>
+                            <th><!-- 媒体影响力 -->媒体影响力</th>
+                            <th><!-- 选择数据源 -->选择数据源</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <p class="paging_p" id="tanchu_pages" style="margin-bottom: 10px; display: none;">
+            	<!--分页-->
+            </p>
+            <p class="ztyl_btn m30 clearfix" style="margin-bottom: 10px;">
+                <a href="javascript:void(0)" class="confirm-data small-btn-enter" style="display:none;"><!-- 确定 -->确定</a>
+                <a href="javascript:void(0)" class="cancel-data small-btn-cancel" style="display:none;"><!-- 取消 -->取消</a>
+            </p>
+        </div>
+    </div>
+</div>
+	 <script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+    <script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+     <script src="${ctx}/js/subjectAnalysis/easydialog.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/layer.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/template.min.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/Scrollbar.js"></script>
+        <script type="text/javascript" src="${ctx}/js/subjectAnalysis/map-base.js"></script>
+        <script type="text/javascript" src="${ctx}/js/subjectAnalysis/tanchu.js"></script>
+          <script src="${ctx}/js/subjectAnalysis/con_datetime.js" type="text/javascript" ></script>
+        <script src="${ctx}/js/subjectAnalysis/jquery.ui.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/WdatePicker.js"></script>
+       <script src="${ctx}/js/subjectAnalysis/jedate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/AddSpecial.js"></script>
+    <script type="text/javascript" src="${ctx}/plugins/laydate/laydate.js"></script>    
+    <script src="${ctx}/js/subjectAnalysis/newSubject.js"></script>
+    
+
+	<script>
+	
+	
+		$.fn.size=function(){
+		   return $(this).length;
+		}
+		$(function(){
+	     if($('#content_note li').length>10){
+	     	 $('#mainBox_note').css({'height':'400px'});
+	     	 $('#content_note').css({'position':'absolute'});
+	     	 var addscoll_new_note=new addScroll('mainBox_note','content_note','scrDiv_note');
+	     }
+	    });
+
+
+        	function numsplit(num) {
+				var decimalPart = '';
+				  num = num.toString();
+				  if (num.indexOf('.') != -1) {
+				    decimalPart = '.' + num.split('.')[1];
+				    num = parseInt(num.split('.')[0]);
+				  }
+				  var array = num.toString().split('');
+				  var index = -3;
+				  while (array.length + index > 0) {
+				    // 从单词的最后每隔三个数字添加逗号
+				    array.splice(index, 0, ',');
+				    index -= 4;
+				  }
+				  return array.join('') + decimalPart;
+				}
+
+        	function numsplit1(num,n){
+				if(isNaN(num)){return ''}
+					var n=n;
+					if(n){
+						var numstr=Number(num).toFixed(n).toString();
+					}else{
+						var numstr=Number(num).toString();
+					}
+					var numstr1=numstr.split('.')[0];//整数部分
+					var numstr2=numstr.split('.')[1];//小数部分
+					if(numstr1>=0){
+						var numstr1=numstr.split('.')[0];//整数部分
+					}else{
+						var numstr1=numstr.substring(1).split('.')[0];//整数部分
+					}
+					 var array = numstr1.toString().split('');
+					  var index = -3;
+					  while (array.length + index > 0) {
+					    // 从单词的最后每隔三个数字添加逗号
+					    array.splice(index, 0, ',');
+					    index -= 4;
+					  } ;
+					  if(num>=0){
+					  	var numstr3=array.join('')
+					  }else{var numstr3='-'+array.join('')}
+					  if(numstr2){
+					  	var jgnum= numstr3+'.'+numstr2;
+					  }else{
+					  	 var jgnum= numstr3
+					  }
+					  return jgnum
+			};
+
+
+         //选项卡
+         function validSet(index){
+         			$(".hd p").removeClass("onp")
+         	    	$(".hd p").eq(index).addClass("onp");
+         			$(".hd p").eq(index).click();
+         }
+
+         $(function(){
+             // tab选项卡
+         	$(".tabw").slide({titCell:".hd p",trigger:"click",titOnClassName:"onp"});
+             //数据源筛选，筛选具体的数据源
+             $('.sjysz_p label').click(function(){
+                 var i=$('.sjysz_p label').index($(this));
+                 var radioId = $(this).attr('name');
+                 $('.sjysz_p b').removeAttr('class') && $(this).attr('class', 'checked');
+                 $('input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+                 if(i==0){
+                     $('.num_uls').eq(0).show();
+                     $('.num_box').hide();
+                 }else if(i==1){
+                     $('.num_uls').eq(0).hide();
+                     $('.num_box').show();
+                 }
+                 $('.quickSel').click(function(){
+                     $('.msxz_h').hide();
+                     $('.msxz_p').hide();
+                     $('.xzyh_box').show();
+                 });
+              });
+
+         });
+         //数字格式化
+         function numsplit(num) {
+         			var decimalPart = '';
+           num = num.toString();
+           if (num.indexOf('.') != -1) {
+             decimalPart = '.' + num.split('.')[1];
+             num = parseInt(num.split('.')[0]);
+           }
+           var array = num.toString().split('');
+           var index = -3;
+           while (array.length + index > 0) {
+             // 从单词的最后每隔三个数字添加逗号
+             array.splice(index, 0, ',');
+             index -= 4;
+           }
+           return array.join('') + decimalPart;
+         }
+
+         let startDate_lay = laydate.render({
+			  elem: '#dateinfo1', //指定元素
+              theme: '#008aff',
+              format: 'yyyy/MM/dd', //可任意组合
+              trigger:"click",
+              done:function(value, date){
+            	   endDate_lay.config.min = {
+                  		   year:date.year,
+                  		   month:date.month-1,
+                  		   date:date.date,
+                  		   hours:0,
+                  		   minutes:0,
+                  		   seconds:0
+                  		   
+                     }
+                }
+			});
+         let endDate_lay = laydate.render({
+			  elem: '#dateinfo2', //指定元素
+             theme: '#008aff',
+             trigger:"click",
+             format: 'yyyy/MM/dd', //可任意组合
+             done:function(value, date){
+                 startDate_lay.config.max = {
+               		   year:date.year,
+               		   month:date.month-1,
+               		   date:date.date,
+               		   hours:0,
+               		   minutes:0,
+               		   seconds:0
+               		   
+                  }
+              }
+			});
+
+         //radio关键词点击切换
+         $("input:radio[name=keyword]").click(()=>{
+        	 let val = $("input:radio[name=keyword]:checked").val();
+        	 console.log(val)
+        	if(val==='1'){
+        		$(".fzgjcbox").show();
+        		$(".jin_input").hide();
+        	}else {
+        		$(".fzgjcbox").hide();
+        		$(".jin_input").show();
+        	}
+         })
+        setHeaderActive();
+        // 设置页头
+        function setHeaderActive() {
+            var headerArr = $('.header-right nav a');
+            $.each(headerArr, function (index, item) {
+                if ($(item).html() === "专题分析") {
+                    $(item).addClass('active');
+                }
+            })
+        }
+        
+        
+       
+	</script>
+</body>
+</html>
+

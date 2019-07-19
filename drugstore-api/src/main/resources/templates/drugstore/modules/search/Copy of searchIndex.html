@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>聚合发现</title>
+    <link rel="stylesheet" href="${ctx}/plugins/swiper/swiper.min.css">
+     <link href="${ctx}/plugins/pagination/pagination.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/search/searchIndex.css">
+    <link rel="icon" href="data:;base64,=">
+    <style>
+    	.sk-fading-circle {
+    		    top: 1rem!important;
+    	}
+    </style>
+</head>
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="container clearfix mt-20">
+    <div class="mainbar fl clearfix mb-30">
+        <div class="color-box-bg data-statistics">
+            <h3 class="big color-main ml-30">数据统计</h3>
+            <ul id="data-count" class="data-list clearfix">
+                <li class="data-item fl li-1">
+                    <div class="wrap">
+                        <div class="mt"><i class="iconfont icon-shuju color-main mr-5"></i>近7天数据量</div>
+                        <div class="mc ml-5">
+                            <span class="num bold total"></span>
+                        </div>
+                        <div class="count-item-bottom mf small danger ml-5">
+                            <span class="avg"></span>
+                            <span><i class="iconfont icon-uparrow" ></i><span class="increases"></span></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-item fl li-2">
+                    <div class="wrap">
+                        <div class="mt"><i class="iconfont icon-shuju color-main mr-5"></i>近7天中文量</div>
+                        <div class="mc ml-5">
+                            <span class="num bold total"></span>
+                        </div>
+                        <div class="count-item-bottom mf small danger ml-5">
+                            <span class="avg"></span>
+                            <span><i class="iconfont icon-uparrow" ></i><span class="increases"></span></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-item fl li-3">
+                    <div class="wrap">
+                        <div class="mt"><i class="iconfont icon-shuju color-main mr-5"></i>近7天外文量</div>
+                        <div class="mc ml-5">
+                            <span class="num bold total"></span>
+                        </div>
+                        <div class="count-item-bottom mf small danger ml-5">
+                            <span class="avg"></span>
+                            <span><i class="iconfont icon-uparrow" ></i><span class="increases"></span></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-item fl li-4">
+                    <div class="wrap">
+                        <div class="mt"><i class="iconfont icon-shuju color-main mr-5"></i>近7天新闻数据</div>
+                        <div class="mc ml-5">
+                            <span class="num bold total"></span>
+                        </div>
+                        <div class="count-item-bottom mf small danger ml-5">
+                            <span class="avg"></span>
+                            <span><i class="iconfont icon-uparrow" ></i><span class="increases"></span></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-item fl li-5">
+                    <div class="wrap">
+                        <div class="mt"><i class="iconfont icon-shuju color-main mr-5"></i>近7天社交数据</div>
+                        <div class="mc ml-5">
+                            <span class="num bold total"></span>
+                        </div>
+                        <div class="count-item-bottom mf small danger ml-5">
+                            <span class="avg"></span>
+                            <span><i class="iconfont icon-uparrow" ></i><span class="increases"></span></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="formbox clearfix color-box-bg mt-10">
+            <div class="search-group container-flex">
+                <div class="search-select">
+                    <select class="form form-triangle">
+                        <option value="0">全部</option>
+                        <option value="1">新闻</option>
+                        <option value="2">社交</option>
+                    </select>
+                </div>
+                <div class="search-input form">
+                    <input type="text" class="search-text">
+                </div>
+                <div class="search-button btn btn-search btn-info">查询</div>
+            </div>
+            <!--<ul class="search-recommend mt-10 color-main clearfix">-->
+                <!--<li class="item small mr-10 pointer">大数据 <i class="iconfont icon-guanbi1"></i></li>-->
+                <!--<li class="item small mr-10 pointer">英文 <i class="iconfont icon-guanbi1"></i></li>-->
+            <!--</ul>-->
+            <ul class="list-filter container-flex clearfix mt-20">
+                <li class="item country">
+                    <span class="mIn selective form">全部国家</span>
+                    <i class="iconfont icon-35_xiangxiajiantou choose-country"></i>
+                    <div class="countryBox">
+                        <ul class="flex font14 choose-arr">
+                            <li class="pointer on main-blue all">全部</li>
+                            <li class="pointer main-blue">ABCDE</li>
+                            <li class="pointer main-blue">FGHIJ</li>
+                            <li class="pointer main-blue">KLMNO</li>
+                            <li class="pointer main-blue">PQRST</li>
+                            <li class="pointer main-blue">UVWXYZ</li>
+                        </ul>
+                        <i class="iconfont icon-error-bold main-blue font18 closed"></i>
+                        <ul class="countryDetail">
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="item field">
+                    <select class="form form-triangle domain-select">
+
+                    </select>
+                </li>
+                <li class="item language">
+                    <select class="form form-triangle">
+
+                    </select>
+                </li>
+                <li class="item emotion">
+                    <select class="form form-triangle">
+                        <option value="0">情感不限</option>
+                        <option value="消极">消极</option>
+                        <option value="积极">积极</option>
+                        <option value="中性">中性</option>
+                    </select>
+                </li>
+                <li class="item item-time">
+                    <div class="form form-triangle shijian">
+                        <span class="result">选择时间</span>
+                        <ul class="choose">
+                            <li class="pointer">时间不限</li>
+                            <li class="pointer">一天内</li>
+                            <li class="pointer">一周内</li>
+                            <li class="pointer">一月内</li>
+                            <li class="self">自定义</li>
+                            <li class="start">
+                                从<input id="dateinfo1" name="startdate" type="text" value=""
+                                        placeholder="起始日期" class="form"/>
+                            </li>
+                            <li class="end">
+                                到<input id="dateinfo2" name="enddate" type="text" value=""
+                                        placeholder="结束日期" class="form"/>
+                            </li>
+                            <li class="sure"><a class="shijian-confirm small-btn-enter">确定</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="item translation">
+                    <select class="form form-triangle">
+                        <option value="0">原文</option>
+                        <option value="1">中文译文</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div class="listbox clearfix color-box-bg mt-10">
+            <div class="list-tit color-box-bg">
+                <div class="list-num fl ml-20 small">共 <span class="color-main">0</span> 条</div>
+                <div class="second-search">
+                    <input type="text" placeholder="二次检索">
+                    <i class="iconfont icon-search"></i>
+                </div>
+            </div>
+            <ul class="list clearfix">
+
+            </ul>
+
+        </div>
+        <div id="pagination" class="m-style"></div>
+    </div>
+    <div class="sidebar fr hidden clearfix">
+        <div class="wrapper">
+            <div class="word-cloud color-box-bg">
+                <h3 class="big color-main">热词聚焦</h3>
+                <div id="wordCloud">
+                </div>
+            </div>
+            <div class="data-per color-box-bg mt-10">
+                <h3 class="big color-main">区域情感分布</h3>
+                <div id="dataRose" class="mt-20">
+
+                </div>
+            </div>
+            <div class="data-top color-box-bg mt-10">
+                <h3 class="big color-main">媒体数据命中</h3>
+                <ul class="top-list clearfix">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script src="${ctx}/plugins/laydate/laydate.js"></script>
+<script src="${ctx}/plugins/layer/layer.js"></script>
+<script src="${ctx}/plugins/pagination/jquery.pagination.js"></script>
+<script src="${ctx}/plugins/echarts.js"></script>
+<script src="${ctx}/plugins/echarts-wordcloud.js"></script>
+<script src="${ctx}/plugins/country.js"></script>
+<script src="${ctx}/js/modules/search/searchIndex.js"></script>
+</body>
+</html>

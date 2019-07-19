@@ -1,0 +1,88 @@
+<!doctype html>
+
+<html lang="zh-Cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>设置成功</title>
+    <!--<link rel="icon" href="images/favicon.ico">-->
+    <link rel="stylesheet" href="${ctx}/css/modules/denglu/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/denglu/login.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/denglu/common.css">
+    <style>
+        .progress-bar {
+            background-color: #50acff;
+        }
+
+    </style>
+</head>
+
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+
+<div class="login" style="margin-top: 120px">
+    <form method="post"  action="${ctx}/api/v1/view?to=index">
+        <div class="login_Box login_Box_header">
+            <h3 class="ct">激活成功</h3>
+        </div>
+        <div class="line "></div>
+        <div class="login_Box_img login_Box_img3">
+            <!-- <img src="images/bd_in2_1.png"/>-->
+
+        </div>
+
+        <div class="login_Box login_Box_bottom">
+            <div class="reg_divBtn">
+                <!--<input type="submit" value="进入主页面">-->
+                <div class="progress">
+
+                    <div id="myprogress" class="progress-bar  progress-bar-striped active" role="progressbar">
+
+                    </div>
+
+
+                </div>
+                <p></p>
+            </div>
+        </div>
+
+
+
+
+
+</form><!--form-->
+
+</div><!--login-->
+<footer> 中译语通科技(青岛)有限公司</footer>
+</body>
+</html>
+<script src=" ${ctx}/js/modules/denglu/jquery.js"></script>
+<script>
+
+
+    var p = 0
+
+    function update() {
+        p += 25
+        $("#myprogress").css("width", p + "%")
+        if (p == 100) {
+            p = 0
+            clearInterval(interval)
+            setTimeout("window.location.href = '${ctx}/api/v1/view?to=modules/account/denglu'", 200)
+
+        }
+    }
+
+    interval = setInterval(update, 500)
+
+
+</script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+<script src=" ${ctx}/js/modules/denglu/html5shiv.js"></script>
+<script src=" ${ctx}/js/modules/denglu/respond.min.js"></script>
+<script src=" ${ctx}/js/modules/denglu/browser.js"></script>
+<![endif]-->

@@ -1,0 +1,383 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<title>报告管理</title><!-- 邮件推送报告 -->
+
+<link href="${ctx}/css/subjectAnalysis/basic.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/style1.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/datacss_5012.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/datacss_a.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/datacss_e_a.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/js/subjectAnalysis/easydialog.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css" />
+
+
+<link href="${ctx}/css/subjectAnalysis/report_tab.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/subjectAnalysis/emailReport.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<!-- js国际化 -->
+<input type="hidden" id ="mpr1" value="添加收件邮箱">
+<input type="hidden" id ="mpr2" value="邮箱地址">
+<input type="hidden" id ="mpr3" value="添加">
+<input type="hidden" id ="mpr4" value="删除收件邮箱">
+<input type="hidden" id ="mpr5" value="你真的要移除该邮箱作为接收邮箱吗？">
+<input type="hidden" id ="mpr6" value="删除">
+<input type="hidden" id ="mpr7" value="信息提示">
+<input type="hidden" id ="mpr8" value="结束时间不能小于开始时间">
+<input type="hidden" id ="mpr9" value="确定">
+<input type="hidden" id ="mpr10" value="操作失败">
+<input type="hidden" id ="mpr11" value="请完善信息">
+<input type="hidden" id ="mpr12" value="月"><!-- 年 -->
+<input type="hidden" id ="mpr13" value="日"><!-- 月 -->
+<input type="hidden" id ="mpr14" value="mailPushReportJs.15"><!-- 日 -->
+<input type="hidden" id ="mpr15" value="取消"><!-- 取消按钮 -->
+<input type="hidden" id ="mpr16" value="操作成功">
+<input type="hidden" id ="mpr17" value="添加失败，添加接收邮箱重复"><!--邮箱重复 -->	
+<input type="hidden" id ="systemType" value=""><!-- 院校版 -->
+	<div class="data_centent">
+		
+<div class="centent_left">
+<input type="hidden" id="language" name="language" value="zh" style="display:none;" />
+<input type="hidden" id=""systemType"" name=""systemType"" value="systemType" style="display:none;" />
+<input type="hidden" id="userId" value="102768"/>
+    <a href="javascript:;" class="link_left_menu">
+	     <p class="centent_left_p" id="topicList"><img img src="${ctx}/images/subjectAnalysis/conter_left_03.png">专题列表</p><!-- 专题列表 -->
+    </a>
+	<div id="mainBox_note" class="zt_list_box">
+	<ul id="content_note" class="centent_left_lsit">
+	</ul>
+	</div>
+	<a href="" id="toAdd"  class="link_left_menu">
+	    <p class="centent_left_p" id="new_title"><img img src="${ctx}/images/subjectAnalysis/conter_left_06.png">新建专题</p><!-- 新建专题 -->
+	</a>
+	<a href="" id="topicManager"  class="link_left_menu">
+	    <p class="centent_left_p" id="topicManager2"><img img src="${ctx}/images/subjectAnalysis/conter_left_08.png">专题管理</p><!-- 专题管理 -->
+	</a>
+	<!-- 原来报告管理列表页面 -->
+	
+	<!-- 新的报告管理列表页面 -->
+	<a href="" id="reportList"  class="link_left_menu">
+	    <p class="centent_left_p"><img img src="${ctx}/images/subjectAnalysis/conter_left_10.png">报告管理</p><!-- 报告管理 -->
+	</a>
+</div>
+
+		<div class="centent_right">
+			<div class="centent_right_tab">
+				<ul>
+                                    <li ind="analysisReport">
+                                        <a href="http://localhost:9999/api/v1/view?to=modules/subjectAnalysis/reportManage">
+                                            分析报告 <!-- 分析报告 --> 
+                                         </a>
+                                    </li>                                    
+                                        <li class="mail-push-report on" ind="mailPushPeport">
+                                            <a href="http://localhost:9999/api/v1/view?to=modules/subjectAnalysis/emailReport">
+                                               邮件推送报告<!--  邮件推送报告 -->
+                                            </a>
+                                        </li>
+				</ul>
+			</div>
+			<div id="mailPushPeport" class="report_tab_single">
+				<div class="report_content">
+					<div class="content_head">
+						开启订阅<!-- 开启订阅 -->
+					</div>
+					<ul class="paper_subscribe">
+						<li class="morning_paper">
+							<span style="width:260px;display: inline-block;">
+								早报订阅<!-- 早报订阅 -->
+							</span>
+							<label style="margin-left:0px;">
+								每天推送时间<!-- 每天推送时间 -->
+							</label>
+                                                    <select id="morningPaperTime">
+								<option>01:00AM</option>
+								<option>02:00AM</option>
+								<option>03:00AM</option>
+								<option>04:00AM</option>
+								<option>05:00AM</option>
+								<option>06:00AM</option>
+								<option selected="selected">07:00AM</option>
+								<option>08:00AM</option>
+								<option>09:00AM</option>
+								<option>10:00AM</option>
+								<option>11:00AM</option>
+								<option>12:00AM</option>
+							</select>
+							<div class="set_btn">
+								<div></div>
+							</div>
+						</li>
+						<li class="noon_paper">
+							<span style="width:260px;display: inline-block;">
+								午报订阅<!-- 午报订阅 -->
+							</span>
+							<label style="margin-left:0px;">
+								每天推送时间<!-- 每天推送时间 -->
+							</label>
+                                                    <select id="noonPaperTime">
+								<option>01:00PM</option>
+								<option>02:00PM</option>
+								<option>03:00PM</option>
+								<option>04:00PM</option>
+								<option>05:00PM</option>
+								<option>06:00PM</option>
+								<option>07:00PM</option>
+								<option>08:00PM</option>
+								<option>09:00PM</option>
+								<option>10:00PM</option>
+								<option>11:00PM</option>
+								<option selected="selected">12:00PM</option>
+							</select>
+							<div class="set_btn">
+								<div></div>
+							</div>
+						</li>
+					</ul>
+					<div class="set_subscribe">
+						<div class="content_head">
+							订阅设置<!-- 订阅设置 -->
+						</div>
+						<ul class="set_content">
+                                                    <li>
+                                                        <span>
+                                                            接收邮箱<!-- 接收邮箱 -->
+                                                        </span>
+                                                        <div class="email-content">
+<!--                                                            <div>
+                                                                <span>&times;</span>
+                                                                <div id="rightEmail"></div>
+                                                            </div>-->
+                                                            <div class="mail-btn">
+                                                                +
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <span>
+                                                            发送日<!-- 发送日 -->&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        </span>
+                                                        <div class="week-days">
+                                                            <span ind="1">星期一<!-- 星期一 --></span>
+                                                            <span ind="2">星期二<!-- 星期二 --></span>
+                                                            <span ind="3">星期三<!-- 星期三 --></span>
+                                                            <span ind="4">星期四<!-- 星期四 --></span>
+                                                            <span ind="5">星期五<!-- 星期五 --></span>
+                                                            <span ind="6">星期六<!-- 星期六 --></span>
+                                                            <span ind="7">星期日<!-- 星期日 --></span>
+                                                        </div>
+                                                    </li>
+<!--                                                    <li>
+                                                        <span>
+                                                            邮件格式
+                                                        </span>
+                                                        <div class="sle-mail">
+                                                            <span>所有话题一封邮件</span>
+                                                            <span class="btn-active">每个话题一封邮件</span>
+                                                        </div>
+                                                    </li>-->
+                                                    <li>
+                                                        <span>
+                                                           订阅设置<!--  订阅设置 -->
+                                                        </span>
+                                                        <div>
+                                                            <table class="table-check" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>推送专题<!-- 推送专题 --></th>
+                                                                        <th>是否早报推送<!-- 是否早报推送 --></th>
+                                                                        <th>是否午报推送<!-- 是否午报推送 --></th>
+                                                                        <th>是否包含预警<!-- 是否包含预警 --></th>
+                                                                        <th>是否包含全部内容<!-- 是否包含全部内容 --></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                
+                                                                <tbody>
+                                                                    
+                                                                            <tr class="special" ind="507a3ef47f5a42e2b8c241d8ce36b1bf">
+                                                                                <td><span>一带一路</span></td>
+                                                                                <td><div class="selSin"></div></td>
+                                                                                <td><div class="selSin"></div></td>
+                                                                                <td><div class="selSin"></div></td>
+                                                                                <td><div class="selSin"></div></td>
+                                                                            </tr>
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </li>
+							<li>
+								<span class="receive_time">
+									接收时间<!-- 接收时间 -->
+								</span>
+								<div class="time_select">
+									<div>
+										<label>
+											<i class="rad" ind="a_time" id="some_time"><span></span></i>
+											无限期接收时间<!-- 无限期接收时间 -->
+										</label>
+                                                                                <!-- <div class="time_choose">
+                                                                                    <input class="datainp" id="beginTime1" type="text" placeholder="开始时间" value=""  readonly>
+                                                                                    <select></select>
+                                                                                </div> -->
+									</div>
+                                                                        <div>
+										<label>
+                                                                                    <i class="rad" ind="some_time" id="a_time"><span></span></i>
+                                                                                    有限期接收时间<!-- 有限期接收时间 -->
+                                                                                </label>
+                                                                                <div class="time_choose">
+                                                                                   <!-- 开始时间 --> 
+                                                                                    
+												                                    
+												                                    <input id="beginTime"  class="datainp" type="text" value="" placeholder="开始时间" onfocus="WdatePicker({doubleCalendar:false,dateFmt:'yyyy-MM-dd',skin:'whyGreen',})"/><!-- maxDate:'#F{$dp.$D(\'endTime\')||\'%y-%M-%d\'}' -->
+												                                    
+                                                                                    <select></select>
+                                                                                </div>    
+                                                                                <div  class="time_choose">
+                                                                                   <!-- 结束时间 --> 
+                                                                                     
+													                                    
+													                                    <input id="endTime" readonly  class="datainp" type="text" value="" placeholder="结束时间" onfocus="WdatePicker({doubleCalendar:false,dateFmt:'yyyy-MM-dd',skin:'whyGreen',minDate:'#F{$dp.$D(\'beginTime\')}',maxDate:'2020-10-01'})"/><!--maxDate:'%y-%M-%d'  -->
+													                                    
+                                                                                    <select></select>
+                                                                                </div>
+									</div>
+								</div>
+							</li>
+						</ul>
+                                            <div class="save-btns">
+                                                <div id="preview">预览<!-- 预览 --></div>
+                                                <div id="save">保存<!-- 保存 --></div>
+                                                <div id="reset">重置<!-- 重置 --></div>
+                                            </div>
+					</div>
+                                    <div class="set-subscribe-off">
+                                        <div class="set-subscribe-bg"></div>
+                                        <p>马上开启订阅，进入邮箱推动报告之旅<!-- 马上开启订阅，进入邮箱推动报告之旅 --></p>
+                                    </div>
+				</div>
+			</div>                  
+			<div class="footer_box">
+				<p class="da_p">中译语通科技股份有限公司 版权所有<!-- 中译语通科技（北京）有限公司 版权所有 --></p>
+				<p>Copyright ©2018 www.yeesight.com All rights reserved.京ICP备13002826号-9 京ICP证140152号</p>
+
+			</div>
+		</div>
+	</div>
+	<!-- js文件开始 -->
+ <script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+    <script src="${ctx}/js/subjectAnalysis/jqcloud-1.0.4.min.js" type="text/javascript"></script>
+     <script src="${ctx}/js/subjectAnalysis/easydialog.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/layer.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/template.min.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/Scrollbar.js"></script>
+        <script type="text/javascript" src="${ctx}/js/subjectAnalysis/map-base.js"></script>
+        <script type="text/javascript" src="${ctx}/js/subjectAnalysis/tanchu.js"></script>
+          <script src="${ctx}/js/subjectAnalysis/con_datetime.js" type="text/javascript" ></script>
+        <script src="${ctx}/js/subjectAnalysis/jquery.ui.js"></script>
+     <script type="text/javascript" src="${ctx}/js/subjectAnalysis/WdatePicker.js"></script>
+       <script src="${ctx}/js/subjectAnalysis/jedate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.SuperSlide.2.1.1.js"></script>
+        <script>
+        $.fn.size=function(){ 
+ 		   return $(this).length;
+ 		}
+            function getTopicListInfo(){
+                return {"pageNo":1,"pageSize":2147483647,"results":[{"createTime":1549951077666,"createTimeView":"2019-02-12 13:57:57","id":"507a3ef47f5a42e2b8c241d8ce36b1bf","newAllDatas":0,"newDatas":0,"opType":1,"socialAllDatas":0,"socialDatas":0,"source":1,"srcId":"625b88dea74f45f51806acf0afa99b88","srcShortTitle":"一带一路","srcTitle":"一带一路","updateTime":1549951077666,"updateTimeView":"2019-02-12 13:57:57"}],"totalPages":1,"totalRows":1};
+            } 
+            function getMailListInfo(){
+                return ;
+            }
+            $("#topicList").click(function(){
+        		$("#mainBox_note").slideToggle(200);
+        	});
+        	function specialInfo(){
+        		var category = $("#category").val();
+        		var createId ="98887";// 102768;
+        		var source = $("#source").val();
+
+        		 $.ajax({
+        			 
+                     type: "POST",
+                     url: "analysisData/queryInfoSpecial",
+                     data: {
+                    	 infoId:$("#id").val(),
+                    	 //infoId:"",
+                    	 category:category, 
+                    	 createId:createId,
+                    	 source:source
+                    	 },
+                     dataType: "json",
+                     success: function(data){
+                    	
+                    	 //console.log(data);
+                     }
+                 });
+        	}
+        	
+        	$(function(){
+        		
+        	});
+        	
+        	// 专题列表同步加载
+        	var session_usr='{"companyName":"青岛海联","createTime":1549951077499,"createTimeView":"2019-02-12 13:57:57","enterpriseId":7515,"fullName":"朱超","industry":7,"isAdmin":1,"isDelete":1,"lastLoginTime":1549951077499,"password":"","source":8,"state":1,"system":1,"thirdSource":"7","thirdUid":"D0F36A30A64EA92A765B35E86642A01B","updateTime":1549951098546,"updateTimeView":"2019-02-12 13:58:18","userId":102768,"userName":"8_D0F36A30A64EA92A765B35E86642A01B","userType":1}';
+        	var nowLanguage = $("#language").val();
+        	var str='';
+        	$.ajax({
+        		url:"analysisMap/queryTopicListWithPage",
+        		data:{pageNo:0,xxx:new Date().getTime()},
+        		type:"get",
+        		dataType:"json",
+        		async: false,
+        		success:function(data){
+        			
+        			var list = [];
+        			var defaultList = [];
+        			var createList = []
+        			for(var k=0;k<data.results.length;k++){
+        				/* if(data.results[k].state==null){
+        					defaultList.push(data.results[k]);
+        				}else{ */
+        					createList.push(data.results[k]);
+        				//}
+        			}
+        			list=defaultList.concat(createList);
+        			for (var i = 0; i < list.length; i++) {
+                        var title=list[i].srcShortTitle||list[i].srcTitle;
+                   	        	var systemType = $("#systemType").val();
+                   	        	str+='<li data="'+list[i].id+'" data-srcid="'+list[i].srcId+'">'
+                   	        		 +'<a data-state="'+list.state+'" href="analysisData/index?id='+list[i].id+'&opType='+list[i].opType+'&srcId='+list[i].srcId+'&source='+list[i].source+'&systemType='+systemType+'">'
+        						     +title+'</a>'
+        					    if(session_usr!='' && list[i].state==null){
+        					    	str+='<img data-optype="'+list[i].opType+'" src="images/yayaya_23.png" alt="" style="float:right; padding:12px 0 0 10px;">';
+        					    }
+        				     	str+='</li>';
+               	        	/*}
+          	        	});*/
+           	        }
+           	        $("#content_note").html(str);
+           	        
+                }
+        	});
+        	
+        	 $(function(){
+        	     if($('#content_note li').length>10){
+        	     	 $('#mainBox_note').css({'height':'400px'});
+        	     	 $('#content_note').css({'position':'absolute'});
+        	     	 var addscoll_new_note=new addScroll('mainBox_note','content_note','scrDiv_note');
+        	     }
+        	    });
+        </script>
+	<script type="text/javascript" src="${ctx}/js/subjectAnalysis/emailReport.js"></script>
+        
+</body>
+</html>

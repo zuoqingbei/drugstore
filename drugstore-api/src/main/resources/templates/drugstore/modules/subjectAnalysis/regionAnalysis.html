@@ -1,0 +1,2058 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+    <title>区域分析</title>
+    <!--seo优化-->
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/subjectAnalysis/datacss_1.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/js/subjectAnalysis/easydialog.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/js/subjectAnalysis/datacss_e_1.css"/>
+    <link href="${ctx}/css/subjectAnalysis/datacss.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/css/modules/subjectAnalysis/regionAnalysis.css" rel="stylesheet" type="text/css"/>
+    <!--<link rel="stylesheet" href="${ctx}/css/tpl/heardes.css"/>-->
+    <style type="text/css">
+        .dataview-ul .dataview-ul-li {
+            padding: 0px;
+            border: none;
+        }
+
+        .dataview-ul-li a {
+            background-image: none;
+            float: none;
+            width: 100%;
+            display: block;
+            height: 36px;
+            line-height: 36px;
+            margin: 0px;
+            text-indent: 0;
+            color: #000;
+        }
+
+        .dataview-ul-li a:hover {
+            color: #fff;
+            opacity: 1;
+        }
+
+        .region_title span {
+            padding-right: 0;
+        }
+
+        .shijiantaishi-shaixuan .shijian-ul {
+            padding-bottom: 0;
+        }
+
+        .shijiantaishi-shaixuan .shaixuan-ul li {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .region_center {
+            position: relative
+        }
+
+        #region_center_p1 {
+            position: absolute;
+            top: 5px;
+            left: 355px;
+            width: 95px;
+            height: 20px
+        }
+
+        #region_center_p2 {
+            position: absolute;
+            top: 25px;
+            left: 355px;
+            width: 95px;
+            height: 20px
+        }
+
+    </style>
+
+</head>
+<body class="subject-analysis">
+<#include "${ctx}/yeesight/tpl/header.html" />
+<div class="data_centent">
+    <div class="aside-menu">
+        <#include "${ctx}/yeesight/tpl/asideLeft.html" />
+    </div>
+    <div class="centent_right">
+        <div class="centent_right_tab">
+            <#include "${ctx}/yeesight/tpl/subjectNav.html" />
+        </div>
+
+        <div class="region">
+            <div class="region_title" id="qyfx" style="margin-bottom: 0;">
+                <h2>区域数据分布排名（Top 5）</h2>
+                <!--<span class="region_title_span">-->
+                <!--&lt;!&ndash;<img src="${ctx}/images/subjectAnalysis/analysis_05.png" class="icon-udn" style="margin-right:3px;">&ndash;&gt;-->
+                <!--<h1 class="gy_seld gy_seld_i" data-mediaid="">-->
+                <!--<i class="iconfont icon-caidan"></i>-->
+                <!--</h1>-->
+                <!--<h1 class="gy_seld arrow_right" data-mediaid="">-->
+                <!--全部-->
+                <!--</h1>-->
+                <!--<ul class="f_select mtlx">-->
+                <!--<li class="hober_li" name="A">全部</li>-->
+                <!--<li class="hober_li" name="weibo">微博</li>-->
+                <!--<li class="hober_li" name="weixin">微信</li>-->
+                <!--<li class="hober_li" name="twitter">twitter</li>-->
+                <!--<li class="hober_li" name="facebook">facebook</li>-->
+                <!--</ul>-->
+                <!--</span>-->
+            </div>
+            <div class="region_center">
+                <!--<p id="region_center_p1"></p>-->
+                <!--<p id="region_center_p2"></p>-->
+                <!--<div style="padding-top: 6px; padding-left: 240px;"><span id="countryDistrubuteChina"></span><span id="countryDistrubuteOther" style="padding-top: 6px; padding-left: 15px;"></span></div>-->
+                <div class="region_center_left" id="countryDistrubute" style="width:410px;height:282px;"></div>
+                <div class="region_center_right" id="emotionDistrubute" style="width:407px;height:260px;"></div>
+            </div>
+        </div>
+        <div id="country" style="display: none;">
+            [{"dicDesc":"BLWY国家","dicName":"玻利维亚","dicValue":"玻利维亚","language":"zh","type":"GJ"},{"dicDesc":"BMDQD国家","dicName":"百慕大群岛","dicValue":"百慕大群岛","language":"zh","type":"GJ"},{"dicDesc":"BN国家","dicName":"贝宁","dicValue":"贝宁","language":"zh","type":"GJ"},{"dicDesc":"BLZ国家","dicName":"伯利兹","dicValue":"伯利兹","language":"zh","type":"GJ"},{"dicDesc":"BLS国家","dicName":"比利时","dicValue":"比利时","language":"zh","type":"GJ"},{"dicDesc":"BGLS国家","dicName":"白俄罗斯","dicValue":"白俄罗斯","language":"zh","type":"GJ"},{"dicDesc":"BBDS国家","dicName":"巴巴多斯","dicValue":"巴巴多斯","language":"zh","type":"GJ"},{"dicDesc":"MJLG国家","dicName":"孟加拉国","dicValue":"孟加拉国","language":"zh","type":"GJ"},{"dicDesc":"BL国家","dicName":"巴林","dicValue":"巴林","language":"zh","type":"GJ"},{"dicDesc":"BHM国家","dicName":"巴哈马","dicValue":"巴哈马","language":"zh","type":"GJ"},{"dicDesc":"ASBJ国家","dicName":"阿塞拜疆","dicValue":"阿塞拜疆","language":"zh","type":"GJ"},{"dicDesc":"ODL国家","dicName":"奥地利","dicValue":"奥地利","language":"zh","type":"GJ"},{"dicDesc":"ODLY国家","dicName":"澳大利亚","dicValue":"澳大利亚","language":"zh","type":"GJ"},{"dicDesc":"ASS国家","dicName":"阿森松","dicValue":"阿森松","language":"zh","type":"GJ"},{"dicDesc":"YMNY国家","dicName":"亚美尼亚","dicValue":"亚美尼亚","language":"zh","type":"GJ"},{"dicDesc":"AGT国家","dicName":"阿根廷","dicValue":"阿根廷","language":"zh","type":"GJ"},{"dicDesc":"ATGHBBD国家","dicName":"安提瓜和巴布达","dicValue":"安提瓜和巴布达","language":"zh","type":"GJ"},{"dicDesc":"AGLD国家","dicName":"安圭拉岛","dicValue":"安圭拉岛","language":"zh","type":"GJ"},{"dicDesc":"ADEKHG国家","dicName":"安道尔共和国","dicValue":"安道尔共和国","language":"zh","type":"GJ"},{"dicDesc":"AEJLY国家","dicName":"阿尔及利亚","dicValue":"阿尔及利亚","language":"zh","type":"GJ"},{"dicDesc":"AEBNY国家","dicName":"阿尔巴尼亚","dicValue":"阿尔巴尼亚","language":"zh","type":"GJ"},{"dicDesc":"AFH国家","dicName":"阿富汗","dicValue":"阿富汗","language":"zh","type":"GJ"},{"dicDesc":"BZWN国家","dicName":"博茨瓦纳","dicValue":"博茨瓦纳","language":"zh","type":"GJ"},{"dicDesc":"BX国家","dicName":"巴西","dicValue":"巴西","language":"zh","type":"GJ"},{"dicDesc":"WL国家","dicName":"文莱","dicValue":"文莱","language":"zh","type":"GJ"},{"dicDesc":"BJLY国家","dicName":"保加利亚","dicValue":"保加利亚","language":"zh","type":"GJ"},{"dicDesc":"BJNFS国家","dicName":"布基纳法索","dicValue":"布基纳法索","language":"zh","type":"GJ"},{"dicDesc":"MD国家","dicName":"缅甸","dicValue":"缅甸","language":"zh","type":"GJ"},{"dicDesc":"BLD国家","dicName":"布隆迪","dicValue":"布隆迪","language":"zh","type":"GJ"},{"dicDesc":"KML国家","dicName":"喀麦隆","dicValue":"喀麦隆","language":"zh","type":"GJ"},{"dicDesc":"JND国家","dicName":"加拿大","dicValue":"加拿大","language":"zh","type":"GJ"},{"dicDesc":"KMQD国家","dicName":"开曼群岛","dicValue":"开曼群岛","language":"zh","type":"GJ"},{"dicDesc":"ZFKHG国家","dicName":"中非共和国","dicValue":"中非共和国","language":"zh","type":"GJ"},{"dicDesc":"ZD国家","dicName":"乍得","dicValue":"乍得","language":"zh","type":"GJ"},{"dicDesc":"ZL国家","dicName":"智利","dicValue":"智利","language":"zh","type":"GJ"},{"dicDesc":"ZG国家","dicName":"中国","dicValue":"中国","language":"zh","type":"GJ"},{"dicDesc":"GLBY国家","dicName":"哥伦比亚","dicValue":"哥伦比亚","language":"zh","type":"GJ"},{"dicDesc":"GG国家","dicName":"刚果","dicValue":"刚果","language":"zh","type":"GJ"},{"dicDesc":"KKQD国家","dicName":"库克群岛","dicValue":"库克群岛","language":"zh","type":"GJ"},{"dicDesc":"GSDLJ国家","dicName":"哥斯达黎加","dicValue":"哥斯达黎加","language":"zh","type":"GJ"},{"dicDesc":"GB国家","dicName":"古巴","dicValue":"古巴","language":"zh","type":"GJ"},{"dicDesc":"SPLS国家","dicName":"塞浦路斯","dicValue":"塞浦路斯","language":"zh","type":"GJ"},{"dicDesc":"JK国家","dicName":"捷克","dicValue":"捷克","language":"zh","type":"GJ"},{"dicDesc":"DM国家","dicName":"丹麦","dicValue":"丹麦","language":"zh","type":"GJ"},{"dicDesc":"BJT国家","dicName":"吉布提","dicValue":"吉布提","language":"zh","type":"GJ"},{"dicDesc":"DMNJGHG国家","dicName":"多米尼加共和国","dicValue":"多米尼加共和国","language":"zh","type":"GJ"},{"dicDesc":"EGDE国家","dicName":"厄瓜多尔","dicValue":"厄瓜多尔","language":"zh","type":"GJ"},{"dicDesc":"AJ国家","dicName":"埃及","dicValue":"埃及","language":"zh","type":"GJ"},{"dicDesc":"SEWD国家","dicName":"萨尔瓦多","dicValue":"萨尔瓦多","language":"zh","type":"GJ"},{"dicDesc":"ASNY国家","dicName":"爱沙尼亚","dicValue":"爱沙尼亚","language":"zh","type":"GJ"},{"dicDesc":"ASEBY国家","dicName":"埃塞俄比亚","dicValue":"埃塞俄比亚","language":"zh","type":"GJ"},{"dicDesc":"FJ国家","dicName":"斐济","dicValue":"斐济","language":"zh","type":"GJ"},{"dicDesc":"FL国家","dicName":"芬兰","dicValue":"芬兰","language":"zh","type":"GJ"},{"dicDesc":"FG国家","dicName":"法国","dicValue":"法国","language":"zh","type":"GJ"},{"dicDesc":"FSGYN国家","dicName":"法属圭亚那","dicValue":"法属圭亚那","language":"zh","type":"GJ"},{"dicDesc":"JP国家","dicName":"加蓬","dicValue":"加蓬","language":"zh","type":"GJ"},{"dicDesc":"GBY国家","dicName":"冈比亚","dicValue":"冈比亚","language":"zh","type":"GJ"},{"dicDesc":"GLJY国家","dicName":"格鲁吉亚","dicValue":"格鲁吉亚","language":"zh","type":"GJ"},{"dicDesc":"DG国家","dicName":"德国","dicValue":"德国","language":"zh","type":"GJ"},{"dicDesc":"JN国家","dicName":"加纳","dicValue":"加纳","language":"zh","type":"GJ"},{"dicDesc":"ZBLT国家","dicName":"直布罗陀","dicValue":"直布罗陀","language":"zh","type":"GJ"},{"dicDesc":"XL国家","dicName":"希腊","dicValue":"希腊","language":"zh","type":"GJ"},{"dicDesc":"GLND国家","dicName":"格林纳达","dicValue":"格林纳达","language":"zh","type":"GJ"},{"dicDesc":"GD国家","dicName":"关岛","dicValue":"关岛","language":"zh","type":"GJ"},{"dicDesc":"WDML国家","dicName":"危地马拉","dicValue":"危地马拉","language":"zh","type":"GJ"},{"dicDesc":"JNY国家","dicName":"几内亚","dicValue":"几内亚","language":"zh","type":"GJ"},{"dicDesc":"GYN国家","dicName":"圭亚那","dicValue":"圭亚那","language":"zh","type":"GJ"},{"dicDesc":"HD国家","dicName":"海地","dicValue":"海地","language":"zh","type":"GJ"},{"dicDesc":"HDLS国家","dicName":"洪都拉斯","dicValue":"洪都拉斯","language":"zh","type":"GJ"},{"dicDesc":"XG国家","dicName":"香港","dicValue":"香港","language":"zh","type":"GJ"},{"dicDesc":"XYL国家","dicName":"匈牙利","dicValue":"匈牙利","language":"zh","type":"GJ"},{"dicDesc":"BD国家","dicName":"冰岛","dicValue":"冰岛","language":"zh","type":"GJ"},{"dicDesc":"YD国家","dicName":"印度","dicValue":"印度","language":"zh","type":"GJ"},{"dicDesc":"YDNXY国家","dicName":"印度尼西亚","dicValue":"印度尼西亚","language":"zh","type":"GJ"},{"dicDesc":"YL国家","dicName":"伊朗","dicValue":"伊朗","language":"zh","type":"GJ"},{"dicDesc":"YLK国家","dicName":"伊拉克","dicValue":"伊拉克","language":"zh","type":"GJ"},{"dicDesc":"AEL国家","dicName":"爱尔兰","dicValue":"爱尔兰","language":"zh","type":"GJ"},{"dicDesc":"YSL国家","dicName":"以色列","dicValue":"以色列","language":"zh","type":"GJ"},{"dicDesc":"YDL国家","dicName":"意大利","dicValue":"意大利","language":"zh","type":"GJ"},{"dicDesc":"KTDW国家","dicName":"科特迪瓦","dicValue":"科特迪瓦","language":"zh","type":"GJ"},{"dicDesc":"YMJ国家","dicName":"牙买加","dicValue":"牙买加","language":"zh","type":"GJ"},{"dicDesc":"RB国家","dicName":"日本","dicValue":"日本","language":"zh","type":"GJ"},{"dicDesc":"YD国家","dicName":"约旦","dicValue":"约旦","language":"zh","type":"GJ"},{"dicDesc":"JBZ国家","dicName":"柬埔寨","dicValue":"柬埔寨","language":"zh","type":"GJ"},{"dicDesc":"HSKST国家","dicName":"哈萨克斯坦","dicValue":"哈萨克斯坦","language":"zh","type":"GJ"},{"dicDesc":"KNY国家","dicName":"肯尼亚","dicValue":"肯尼亚","language":"zh","type":"GJ"},{"dicDesc":"HG国家","dicName":"韩国","dicValue":"韩国","language":"zh","type":"GJ"},{"dicDesc":"KWT国家","dicName":"科威特","dicValue":"科威特","language":"zh","type":"GJ"},{"dicDesc":"JEJSST国家","dicName":"吉尔吉斯斯坦","dicValue":"吉尔吉斯斯坦","language":"zh","type":"GJ"},{"dicDesc":"LG国家","dicName":"老挝","dicValue":"老挝","language":"zh","type":"GJ"},{"dicDesc":"LTWY国家","dicName":"拉脱维亚","dicValue":"拉脱维亚","language":"zh","type":"GJ"},{"dicDesc":"LBN国家","dicName":"黎巴嫩","dicValue":"黎巴嫩","language":"zh","type":"GJ"},{"dicDesc":"LST国家","dicName":"莱索托","dicValue":"莱索托","language":"zh","type":"GJ"},{"dicDesc":"LBLY国家","dicName":"利比里亚","dicValue":"利比里亚","language":"zh","type":"GJ"},{"dicDesc":"LBY国家","dicName":"利比亚","dicValue":"利比亚","language":"zh","type":"GJ"},{"dicDesc":"LZDSD国家","dicName":"列支敦士登","dicValue":"列支敦士登","language":"zh","type":"GJ"},{"dicDesc":"LTW国家","dicName":"立陶宛","dicValue":"立陶宛","language":"zh","type":"GJ"},{"dicDesc":"LSB国家","dicName":"卢森堡","dicValue":"卢森堡","language":"zh","type":"GJ"},{"dicDesc":"OM国家","dicName":"澳门","dicValue":"澳门","language":"zh","type":"GJ"},{"dicDesc":"MDJSJ国家","dicName":"马达加斯加","dicValue":"马达加斯加","language":"zh","type":"GJ"},{"dicDesc":"MLW国家","dicName":"马拉维","dicValue":"马拉维","language":"zh","type":"GJ"},{"dicDesc":"MLXY国家","dicName":"马来西亚","dicValue":"马来西亚","language":"zh","type":"GJ"},{"dicDesc":"MEDF国家","dicName":"马尔代夫","dicValue":"马尔代夫","language":"zh","type":"GJ"},{"dicDesc":"ML国家","dicName":"马里","dicValue":"马里","language":"zh","type":"GJ"},{"dicDesc":"MET国家","dicName":"马耳他","dicValue":"马耳他","language":"zh","type":"GJ"},{"dicDesc":"MLYQD国家","dicName":"马里亚那群岛","dicValue":"马里亚那群岛","language":"zh","type":"GJ"},{"dicDesc":"MTNK国家","dicName":"马提尼克","dicValue":"马提尼克","language":"zh","type":"GJ"},{"dicDesc":"MLQS国家","dicName":"毛里求斯","dicValue":"毛里求斯","language":"zh","type":"GJ"},{"dicDesc":"MXG国家","dicName":"墨西哥","dicValue":"墨西哥","language":"zh","type":"GJ"},{"dicDesc":"MEDW国家","dicName":"摩尔多瓦","dicValue":"摩尔多瓦","language":"zh","type":"GJ"},{"dicDesc":"MNG国家","dicName":"摩纳哥","dicValue":"摩纳哥","language":"zh","type":"GJ"},{"dicDesc":"MG国家","dicName":"蒙古","dicValue":"蒙古","language":"zh","type":"GJ"},{"dicDesc":"MTSLTD国家","dicName":"蒙特塞拉特岛","dicValue":"蒙特塞拉特岛","language":"zh","type":"GJ"},{"dicDesc":"MLG国家","dicName":"摩洛哥","dicValue":"摩洛哥","language":"zh","type":"GJ"},{"dicDesc":"MSBK国家","dicName":"莫桑比克","dicValue":"莫桑比克","language":"zh","type":"GJ"},{"dicDesc":"NMBY国家","dicName":"纳米比亚","dicValue":"纳米比亚","language":"zh","type":"GJ"},{"dicDesc":"NL国家","dicName":"瑙鲁","dicValue":"瑙鲁","language":"zh","type":"GJ"},{"dicDesc":"NBE国家","dicName":"尼泊尔","dicValue":"尼泊尔","language":"zh","type":"GJ"},{"dicDesc":"HSADLS国家","dicName":"荷属安的列斯","dicValue":"荷属安的列斯","language":"zh","type":"GJ"},{"dicDesc":"HL国家","dicName":"荷兰","dicValue":"荷兰","language":"zh","type":"GJ"},{"dicDesc":"XXL国家","dicName":"新西兰","dicValue":"新西兰","language":"zh","type":"GJ"},{"dicDesc":"NJLG国家","dicName":"尼加拉瓜","dicValue":"尼加拉瓜","language":"zh","type":"GJ"},{"dicDesc":"NRE国家","dicName":"尼日尔","dicValue":"尼日尔","language":"zh","type":"GJ"},{"dicDesc":"NRLY国家","dicName":"尼日利亚","dicValue":"尼日利亚","language":"zh","type":"GJ"},{"dicDesc":"CX国家","dicName":"朝鲜","dicValue":"朝鲜","language":"zh","type":"GJ"},{"dicDesc":"NW国家","dicName":"挪威","dicValue":"挪威","language":"zh","type":"GJ"},{"dicDesc":"AM国家","dicName":"阿曼","dicValue":"阿曼","language":"zh","type":"GJ"},{"dicDesc":"BJST国家","dicName":"巴基斯坦","dicValue":"巴基斯坦","language":"zh","type":"GJ"},{"dicDesc":"BNM国家","dicName":"巴拿马","dicValue":"巴拿马","language":"zh","type":"GJ"},{"dicDesc":"BBYXJNY国家","dicName":"巴布亚新几内亚","dicValue":"巴布亚新几内亚","language":"zh","type":"GJ"},{"dicDesc":"BLG国家","dicName":"巴拉圭","dicValue":"巴拉圭","language":"zh","type":"GJ"},{"dicDesc":"ML国家","dicName":"秘鲁","dicValue":"秘鲁","language":"zh","type":"GJ"},{"dicDesc":"FLB国家","dicName":"菲律宾","dicValue":"菲律宾","language":"zh","type":"GJ"},{"dicDesc":"BL国家","dicName":"波兰","dicValue":"波兰","language":"zh","type":"GJ"},{"dicDesc":"FSBLNXY国家","dicName":"法属玻利尼西亚","dicValue":"法属玻利尼西亚","language":"zh","type":"GJ"},{"dicDesc":"PTY国家","dicName":"葡萄牙","dicValue":"葡萄牙","language":"zh","type":"GJ"},{"dicDesc":"BDLG国家","dicName":"波多黎各","dicValue":"波多黎各","language":"zh","type":"GJ"},{"dicDesc":"KTE国家","dicName":"卡塔尔","dicValue":"卡塔尔","language":"zh","type":"GJ"},{"dicDesc":"LNW国家","dicName":"留尼旺","dicValue":"留尼旺","language":"zh","type":"GJ"},{"dicDesc":"LMXY国家","dicName":"罗马尼亚","dicValue":"罗马尼亚","language":"zh","type":"GJ"},{"dicDesc":"ELS国家","dicName":"俄罗斯","dicValue":"俄罗斯","language":"zh","type":"GJ"},{"dicDesc":"SLXY国家","dicName":"圣卢西亚","dicValue":"圣卢西亚","language":"zh","type":"GJ"},{"dicDesc":"SWSTD国家","dicName":"圣文森特岛","dicValue":"圣文森特岛","language":"zh","type":"GJ"},{"dicDesc":"DSMY国家","dicName":"东萨摩亚(美)","dicValue":"东萨摩亚(美)","language":"zh","type":"GJ"},{"dicDesc":"XSMY国家","dicName":"西萨摩亚","dicValue":"西萨摩亚","language":"zh","type":"GJ"},{"dicDesc":"SMLN国家","dicName":"圣马力诺","dicValue":"圣马力诺","language":"zh","type":"GJ"},{"dicDesc":"SDMHPLXB国家","dicName":"圣多美和普林西比","dicValue":"圣多美和普林西比","language":"zh","type":"GJ"},{"dicDesc":"STALB国家","dicName":"沙特阿拉伯","dicValue":"沙特阿拉伯","language":"zh","type":"GJ"},{"dicDesc":"SNJE国家","dicName":"塞内加尔","dicValue":"塞内加尔","language":"zh","type":"GJ"},{"dicDesc":"SSE国家","dicName":"塞舌尔","dicValue":"塞舌尔","language":"zh","type":"GJ"},{"dicDesc":"SLLA国家","dicName":"塞拉利昂","dicValue":"塞拉利昂","language":"zh","type":"GJ"},{"dicDesc":"XJP国家","dicName":"新加坡","dicValue":"新加坡","language":"zh","type":"GJ"},{"dicDesc":"SLFK国家","dicName":"斯洛伐克","dicValue":"斯洛伐克","language":"zh","type":"GJ"},{"dicDesc":"SLWNY国家","dicName":"斯洛文尼亚","dicValue":"斯洛文尼亚","language":"zh","type":"GJ"},{"dicDesc":"SLMQD国家","dicName":"所罗门群岛","dicValue":"所罗门群岛","language":"zh","type":"GJ"},{"dicDesc":"SML国家","dicName":"索马里","dicValue":"索马里","language":"zh","type":"GJ"},{"dicDesc":"NF国家","dicName":"南非","dicValue":"南非","language":"zh","type":"GJ"},{"dicDesc":"XBY国家","dicName":"西班牙","dicValue":"西班牙","language":"zh","type":"GJ"},{"dicDesc":"SLLK国家","dicName":"斯里兰卡","dicValue":"斯里兰卡","language":"zh","type":"GJ"},{"dicDesc":"SWST国家","dicName":"圣文森特","dicValue":"圣文森特","language":"zh","type":"GJ"},{"dicDesc":"SD国家","dicName":"苏丹","dicValue":"苏丹","language":"zh","type":"GJ"},{"dicDesc":"SLN国家","dicName":"苏里南","dicValue":"苏里南","language":"zh","type":"GJ"},{"dicDesc":"SWSL国家","dicName":"斯威士兰","dicValue":"斯威士兰","language":"zh","type":"GJ"},{"dicDesc":"RD国家","dicName":"瑞典","dicValue":"瑞典","language":"zh","type":"GJ"},{"dicDesc":"RS国家","dicName":"瑞士","dicValue":"瑞士","language":"zh","type":"GJ"},{"dicDesc":"XLY国家","dicName":"叙利亚","dicValue":"叙利亚","language":"zh","type":"GJ"},{"dicDesc":"TJKST国家","dicName":"塔吉克斯坦","dicValue":"塔吉克斯坦","language":"zh","type":"GJ"},{"dicDesc":"TSNY国家","dicName":"坦桑尼亚","dicValue":"坦桑尼亚","language":"zh","type":"GJ"},{"dicDesc":"TG国家","dicName":"泰国","dicValue":"泰国","language":"zh","type":"GJ"},{"dicDesc":"DG国家","dicName":"多哥","dicValue":"多哥","language":"zh","type":"GJ"},{"dicDesc":"TJ国家","dicName":"汤加","dicValue":"汤加","language":"zh","type":"GJ"},{"dicDesc":"TLNDHDBG国家","dicName":"特立尼达和多巴哥","dicValue":"特立尼达和多巴哥","language":"zh","type":"GJ"},{"dicDesc":"TNS国家","dicName":"突尼斯","dicValue":"突尼斯","language":"zh","type":"GJ"},{"dicDesc":"TEQ国家","dicName":"土耳其","dicValue":"土耳其","language":"zh","type":"GJ"},{"dicDesc":"TKMST国家","dicName":"土库曼斯坦","dicValue":"土库曼斯坦","language":"zh","type":"GJ"},{"dicDesc":"WGD国家","dicName":"乌干达","dicValue":"乌干达","language":"zh","type":"GJ"},{"dicDesc":"WKL国家","dicName":"乌克兰","dicValue":"乌克兰","language":"zh","type":"GJ"},{"dicDesc":"ALBLHQZG国家","dicName":"阿拉伯联合酋长国","dicValue":"阿拉伯联合酋长国","language":"zh","type":"GJ"},{"dicDesc":"YG国家","dicName":"英国","dicValue":"英国","language":"zh","type":"GJ"},{"dicDesc":"MG国家","dicName":"美国","dicValue":"美国","language":"zh","type":"GJ"},{"dicDesc":"WLG国家","dicName":"乌拉圭","dicValue":"乌拉圭","language":"zh","type":"GJ"},{"dicDesc":"WZBKST国家","dicName":"乌兹别克斯坦","dicValue":"乌兹别克斯坦","language":"zh","type":"GJ"},{"dicDesc":"WNRL国家","dicName":"委内瑞拉","dicValue":"委内瑞拉","language":"zh","type":"GJ"},{"dicDesc":"YN国家","dicName":"越南","dicValue":"越南","language":"zh","type":"GJ"},{"dicDesc":"YM国家","dicName":"也门","dicValue":"也门","language":"zh","type":"GJ"},{"dicDesc":"NSLF国家","dicName":"南斯拉夫","dicValue":"南斯拉夫","language":"zh","type":"GJ"},{"dicDesc":"JBBW国家","dicName":"津巴布韦","dicValue":"津巴布韦","language":"zh","type":"GJ"},{"dicDesc":"ZYE国家","dicName":"扎伊尔","dicValue":"扎伊尔","language":"zh","type":"GJ"},{"dicDesc":"ZBY国家","dicName":"赞比亚","dicValue":"赞比亚","language":"zh","type":"GJ"},{"dicDesc":"国家","dicName":"其他","dicValue":"其他","language":"zh","type":"GJ"},{"dicDesc":"TWL国家","dicName":"图瓦卢","dicValue":"图瓦卢","language":"zh","type":"GJ"}]
+        </div>
+        <div>
+            <div class="region_title">
+                <h2>区域数据时间走势（按天统计）</h2>
+                <div class="shijiantaishi-shaixuan" id="shijiantaishi-shaixuan" style="height:40px;">
+                    <div class="shaixuan-option" style="height:40px;text-align: right;">
+                        <!--<div class="clickyc">-->
+                        <!--<div class="span shaixuan-diqu"><a class="diquname arrow_right" data-countryid="">-->
+                        <!--<img src="${ctx}/images/subjectAnalysis/analysis_14.png" class="icon-udn" style="margin-right:10px;margin-top:13px;"/><span>地区不限</span></a>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--地区-->
+                        <!--<span class="region_title_span">-->
+                        <!--<h1 class="gy_seld arrow_right" data-mediaid="">-->
+                        <!--<i class="iconfont icon-diqiu"></i>-->
+                        <!--地区不限-->
+                        <!--</h1>-->
+                        <!--<div class="diqu-ul shaixuan-ul">-->
+                        <!--<div class="diqu-sel" id="diqumn">-->
+                        <!--<span class="diqu-sel-label">已选地区</span>-->
+                        <!--&lt;!&ndash;<span class="sel on" data-name="阿塞拜疆" data-dicdesc="ASBJ国家" data-dicvalue="阿塞拜疆">阿塞拜疆<img src="images/analysis_17.jpg"></span>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="diqu-title">-->
+                        <!--<span class="diqubuxian"style="color:#2E95F3;margin-right: 5px;cursor:pointer;float: left;">地区不限</span>-->
+                        <!--<span style="float: left;">-->
+                        <!--<a class="a-on">A</a>-->
+                        <!--<a>B</a>-->
+                        <!--<a>C</a>-->
+                        <!--<a>D</a>-->
+                        <!--<a>E</a>-->
+                        <!--<a>F</a>-->
+                        <!--<a>G</a>-->
+                        <!--<a>H</a>-->
+                        <!--<a>I</a>-->
+                        <!--<a>J</a>-->
+                        <!--<a>L</a>-->
+                        <!--<a>M</a>-->
+                        <!--<a>N</a>-->
+                        <!--<a>O</a>-->
+                        <!--<a>P</a>-->
+                        <!--<a>Q</a>-->
+                        <!--<a>R</a>-->
+                        <!--<a>S</a>-->
+                        <!--<a>T</a>-->
+                        <!--<a>U</a>-->
+                        <!--<a>V</a>-->
+                        <!--<a>W</a>-->
+                        <!--<a>X</a>-->s
+                        <!--<a>Y</a>-->
+                        <!--<a>Z</a>-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="diqu-main">-->
+                        <!--&lt;!&ndash;<span class="" data-name="阿塞拜疆" data-dicdesc="ASBJ国家" data-dicvalue="阿塞拜疆">阿塞拜疆</span>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="diqu-btn">-->
+                        <!--<span class="diqu-btn-yes" style="margin-left: 40%;">确定</span>-->
+                        <!--<span class="diqu-btn-no">取消</span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="region_center" style="margin-top: 1px;">
+                <div class="region_information" style="width:856px;height:320px;" id="areanews"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/jquery.cookie.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/easydialog.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/subjectAnalysis/regionAnalysis.js"></script>
+
+</body>
+<script>
+    //全局变量
+    window.area_json = [{
+        "dicDesc": "BLWY国家",
+        "dicName": "玻利维亚",
+        "dicValue": "玻利维亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BMDQD国家",
+        "dicName": "百慕大群岛",
+        "dicValue": "百慕大群岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "BN国家", "dicName": "贝宁", "dicValue": "贝宁", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BLZ国家",
+        "dicName": "伯利兹",
+        "dicValue": "伯利兹",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "BLS国家", "dicName": "比利时", "dicValue": "比利时", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BGLS国家",
+        "dicName": "白俄罗斯",
+        "dicValue": "白俄罗斯",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BBDS国家",
+        "dicName": "巴巴多斯",
+        "dicValue": "巴巴多斯",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MJLG国家", "dicName": "孟加拉国", "dicValue": "孟加拉国", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BL国家",
+        "dicName": "巴林",
+        "dicValue": "巴林",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "BHM国家", "dicName": "巴哈马", "dicValue": "巴哈马", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ASBJ国家",
+        "dicName": "阿塞拜疆",
+        "dicValue": "阿塞拜疆",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "ODL国家", "dicName": "奥地利", "dicValue": "奥地利", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ODLY国家",
+        "dicName": "澳大利亚",
+        "dicValue": "澳大利亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "ASS国家", "dicName": "阿森松", "dicValue": "阿森松", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "YMNY国家",
+        "dicName": "亚美尼亚",
+        "dicValue": "亚美尼亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "AGT国家",
+        "dicName": "阿根廷",
+        "dicValue": "阿根廷",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "ATGHBBD国家",
+        "dicName": "安提瓜和巴布达",
+        "dicValue": "安提瓜和巴布达",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "AGLD国家",
+        "dicName": "安圭拉岛",
+        "dicValue": "安圭拉岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "ADEKHG国家",
+        "dicName": "安道尔共和国",
+        "dicValue": "安道尔共和国",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "AEJLY国家",
+        "dicName": "阿尔及利亚",
+        "dicValue": "阿尔及利亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "AEBNY国家",
+        "dicName": "阿尔巴尼亚",
+        "dicValue": "阿尔巴尼亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "AFH国家", "dicName": "阿富汗", "dicValue": "阿富汗", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BZWN国家",
+        "dicName": "博茨瓦纳",
+        "dicValue": "博茨瓦纳",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "BX国家", "dicName": "巴西", "dicValue": "巴西", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "WL国家",
+        "dicName": "文莱",
+        "dicValue": "文莱",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BJLY国家",
+        "dicName": "保加利亚",
+        "dicValue": "保加利亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BJNFS国家",
+        "dicName": "布基纳法索",
+        "dicValue": "布基纳法索",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MD国家", "dicName": "缅甸", "dicValue": "缅甸", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BLD国家",
+        "dicName": "布隆迪",
+        "dicValue": "布隆迪",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "KML国家", "dicName": "喀麦隆", "dicValue": "喀麦隆", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "JND国家",
+        "dicName": "加拿大",
+        "dicValue": "加拿大",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "KMQD国家",
+        "dicName": "开曼群岛",
+        "dicValue": "开曼群岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "ZFKHG国家",
+        "dicName": "中非共和国",
+        "dicValue": "中非共和国",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "ZD国家", "dicName": "乍得", "dicValue": "乍得", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ZL国家",
+        "dicName": "智利",
+        "dicValue": "智利",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "ZG国家", "dicName": "中国", "dicValue": "中国", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "GLBY国家",
+        "dicName": "哥伦比亚",
+        "dicValue": "哥伦比亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "GG国家", "dicName": "刚果", "dicValue": "刚果", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "KKQD国家",
+        "dicName": "库克群岛",
+        "dicValue": "库克群岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "GSDLJ国家",
+        "dicName": "哥斯达黎加",
+        "dicValue": "哥斯达黎加",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "GB国家", "dicName": "古巴", "dicValue": "古巴", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SPLS国家",
+        "dicName": "塞浦路斯",
+        "dicValue": "塞浦路斯",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "JK国家", "dicName": "捷克", "dicValue": "捷克", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "DM国家",
+        "dicName": "丹麦",
+        "dicValue": "丹麦",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BJT国家",
+        "dicName": "吉布提",
+        "dicValue": "吉布提",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "DMNJGHG国家",
+        "dicName": "多米尼加共和国",
+        "dicValue": "多米尼加共和国",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "EGDE国家", "dicName": "厄瓜多尔", "dicValue": "厄瓜多尔", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "AJ国家",
+        "dicName": "埃及",
+        "dicValue": "埃及",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SEWD国家",
+        "dicName": "萨尔瓦多",
+        "dicValue": "萨尔瓦多",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "ASNY国家",
+        "dicName": "爱沙尼亚",
+        "dicValue": "爱沙尼亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "ASEBY国家",
+        "dicName": "埃塞俄比亚",
+        "dicValue": "埃塞俄比亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "FJ国家", "dicName": "斐济", "dicValue": "斐济", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "FL国家",
+        "dicName": "芬兰",
+        "dicValue": "芬兰",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "FG国家", "dicName": "法国", "dicValue": "法国", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "FSGYN国家",
+        "dicName": "法属圭亚那",
+        "dicValue": "法属圭亚那",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "JP国家", "dicName": "加蓬", "dicValue": "加蓬", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "GBY国家",
+        "dicName": "冈比亚",
+        "dicValue": "冈比亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "GLJY国家", "dicName": "格鲁吉亚", "dicValue": "格鲁吉亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "DG国家",
+        "dicName": "德国",
+        "dicValue": "德国",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "JN国家", "dicName": "加纳", "dicValue": "加纳", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ZBLT国家",
+        "dicName": "直布罗陀",
+        "dicValue": "直布罗陀",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "XL国家", "dicName": "希腊", "dicValue": "希腊", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "GLND国家",
+        "dicName": "格林纳达",
+        "dicValue": "格林纳达",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "GD国家", "dicName": "关岛", "dicValue": "关岛", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "WDML国家",
+        "dicName": "危地马拉",
+        "dicValue": "危地马拉",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "JNY国家", "dicName": "几内亚", "dicValue": "几内亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "GYN国家",
+        "dicName": "圭亚那",
+        "dicValue": "圭亚那",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "HD国家", "dicName": "海地", "dicValue": "海地", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "HDLS国家",
+        "dicName": "洪都拉斯",
+        "dicValue": "洪都拉斯",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "XG国家", "dicName": "香港", "dicValue": "香港", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "XYL国家",
+        "dicName": "匈牙利",
+        "dicValue": "匈牙利",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "BD国家", "dicName": "冰岛", "dicValue": "冰岛", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "YD国家",
+        "dicName": "印度",
+        "dicValue": "印度",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "YDNXY国家",
+        "dicName": "印度尼西亚",
+        "dicValue": "印度尼西亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "YL国家", "dicName": "伊朗", "dicValue": "伊朗", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "YLK国家",
+        "dicName": "伊拉克",
+        "dicValue": "伊拉克",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "AEL国家", "dicName": "爱尔兰", "dicValue": "爱尔兰", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "YSL国家",
+        "dicName": "以色列",
+        "dicValue": "以色列",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "YDL国家", "dicName": "意大利", "dicValue": "意大利", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "KTDW国家",
+        "dicName": "科特迪瓦",
+        "dicValue": "科特迪瓦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "YMJ国家", "dicName": "牙买加", "dicValue": "牙买加", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "RB国家",
+        "dicName": "日本",
+        "dicValue": "日本",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "YD国家", "dicName": "约旦", "dicValue": "约旦", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "JBZ国家",
+        "dicName": "柬埔寨",
+        "dicValue": "柬埔寨",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "HSKST国家",
+        "dicName": "哈萨克斯坦",
+        "dicValue": "哈萨克斯坦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "KNY国家", "dicName": "肯尼亚", "dicValue": "肯尼亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "HG国家",
+        "dicName": "韩国",
+        "dicValue": "韩国",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "KWT国家",
+        "dicName": "科威特",
+        "dicValue": "科威特",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "JEJSST国家",
+        "dicName": "吉尔吉斯斯坦",
+        "dicValue": "吉尔吉斯斯坦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "LG国家", "dicName": "老挝", "dicValue": "老挝", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "LTWY国家",
+        "dicName": "拉脱维亚",
+        "dicValue": "拉脱维亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "LBN国家", "dicName": "黎巴嫩", "dicValue": "黎巴嫩", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "LST国家",
+        "dicName": "莱索托",
+        "dicValue": "莱索托",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "LBLY国家",
+        "dicName": "利比里亚",
+        "dicValue": "利比里亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "LBY国家", "dicName": "利比亚", "dicValue": "利比亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "LZDSD国家",
+        "dicName": "列支敦士登",
+        "dicValue": "列支敦士登",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "LTW国家", "dicName": "立陶宛", "dicValue": "立陶宛", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "LSB国家",
+        "dicName": "卢森堡",
+        "dicValue": "卢森堡",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "OM国家", "dicName": "澳门", "dicValue": "澳门", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MDJSJ国家",
+        "dicName": "马达加斯加",
+        "dicValue": "马达加斯加",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MLW国家", "dicName": "马拉维", "dicValue": "马拉维", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MLXY国家",
+        "dicName": "马来西亚",
+        "dicValue": "马来西亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MEDF国家", "dicName": "马尔代夫", "dicValue": "马尔代夫", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ML国家",
+        "dicName": "马里",
+        "dicValue": "马里",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MET国家", "dicName": "马耳他", "dicValue": "马耳他", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MLYQD国家",
+        "dicName": "马里亚那群岛",
+        "dicValue": "马里亚那群岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "MTNK国家",
+        "dicName": "马提尼克",
+        "dicValue": "马提尼克",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "MLQS国家",
+        "dicName": "毛里求斯",
+        "dicValue": "毛里求斯",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MXG国家", "dicName": "墨西哥", "dicValue": "墨西哥", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MEDW国家",
+        "dicName": "摩尔多瓦",
+        "dicValue": "摩尔多瓦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MNG国家", "dicName": "摩纳哥", "dicValue": "摩纳哥", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MG国家",
+        "dicName": "蒙古",
+        "dicValue": "蒙古",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "MTSLTD国家",
+        "dicName": "蒙特塞拉特岛",
+        "dicValue": "蒙特塞拉特岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "MLG国家", "dicName": "摩洛哥", "dicValue": "摩洛哥", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MSBK国家",
+        "dicName": "莫桑比克",
+        "dicValue": "莫桑比克",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "NMBY国家", "dicName": "纳米比亚", "dicValue": "纳米比亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "NL国家",
+        "dicName": "瑙鲁",
+        "dicValue": "瑙鲁",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "NBE国家",
+        "dicName": "尼泊尔",
+        "dicValue": "尼泊尔",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "HSADLS国家",
+        "dicName": "荷属安的列斯",
+        "dicValue": "荷属安的列斯",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "HL国家", "dicName": "荷兰", "dicValue": "荷兰", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "XXL国家",
+        "dicName": "新西兰",
+        "dicValue": "新西兰",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "NJLG国家",
+        "dicName": "尼加拉瓜",
+        "dicValue": "尼加拉瓜",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "NRE国家", "dicName": "尼日尔", "dicValue": "尼日尔", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "NRLY国家",
+        "dicName": "尼日利亚",
+        "dicValue": "尼日利亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "CX国家", "dicName": "朝鲜", "dicValue": "朝鲜", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "NW国家",
+        "dicName": "挪威",
+        "dicValue": "挪威",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "AM国家", "dicName": "阿曼", "dicValue": "阿曼", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BJST国家",
+        "dicName": "巴基斯坦",
+        "dicValue": "巴基斯坦",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BNM国家",
+        "dicName": "巴拿马",
+        "dicValue": "巴拿马",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "BBYXJNY国家",
+        "dicName": "巴布亚新几内亚",
+        "dicValue": "巴布亚新几内亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "BLG国家", "dicName": "巴拉圭", "dicValue": "巴拉圭", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ML国家",
+        "dicName": "秘鲁",
+        "dicValue": "秘鲁",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "FLB国家", "dicName": "菲律宾", "dicValue": "菲律宾", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BL国家",
+        "dicName": "波兰",
+        "dicValue": "波兰",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "FSBLNXY国家",
+        "dicName": "法属玻利尼西亚",
+        "dicValue": "法属玻利尼西亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "PTY国家", "dicName": "葡萄牙", "dicValue": "葡萄牙", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "BDLG国家",
+        "dicName": "波多黎各",
+        "dicValue": "波多黎各",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "KTE国家", "dicName": "卡塔尔", "dicValue": "卡塔尔", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "LNW国家",
+        "dicName": "留尼旺",
+        "dicValue": "留尼旺",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "LMXY国家",
+        "dicName": "罗马尼亚",
+        "dicValue": "罗马尼亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "ELS国家", "dicName": "俄罗斯", "dicValue": "俄罗斯", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SLXY国家",
+        "dicName": "圣卢西亚",
+        "dicValue": "圣卢西亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SWSTD国家",
+        "dicName": "圣文森特岛",
+        "dicValue": "圣文森特岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "DSMY国家",
+        "dicName": "东萨摩亚(美)",
+        "dicValue": "东萨摩亚(美)",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "XSMY国家",
+        "dicName": "西萨摩亚",
+        "dicValue": "西萨摩亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SMLN国家",
+        "dicName": "圣马力诺",
+        "dicValue": "圣马力诺",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SDMHPLXB国家",
+        "dicName": "圣多美和普林西比",
+        "dicValue": "圣多美和普林西比",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "STALB国家",
+        "dicName": "沙特阿拉伯",
+        "dicValue": "沙特阿拉伯",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SNJE国家",
+        "dicName": "塞内加尔",
+        "dicValue": "塞内加尔",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "SSE国家", "dicName": "塞舌尔", "dicValue": "塞舌尔", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SLLA国家",
+        "dicName": "塞拉利昂",
+        "dicValue": "塞拉利昂",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "XJP国家", "dicName": "新加坡", "dicValue": "新加坡", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SLFK国家",
+        "dicName": "斯洛伐克",
+        "dicValue": "斯洛伐克",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SLWNY国家",
+        "dicName": "斯洛文尼亚",
+        "dicValue": "斯洛文尼亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "SLMQD国家",
+        "dicName": "所罗门群岛",
+        "dicValue": "所罗门群岛",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "SML国家", "dicName": "索马里", "dicValue": "索马里", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "NF国家",
+        "dicName": "南非",
+        "dicValue": "南非",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "XBY国家", "dicName": "西班牙", "dicValue": "西班牙", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SLLK国家",
+        "dicName": "斯里兰卡",
+        "dicValue": "斯里兰卡",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "SWST国家", "dicName": "圣文森特", "dicValue": "圣文森特", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SD国家",
+        "dicName": "苏丹",
+        "dicValue": "苏丹",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "SLN国家", "dicName": "苏里南", "dicValue": "苏里南", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "SWSL国家",
+        "dicName": "斯威士兰",
+        "dicValue": "斯威士兰",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "RD国家", "dicName": "瑞典", "dicValue": "瑞典", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "RS国家",
+        "dicName": "瑞士",
+        "dicValue": "瑞士",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "XLY国家", "dicName": "叙利亚", "dicValue": "叙利亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "TJKST国家",
+        "dicName": "塔吉克斯坦",
+        "dicValue": "塔吉克斯坦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "TSNY国家", "dicName": "坦桑尼亚", "dicValue": "坦桑尼亚", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "TG国家",
+        "dicName": "泰国",
+        "dicValue": "泰国",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "DG国家", "dicName": "多哥", "dicValue": "多哥", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "TJ国家",
+        "dicName": "汤加",
+        "dicValue": "汤加",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "TLNDHDBG国家",
+        "dicName": "特立尼达和多巴哥",
+        "dicValue": "特立尼达和多巴哥",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "TNS国家", "dicName": "突尼斯", "dicValue": "突尼斯", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "TEQ国家",
+        "dicName": "土耳其",
+        "dicValue": "土耳其",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "TKMST国家",
+        "dicName": "土库曼斯坦",
+        "dicValue": "土库曼斯坦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "WGD国家", "dicName": "乌干达", "dicValue": "乌干达", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "WKL国家",
+        "dicName": "乌克兰",
+        "dicValue": "乌克兰",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "ALBLHQZG国家",
+        "dicName": "阿拉伯联合酋长国",
+        "dicValue": "阿拉伯联合酋长国",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "YG国家", "dicName": "英国", "dicValue": "英国", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "MG国家",
+        "dicName": "美国",
+        "dicValue": "美国",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "WLG国家",
+        "dicName": "乌拉圭",
+        "dicValue": "乌拉圭",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "WZBKST国家",
+        "dicName": "乌兹别克斯坦",
+        "dicValue": "乌兹别克斯坦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "WNRL国家", "dicName": "委内瑞拉", "dicValue": "委内瑞拉", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "YN国家",
+        "dicName": "越南",
+        "dicValue": "越南",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "YM国家", "dicName": "也门", "dicValue": "也门", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "NSLF国家",
+        "dicName": "南斯拉夫",
+        "dicValue": "南斯拉夫",
+        "language": "zh",
+        "type": "GJ"
+    }, {
+        "dicDesc": "JBBW国家",
+        "dicName": "津巴布韦",
+        "dicValue": "津巴布韦",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "ZYE国家", "dicName": "扎伊尔", "dicValue": "扎伊尔", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "ZBY国家",
+        "dicName": "赞比亚",
+        "dicValue": "赞比亚",
+        "language": "zh",
+        "type": "GJ"
+    }, {"dicDesc": "国家", "dicName": "其他", "dicValue": "其他", "language": "zh", "type": "GJ"}, {
+        "dicDesc": "TWL国家",
+        "dicName": "图瓦卢",
+        "dicValue": "图瓦卢",
+        "language": "zh",
+        "type": "GJ"
+    }];
+    window.area_jsonEn = [{
+        "dicDesc": "country",
+        "dicName": "Afghanistan",
+        "dicValue": "阿富汗",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Gabon",
+        "dicValue": "加蓬",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Gambia",
+        "dicValue": "冈比亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Georgia",
+        "dicValue": "格鲁吉亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Finland",
+        "dicValue": "芬兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "France",
+        "dicValue": "法国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "French Polynesia",
+        "dicValue": "法属圭亚那",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Ethiopia",
+        "dicValue": "埃塞俄比亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Fiji",
+        "dicValue": "斐济",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Albania",
+        "dicValue": "阿尔巴尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Algeria",
+        "dicValue": "阿尔及利亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Andorra",
+        "dicValue": "安道尔共和国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Anguilla",
+        "dicValue": "安圭拉岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Antigua and Barbuda",
+        "dicValue": "安提瓜和巴布达",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Argentina",
+        "dicValue": "阿根廷",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Armenia",
+        "dicValue": "亚美尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Ascension",
+        "dicValue": "阿森松",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Australia",
+        "dicValue": "澳大利亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Austria",
+        "dicValue": "奥地利",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Azerbaijan",
+        "dicValue": "阿塞拜疆",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Bahamas",
+        "dicValue": "巴哈马",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Bahrain",
+        "dicValue": "巴林",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Bangladesh",
+        "dicValue": "孟加拉国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Barbados",
+        "dicValue": "巴巴多斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Belarus",
+        "dicValue": "白俄罗斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Belgium",
+        "dicValue": "比利时",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Belize",
+        "dicValue": "伯利兹",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Benin",
+        "dicValue": "贝宁",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Bermuda",
+        "dicValue": "百慕大群岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Bolivia",
+        "dicValue": "玻利维亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Botswana",
+        "dicValue": "博茨瓦纳",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Brazil",
+        "dicValue": "巴西",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Brunei",
+        "dicValue": "文莱",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Bulgaria",
+        "dicValue": "保加利亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Burkina Faso",
+        "dicValue": "布基纳法索",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Burma",
+        "dicValue": "缅甸",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Burundi",
+        "dicValue": "布隆迪",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cambodia",
+        "dicValue": "柬埔寨",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cameroon",
+        "dicValue": "喀麦隆",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Canada",
+        "dicValue": "加拿大",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cayman Islands",
+        "dicValue": "开曼群岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Central African Republic",
+        "dicValue": "中非共和国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Chad",
+        "dicValue": "乍得",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "China",
+        "dicValue": "中国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Colombia",
+        "dicValue": "哥伦比亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Congo",
+        "dicValue": "刚果",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cook Islands",
+        "dicValue": "库克群岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Costa Rica",
+        "dicValue": "哥斯达黎加",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cote d Ivoire",
+        "dicValue": "科特迪瓦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cuba",
+        "dicValue": "古巴",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Cyprus",
+        "dicValue": "塞浦路斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Czech Republic",
+        "dicValue": "捷克",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Denmark",
+        "dicValue": "丹麦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Djibouti",
+        "dicValue": "吉布提",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Dominican Republic",
+        "dicValue": "多米尼加共和国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Ecuador",
+        "dicValue": "厄瓜多尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Egypt",
+        "dicValue": "埃及",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Estonia",
+        "dicValue": "爱沙尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Germany",
+        "dicValue": "德国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Ghana",
+        "dicValue": "加纳",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Gibraltar",
+        "dicValue": "直布罗陀",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Greece",
+        "dicValue": "希腊",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Grenada",
+        "dicValue": "格林纳达",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Guam",
+        "dicValue": "关岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Guatemala",
+        "dicValue": "危地马拉",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Guinea",
+        "dicValue": "几内亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Guyana",
+        "dicValue": "圭亚那",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Haiti",
+        "dicValue": "海地",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Honduras",
+        "dicValue": "洪都拉斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Hong Kong",
+        "dicValue": "香港",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Hungary",
+        "dicValue": "匈牙利",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Iceland",
+        "dicValue": "冰岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "India",
+        "dicValue": "印度",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Indonesia",
+        "dicValue": "印度尼西亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Iran",
+        "dicValue": "伊朗",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Iraq",
+        "dicValue": "伊拉克",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Ireland",
+        "dicValue": "爱尔兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Israel",
+        "dicValue": "以色列",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Italy",
+        "dicValue": "意大利",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Jamaica",
+        "dicValue": "牙买加",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Japan",
+        "dicValue": "日本",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Jordan",
+        "dicValue": "约旦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Kazakhstan",
+        "dicValue": "哈萨克斯坦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Kenya",
+        "dicValue": "肯尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Korea",
+        "dicValue": "韩国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Kuwait",
+        "dicValue": "科威特",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Kyrgyzstan",
+        "dicValue": "吉尔吉斯斯坦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Laos",
+        "dicValue": "老挝",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Latvia",
+        "dicValue": "拉脱维亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Lebanon",
+        "dicValue": "黎巴嫩",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Lesotho",
+        "dicValue": "莱索托",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Liberia",
+        "dicValue": "利比里亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Libya",
+        "dicValue": "利比亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Liechtenstein",
+        "dicValue": "列支敦士登",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Lithuania",
+        "dicValue": "立陶宛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Luxembourg",
+        "dicValue": "卢森堡",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Macao",
+        "dicValue": "澳门",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Madagascar",
+        "dicValue": "马达加斯加",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Malawi",
+        "dicValue": "马拉维",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Malaysia",
+        "dicValue": "马来西亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Maldives",
+        "dicValue": "马尔代夫",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Mali",
+        "dicValue": "马里",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Malta",
+        "dicValue": "马耳他",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Mariana Is",
+        "dicValue": "马里亚那群岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Martinique",
+        "dicValue": "马提尼克",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Mauritius",
+        "dicValue": "毛里求斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Mexico",
+        "dicValue": "墨西哥",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Moldova",
+        "dicValue": "摩尔多瓦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Monaco",
+        "dicValue": "摩纳哥",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Mongolia",
+        "dicValue": "蒙古",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Montserrat Is",
+        "dicValue": "蒙特塞拉特岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Morocco",
+        "dicValue": "摩洛哥",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Mozambique",
+        "dicValue": "莫桑比克",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Namibia",
+        "dicValue": "纳米比亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Nauru",
+        "dicValue": "瑙鲁",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Nepal",
+        "dicValue": "尼泊尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Netheriands Antilles",
+        "dicValue": "荷属安的列斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Netherlands",
+        "dicValue": "荷兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "NewZealand",
+        "dicValue": "新西兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Nicaragua",
+        "dicValue": "尼加拉瓜",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Niger",
+        "dicValue": "尼日尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Nigeria",
+        "dicValue": "尼日利亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "North Korea",
+        "dicValue": "朝鲜",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Norway",
+        "dicValue": "挪威",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Oman",
+        "dicValue": "阿曼",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Pakistan",
+        "dicValue": "巴基斯坦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Panama",
+        "dicValue": "巴拿马",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Papua New Cuinea",
+        "dicValue": "巴布亚新几内亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Paraguay",
+        "dicValue": "巴拉圭",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Peru",
+        "dicValue": "秘鲁",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Philippines",
+        "dicValue": "菲律宾",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Poland",
+        "dicValue": "波兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Portugal",
+        "dicValue": "葡萄牙",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "French Guiana",
+        "dicValue": "法属玻利尼西亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "PuertoRico",
+        "dicValue": "波多黎各",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Qatar",
+        "dicValue": "卡塔尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Reunion",
+        "dicValue": "留尼旺",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Romania",
+        "dicValue": "罗马尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Russia",
+        "dicValue": "俄罗斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Saint Lueia",
+        "dicValue": "圣卢西亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Saint Vincent",
+        "dicValue": "圣文森特岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Salvador",
+        "dicValue": "萨尔瓦多",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Samoa Eastern",
+        "dicValue": "东萨摩亚(美)",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Samoa Western",
+        "dicValue": "西萨摩亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "San Marino",
+        "dicValue": "圣马力诺",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Sao Tome and Principe",
+        "dicValue": "圣多美和普林西比",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Saudi Arabia",
+        "dicValue": "沙特阿拉伯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Senegal",
+        "dicValue": "塞内加尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Seychelles",
+        "dicValue": "塞舌尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Sierra Leone",
+        "dicValue": "塞拉利昂",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Singapore",
+        "dicValue": "新加坡",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Slovakia",
+        "dicValue": "斯洛伐克",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Slovenia",
+        "dicValue": "斯洛文尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Solomon Islands",
+        "dicValue": "所罗门群岛",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Somalia",
+        "dicValue": "索马里",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "South Africa1",
+        "dicValue": "南非1",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Spain",
+        "dicValue": "西班牙",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Sri Lanka",
+        "dicValue": "斯里兰卡",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "St.Vincent",
+        "dicValue": "圣文森特",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Sudan",
+        "dicValue": "苏丹",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Surinam",
+        "dicValue": "苏里南",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Swaziland",
+        "dicValue": "斯威士兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Sweden",
+        "dicValue": "瑞典",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Switzerland",
+        "dicValue": "瑞士",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Syria",
+        "dicValue": "叙利亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Tajikistan",
+        "dicValue": "塔吉克斯坦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Tanzania",
+        "dicValue": "坦桑尼亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Thailand",
+        "dicValue": "泰国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Togo",
+        "dicValue": "多哥",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Tonga",
+        "dicValue": "汤加",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Trinidad and Tobago",
+        "dicValue": "特立尼达和多巴哥",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Tunisia",
+        "dicValue": "突尼斯",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Turkey",
+        "dicValue": "土耳其",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Turkmenistan",
+        "dicValue": "土库曼斯坦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Uganda",
+        "dicValue": "乌干达",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Ukraine",
+        "dicValue": "乌克兰",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "United Arab Emirates",
+        "dicValue": "阿拉伯联合酋长国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "United Kingdom",
+        "dicValue": "英国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "United States",
+        "dicValue": "美国",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Uruguay",
+        "dicValue": "乌拉圭",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Uzbekistan",
+        "dicValue": "乌兹别克斯坦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Venezuela",
+        "dicValue": "委内瑞拉",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Vietnam",
+        "dicValue": "越南",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Yemen",
+        "dicValue": "也门",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Yugoslavia",
+        "dicValue": "南斯拉夫",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "South Africa",
+        "dicValue": "南非",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Zimbabwe",
+        "dicValue": "津巴布韦",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Zaire",
+        "dicValue": "扎伊尔",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "Zambia",
+        "dicValue": "赞比亚",
+        "language": "en",
+        "type": "GJ"
+    }, {
+        "dicDesc": "country",
+        "dicName": "others",
+        "dicValue": "其他",
+        "language": "en",
+        "type": "GJ"
+    }, {"dicDesc": "country", "dicName": "Tuvalu", "dicValue": "图瓦卢", "language": "en", "type": "GJ"}];
+</script>
+</html>

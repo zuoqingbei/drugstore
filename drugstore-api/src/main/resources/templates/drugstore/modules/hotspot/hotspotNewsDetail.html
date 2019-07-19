@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Cn">
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+    <link rel="stylesheet" href="${ctx}/css/modules/hotspot/hotspotNewsDetail.css">
+</head>
+<body>
+    <#include "${ctx}/yeesight/tpl/header.html" />
+    <div class="container container-flex relative  color-box-bg">
+        <div class="toolbox">
+            <div class="item favorite color-box-bg pointer"><i class="iconfont icon-xingxing1"></i></div>
+            <div class="item edit mt-5 color-box-bg pointer"><i class="iconfont icon-edit-no"></i></div>
+        </div>
+
+
+        <div class="iconbox">
+            <i class="iconfont icon-exchange"></i>
+        </div>
+
+        <div class="articlebox fl clearfix">
+            <article class="article">
+                <h2 id="title-translate" class="title color-tit color-secondary"></h2>
+                <div class="small mt-20 color-main">
+                    来源：
+                    <span class="meiti mr-25"></span>
+                    时间：
+                    <span class="create-date"></span>
+                    </div>
+                <div id="content-translate" class="content mt-30"></div>
+                <div class="fr"><a class="org-url" href="" target="_blank">查看原文 》</a></div>
+                <p class="small mt-30" style="color: #57657e">本文版权及观点归原文著作权人，不代表平台立场</p>
+            </article>
+        </div>
+        <div class="articlebox fr clearfix">
+            <article class="article">
+                <h2 id="title-original" class="title color-tit color-secondary"></h2>
+                <div class="small mt-20 color-main">
+                    Source :
+                    <span class="meiti mr-25" ></span>
+                    Time :
+                    <span class="create-date"></span>
+                </div>
+                <div id="content-original" class="content mt-30"></div>
+                <div class="fr"><a class="org-url" href="" target="_blank">View original 》</a></div>
+                <p class="small mt-30" style="color: #57657e">The copyright and opinions of this article belong to the original copyright owner and
+                    do not represent the platform position</p>
+            </article>
+
+        </div>
+    </div>
+    <div class="container mt-20 color-box-bg">
+        <div class="keybox">
+            <ul class="box-angle"> <li></li> <li></li> <li></li> <li></li> </ul>
+            <div class="key">
+                <div class="mt mb-20">
+                    <h6 class="big color-main">关键要素</h6>
+                </div>
+                <div class="mc">
+                    <dl class="key-person"><dt class="color-secondary">人物：</dt></dl>
+                    <dl class="key-time"><dt class="color-secondary">时间：</dt></dl>
+                    <dl class="key-location"><dt class="color-secondary">地点：</dt></dl>
+                    <dl class="key-organization"><dt class="color-secondary">机构：</dt></dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-20 color-box-bg">
+        <div class="relevantbox">
+            <ul class="box-angle"> <li></li> <li></li> <li></li> <li></li> </ul>
+            <div class="relevant clearfix relative">
+                <div class="mt mb-25">
+                    <h6 class="big color-main">相关资讯</h6>
+                </div>
+                <div class="mc">
+                    <ul id="relevantList" class="color-secondary" style="overflow:hidden;min-height:200px;">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script src="${ctx}/plugins/layer/layer.js"></script>
+    <!--<script src="${ctx}/plugins/world.js"></script>-->
+    <script src="${ctx}/js/modules/hotspot/hotspotNewsDetail.js"></script>
+    <script>
+        setHeaderActive();
+        // 设置页头
+        function setHeaderActive() {
+            var headerArr = $('.header-right nav a');
+            $.each(headerArr, function (index, item) {
+                if ($(item).html() === sessionStorage.source) {
+                    $(item).addClass('active');
+                    $("title").html(sessionStorage.source + '-详情')
+                }
+            })
+        }
+    </script>
+</body>
+</html>

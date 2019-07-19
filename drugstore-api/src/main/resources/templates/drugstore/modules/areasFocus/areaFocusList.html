@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Cn">
+<head>
+    <meta charset="UTF-8">
+    <title>领域聚焦-列表</title>
+    <link href="${ctx}/plugins/pagination/pagination.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/areasFocus/areaFocusList.css">
+    <style>
+    	.sk-fading-circle {
+    		    top: 2rem!important;
+    	}
+    </style>
+</head>
+<body>
+    <#include "${ctx}/yeesight/tpl/header.html" />
+    <div class="container clearfix mt-30">
+        <div class="fl tab-group big container-flex ml-10">
+            <div id="hot" class="tab-item">热门推荐</div>
+            <div id="new" class="tab-item">最新资讯</div>
+            <div id="knowledge" class="tab-item">知识产权</div>
+        </div>
+        <div class="fr field">
+            <ul class="field-list big container-flex">
+
+            </ul>
+        </div>
+    </div>
+    <div class="container clearfix mt-20">
+        <div class="mainbar fl clearfix mb-30">
+            <div class="select-group">
+                <div class="select-item">
+                    <div class="formbox clearfix">
+                        <div class="search-group container-flex">
+                            <div class="search-input form">
+                                <input type="text" class="search-text">
+                            </div>
+                            <div class="search-button btn btn-search btn-info">查询</div>
+                        </div>
+                        <ul class="list-filter container-flex mt-10">
+                            <li class="item country">
+                                <span class="mIn selective form">全部国家</span>
+                                <i class="iconfont icon-35_xiangxiajiantou choose-country"></i>
+                                <div class="countryBox">
+                                    <ul class="flex font14 choose-arr">
+                                        <li class="pointer on main-blue all">全部</li>
+                                        <li class="pointer main-blue">ABCDE</li>
+                                        <li class="pointer main-blue">FGHIJ</li>
+                                        <li class="pointer main-blue">KLMNO</li>
+                                        <li class="pointer main-blue">PQRST</li>
+                                        <li class="pointer main-blue">UVWXYZ</li>
+                                    </ul>
+                                    <i class="iconfont icon-error-bold main-blue font18 closed"></i>
+                                    <ul class="countryDetail">
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="item language">
+                                <select class="form form-triangle" onchange="getlanguage()">
+
+                                </select>
+                            </li>
+                            <li class="item emotion">
+                                <select class="form form-triangle" onchange="getemotion()">
+                                    <option value="全部情感">全部情感</option>
+                                    <option value="积极">积极</option>
+                                    <option value="中性">中性</option>
+                                    <option value="消极">消极</option>
+                                </select>
+                            </li>
+                            <li class="item">
+                                <div class="form form-triangle shijian">
+                                    <span class="result">选择时间</span>
+                                    <ul class="choose">
+                                        <li class="pointer">时间不限</li>
+                                        <li class="pointer">一天内</li>
+                                        <li class="pointer">一周内</li>
+                                        <li class="pointer">一月内</li>
+                                        <li class="self">自定义</li>
+                                        <li class="start">
+                                            从<input id="dateinfo1" name="startdate" type="text" value=""
+                                                                 placeholder="起始日期" class="form"/>
+                                        </li>
+                                        <li class="end">
+                                            到<input id="dateinfo2" name="enddate" type="text" value=""
+                                                   placeholder="结束日期" class="form"/>
+                                        </li>
+                                        <li class="sure"><a class="shijian-confirm small-btn-enter">确定</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="item translate">
+                                <select class="form form-triangle" onchange="gettranslate()">
+                                    <option value="原文">原文</option>
+                                    <option value="中文译文">中文译文</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="select-knowledge">
+                <div class="search-group container-flex">
+                    <div class="item translate">
+                        <select class="form form-triangle" onchange="gettranslate1()">
+                            <option value="原文">原文</option>
+                            <option value="中文译文">中文译文</option>
+                        </select>
+                    </div>
+                    <div class="search-input form">
+                        <input type="text" class="search-text">
+                    </div>
+                    <div class="search-button btn btn-search btn-info">查询</div>
+                </div>
+            </div>
+            <div class="select-equity">
+                <div class="search-group container-flex">
+                    <div class="search-input form">
+                        <input type="text" class="search-text">
+                    </div>
+                    <div class="search-button btn btn-search btn-info">查询</div>
+                </div>
+            </div>
+            <p class="num-total mt-10">
+                共 <span class="nums"></span> 条
+            </p>
+            <ul class="list">
+            </ul>
+            <div class="page mt-15 clearfix"></div>
+            <div id="pagination" class="m-style"></div>
+        </div>
+        <div class="sidebar fr clearfix">
+            <div class="data-top color-box-bg">
+                <h3 class="big color-main">热门词汇</h3>
+                <ul class="list-header border-b">
+                    <li class="item fl">排序</li><li class="item fl">热词</li><li class="item fr">频次</li>
+                </ul>
+                <ul class="top-list clearfix">
+
+                </ul>
+            </div>
+            <div class="active_total color-box-bg mt-10">
+                <div class="active_title">
+                    <h2>活跃榜单</h2>
+                </div>
+                <div class="active_total_center clearfix">
+                    <div>
+                        <ul class="position">
+
+                        </ul>
+                        <ul class="passive">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script src="${ctx}/plugins/layer/layer.js"></script>
+    <script src="${ctx}/plugins/laydate/laydate.js"></script>
+    <script src="${ctx}/plugins/pagination/jquery.pagination.js"></script>
+    <script src="${ctx}/plugins/country.js"></script>
+    <script src="${ctx}/js/modules/areasFocus/areasFocusList.js"></script>
+
+</body>
+</html>

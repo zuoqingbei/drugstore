@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>忘记密码</title>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <link rel="stylesheet" href="${ctx}/css/modules/account/login.css">
+    <link rel="stylesheet" href="${ctx}/css/modules/account/common.css">
+    <link rel="stylesheet" href="/css/modules/account/loginForApplacation.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+<#include "${ctx}/yeesight/tpl/header.html" />
+
+<div class="login reg_login">
+    <form id="resetform" method="post" action="${ctx}/api/v1/view?to=modules/account/resetsuccess" autocomplete="off">
+        <div class="login_Box login_Box_header">
+            <h3 class="ct">重置密码</h3>
+        </div>
+        <div class="line"></div>
+        <div class="login_Box login_Box_bottom">
+            <input value="" autocomplete="off" class="divSearch reg_divSearch" id="email" name="username"
+                   type="text"
+                   placeholder="请输入绑定的邮箱"
+                    autocomplete="off">
+            <div class="tupian verificationCodeBox">
+                <input value="" autocomplete="off" class="divSearch reg_divSearch" name='identificationCode'
+                       type="text"
+                       placeholder="请输入邮箱收到的验证码">
+                <span class="btn-getVerificationCode">获取验证码</span>
+            </div>
+            <input value="" class="divSearch reg_divSearch" name="password" id='password' type="password"
+                   placeholder="请输入新的登录密码"
+                   maxlength="50"
+                   autocomplete="new-password">
+            <input value="" class="divSearch reg_divSearch" name="affirmpwd" id='affirmpwd' type="password"
+                   placeholder="请确认登录密码"
+                   maxlength="50">
+            <div class="reg_divBtn">
+                <input id="submit" class="disabled" type="button" value="提交">
+                <p>已有账号? <a href="${ctx}/api/v1/view?to=modules/account/denglu">直接登录</a> &emsp;
+                    没有账号? <a href="${ctx}/api/v1/view?to=modules/account/register_0">请先注册</a></p>
+            </div>
+        </div><!--login_Box_bottom-->
+    </form><!--form-->
+</div><!--logo-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+<!--[if lt IE 9]>
+<script src=" ${ctx}/js/modules/account/html5shiv.js"></script>
+<script src=" ${ctx}/js/modules/account/respond.min.js"></script>
+<script src=" ${ctx}/js/modules/account/browser.js"></script>
+<![endif]-->
+<script type="text/javascript" src=" ${ctx}/js/modules/account/jquery.js"></script>
+<script src=" ${ctx}/js/modules/account/jquery.validate.min.js"></script>
+<script src=" ${ctx}/js/modules/account/messages_zh.js"></script>
+<script src=" ${ctx}/plugins/layer/layer.js"></script>
+<script src=" ${ctx}/js/common.js"></script>
+<script>
+    $(function () {
+        let resetPwd = {
+            init() {
+                // let that = this;
+                this.verificationCode = ''; //邮箱验证码
+                this.$email = $('#email');
+                this.verificationForm();
+                this.getVerificationCode();
+                this.submit();
+            },
+            //验证表单
+            verificationForm() {
+                let that = this;
+                //自定义验证属性
+                $.validator.methods.equal = (value, element, param) => {
+                    console.log('value,  param', value, param);
+                    return value === param
+                };
+                //验证规则
+                $('#resetform').validate({
+                    rules: {
+                        username: {
+                            required: true,
+                            email: true,
+                        },
+                        identificationCode: {
+                            required: true,
+                            //这里如果用变量，当变量值改变时规则就不会变了，所以用函数获取一次变量值
+                            equal: () => that.verificationCode
+                        },
+                        password: {
+                            required: true,
+                            minlength:6
+                        },
+                        affirmpwd: {
+                            required: true,
+                            equalTo: "#password",
+                        },
+                    },
+                    messages: {
+                        username: {
+                            required: '*请输入邮箱地址',
+                            email: '*请输入正确的邮箱地址',
+                        },
+                        identificationCode: {
+                            required: '*请输入验证码',
+                            equal: "请输入正确的验证码"
+                        },
+                        password: {
+                            required: '*请输入密码',
+                            minlength:'*密码不能少于6位'
+                        },
+                        affirmpwd: {
+                            required: '*请输入确认密码',
+                            equalTo: '*密码前后输入不一致',
+                        },
+                    }
+                });
+
+            },
+            // 获取验证码
+            getVerificationCode() {
+                let that = this;
+                //获取邮箱验证码
+                let $btnGetVerificationCode = $(".btn-getVerificationCode");
+                $btnGetVerificationCode.click(function () {
+                    if (!$('#resetform').validate().element(that.$email)) {
+                        return;
+                    }
+                    $(this).css({
+                        pointerEvents: 'none',
+                        cursor: 'not-allowed'
+                    });
+                    let timeRemaining = 60;
+                    let timer = setInterval(function () {
+                        $btnGetVerificationCode.text(timeRemaining-- + 's');
+                        if (timeRemaining === 0) {
+                            clearInterval(timer);
+                            $(".btn-getVerificationCode").text('获取验证码').css({
+                                pointerEvents: 'auto',
+                                cursor: 'pointer'
+                            });
+                        }
+                    }, 1000);
+                    Public.message('正在发送验证码，请稍候...');
+                    $.post('/loginAndRegister/searchPwd', {
+                        emailcode: that.$email.val(),
+                    }, data => {
+                        if (data.result === 'true') {
+                            console.log('yanzhengma:',data)
+                            that.verificationCode = data.data;
+                            Public.message('验证码发送成功！');
+                            $("#submit").removeClass('disabled');
+
+                        }
+                    })
+                });
+
+            },
+            // 提交
+            submit() {
+                let that = this;
+                $("#submit").click(function () {
+                    if (!$('#resetform').valid()) {
+                        return;
+                    }
+                    $.post('/loginAndRegister/searchUpdatePwd', {
+                        email: that.$email.val(),
+                        newPwd: $('[name=password]').val(),
+                    },  data => {
+                        console.log(data);
+                        if (data.result === 'true') {
+                            location.href = '${ctx}/api/v1/view?to=modules/account/resetsuccess';
+                        } else {
+                            Public.message(data.errorMsg);
+                            return false;
+                        }
+                    })
+                })
+            }
+        };
+        resetPwd.init();
+
+    });
+</script>
+
+</body>
+</html>
+

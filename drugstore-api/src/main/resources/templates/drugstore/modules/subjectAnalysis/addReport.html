@@ -1,0 +1,1768 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>编辑报告</title>
+    <link rel="stylesheet" href="${ctx}/css/subjectAnalysis/tagEditReport.css">
+    <link href="${ctx}/js/subjectAnalysis/easydialog.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/js/subjectAnalysis/pointChart.css" rel="stylesheet" type="text/css"/>
+    <script src="${ctx}/js/subjectAnalysis/easydialog.min.js" type="text/javascript"></script>
+    <!--日期范围限制-->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/WdatePicker.js"></script>
+    <link rel="stylesheet" href="${ctx}/css/tpl/heades.css"/>
+    <style type="text/css">
+        .crowd_center_left {
+            float: left;
+            width: 298px;
+            margin-right: 4px;
+            background: #fff;
+            height: 346px;
+            box-shadow: 0px 0px 4px #e3e3e3;
+        }
+
+        .crowd_center_right {
+            float: left;
+            width: 296px;
+            background: #fff;
+            height: 500px;
+            box-shadow: 0px 0px 4px #e3e3e3;
+        }
+
+        .popu_center_left_centent {
+            padding-left: 12px;
+            height: 500px;
+        }
+
+        .bb_02 {
+            width: 900px; /* 980px; *//*960px  */
+            margin: 0px auto;
+        }
+
+        body {
+
+        }
+
+        .chart_title {
+            height: 40px;
+            line-height: 40px;
+            background-color: #fafafa;
+            text-indent: 1em;
+            font: 16px/ 40px "Microsoft YaHei";
+            color: #333;
+
+        }
+
+
+        .chart-body h3 {
+            height: 40px;
+            line-height: 40px;
+            background-color: rgba(0, 138, 255, 0.06);
+            text-indent: 1em;
+            font: 16px/ 40px "Microsoft YaHei";
+            color: #8dcbff;
+
+        }
+
+        .left2-list-title {
+            font-size: 14px;
+            color: red;
+
+        }
+
+        .biaop-conter-left2-list {
+            border-bottom: 1px solid #008aff20;
+            width: 800px;
+            margin: 0 auto;
+            padding-top: 20px;
+
+        }
+
+        .biaop-conter-left2-list .link_zixun {
+            color: #1d78d1;
+        }
+
+        .biaop-conter-left2-list > img {
+            float: left;
+
+        }
+
+        .biaop-conter-left2-list li {
+            width: 700px;
+            margin-left: 90px;
+            padding-bottom: 10px;
+        }
+
+        .biaop-conter-left2-list li .link_sj {
+            color: #fff;
+
+        }
+
+        .biaop-conter-left2-list li a {
+            font-size: 14px;
+        }
+        .biaop-conter-left2-list li.footer a {
+            font-size: 12px;
+        }
+
+        .biaop-conter-left2-list li .mr20 {
+            padding-right: 20px;
+            padding-left: 9px;
+            font-size: 12px;
+        }
+
+        .biaop-conter-left2-list li .qhui {
+            float: right;
+        }
+
+        .biaop-conter-left2-list .li_2 {
+            padding-bottom: 10px;
+        }
+
+
+        .emotion_total_center_20_20 {
+            width: 980px;
+            height: 500px;
+            margin: 0 auto;
+
+        }
+
+        .emotion_total_center_20_20 .positive h2 {
+            font-size: 14px;
+            heigth: 42px;
+            line-height: 42px;
+            color: #28a60b;
+        }
+
+        .emotion_total_center_20_20 .negative h2 {
+            color: #cc5e5e;
+
+        }
+
+        /* .chart-img-echarts,#charts_1{
+        margin-right:10px;
+
+        } */
+        .emotion_total_center_20_20 .mainpositivelist {
+
+            background: #e9f6e6;
+            width: 216px;
+            height: 316px;
+
+            overflow: hidden;
+        }
+
+        .emotion_total_center_20_20 .maincountNegativelist {
+            background: #faefef;
+            width: 216px;
+            height: 316px;
+
+            overflow: hidden;
+        }
+
+        .emotion_total_center_20_20 ul {
+
+            padding: 0 10px;
+
+        }
+
+        .emotion_total_center_20_20 ul li {
+
+            font-size: 12px;
+            heigth: 32px;
+            line-height: 26px;
+
+
+        }
+
+        .emotion_total_center_21_21 .shejiaopositive-del {
+
+            background: #e9f6e6;
+            width: 216px;
+            height: 300px;
+        }
+
+        .emotion_total_center_21_21 .shejiaonegative-del {
+            background: #faefef;
+            width: 216px;
+            height: 300px;
+        }
+
+
+        .emotion_total_center_21_21 .positive .positive_center ul {
+
+
+            padding-top: 10px;
+        }
+
+        .emotion_total_center_21_21 .positive .positive_center li {
+
+            font-size: 12px;
+            padding-left: 14px;
+            line-height: 24px;
+        }
+
+        .touxiang_list {
+            font-weight: normal;
+            white-space: nowrap;
+            word-wrap: normal;
+            color: #2e95f3;
+            font-size: 12px;
+            line-height: 40px;
+            padding: 0;
+            margin: 0;
+            width: 130px;
+            overflow: hidden;
+            position: absolute;
+            top: -15px;
+            left: 70px;
+        }
+
+        .emotion_total_center_21_21 .positive h2 {
+            font-size: 14px;
+            font-family: "微软雅黑";
+            heigth: 42px;
+            line-height: 42px;
+            color: #28a60b;
+        }
+
+        .emotion_total_center_21_21 .negative h2 {
+            color: #cc5e5e;
+
+        }
+
+        #regionEmotion .crowd_center_left {
+            float: left;
+            width: 298px;
+            margin-right: 4px;
+            background: #fff;
+            height: 500px;
+            box-shadow: 0px 0px 4px #e3e3e3;
+
+        }
+
+        #regionEmotion .crowd_center_rigth {
+            float: left;
+            width: 298px;
+            margin-right: 4px;
+            background: #fff;
+            height: 500px;
+            box-shadow: 0px 0px 4px #e3e3e3;
+
+        }
+
+        #regionEmotion .crowd_center_left .weibolist, .fblist, .twlist {
+            width: 276px;
+            height: 500px;
+            padding: 5px 0;
+            /*  border-bottom: 1px solid #eeeeee; */
+        }
+
+        #regionEmotion .crowd_center_left {
+
+            margin-right: 50px;
+        }
+
+        #regionEmotion .crowd_center_left .weibolist .blue {
+            float: left;
+            width: 26px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-right: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            line-height: 44px;
+            color: #2E95F3;
+            background-color: #fff; /*#2E95F3  */
+        }
+
+        #regionEmotion .crowd_center_right .twlist .blue {
+            float: left;
+            width: 26px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-right: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            line-height: 44px;
+            color: #2E95F3;
+            background-color: #fff; /*#2E95F3  */
+        }
+
+        #regionEmotion .crowd_center_left .fblist .blue {
+            float: left;
+            width: 26px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding-right: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            line-height: 44px;
+            color: #2E95F3;
+            background-color: #fff; /*#2E95F3  */
+        }
+
+        #regionEmotion .crowd_center_left .weibolist li p span {
+            width: 128px;
+            display: block;
+            float: left;
+            font-size: 11px;
+            padding-left: 14px;
+            color: #666;
+        }
+
+        #regionEmotion .crowd_center_right .twlist li p span {
+            width: 128px;
+            display: block;
+            font-size: 11px;
+            padding-left: 14px;
+            color: #666;
+        }
+
+        #regionEmotion .crowd_center_right .twlist li > p {
+            height: 64px;
+            width: 128px;
+            float: left;
+
+        }
+
+        #regionEmotion .crowd_center_left .fblist li p span {
+            width: 128px;
+            display: block;
+            font-size: 11px;
+            padding-left: 14px;
+            color: #666;
+        }
+
+        #regionEmotion .crowd_center_left .weibolist li {
+            width: 276px;
+            height: 70px;
+            padding-top: 9px;
+            border-bottom: 1px solid #eeeeee;
+            overflow: hidden;
+        }
+
+        #regionEmotion .crowd_center_right .twlist li {
+            width: 276px;
+            height: 70px;
+            padding-top: 9px;
+            border-bottom: 1px solid #eeeeee;
+            /*  overflow: hidden; */
+        }
+
+        #regionEmotion .crowd_center_left .fblist li {
+            width: 276px;
+            height: 70px;
+            padding-top: 9px;
+            border-bottom: 1px solid #eeeeee;
+            overflow: hidden;
+        }
+
+
+        #regionEmotion .crowd_center_left .weibolist li > img {
+            width: 44px;
+            height: 44px;
+            overflow: hidden;
+            border-radius: 50%;
+            float: left;
+
+        }
+
+        #regionEmotion .crowd_center_right .twlist li > img {
+            width: 44px;
+            height: 44px;
+            overflow: hidden;
+            border-radius: 50%;
+            float: left;
+
+        }
+
+        #regionEmotion .crowd_center_left .fblist li > img {
+            width: 44px;
+            height: 44px;
+            overflow: hidden;
+            border-radius: 50%;
+            float: left;
+
+        }
+
+
+        #regionEmotion .crowd_center_left .weibolist li > p {
+            padding: 0px 10px;
+            width: 120px;
+
+            float: left;
+        }
+
+        #regionEmotion .crowd_center_rigth .twlist li > p {
+            padding: 0px 10px;
+            width: 120px;
+
+            float: left;
+        }
+
+        #regionEmotion .crowd_center_left .fblist li > p {
+            padding: 0px 10px;
+            width: 120px;
+
+            float: left;
+        }
+
+        #regionEmotion .crowd_center_left .weibolist .popularity {
+            float: left;
+            width: 32px;
+            padding-right: 10px;
+            text-align: center;
+            color: #2E95F3;
+            font-size: 12px;
+            line-height: 58px;
+        }
+
+        #regionEmotion .crowd_center_right .twlist .popularity {
+            float: left;
+            width: 32px;
+            padding-right: 10px;
+            text-align: center;
+            color: #2E95F3;
+            font-size: 12px;
+            line-height: 58px;
+        }
+
+        #regionEmotion .crowd_center_left .fblist .popularity {
+            float: left;
+            width: 32px;
+            padding-right: 10px;
+            text-align: center;
+            color: #2E95F3;
+            font-size: 12px;
+            line-height: 58px;
+        }
+
+        .text {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 12px;
+            text-indent: 2em;
+            padding-rigth: 10px;
+        }
+
+        #first_artical_div h3 {
+
+            font-size: 14px;
+            color: #1d78d1;
+
+            line-height: 28px;
+        }
+
+        .paragraph-text h3 {
+
+            font-size: 14px;
+            color: #1d78d1;
+
+            line-height: 28px;
+        }
+
+        .paragraph-content {
+            font-size: 14px;
+            width: 100%;
+            overflow: hidden;
+            display: block;
+            resize: none;
+            border: none;
+            background: none;
+            color: rgba(141, 203, 255, 0.3);
+            line-height: 20px;
+            text-align: justify;
+            border-bottom: 1px solid rgba(0, 138, 255, 0.3);
+            padding: 0 0 10px 50px;
+        }
+
+        .fr {
+            padding-right: 450px;
+
+        }
+
+        #echart4 {
+            margin-bottom: 10px;
+        }
+
+        .usr_list dd {
+            margin: 0;
+            padding: 0
+        }
+
+        .lantab {
+            box-sizing: content-box
+        }
+
+        .langue {
+            z-index: 9
+        }
+
+        #userMenuId {
+            box-sizing: content-box
+        }
+
+        .tag-footer {
+            overflow: hidden
+        }
+
+        #regionalTrend-15 {
+            margin: 0 auto;
+        }
+
+        #regionEmotion {
+            width: 815px;
+            display: block !important;
+            margin: 0 auto;
+        }
+
+        #regionEmotion:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            clear: both;
+        }
+
+        #d4312 {
+            margin-right: 80px;
+        }
+
+        /* 时间控件样式 */
+        .report-title input {
+            width: 100px;
+            border: none;
+            font: 16px Microsoft YaHei
+        }
+
+        .span03 {
+            float: right;
+        }
+
+        .bb_04 .zhaunfaliang, .bb_03 .zhaunfaliang {
+            color: #2e95f3;
+        }
+
+        .bb_03br.wauto {
+            padding: 10px 10px 0px 10px;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+    </style>
+    <style>
+    
+.billboard {
+  padding: 15px 30px;
+  height: 455px; }
+  .billboard div {
+    width: 100%;
+    height: 100%; }
+
+.billboard_left ul,
+.billboard_right ul {
+  float: left;
+  width: 50%;
+  height: 387px;
+  text-indent: 70px;
+  border-left: 1px solid rgba(0, 138, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 138, 255, 0.2);
+  overflow: hidden; }
+  .billboard_left ul li,
+  .billboard_right ul li {
+    height: 43px;
+    line-height: 43px;
+    border-top: 1px solid rgba(0, 138, 255, 0.2); }
+    .billboard_left ul li:first-child,
+    .billboard_right ul li:first-child {
+      text-align: center;
+      text-indent: 0;
+      color: #41e9ea;
+      background-color: rgba(0, 138, 255, 0.1);
+      border-top: 0; }
+  .billboard_left ul:nth-child(2),
+  .billboard_right ul:nth-child(2) {
+    border-right: 1px solid rgba(0, 138, 255, 0.2); }
+    .billboard_left ul:nth-child(2) li:first-child,
+    .billboard_right ul:nth-child(2) li:first-child {
+      color: #fa8e9b; }
+
+.billboard_right ul {
+  text-indent: 0; }
+  .billboard_right ul li {
+    height: 86px;
+    padding: 14px 0 4px 30px; }
+    .billboard_right ul li:first-child {
+      height: 43px;
+      padding: 0; }
+    .billboard_right ul li img {
+      position: relative;
+      top: 4px;
+      float: left;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background: #fff; }
+    .billboard_right ul li p {
+      line-height: 20px;
+      text-align: left;
+      font-size: 12px; }
+      .billboard_right ul li p span {
+        margin-left: 5px; }
+      .billboard_right ul li p:nth-child(2) {
+        font-size: 14px; }
+
+.centent_right .region_title h2 {
+  font-size: 16px; }
+    
+        .zlmtzyyxlqgbd {
+            width: 600px !important;
+            margin: 20px auto 0 !important;
+            height: auto !important;
+            overflow: hidden;
+            border: 1px solid rgba(0, 138, 255, 0.2);
+        }
+
+        .zlmtzyyxlqgbd h2 {
+            text-align: center;
+            text-indent: 0;
+            font-size: 14px;
+            line-height: 42px;
+            color: #41e9ea;
+            background: rgba(0, 138, 255, 0.1)
+        }
+
+        .zlmtzyyxlqgbd .positive {
+            width: 50%;
+        }
+
+        .zlmtzyyxlqgbd .negative h2 {
+            color: #fa8e9b;
+        }
+
+        .zlmtzyyxlqgbd .positive:first-child {
+            margin: 0;
+        }
+
+        .zlmtzyyxlqgbd ul li {
+            text-indent: 70px;
+            height: 43px;
+            line-height: 43px;
+            border: 1px solid rgba(0, 138, 255, 0.2);
+        }
+
+        .zlmtzyyxlqgbd ul li a {
+            white-space: nowrap;
+        }
+
+    </style>
+    <style>
+        div[sel_echart_pic='6']{
+            color: #008AFF;
+        }
+        div[sel_echart_pic='6'] ul>li>span.cheng a{
+            color: #fff;
+        }
+        div[sel_echart_pic='6'] .desc{
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+        }
+        div[sel_echart_pic='13']{
+            color: #008AFF;
+        }
+        div[sel_echart_pic='23']{
+            padding-top: 20px;
+            text-align: center;
+        }
+        div[sel_echart_pic='23'] .shejiao_crowd_center_left.yhsx.one {
+            display: none;
+        }
+        div[sel_echart_pic='23'] .shejiao_crowd_center_left.xbfb{
+            display: inline-block;
+            float: none;
+        }
+        div[sel_echart_pic='23'] .shejiao_crowd_center_left.xbfb h3{
+            text-align: center;
+            text-indent: 0;
+            padding-left: 0;
+        }
+        .user_age_23,
+        .user_sex_23,
+        .user_favoritor_23{
+            width: 400px;
+            height: 360px;
+        }
+        div[sel_echart_pic='24']{
+            height: auto!important;
+            padding-top: 20px;
+        }
+        div[sel_echart_pic='24'] #regionEmotion{
+            height: auto;
+            overflow: hidden;
+        }
+        div[sel_echart_pic='24'] *,
+        div[sel_echart_pic='24'] #regionEmotion .crowd_center_left,
+        div[sel_echart_pic='24'] #regionEmotion .crowd_center_right{
+            color: #fff;
+            background: transparent;
+        }
+        div[sel_echart_pic='24'] #regionEmotion>div{
+            height: 450px;
+            margin-right: 4px;
+            /*border: 1px solid rgba(0, 138, 255, 0.2);*/
+        }
+        div[sel_echart_pic='24'] h3{
+            background: rgba(0, 138, 255, 0.1);
+        }
+        div[sel_echart_pic='24'] h3 i.iconfont{
+            margin-right: 6px;
+            color: #008AFF;
+            background: rgba(0, 138, 255, 0.1);
+        }
+        div[sel_echart_pic='24'] h3~div{
+            padding-left: 0;
+            height: auto;
+        }
+        div[sel_echart_pic='24'] #regionEmotion>div ul>li{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            padding-left: 16px;
+            margin: 4px 0;
+            background: rgba(0,138,255,0.06);
+        }
+        div[sel_echart_pic='24'] #regionEmotion>div ul>li img{
+            width:32px;
+            height:44px;
+            overflow:hidden;
+        }
+        #regionEmotion .crowd_center_left li p span,
+        #regionEmotion .crowd_center_right li p span{
+            color: #fff;
+        }
+        div[sel_echart_pic='24'] #regionEmotion>div b.blue{
+            background: transparent;
+            font-size: 26px;
+        }
+        .report-btns{
+            clear: both;
+        }
+    </style>
+</head>
+<body class="subject-analysis">
+<#include "${ctx}/yeesight/tpl/header.html" />
+<form id="tagEditDataForm">
+
+    <div class="tag_head clearfix">
+        <div class="tag_head_left main-blue"><!-- 标签袋 -->标签袋</div>
+        <div class="tag_head_right">
+            <div class="clearfix process-list">
+                <div class="tag-process">
+                    <div class="tag-pro-circle processed">1</div>
+                    <div class="tag-p-text main-blue"><!-- 筛选数据 -->筛选数据</div>
+                </div>
+                <div class="tag-process">
+                    <div class="tag-pro-circle processed">2</div>
+                    <div class="tag-p-text main-blue"><!-- 编辑报告 -->编辑报告</div>
+                </div>
+                <div class="tag-process">
+                    <div class="tag-pro-circle">3</div>
+                    <div class="tag-p-text main-blue"><!-- 生成报告 -->生成报告</div>
+                </div>
+            </div>
+            <div class="tag-h-line1"></div>
+            <div class="tag-h-line2"></div>
+        </div>
+    </div>
+
+    <!--edit report body start-->
+    <div id="reportDataBody" class="edit-body">
+        <div class="report-title">
+            <div id="report-title" class="report-ti editable-div" contenteditable="true">请输入标题</div>
+            <!--   <div style=" text-align: center;" > -->
+            <p></p>
+            <div style="text-align: center;" class="report-sub-title editable-div" contenteditable="true">请输入副标题</div>
+            <!-- </div > -->
+            <div class="monitor" style="padding-top:10px;text-align: center;">
+
+                <span id="stime" style="display: none;"></span>
+                <span id="etime" style="display: none;"></span>
+                <!--  监测周期 -->监测周期：
+                <!--<input id="report-start-time" type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'#F{$dp.$D(\'report-end-time\')||\'%y-%M-%d\'}'})"/>-->
+                <input id="dateinfo1" name="txt_startTime" class="txt_input form" type="text" value=""
+                       placeholder="起始日期"/>
+                &nbsp;—&nbsp;
+                <!--<input id="report-end-time" type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',minDate:'#F{$dp.$D(\'report-start-time\')}',maxDate:'%y-%M-%d'})"/>-->
+                <input id="dateinfo2" readonly name="txt_endTime" class="txt_input form" type="text" value=""
+                       placeholder="结束日期"/>
+                <i class='fa fa-edit' style='opacity:.4;vertical-align:middle' title='点击选择时间'></i>
+            </div>
+        </div>
+        <div class="report-wraper">
+            <div class="report-content">
+                <div class="report-block-container">
+                    <div class="report-block">
+                        <div class="report-block-title ">
+                            <div class="report-block-title-text editable-div" contenteditable="true">请输入小标题</div>
+                        </div>
+                        <div class="paragraph-text">
+                            <div class="clearfix">
+                                <div class="paragraph-btns">
+                                    <input class="ed-btn-1 edit-p-btn" type="button" value="编辑摘要">
+                                    <input class="del-p-btn" type="button" value="删除摘要">
+                                </div>
+                            </div>
+                            <div class="paragraph-container">
+                                <textarea class="paragraph-content editable-div" style="height: 20px;">请输入内容</textarea>
+                            </div>
+                        </div>
+
+                        <div class="start-echarts-box">
+                            <div class="chart-body">
+                                <div class="clearfix">
+                                    <div class="chart-btns">
+                                        <input class="edit-chart ed-btn-1" type="button" value="编辑模型">
+                                        <input class="del-chart" type="button" value="删除模型">
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3><span class="modules-title"></span></h3>
+                                    <div>
+                                        <div id="echarts_1" sel_echart_pic="1"
+                                             class="bb_02 t20 chart-img-echarts chart-img" data-id="charts_1"
+                                             style="height:500px;width:900px; margin: 0 auto;">
+                                            <img style="display:block;margin: 200px auto;;"
+                                                 src="${ctx}/images/subjectAnalysis/loading.gif" title="" alt=""/>
+                                        </div>
+                                    </div>
+                                    <div class="text" style="outline:none;text-indent:2em;font-size:12px;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- 添加文章,添加分析模型 -->
+                        <div class="report-btns">
+                            <!--   <input class="add-article-btn" type="button" value="添加文章列表"> -->
+                            <input class="add-analyse-btn" type="button" value="添加分析模型">
+                        </div>
+                    </div>
+                </div>
+                <div class="add-report-block">
+                    <input class="add-report-btn" type="button" value="+ 添加新模块" id="add-report-block">
+                </div>
+            </div>
+        </div>
+    </div><!--edit report body end-->
+
+    <div class="step-btns clearfix" style="padding-left:30px;">
+        <div class="step-left">
+            <!-- <input class="common-btn" type="button" value="下载PDF" onclick="exportPdf()"> -->
+            <!-- <input class="common-btn" type="button" value="下载word"> -->
+            <!-- <input class="common-btn" id="open-email" type="button" value="分享html"/> -->
+        </div>
+    </div>
+    <div class="report-title_btn">
+        <a class="edit" id="report-title_btn">保存报告</a>
+    </div>
+
+    <!-- 保存成功弹出模块 -->
+    <div class="report-success report-mask" id="report-success" style="display: none;">  <!--report success start-->
+        <div class="succ-container">
+            <div class="popup-head clearfix">
+                <div class="popup-h-lf">
+                    提示
+                </div>
+                <div class="popup-h-rt message-operate" id="closeBtn">
+                    ×
+                </div>
+            </div>
+            <div class="success-p1" id="report-warning">
+                报告生成成功
+            </div>
+            <div class="success-info" id="report-instruction">
+                您已经成功生成<em id="newly-report-title"></em>
+            </div>
+            <div class="success-p3">
+                您可以去报告管理中查看
+            </div>
+            <div class="popup-bottom-btns">
+                <!-- <input class="popup-cancel message-operate" type="button" value="查看报告"> -->
+                <input class="popup-confirm message-operate" id="confirm-btn" type="button" value="确认">
+            </div>
+        </div>
+    </div> <!--report success end-->
+
+    <!--add-analyse-model start-->
+    <div class="add-analyse-model report-mask " id="add-analyse-model">
+        <div class="ana-mod-container" style="position:relative">
+
+            <div class="popup-head-wrap">
+                <div class="popup-head clearfix">
+                    <div class="popup-h-lf">
+                        <!-- 添加分析模型 -->添加分析模型
+                    </div>
+                    <div class="popup-h-rt">
+                        ×
+                    </div>
+                </div>
+
+                <div class="ana-menu">
+                    <div class="ana-menu-subject ana-menu-select" id="subject-menu"><!-- 专题 -->专题</div><!--
+            -->
+                    <div class="ana-menu-keyword" id="keyword-menu">关键词<!-- 关键词 --></div>
+                </div>
+
+                <div class="ana-subject ana-menu-show" id="ana-subject">
+                    <div class="ana-sub-ops">
+                        <span><!-- 专题名称 -->专题名称:</span>
+                        <select valure="请选择专题" class="sel-subject ztmc form_select" name="zhutimingcheng" id="bgztmc"
+                                data-infoid="" data-srcid="" data-opType="" data-source="">
+
+                            <option id="qxzbqmc"><!-- 请输入专题 -->请输入专题</option>
+
+                            <option valure="" data-id="1082083a04554f83b072f0bce25b69ac"
+                                    data-srcid="625b88dea74f45f51806acf0afa99b88" data-opType="1" data-source="1"
+                                    value="一带一路">一带一路
+                            </option>
+
+                        </select>
+                        <span><!-- 选择时间 -->选择时间:</span>
+                        <!-- <input class="start-time" type="text"  onClick="WdatePicker()"> -->
+                        <input class="start-time" id="d4311" name="startdate" type="text" value="" placeholder=""
+                               style="width:100px;"/>
+                        <span class="to-text">至</span>
+                        <!-- <input class="end-time" type="text"  onClick="WdatePicker()"> -->
+                        <input class="end-time" id="d4312" name="enddate" type="text" value="" placeholder=""
+                               style="width:100px;"/>
+                    </div>
+                    <div class="sub-op-des">
+                        请在专题<!-- 请在专题 --><em><span class="list-title"></span></em>的时间段<em><span id="timeToTime"></span></em>进行选择
+                    </div>
+                </div>
+                <div class="ana-keyword  clearfix" id="ana-keyword" style="margin:20px;z-index: 10;">
+                    <input type="text" class="kw-items" value=""></input>
+
+                    <div class="ana-kw-time">
+                        <div class="time-text" style='float:left;line-height:32px'>选择时间：</div>
+                        <input class="kw-start-time" id="kw-start-time" type="text" placeholder=""
+                               onfocus="WdatePicker({doubleCalendar:false,dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'#F{$dp.$D(\'kw-end-time\')||\'%y-%M-%d\'}'})"/>
+                        <span class="to-text">至</span>
+                        <input class="kw-end-time" id="kw-end-time" type="text" placeholder=""
+                               onfocus="WdatePicker({doubleCalendar:false,dateFmt:'yyyy-MM-dd',skin:'whyGreen',minDate:'#F{$dp.$D(\'kw-start-time\')}',maxDate:'%y-%M-%d'})"/>
+
+                    </div>
+
+                </div>
+                <ul class="model-categories" style="position:fixed">
+                    <li class="mod-cate-selected" id="model-cate-all">全部</li>
+                    <li id="cbfx"><!-- 传播分析 -->传播分析</li>
+                    <li id="qyfx"><!-- 区域分析 -->区域分析</li>
+                    <li id="qgfx"><!-- 情感分析 -->情感分析</li>
+                    <!--<li id="yhhx">&lt;!&ndash; 用户画像 &ndash;&gt;用户分析</li>-->
+                </ul>
+            </div>
+
+            <div style="margin-top:250px" id='akey-pic'>
+                <div>
+
+                    <div class="model-list clearfix">
+                        <!-- <div class="model-item" data-height="500"> -->
+
+                        <div id="charts_1" title="事件态势分析" data-id="charts_1" class="all model-item " data-height="450"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_1.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_1_input_1" value="事件态势分析"/><!-- 1事件态势分析 (图标标题)-->
+                            <input type="hidden" id="charts_1_input_2"
+                                   value="整个话题的走势如上图所示，从【】开始，话题的热度逐步上升，在【】达到顶峰，而在【】专题热度相对较低。"/><!-- 1事件态势分析 (数据分析)-->
+                        </div>
+
+                        <div id="charts_2" title="区域数据分布排名" data-id="charts_2" class="model-item all quyu"
+                             data-height="450"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_2.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_2_input_1" value="区域数据分布排名"/><!-- 2区域数据分布排名 (图标标题)-->
+                            <input type="hidden" id="charts_2_input_2" value="按地区划分，话题热度最高的前几个地区分别是等。其话题走势如上图所示。"/>
+                            <!-- 2区域数据分布排名 (数据分析)-->
+                            <p style="text-align: right; display: none;">
+                                <span id="countryDistrubuteChina"></span>
+                                <span id="countryDistrubuteOther"></span>
+                            </p>
+                        </div>
+
+                        <div id="charts_3" title="总体情感分布" data-id="charts_3" class="model-item all qinggan"
+                             data-height="400"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_3.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_3_input_1" value="总体情感分布"/><!-- 总体情感分布 (图标标题)-->
+                            <input type="hidden" id="charts_3_input_2" value="总体情感的发展态势如上图所示。【】的报道相对更多"/>
+                            <!-- 总体情感分布 (数据分析)-->
+                        </div>
+
+                        <div id="charts_4" title="情感走势" data-id="charts_4" class="model-item all qinggan"
+                             data-height="460"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_4.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_4_input_1" value="情感走势"/>
+                            <input type="hidden" id="charts_4_input_2" value="总体情感的发展态势如上图所示。【】的报道相对更多"/><!-- 情感走势 -->
+                        </div>
+
+                        <div id="charts_5" title="关键词云" data-id="charts_5" class="model-item all" data-height="150"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_5.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_5_input_1" value="关键词云"/>
+                            <input type="hidden" id="charts_5_input_2" value="媒体关键词云"/><!-- 用户关键词云 -->
+                            <input type="hidden" id="charts_5_input_2" value="社交关键词云"/>
+
+                            <div id="chartsbox_5" style="height: 320px; width: 652px; display: none;">
+                                <p id="p_1"><!-- 媒体关键词云 --></p>
+                                <p id="p_2"><!-- 社交关键词云 --></p>
+                                <div id="chartsbox_5-1" class="gjcediv1">
+                                </div>
+                                <div id="chartsbox_5-2" class="gjcediv2">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="charts_6" title="主流媒体报道权重媒体排名" data-id="charts_6" class="model-item all"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_6.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_6_input" value="主流媒体报道权重媒体排名"/><!-- 主流媒体报道权重媒体排名 -->
+                            <div class="ul-box-left" style="display: none;"></div>
+                        </div>
+
+                        <!--  <div id="charts_7" title="主流媒体报道转载量排名" data-id="charts_7" class="model-item all" data-height="650" style="background:url(${ctx}/images/subjectAnalysis/charts_7.png) center;background-size: cover;">
+                             <img  class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                             <input type="hidden" id="charts_7_input" value="主流媒体报道转载量排名"/>主流媒体报道转载量排名
+                             <div class="ul-box-right" style="display: none;"></div>
+                         </div> -->
+
+                        <div id="charts_8" title="主流媒体传播变动" data-id="charts_8" class="model-item all chuanbo"
+                             data-height="505"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_8.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_8_input_1" value="主流媒体传播变动"/>
+                            <input type="hidden" id="charts_8_input_2" value="如图所示，在整个传播周期内，媒体数量在【】达到顶峰"/>
+                            <!-- 主流媒体传播变动 -->
+                        </div>
+
+                        <div id="charts_9" title="Twitter传播变动" data-id="charts_9" class="model-item all chuanbo"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_9.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <input type="hidden" id="charts_9_input_1" value="Twitter传播变动"/>
+                            <input type="hidden" id="charts_9_input_2" value="如图所示，在整个传播周期内，Twitter数量在【】达到顶峰"/>
+                            <!-- twitter传播变动 -->
+                        </div>
+
+                        <div id="charts_10" title="微博传播变动" data-id="charts_10" class="model-item all chuanbo"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_10.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 微博传播变动 -->
+                            <input type="hidden" id="charts_10_input_1" value="微博传播变动"/>
+                            <input type="hidden" id="charts_10_input_2" value="如图所示，在整个传播周期内，微博数量在【】达到顶峰"/>
+                        </div>
+
+                        <div id="charts_11" title="微博传播热点话题" data-id="charts_11" class="model-item all"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_11.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 微博传播热点话题 -->
+                            <input type="hidden" id="charts_11_input_1" value="微博传播热点话题"/>
+                            <div id="weiBoTitle"></div>
+                            <input type="hidden" id="charts_11_input_2" value="微博用户对此专题整体印象为【】居多，其次分别是【】等"/>
+                        </div>
+
+                        <div id="charts_12" title="Twitter传播热点话题" data-id="charts_12" class="model-item all"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_12.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- twitter传播热点话题 -->
+                            <input type="hidden" id="charts_12_input_1" value="Twitter传播热点话题"/>
+                            <div id="twitterTitle"></div>
+                            <input type="hidden" id="charts_12_input_2" value="Twitter用户对此专题整体印象为【】居多，其次分别是【】等"/>
+                        </div>
+
+                        <div id="charts_13" title="社交媒体提及按领袖意见排名" data-id="charts_13" class="model-item all"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_13.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 社交媒体提及按意见领袖排名 -->
+                            <input type="hidden" id="charts_13_input_1" value="社交媒体提及按领袖意见排名"/>
+                            <div class="sjsj-left" style="display: none;"></div>
+                        </div>
+
+                        <!--   <div id="charts_14" title="社交媒体提及按传播量排名" data-id="charts_14" class="model-item all chuanbo" data-height="500" style="background:url(${ctx}/images/subjectAnalysis/charts_14.png) center;background-size: cover;">
+                              <img  class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">社交媒体提及按传播量排名
+                              <input type="hidden" id="charts_14_input" value="社交媒体提及按传播量排名"/>
+                              <div class="sjsj-right" style="display: none;"></div>
+                          </div> -->
+
+                        <div id="charts_15" title="主流媒体传播热点话题" data-id="charts_15" class="model-item all"
+                             data-height="480"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_15.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 主流媒体传播热点话题 -->
+                            <input type="hidden" id="charts_15_input_1" value="主流媒体传播热点话题"/>
+                            <div id="regionalTrend" style="margin:0 auto"></div>
+                            <input type="hidden" id="charts_15_input_2" value="资讯记者对此专题整体报道观点为【】居多，其次分别是【】等"/>
+                        </div>
+
+                        <div id="charts_16" title="区域数据分布排名" data-id="charts_16" class="model-item all quyu"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_16.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 区域数据分布排名 -->
+                            <input type="hidden" id="charts_16_input_1" value="区域数据分布排名"/>
+                        </div>
+
+                        <div id="charts_17" title="区域数据时间走势" data-id="charts_17" class="model-item all quyu"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_17.png) center;background-size: cover;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 区域数据时间走势 -->
+                            <input type="hidden" id="charts_17_input_1" value="区域数据时间走势"/>
+                        </div>
+
+                        <div id="charts_18" title="不同媒体类型情感分布" data-id="charts_18" class="model-item all qinggan"
+                             data-height="445"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_18.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 不同媒体类型情感占比 -->
+                            <input type="hidden" id="charts_18_input_1" value="不同媒体类型情感分布"/>
+                        </div>
+
+                        <div id="charts_19" title="不同区域情感对比" data-id="charts_19" class="model-item all qinggan"
+                             data-height="420"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_19.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 不同区域情感对比 -->
+                            <input type="hidden" id="charts_19_input_1" value="不同区域情感对比"/>
+                        </div>
+
+                        <!-- 主流媒体最有影响力情感榜单 -->
+                        <div id="charts_20" title="主流媒体最有影响力情感榜单" data-id="charts_20" class="model-item all qinggan"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_20.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 主流媒体最有影响力情感榜单 -->
+
+                            <input type="hidden" id="charts_20_input_1" value="主流媒体最有影响力情感榜单"/>
+
+
+                        </div>
+
+                        <div id="charts_21" title="社交媒体最有影响力情感榜单" data-id="charts_21" class="model-item all qinggan"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_21.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            <!-- 社交媒体最有影响力情感榜单 -->
+                            <input type="hidden" id="charts_21_input_1" value="社交媒体最有影响力榜单"/>
+
+                        </div>
+
+<!--                        <div id="charts_22" title="用户地域分析" data-id="charts_22" class="model-item all quyu"
+                             data-height="380"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_22.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            &lt;!&ndash; 用户地域分析 &ndash;&gt;
+                            <input type="hidden" id="charts_22_input_1" value="用户地域分析"/>
+                        </div>
+
+
+                        <div id="charts_23" title="社交人群属性" data-id="charts_23" class="model-item all huaxiang"
+                             data-height="350"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_23.png) center;background-size: cover;">
+                            <img class="model-selectd-icon"
+                                 src="${ctx}/images/subjectAnalysis/model-selected-icon.png"/>&lt;!&ndash; 社交人群属性 &ndash;&gt;
+                            <input type="hidden" id="charts_23_input_1" value="社交人群属性"/>
+                            <div class="shejiao_crowd_centshejiao_crowd_center_left_cententer"
+                                 style="overflow:hidden;display:none;">
+                                <div class="shejiao_crowd_center_left yhsx one">
+                                    <h3>用户属性&lt;!&ndash; 用户属性 &ndash;&gt;</h3>
+                                    <div class="shejiao_crowd_center_left_centent user_age_23" id="user_age"></div>
+                                </div>
+                                <div class="shejiao_crowd_center_left xbfb">
+                                    <h3>性别分布&lt;!&ndash; 性别分布 &ndash;&gt;</h3>
+                                    <div class="shejiao_crowd_center_left_centent user_sex_23" id="user_sex"></div>
+                                </div>
+                                <div class="shejiao_crowd_center_right" style="display:none">
+                                    <h3>兴趣爱好&lt;!&ndash; 兴趣爱好 &ndash;&gt;</h3>
+                                    <div class="shejiao_crowd_center_left_centent user_favoritor_23"
+                                         id="user_favoritor"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="charts_24" title="社交意见领袖" data-id="charts_24" class="model-item all huaxiang"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_24.png) center;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                            &lt;!&ndash; 社交意见领袖 &ndash;&gt;
+                            <input type="hidden" id="charts_24_input_1" value="社交意见领袖"/>
+
+
+                        </div>-->
+
+
+                        <!-- 一键分析 事件态势分析 -->
+                        <div id="charts_25" title="事件态势分析" data-id="charts_25" class="all model-item akey"
+                             data-height="450"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_1.png) center;display: none;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                        </div>
+                        <!-- 一键分析 区域数据分布 -->
+                        <div id="charts_26" title="区域数据分布" data-id="charts_26" class="model-item all quyu akey"
+                             data-height="350"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_2.png) center;display: none;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                        </div>
+                        <!-- 一键分析 情感整体占比 -->
+                        <div id="charts_27" title="情感整体占比" data-id="charts_27" class="model-item all qinggan akey"
+                             data-height="300"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_3.png) center;display: none;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                        </div>
+                        <!-- 一键分析 情感的时间走势 -->
+                        <div id="charts_28" title="情感的时间走势" data-id="charts_28" class="model-item all qinggan akey"
+                             data-height="460"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_4.png) center;display: none;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                        </div>
+                        <!-- 一键分析 关键词云 -->
+                        <div id="charts_29" title="关键词云" data-id="charts_29" class="model-item all akey"
+                             data-height="500"
+                             style="background:url(${ctx}/images/subjectAnalysis/charts_5.png) center;display: none;background-size: cover;">
+                            <img class="model-selectd-icon" src="${ctx}/images/subjectAnalysis/model-selected-icon.png">
+                        </div>
+
+                    </div>
+                </div>
+                <!-- echarts图 -->
+                <div class="popup-bottom-btns">
+                    <input class="popup-cancel" id="echarts-close" type="button" value="取消">
+                    <input class="popup-confirm" type="button" value="确定" onclick="echartsLoad()">
+                </div>
+
+            </div>
+        </div><!--add-analyse-model end-->
+    </div>
+
+    <!--add-article start-->
+
+    <div class="add-article report-mask" id="add-article">
+        <div class="add-article-container">
+            <div class="popup-head clearfix">
+                <div class="popup-h-lf">
+                    <!--  添加文章 -->添加文章
+                </div>
+                <div class="popup-h-rt">
+                    ×
+                </div>
+            </div>
+            <div id="article-sel-label" class="article-sel clearfix">
+                <div class="article-sel-lf">
+                    <span class="sel-des-span1"><!-- 当前已选 -->当前已选：</span><span id="checkedcount"
+                                                                               class="sel-des-span2">0</span><span
+                        class="sel-des-span2">篇                                                                                       </span>
+                </div>
+                <div class="article-sel-rt">
+
+                    <select name="sel-article-group" class="article-group-sel">
+                        <!-- <option >标签示例一</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="article-list">
+            </div>
+            <!-- 添加文章 -->
+            <div class="popup-bottom-btns">
+                <input class="popup-cancel" type="button" value="取消" id="close-article-confirm">
+                <input class="popup-confirm" type="button" value="确定" id="add-article-confirm">
+            </div>
+        </div>
+    </div>
+
+    <div style="display:none;">
+        <form action="label/labelReport/exportPdf" method="post" id="exportPdf" target="_blank">
+            <input type="hidden" name="base64sString" id="base64sString"/>
+            <input type="hidden" id="commit-pdf-report-title" name="title"/>
+        </form>
+    </div>
+
+    <!-- 分享HTML弹出框 -->
+    <div id="send_email_box">
+        <div class="top_tit"><h3>邮件转发</h3></div>
+        <ul class="info_box">
+            <li>
+                <span><b>发送邮箱：</b><i>yeesight@gtcom.com.cn</i></span>
+            </li>
+            <li>
+                <b>邮件标题：</b>
+                <span><input name="title" class="title" type="text" value="" placeholder="标题" autocomplete="off"></span>
+                <span class="error"><p></p></span>
+            </li>
+            <li>
+                <b>接收邮件：</b>
+                <span class="email_list">
+                <a class="btn_addemail" href="javascript:;" data-addnum="1">+</a>
+                <span class="error"><p></p></span>
+            </span>
+            </li>
+        </ul>
+        <div class="btn_box">
+            <a class="btn_sendemail" href="javascript:;">发送</a>
+            <a class="btn_cancle" href="javascript:;">取消</a>
+        </div>
+    </div>
+    <script src="${ctx}/plugins/jquery-3.2.1.min.js"></script>
+    <script src="${ctx}/plugins/jspdf.debug.js"></script>
+    <script src="${ctx}/plugins/html2canvas.js"></script>
+    <script src="${ctx}/plugins/layer/layer.js"></script>
+    <script src="${ctx}/js/common.js"></script>
+	
+    <script src="${ctx}/js/subjectAnalysis/moment.js"></script>
+    <!--段落超出,省略号插件-->
+    <script src="${ctx}/js/subjectAnalysis/jquery.ellipsis.min.js"></script>
+    <script src="${ctx}/js/subjectAnalysis/pointChart.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/echarts-all.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/sjtsfx_1.js"></script><!-- 1数据态势分析图 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/qysjfb_2.js"></script>
+    <!-- 2区域数据分布柱状图 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/ztqgfb_3.js"></script>
+    <!-- 3整体情感分布图  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/qgzs_4.js"></script><!-- 4情感走势  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/gjcy_5.js"></script><!--  5关键词云  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/zlmtbdqzmtpm_6.js"></script>
+    <!-- 6主流媒体报道权重媒体排名 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/zlmtbdzzlpm_7.js"></script>
+    <!--  7主流媒体报道转载量排名  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/zlmtcbbd_8.js"></script>
+    <!-- 8主流媒体传播变动  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/twitterCbbd_9.js"></script>
+    <!-- 9Twitter传播变动 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/weiboCbbd_10.js"></script>
+    <!-- 10微博传播变动 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/weiboCBRDHT_11.js"></script>
+    <!-- 11微博传播热点话题  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/twitterCBRDHT_12.js"></script>
+    <!-- 12推特传播热点话题  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/sjmttjalxyjpm_13.js"></script>
+    <!-- 13社交媒体提及按领袖意见排名 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/sjmttjacblpm_14.js"></script>
+    <!-- 14社交媒体提及按传播量排名  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/zlmtcbrdht_15.js"></script>
+    <!-- 15主流媒体传播热点话题  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/qysjpmBZT_16.js"></script>
+    <!-- 16区域数据排名 饼状图  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/qysjsjzs_17.js"></script>
+    <!-- 17区域数据排名 饼状图  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/btlemtqgzb_18.js"></script>
+    <!-- 18不同类型媒体情感占比  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/btqyqgdb_19.js"></script>
+    <!-- 19不同区域情感对比  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/zlmtzyyxlqgbd_20.js"></script>
+    <!-- 20主流媒体最有影响力情感榜单  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/sjmtzyyxlbd_21.js"></script>
+    <!-- 21社交媒体最有影响力榜单   -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/yhdyfx_22.js"></script>
+    <!-- 22用户地域分析 -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/sjrqsx_23.js"></script>
+    <!--  23社交人群属性   -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/sjyjlx_24.js"></script>
+    <!-- //24社交意见领袖   -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/akey/sjtsfx_25.js"></script>
+    <!-- 一件分析 事件态势分析  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/akey/qysjfb_26.js"></script>
+    <!-- 一件分析 区域数据分布  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/akey/qgztzb_27.js"></script>
+    <!-- 一件分析 情感整体占比  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/akey/qgsjzs_28.js"></script>
+    <!-- 一件分析 情感时间走势  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/akey/gjcy_29.js"></script>
+    <!-- 一件分析 关键词云  -->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/report-echarts/uuid.js"></script>
+    <!-- 生成UUID  UUID.prototype.createUUID()  -->
+    <script type="text/javascript" src="${ctx}/plugins/laydate/laydate.js"></script>
+
+    <script src="${ctx}/js/subjectAnalysis/newtagEditReport.js"></script>
+    <script src="${ctx}/js/subjectAnalysis/tagEditReport.js"></script> <!--创建报告-->
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/reportOperation.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/reportOperationSave.js"></script>
+    <script type="text/javascript" src="${ctx}/js/subjectAnalysis/con_datetime.js"></script>
+
+
+    <!--laydate-->
+    <script>
+        laydate.render({
+            elem: '#dateinfo1', //指定元素,
+            format: 'yyyy/MM/dd',
+            theme: '#008aff'
+        });
+        laydate.render({
+            elem: '#dateinfo2', //指定元素
+            format: 'yyyy/MM/dd',
+            theme: '#008aff'
+        });
+
+        laydate.render({
+            elem: '#d4311', //指定元素,
+            format: 'yyyy/MM/dd',
+            theme: '#008aff'
+        });
+        laydate.render({
+            elem: '#d4312', //指定元素
+            format: 'yyyy/MM/dd',
+            theme: '#008aff'
+        });
+
+        setHeaderActive();
+
+        // 设置页头
+        function setHeaderActive() {
+            var headerArr = $('.header-right nav a');
+            $.each(headerArr, function (index, item) {
+                if ($(item).html() === "专题分析") {
+                    $(item).addClass('active');
+                }
+            })
+        }
+
+        let id_name = location.search.split('&')[1] ? location.search.split('&')[1].split('=')[0] : ''
+        let current_id = location.search.split('&')[1] ? location.search.split('&')[1].split('=')[1] : ''
+        let search_url = '';
+        let search_data = {}
+        if (id_name === 'subjectId') {
+            search_url = '/api/reportSettingInfo/searchTopicReportData';
+            search_data = {
+                userId: Public.userId,
+                topicId: current_id
+            }
+        } else if (id_name === 'reportId') {
+            search_url = '/api/reportSettingInfo/searchReport';
+            search_data = {
+                userId: Public.userId,
+                reportId: current_id
+            }
+        }
+
+        let subjectId = location.search.split("&")[1] ? location.search.split("&")[1].split("=")[1] : ''
+        $.ajax({
+            type: 'get',
+            headers: {'token': Public.token},
+            url: '/api/topicTypeInfo/allList',
+            dataType: 'json',
+            data: {
+                userId: Public.userId
+            },
+            success: function (data) {
+                if (data.success) {
+                    let arr = data.data
+                    if (id_name === 'subjectId') {
+                        //如果有专题ID
+                        //	let allSubject = []
+                        let str = ''
+                        arr.forEach(item => {
+                            let settingInfo = item.settingInfo;
+                            if (settingInfo.length !== 0) {
+                                settingInfo.forEach(item => {
+                                    if (item.id === subjectId) {
+                                        str = '<option value="' + item.id + '">' + item.seminarName + '</option>'
+                                        //startTime = Public.timestampToTime(item.dateRangeBegin)
+                                    }
+                                })
+                            }
+                        })
+                        $("#bgztmc").html(str)
+                        //	$('#d4311').val(startTime)
+
+                    } else if (id_name === 'reportId') {
+                        let str = ''
+                        arr.forEach(item => {
+                            let settingInfo = item.settingInfo;
+                            if (settingInfo.length !== 0) {
+                                settingInfo.forEach(item => {
+                                    str += '<option value="' + item.id + '">' + item.seminarName + '</option>'
+                                })
+                            }
+                        })
+                        $("#bgztmc").html(str)
+                    }
+                }
+            }
+        })
+
+
+        //报告回显
+        let reportId = location.search.split("&")[1] ? location.search.split("&")[1].split("=")[1] : ''
+
+        $.ajax({
+            type: 'post',
+            headers: {'token': Public.token},
+            url: search_url,
+            dataType: 'json',
+            data: search_data,
+            success: (data) => {
+                console.log("~~~", data)
+                let obj = data.data;
+                let id = obj.id;//报告id
+                let title = obj.title ? obj.title : '请输入标题';//标题
+                let subTitle = obj.subTitle ? obj.subTitle : '请输入副标题';//副标题
+                let beginDate = Public.timestampToTime(obj.beginDate ? obj.beginDate : new Date());//开始日期
+                let endDate = Public.timestampToTime(obj.endDate ? obj.endDate : new Date());//结束日期
+                $("#report-title").html(title);
+                $(".report-sub-title").text(subTitle);
+                $("#dateinfo1").val(beginDate);
+                $("#dateinfo2").val(endDate);
+
+                let moduleList = obj.moduleList;//
+                if (moduleList.length > 0) {
+                    let str = '';
+                    let arr = []
+                    moduleList.forEach((item, index) => {
+                        let modelList = item.modelList;
+                        let echartStr = ''
+                        modelList.forEach((item, index) => {
+                            console.log(currChartImg)
+                            let chartParams = {
+                                topicId: item.topicId,
+                                id: item.modelDetailId,
+                                dateRangeBegin: Public.timestampToTime(item.topicStartTime, '-', true),
+                                dateRangeEnd: Public.timestampToTime(item.topicEndTime, '-', true),
+                                modelTypeName: item.modelTypeName
+                            }
+                            let cid = item.id + '-' + item.modelDetailId
+                            arr.push({
+                                'obj': chartParams,
+                                'id': cid
+                            })
+                            let modelTypeName = item.modelTypeName ? item.modelTypeName : '请输入小标题'
+                            echartStr += '<div class="chart-body"> <div class="clearfix"> <div class="chart-btns"> <input class="edit-chart ed-btn-1" type="button" value="编辑模型"> '
+                                + '<input class="del-chart" type="button" value="删除模型"> </div> </div>'
+                                + '<div><h3  class="chart_title" >' + modelTypeName + '</h3>'
+                                + '<div class="bb_02 t20 chart-img-echarts">'
+                                + '<div class="chart-img" id="' + cid + '" ></div></div> <div class="text" style="outline:none;font-size:12px;padding-top:10px;"></div></div></div>';
+
+
+                        })
+
+
+                        str += '<div class="report-block-container">'
+                            + '<div class="del-block clearfix"> <div class="del-block-btn">×</div></div>'
+                            + '<div class="report-block">'
+                            + '<div class="report-block-title">'
+                            + '<div class="report-block-title-text editable-div" contenteditable="true" style="color: rgba(141,203,255);">' + item.moduleName + '</div>'
+                            + '</div>'
+                            + '<div class="paragraph-text">'
+                            + '<div class="clearfix">'
+                            + '<div class="paragraph-btns">'
+                            + '<input class="ed-btn-1 edit-p-btn" type="button" value="编辑摘要"> <input class="del-p-btn" type="button" value="删除摘要">'
+                            + '</div> </div>'
+                            + '<div class="paragraph-container"><textarea class="paragraph-content editable-div" style="height: 20px;color: rgba(141,203,255);">' + item.section + '</textarea></div>'
+                            + '</div>' + echartStr
+                            + '<div class="report-btns">'
+                            + '<input class="add-analyse-btn" type="button" value="添加分析模型"> '
+                            + '</div></div></div>'
+                    })
+
+                    $(".add-report-block").siblings(".report-block-container").remove();
+                    $(".add-report-block").before(str)
+
+                    $(".chart-img").css("height", "450px")
+                    arr.forEach((item) => {
+                        let modelDetailId = item.id.split('-')[1]
+                        if (modelDetailId === '8b0d7fe0f0914399889646078a4357d8') {
+                            ///1
+                            sjtsfx(item.obj, item.id);
+                        } else if (modelDetailId === '4afe5ed3d5d94a4f8453576905e998fd') {
+                            //2
+                            qysjfb(item.obj, item.id);
+                        } else if (modelDetailId === '97034376b9454584bb66b9ca7afec740') {
+                            //3
+                            ztqgfb(item.obj, item.id);
+                        } else if (modelDetailId === 'b835309cca334e58b4765fb1cf7ae71f') {
+                            //4
+                            qgzs(item.obj, item.id);
+                        } else if (modelDetailId === '7c04f49830ea4fcdb7fa6f41aea4926a') {
+                            //5
+                            gjcy(item.obj, item.id);
+                        } else if (modelDetailId === '59100d6c935b4a0fac1d4b65fad7d283') {
+                            //6
+                            zlmtbdqzmtpm(item.obj, item.id);
+                        } else if (modelDetailId === '95276f5a5e7445708a9c94de0345bf36') {
+                            //8
+                            zlmtcbbd(item.obj, item.id);
+                        } else if (modelDetailId === 'e1d0fbb8c5864f70af5f740cdfc8e585') {
+                            //9
+                            twitterCbbd(item.obj, item.id);
+                        } else if (modelDetailId === 'ca49d2fca38b4015b660a35af3f553b3') {
+                            //10
+                            weiboCbbd(item.obj, item.id);
+                        } else if (modelDetailId === 'b9431c56592a40dca14dfcf6664729fe') {
+                            //11
+                            weiboCbrdht(item.obj, item.id);
+                        } else if (modelDetailId === 'bf115a508c834c50ab65a7ae3efd9f36') {
+                            //12
+                            twitterCbrdht(item.obj, item.id);
+                        } else if (modelDetailId === 'd3a7b4547c7241058b2288ca52496137') {
+                            //13
+                            sjmttjalxyjpm(item.obj, item.id);
+                        } else if (modelDetailId === '86bbdfa79cc34cbaac6e8357a2225459') {
+                            //14
+                            sjmttjacblpm(item.obj, item.id);
+                        } else if (modelDetailId === '185122401a3443a18ebd9672f2a5bcbf') {
+                            //15
+                            zlmtcbrdht(item.obj, item.id);
+                        } else if (modelDetailId === 'd91f90170a5845309ecb61f1e3833db5') {
+                            //16
+                            qysjpmbzt(item.obj, item.id);
+                        } else if (modelDetailId === 'f621bdfeaa9e42258ff0dd513891b295') {
+                            //17
+                            qysjsjzs(item.obj, item.id);
+                        } else if (modelDetailId === '67feac1591c6431ebcf1e607129aa1b3') {
+                            //18
+                            btlemtqgzb(item.obj, item.id);
+                        } else if (modelDetailId === '7f4ea996b6a641c1a281b7c1ecf48635') {
+                            //19
+                            btqyqgdb(item.obj, item.id);
+                        } else if (modelDetailId === 'a9150043c8e0450b930502e175f4ef99') {
+                            //20
+                            zlmtzyyxlqgbd(item.obj, item.id);
+                        } else if (modelDetailId === '947665fec830414b929ab5391c8aaa69') {
+                            //21
+                            sjmtzyyxlbd(item.obj, item.id);
+                        } else if (modelDetailId === '16e4b7431b9d4dca85da67057632c8bf') {
+                            //22
+                            yhdyfx(item.obj, item.id);
+                        } else if (modelDetailId === '8508994b81244e319708dd13f221b25e') {
+                            //23
+                            sjrqsx(item.obj, item.id);
+                        } else if (modelDetailId === 'd3a7b4547c7241058b2288ca52496137') {
+                            //24
+                            sjyjlx(item.obj, item.id);
+                        } else if (modelDetailId === '069f4cc564214fcab79d848508df582a') {
+                            //25
+                            akeySjtsfx(item.obj, item.id);
+                        } else if (modelDetailId === '5517c12af36448acb645735d7b71c446') {
+                            //26
+                            akeyQysjfb(item.obj, item.id);
+                        } else if (modelDetailId === 'dbfa5e4196eb4248ad1ea8453d540fed') {
+                            //27
+                            akeyQgztzb(item.obj, item.id);
+                        } else if (modelDetailId === '684af2d1792f4f568ffbd792b35728a9') {
+                            //28
+                            akeyQgsjzs(item.obj, item.id);
+                        } else if (modelDetailId === '945dabf2332d438d80ca201776d0958d') {
+                            //29
+                            akeyQgztzb(item.obj, item.id);
+                        }
+
+
+                    })
+                }
+
+            }
+        })
+
+
+        //判断专题名是否重复
+        $("#report-title").on("blur", function () {
+            let reportName = $('#report-title').text();
+            $.ajax({
+                type: 'post',
+                headers: {'token': Public.token},
+                url: '/api/reportSettingInfo/searchReportName',
+                data: {
+                    userId: Public.userId,
+                    reportName
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (!data.success) {
+                        Public.message("当前名字已存在！");
+                    }
+                }
+            })
+        })
+        
+        
+        //是否下载
+        location.search.split('&').forEach(item=>{
+        	if(item.includes("download")){
+        		layer.confirm('请确认图表是否加载完毕，是否下载？',{
+        			title:false
+        		},function(){
+        			$('html,body').animate({scrollTop:0})
+        			let top2 = $(document).scrollTop();
+        			if(top2 === 0){
+        				downPdf();
+        			}
+        			$(document).scroll(function(){
+        				let top = $(document).scrollTop();
+        				if(top < 1 ){
+        					downPdf();
+        				}
+        			})
+        		    function downPdf(){
+        				 html2canvas($("#reportDataBody")[0],/* {background:'#f00'} */).then(function (canvas) {
+		        		    	var contentWidth = canvas.width;
+		        		        var contentHeight = canvas.height;
+		        		        //一页pdf显示html页面生成的canvas高度;
+		        		        var pageHeight = contentWidth / 592.28 * 841.89;
+		        		        //未生成pdf的html页面高度
+		        		        var leftHeight = contentHeight;
+		        		        //页面偏移
+		        		        var position = 0;
+		        		        //a4纸的尺寸[595.28,595.28]，html页面生成的canvas在pdf中图片的宽高
+		        		        var imgWidth = 595.28;
+		        		        var imgHeight = 592.28/contentWidth * contentHeight;
+		        		        var pageData = canvas.toDataURL('image/jpeg', 1.0);
+		        		        //element.append(canvas)
+		        		        var pdf = new jsPDF('', 'pt', 'a4');
+		        		        //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+		        		        //当内容未超过pdf一页显示的范围，无需分页
+		        		       if (leftHeight < pageHeight) {
+		        		       		 pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+		        		        } else {    // 分页
+		        		            while(leftHeight > 0) {
+		        		                pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
+		        		                leftHeight -= pageHeight;
+		        		                position -= 841.89;
+		        		                //避免添加空白页
+		        		                if(leftHeight > 0) {
+		        		                  pdf.addPage();
+		        		                }
+		        		            }
+		        		        } 
+		        		        pdf.save($("#report-title").text() + '.pdf');  
+		        		 		$(".layui-layer-close").trigger("click")
+		        		    });
+        			}
+        		})
+        	}
+        })
+        
+        
+
+        
+    </script>
+
+    <style>
+        .popup-head-wrap {
+            width: 698px;
+            position: fixed;
+            z-index: 1;
+            background: #fff;
+            height: 249px;
+        }
+    </style>
+</form>
+</body>
+</html>
