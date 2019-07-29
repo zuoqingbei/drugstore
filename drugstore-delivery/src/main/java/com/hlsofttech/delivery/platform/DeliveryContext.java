@@ -1,7 +1,9 @@
 package com.hlsofttech.delivery.platform;
 
 import com.hlsofttech.common.ResultDO;
+import com.hlsofttech.entity.delivery.dto.CancelOrderDTO;
 import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
+import com.hlsofttech.entity.delivery.dto.QueryOrderDTO;
 import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
 import lombok.Data;
 
@@ -40,6 +42,28 @@ public class DeliveryContext {
      **/
     public ResultDO createOrder(CreateOrderDTO createOrderDTO) {
         return delivery.createOrder(createOrderDTO);
+    }
+
+    /***
+     * @Description: 取消订单
+     * @Date: 2019/7/29 10:44
+     * @param cancelOrderDTO:
+     * @return: com.hlsofttech.common.ResultDO
+     * @Author: suncy
+     **/
+    public ResultDO cancelOrder(CancelOrderDTO cancelOrderDTO) {
+        return delivery.cancelOrder(cancelOrderDTO);
+    }
+
+    /***
+     * @Description: 查询订单
+     * @Date: 2019/7/29 14:23
+     * @param queryOrderDTO:
+     * @return: com.hlsofttech.common.ResultDO
+     * @Author: suncy
+     **/
+    public ResultDO queryOrder(QueryOrderDTO queryOrderDTO) {
+        return delivery.queryOrder(queryOrderDTO);
     }
 
 }

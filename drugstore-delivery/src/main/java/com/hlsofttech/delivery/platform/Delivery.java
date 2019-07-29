@@ -1,7 +1,9 @@
 package com.hlsofttech.delivery.platform;
 
 import com.hlsofttech.common.ResultDO;
+import com.hlsofttech.entity.delivery.dto.CancelOrderDTO;
 import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
+import com.hlsofttech.entity.delivery.dto.QueryOrderDTO;
 import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
 
 /***
@@ -29,5 +31,23 @@ public interface Delivery {
      * @Author: suncy
      **/
     ResultDO createOrder(CreateOrderDTO createOrderDTO);
+
+    /***
+     * @Description: 取消订单
+     * @Date: 2019/7/29 10:43
+     * @param cancelOrderDTO:
+     * @return: com.hlsofttech.common.ResultDO
+     * @Author: suncy
+     **/
+    ResultDO cancelOrder(CancelOrderDTO cancelOrderDTO);
+
+    /***
+     * @Description: 查询订单状态
+     * @Date: 2019/7/29 14:17
+     * @param queryOrderDTO:
+     * @return: com.hlsofttech.common.ResultDO
+     * @Author: suncy
+     **/
+    ResultDO queryOrder(QueryOrderDTO queryOrderDTO);
 
 }

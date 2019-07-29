@@ -1,4 +1,4 @@
-package com.hlsofttech.delivery.platform.meituan.util;
+package com.hlsofttech.utils;
 
 import org.apache.commons.lang.StringUtils;
 

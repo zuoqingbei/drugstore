@@ -1,6 +1,6 @@
 package com.hlsofttech.delivery.platform.meituan;
 
-import com.hlsofttech.delivery.platform.meituan.constants.CancelOrderReasonId;
+import com.hlsofttech.constant.delivery.CancelOrderReasonId;
 import com.hlsofttech.delivery.platform.meituan.constants.OpenApiConfig;
 import com.hlsofttech.delivery.platform.meituan.constants.RequestConstant;
 import com.hlsofttech.delivery.platform.meituan.request.CancelOrderRequest;

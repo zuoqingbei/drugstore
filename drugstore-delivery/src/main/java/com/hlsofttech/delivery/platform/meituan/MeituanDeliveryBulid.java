@@ -1,21 +1,18 @@
 package com.hlsofttech.delivery.platform.meituan;
 
 import com.hlsofttech.delivery.platform.meituan.constants.OpenApiConfig;
+import com.hlsofttech.delivery.platform.meituan.request.CancelOrderRequest;
 import com.hlsofttech.delivery.platform.meituan.request.CreateOrderByShopRequest;
 import com.hlsofttech.delivery.platform.meituan.request.CreateShopRequest;
+import com.hlsofttech.delivery.platform.meituan.request.QueryOrderRequest;
 import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
 import com.hlsofttech.delivery.platform.meituan.util.DeliveryTimeUtil;
 import com.hlsofttech.delivery.platform.meituan.vo.OpenApiGood;
 import com.hlsofttech.delivery.platform.meituan.vo.OpenApiGoods;
-import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
-import com.hlsofttech.entity.delivery.dto.GoodDTO;
-import com.hlsofttech.entity.delivery.dto.GoodListDTO;
-import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
+import com.hlsofttech.entity.delivery.dto.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /***
@@ -54,7 +51,7 @@ public class MeituanDeliveryBulid {
     }
 
     /**
-     * 构建创建门店请求信息
+     * 构建创建订单请求信息
      */
     public static CreateOrderByShopRequest buildData(CreateOrderDTO createOrderDTO) {
         CreateOrderByShopRequest request = new CreateOrderByShopRequest();
@@ -101,6 +98,39 @@ public class MeituanDeliveryBulid {
         // 设置备注信息
         request.setNote(createOrderDTO.getNote());
 
+        return request;
+    }
+
+    /**
+     * 构建取消订单请求信息
+     */
+    public static CancelOrderRequest buildData(CancelOrderDTO cancelOrderDTO) {
+        CancelOrderRequest request = new CancelOrderRequest();
+        request.setAppkey(OpenApiConfig.APP_KEY);
+        request.setTimestamp(DateUtil.unixTime());
+        request.setVersion(OpenApiConfig.MEITUAN_VERSION);
+
+
+        request.setDeliveryId(cancelOrderDTO.getDeliveryId());
+        request.setMtPeisongId(cancelOrderDTO.getMtPeisongId());
+        request.setCancelOrderReasonId(cancelOrderDTO.getCancelOrderReasonId());
+        request.setCancelReason(cancelOrderDTO.getCancelReason());
+
+
+        return request;
+    }
+
+    /**
+     * 构建查询订单请求信息
+     */
+    public static QueryOrderRequest buildData(QueryOrderDTO queryOrderDTO) {
+        QueryOrderRequest request = new QueryOrderRequest();
+        request.setAppkey(OpenApiConfig.APP_KEY);
+        request.setTimestamp(DateUtil.unixTime());
+        request.setVersion(OpenApiConfig.MEITUAN_VERSION);
+
+        request.setDeliveryId(queryOrderDTO.getDeliveryId());
+        request.setMtPeisongId(queryOrderDTO.getMtPeisongId());
         return request;
     }
 

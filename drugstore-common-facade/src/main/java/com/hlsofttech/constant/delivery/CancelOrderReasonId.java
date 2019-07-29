@@ -1,4 +1,4 @@
-package com.hlsofttech.delivery.platform.meituan.constants;
+package com.hlsofttech.constant.delivery;
 
 /**
  * @Description: 取消原因id枚举
@@ -12,7 +12,7 @@ public enum CancelOrderReasonId {
     private int code;
     private String msg;
 
-    private CancelOrderReasonId(int code, String msg) {
+    CancelOrderReasonId(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

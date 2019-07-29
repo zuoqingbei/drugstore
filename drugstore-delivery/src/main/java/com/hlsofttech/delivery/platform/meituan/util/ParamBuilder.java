@@ -9,8 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 请求body构造器
- */
+ * @Description: 请求body构造器
+ * @Author: suncy
+ **/
 public class ParamBuilder {
 
     private static void putIfNotEmpty(Map<String, String> map, String key, String value) {

@@ -5,7 +5,9 @@ import com.hlsofttech.common.Constant;
 import com.hlsofttech.common.ResultDO;
 import com.hlsofttech.delivery.platform.DeliveryContext;
 import com.hlsofttech.delivery.platform.meituan.MeituanDelivery;
+import com.hlsofttech.entity.delivery.dto.CancelOrderDTO;
 import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
+import com.hlsofttech.entity.delivery.dto.QueryOrderDTO;
 import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
 import com.hlsofttech.service.delivery.DeliveryMeituanService;
 
@@ -27,6 +29,16 @@ public class DeliveryMeituanServiceImpl implements DeliveryMeituanService {
 
     @Override
     public ResultDO createOrder(CreateOrderDTO createOrderDTO) {
-        return null;
+        return deliveryContext.createOrder(createOrderDTO);
+    }
+
+    @Override
+    public ResultDO cancelOrder(CancelOrderDTO cancelOrderDTO) {
+        return deliveryContext.cancelOrder(cancelOrderDTO);
+    }
+
+    @Override
+    public ResultDO queryOrder(QueryOrderDTO queryOrderDTO) {
+        return deliveryContext.queryOrder(queryOrderDTO);
     }
 }

@@ -1,7 +1,9 @@
-package com.hlsofttech.delivery.platform.meituan.request;
+package com.hlsofttech.entity.delivery.dto;
 
 import com.hlsofttech.constant.delivery.CancelOrderReasonId;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @Description: 取消订单
@@ -9,14 +11,14 @@ import lombok.Data;
  * @Author: suncy
  **/
 @Data
-public class CancelOrderRequest extends AbstractRequest {
+public class CancelOrderDTO implements Serializable {
     /**
      * 配送活动标识
      */
     private long deliveryId;
 
     /**
-     * 美团配送内部订单id，最长不超过32个字符
+     * 配送内部订单id，最长不超过32个字符
      */
     private String mtPeisongId;
 
