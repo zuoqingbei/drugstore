@@ -68,4 +68,17 @@ public class ResultDO<T> implements Serializable {
     public void setData(T data) {
         this.data = data;
     }
+
+    public ResultDO(boolean success, T data) {
+        this.success = success;
+        this.data = data;
+    }
+
+    public ResultDO(boolean success, String errMsg) {
+        this.success = success;
+        this.errMsg = errMsg;
+    }
+
+    public ResultDO() {
+    }
 }
