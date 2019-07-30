@@ -13,7 +13,7 @@ public class ShopCreateResData {
     /**
      * 门店ID
      */
-    private String shopId;
+    private String shop_id;
     /**
      * 配送唯一标识
      */

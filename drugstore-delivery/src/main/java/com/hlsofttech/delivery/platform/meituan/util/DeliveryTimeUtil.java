@@ -1,7 +1,5 @@
 package com.hlsofttech.delivery.platform.meituan.util;
 
-import org.apache.commons.lang.StringUtils;
-
 /***
  * @Description: 计算预计送达时间工具类
  * @Date: 2019/7/29 9:45

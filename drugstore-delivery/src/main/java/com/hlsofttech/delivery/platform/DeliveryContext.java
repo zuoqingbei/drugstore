@@ -1,10 +1,10 @@
 package com.hlsofttech.delivery.platform;
 
-import com.hlsofttech.common.ResultDO;
 import com.hlsofttech.entity.delivery.dto.CancelOrderDTO;
 import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
 import com.hlsofttech.entity.delivery.dto.QueryOrderDTO;
 import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
+import com.hlsofttech.rsp.Result;
 import lombok.Data;
 
 /***
@@ -26,10 +26,10 @@ public class DeliveryContext {
      * @Description: 创建门店
      * @Date: 2019/7/25 17:30
      * @param shopInfoDTO:
-     * @return: com.hlsofttech.common.ResultDO
+     * @return: com.hlsofttech.rsp.Result
      * @Author: suncy
      **/
-    public ResultDO createShop(ShopInfoDTO shopInfoDTO) {
+    public Result createShop(ShopInfoDTO shopInfoDTO) {
         return delivery.createShop(shopInfoDTO);
     }
 
@@ -37,10 +37,10 @@ public class DeliveryContext {
      * @Description: 创建订单
      * @Date: 2019/7/29 9:30
      * @param createOrderDTO:
-     * @return: com.hlsofttech.common.ResultDO
+     * @return: com.hlsofttech.rsp.Result
      * @Author: suncy
      **/
-    public ResultDO createOrder(CreateOrderDTO createOrderDTO) {
+    public Result createOrder(CreateOrderDTO createOrderDTO) {
         return delivery.createOrder(createOrderDTO);
     }
 
@@ -48,10 +48,10 @@ public class DeliveryContext {
      * @Description: 取消订单
      * @Date: 2019/7/29 10:44
      * @param cancelOrderDTO:
-     * @return: com.hlsofttech.common.ResultDO
+     * @return: com.hlsofttech.rsp.Result
      * @Author: suncy
      **/
-    public ResultDO cancelOrder(CancelOrderDTO cancelOrderDTO) {
+    public Result cancelOrder(CancelOrderDTO cancelOrderDTO) {
         return delivery.cancelOrder(cancelOrderDTO);
     }
 
@@ -59,10 +59,10 @@ public class DeliveryContext {
      * @Description: 查询订单
      * @Date: 2019/7/29 14:23
      * @param queryOrderDTO:
-     * @return: com.hlsofttech.common.ResultDO
+     * @return: com.hlsofttech.rsp.Result
      * @Author: suncy
      **/
-    public ResultDO queryOrder(QueryOrderDTO queryOrderDTO) {
+    public Result queryOrder(QueryOrderDTO queryOrderDTO) {
         return delivery.queryOrder(queryOrderDTO);
     }
 

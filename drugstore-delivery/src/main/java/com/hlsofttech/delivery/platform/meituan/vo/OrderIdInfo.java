@@ -7,32 +7,32 @@ import lombok.Data;
  */
 @Data
 public class OrderIdInfo {
-	/**
+    /**
      * 配送唯一标识
      */
-    private String mtPeisongId;
-	/**
+    private String mt_peisong_id;
+    /**
      * 订单ID
      */
-    private String orderId;
-	/**
+    private String order_id;
+    /**
      * 配送活动标识
      */
-    private long deliveryId;
-	/**
+    private long delivery_id;
+    /**
      * 目的地id
      */
-    private String destinationId;
-	/**
+    private String destination_id;
+    /**
      * 订单配送距离
      */
-    private Integer deliveryDistance;
-	/**
+    private Integer delivery_distance;
+    /**
      * 订单配送价格（面向商家）
      */
-    private Double deliveryFee;
-	/**
+    private Double delivery_fee;
+    /**
      * 路区信息
      */
-    private String roadArea;
+    private String road_area;
 }

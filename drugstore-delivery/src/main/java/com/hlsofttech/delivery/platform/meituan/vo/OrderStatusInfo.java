@@ -11,17 +11,17 @@ public class OrderStatusInfo {
     /**
      * 配送活动标识
      */
-    private String deliveryId;
+    private String delivery_id;
 
     /**
      * 美团配送内部订单id，最长不超过32个字符
      */
-    private String mtPeisongId;
+    private String mt_peisong_id;
 
     /**
      * 外部订单号，最长不超过32个字符
      */
-    private String orderId;
+    private String order_id;
 
     /**
      * 订单状态代码
@@ -31,21 +31,21 @@ public class OrderStatusInfo {
     /**
      * 配送员姓名（订单已被骑手接单后会返回骑手信息）
      */
-    private String courierName;
+    private String courier_name;
 
     /**
      * 配送员电话（订单已被骑手接单后会返回骑手信息）
      */
-    private String courierPhone;
+    private String courier_phone;
 
     /**
      * 取消原因id
      */
-    private int cancelReasonId;
+    private int cancel_reason_id;
 
     /**
      * 取消原因详情，最长不超过256个字符
      */
-    private String cancelReason;
+    private String cancel_reason;
 
 }

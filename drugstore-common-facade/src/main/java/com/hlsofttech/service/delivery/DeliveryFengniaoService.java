@@ -1,8 +1,7 @@
 package com.hlsofttech.service.delivery;
 
-import com.hlsofttech.common.ResultDO;
-import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
 import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
+import com.hlsofttech.rsp.Result;
 
 /***
  * @Description: 蜂鸟配送服务
@@ -18,15 +17,5 @@ public interface DeliveryFengniaoService {
      * @return: com.hlsofttech.common.ResultDO
      * @Author: suncy
      **/
-    ResultDO createShop(ShopInfoDTO shopInfoDTO);
-
-    /***
-     * @Description: 创建订单
-     * @Date: 2019/7/29 9:29
-     * @param createOrderDTO:
-     * @return: com.hlsofttech.common.ResultDO
-     * @Author: suncy
-     **/
-    ResultDO createOrder(CreateOrderDTO createOrderDTO);
-
+    Result<Object> createShop(ShopInfoDTO shopInfoDTO);
 }

@@ -220,7 +220,6 @@ public class ParamBuilder {
         putIfNotEmpty(map, "version", request.getVersion());
         putIfNotEmpty(map, "sign", request.getSign());
 
-
         putIfNotEmpty(map, "shop_id", request.getShopId());
         putIfNotEmpty(map, "shop_name", request.getShopName());
         putIfNotEmpty(map, "category", String.valueOf(request.getCategory()));

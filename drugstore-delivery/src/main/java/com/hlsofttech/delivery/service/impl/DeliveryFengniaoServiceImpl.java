@@ -2,15 +2,11 @@ package com.hlsofttech.delivery.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.hlsofttech.common.Constant;
-import com.hlsofttech.common.ResultDO;
-import com.hlsofttech.delivery.platform.Delivery;
 import com.hlsofttech.delivery.platform.DeliveryContext;
 import com.hlsofttech.delivery.platform.fengniao.FengniaoDelivery;
-import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
 import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
+import com.hlsofttech.rsp.Result;
 import com.hlsofttech.service.delivery.DeliveryFengniaoService;
-
-import javax.annotation.Resource;
 
 /***
  * @Description: 蜂鸟配送服务
@@ -30,12 +26,8 @@ public class DeliveryFengniaoServiceImpl implements DeliveryFengniaoService {
      * @return: com.hlsofttech.common.ResultDO
      * @Author: suncy
      **/
-    public ResultDO createShop(ShopInfoDTO shopInfoDTO) {
+    public Result<Object> createShop(ShopInfoDTO shopInfoDTO) {
         return deliveryContext.createShop(shopInfoDTO);
     }
 
-    @Override
-    public ResultDO createOrder(CreateOrderDTO createOrderDTO) {
-        return null;
-    }
 }

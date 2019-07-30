@@ -131,6 +131,7 @@ public class MeituanDeliveryBulid {
 
         request.setDeliveryId(queryOrderDTO.getDeliveryId());
         request.setMtPeisongId(queryOrderDTO.getMtPeisongId());
+
         return request;
     }
 

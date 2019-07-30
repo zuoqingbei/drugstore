@@ -4,14 +4,14 @@ import org.apache.commons.lang.StringUtils;
 
 public class CamelCaseUtils {
 
-    private static final char SEPARATOR = '_';
+    /*private static final char SEPARATOR = '_';
 
-    /**
+    *//**
      * 骆驼法则字符串转换为下划线标准格式
      *
      * @param s
      * @return
-     */
+     *//*
 
     public static String toUngerScoreCase(String s) {
 
@@ -44,12 +44,12 @@ public class CamelCaseUtils {
         return sb.toString();
     }
 
-    /**
+    *//**
      * 下划线命名字符串格式转换为骆驼法则格式
      *
      * @param s
      * @return
-     */
+     *//*
 
     public static String toCamelCase(String s) {
 
@@ -76,12 +76,12 @@ public class CamelCaseUtils {
 
     }
 
-    /**
+    *//**
      * 下划线命名字符串格式转换为骆驼法则格式 首字母大写
      *
      * @param s
      * @return
-     */
+     *//*
 
     public static String toCamelAndFirstLetterCase(String s) {
 
@@ -93,16 +93,16 @@ public class CamelCaseUtils {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
-    /**
+    *//**
      * 测试main方法
      *
      * @param args
-     */
+     *//*
 
     public static void main(String[] args) {
         System.out.println("toUngerScoreCase:" + toUngerScoreCase("tianMuShanLu"));//tian_mu_shan_lu
         System.out.println("toCamelCase:" + toCamelCase("tian_mu_shan_lu"));//tianMuShanLu
         System.out.println("toCamelAndFirstLettersCase:" + toCamelAndFirstLetterCase("tian_mu_shan_lu"));//TianMuShanLu
 
-    }
+    }*/
 }
