@@ -1,13 +1,13 @@
 package com.hlsofttech.delivery.platform.meituan;
 
 import com.hlsofttech.constant.delivery.CancelOrderReasonId;
-import com.hlsofttech.delivery.platform.meituan.constants.OpenApiConfig;
 import com.hlsofttech.delivery.platform.meituan.constants.RequestConstant;
 import com.hlsofttech.delivery.platform.meituan.request.CancelOrderRequest;
-import com.hlsofttech.delivery.platform.meituan.sign.SignHelper;
-import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
-import com.hlsofttech.delivery.platform.meituan.util.HttpClient;
 import com.hlsofttech.delivery.platform.meituan.util.ParamBuilder;
+import com.hlsofttech.platform.meituan.constants.OpenApiConfig;
+import com.hlsofttech.platform.meituan.sign.SignHelper;
+import com.hlsofttech.platform.meituan.util.DateUtil;
+import com.hlsofttech.platform.meituan.util.HttpClient;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;

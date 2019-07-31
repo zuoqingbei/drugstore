@@ -1,8 +1,13 @@
-package com.hlsofttech.delivery.platform.meituan.response.notify;
+package com.hlsofttech.platform.meituan.response.notify;
 
-import com.hlsofttech.delivery.platform.meituan.constants.OrderStatus;
+import com.hlsofttech.platform.meituan.constants.OrderStatus;
 import lombok.Data;
 
+/***
+ * @Description: 订单状态回调信息
+ * @Date: 2019/7/30 14:14
+ * @Author: suncy
+ **/
 @Data
 public class OrderStatusNotifyResponse extends AbstractNotifyResponse {
 

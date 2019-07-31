@@ -157,7 +157,6 @@ public class ParamBuilder {
         putIfNotEmpty(map, "receiver_town", request.getReceiverTown());
         putIfNotEmpty(map, "receiver_detail_address", request.getReceiverDetailAddress());
 
-
         return map;
     }
 

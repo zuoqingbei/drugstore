@@ -1,4 +1,4 @@
-package com.hlsofttech.delivery.platform.meituan.util;
+package com.hlsofttech.platform.meituan.util;
 
 
 import com.alibaba.fastjson.JSONObject;

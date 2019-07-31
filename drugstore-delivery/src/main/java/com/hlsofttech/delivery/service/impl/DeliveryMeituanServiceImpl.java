@@ -4,10 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.delivery.platform.DeliveryContext;
 import com.hlsofttech.delivery.platform.meituan.MeituanDelivery;
-import com.hlsofttech.entity.delivery.dto.CancelOrderDTO;
-import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
-import com.hlsofttech.entity.delivery.dto.QueryOrderDTO;
-import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
+import com.hlsofttech.entity.delivery.dto.*;
 import com.hlsofttech.rsp.Result;
 import com.hlsofttech.service.delivery.DeliveryMeituanService;
 
@@ -40,5 +37,30 @@ public class DeliveryMeituanServiceImpl implements DeliveryMeituanService {
     @Override
     public Result queryOrder(QueryOrderDTO queryOrderDTO) {
         return deliveryContext.queryOrder(queryOrderDTO);
+    }
+
+    @Override
+    public Result orderEvaluate(OrderEvaluateDTO orderEvaluateDTO) {
+        return deliveryContext.orderEvaluate(orderEvaluateDTO);
+    }
+
+    @Override
+    public Result orderCheck(OrderCheckDTO orderCheckDTO) {
+        return deliveryContext.orderCheck(orderCheckDTO);
+    }
+
+    @Override
+    public Result getRiderLocation(QueryOrderDTO queryOrderDTO) {
+        return deliveryContext.getRiderLocation(queryOrderDTO);
+    }
+
+    @Override
+    public Result queryShopArea(QueryShopAreaDTO queryShopAreaDTO) {
+        return deliveryContext.queryShopArea(queryShopAreaDTO);
+    }
+
+    @Override
+    public Result queryShop(String shopId) {
+        return deliveryContext.queryShop(shopId);
     }
 }

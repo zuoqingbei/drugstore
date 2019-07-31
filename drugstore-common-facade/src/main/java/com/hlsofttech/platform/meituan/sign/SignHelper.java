@@ -1,9 +1,9 @@
-package com.hlsofttech.delivery.platform.meituan.sign;
+package com.hlsofttech.platform.meituan.sign;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hlsofttech.delivery.platform.meituan.constants.OpenApiConfig;
-import com.hlsofttech.delivery.platform.meituan.util.ParamNotifyBuilder;
-import com.hlsofttech.delivery.platform.meituan.util.SHA1Util;
+import com.hlsofttech.platform.meituan.constants.OpenApiConfig;
+import com.hlsofttech.platform.meituan.util.ParamNotifyBuilder;
+import com.hlsofttech.platform.meituan.util.SHA1Util;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;

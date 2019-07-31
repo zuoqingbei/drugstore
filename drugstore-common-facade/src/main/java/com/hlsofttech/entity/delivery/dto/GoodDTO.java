@@ -1,15 +1,16 @@
 package com.hlsofttech.entity.delivery.dto;
 
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * 订单商品信息
+ * 以美团为例，后期接入别的可以更改本实体进行扩展
  */
 @Data
-public class GoodDTO {
+public class GoodDTO implements Serializable {
     /**
      * 商品数量
      */

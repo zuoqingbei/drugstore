@@ -1,9 +1,6 @@
 package com.hlsofttech.delivery.platform;
 
-import com.hlsofttech.entity.delivery.dto.CancelOrderDTO;
-import com.hlsofttech.entity.delivery.dto.CreateOrderDTO;
-import com.hlsofttech.entity.delivery.dto.QueryOrderDTO;
-import com.hlsofttech.entity.delivery.dto.ShopInfoDTO;
+import com.hlsofttech.entity.delivery.dto.*;
 import com.hlsofttech.rsp.Result;
 import lombok.Data;
 
@@ -31,6 +28,17 @@ public class DeliveryContext {
      **/
     public Result createShop(ShopInfoDTO shopInfoDTO) {
         return delivery.createShop(shopInfoDTO);
+    }
+
+    /***
+     * @Description: 查询门店信息
+     * @Date: 2019/7/30 16:27
+     * @param shopId:
+     * @return: com.hlsofttech.rsp.Result
+     * @Author: suncy
+     **/
+    public Result queryShop(String shopId) {
+        return delivery.queryShop(shopId);
     }
 
     /***
@@ -66,4 +74,47 @@ public class DeliveryContext {
         return delivery.queryOrder(queryOrderDTO);
     }
 
+    /***
+     * @Description: 配送能力校验
+     * @Date: 2019/7/30 15:52
+     * @param orderEvaluateDTO:
+     * @return: com.hlsofttech.rsp.Result
+     * @Author: suncy
+     **/
+    public Result orderEvaluate(OrderEvaluateDTO orderEvaluateDTO) {
+        return delivery.orderEvaluate(orderEvaluateDTO);
+    }
+
+    /***
+     * @Description: 配送能力校验
+     * @Date: 2019/7/30 15:52
+     * @param orderCheckDTO:
+     * @return: com.hlsofttech.rsp.Result
+     * @Author: suncy
+     **/
+    public Result orderCheck(OrderCheckDTO orderCheckDTO) {
+        return delivery.orderCheck(orderCheckDTO);
+    }
+
+    /***
+     * @Description: 获取骑手位置
+     * @Date: 2019/7/30 15:52
+     * @param queryOrderDTO:
+     * @return: com.hlsofttech.rsp.Result
+     * @Author: suncy
+     **/
+    public Result getRiderLocation(QueryOrderDTO queryOrderDTO) {
+        return delivery.getRiderLocation(queryOrderDTO);
+    }
+
+    /***
+     * @Description: 查询合作方配送范围
+     * @Date: 2019/7/30 16:17
+     * @param queryShopAreaDTO:
+     * @return: com.hlsofttech.rsp.Result
+     * @Author: suncy
+     **/
+    public Result queryShopArea(QueryShopAreaDTO queryShopAreaDTO) {
+        return delivery.queryShopArea(queryShopAreaDTO);
+    }
 }

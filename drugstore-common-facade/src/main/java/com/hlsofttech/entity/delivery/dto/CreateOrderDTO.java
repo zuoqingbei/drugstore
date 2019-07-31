@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * @Description: 创建订单（门店方式）参数
+ * 以美团为例，后期接入别的可以更改本实体进行扩展
  * @Date: 2019/7/24
  * @Author: suncy
  **/

@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /***
  * @Description: 配送平台创建店铺统一信息
+ * 以美团为例，后期接入别的可以更改本实体进行扩展
  * @Date: 2019/7/25 13:23
  * @Author: suncy
  **/

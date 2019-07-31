@@ -1,15 +1,12 @@
 package com.hlsofttech.delivery.platform.meituan;
 
-import com.hlsofttech.delivery.platform.meituan.constants.OpenApiConfig;
-import com.hlsofttech.delivery.platform.meituan.request.CancelOrderRequest;
-import com.hlsofttech.delivery.platform.meituan.request.CreateOrderByShopRequest;
-import com.hlsofttech.delivery.platform.meituan.request.CreateShopRequest;
-import com.hlsofttech.delivery.platform.meituan.request.QueryOrderRequest;
-import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
-import com.hlsofttech.delivery.platform.meituan.util.DeliveryTimeUtil;
+import com.hlsofttech.delivery.platform.meituan.request.*;
 import com.hlsofttech.delivery.platform.meituan.vo.OpenApiGood;
 import com.hlsofttech.delivery.platform.meituan.vo.OpenApiGoods;
 import com.hlsofttech.entity.delivery.dto.*;
+import com.hlsofttech.platform.meituan.constants.OpenApiConfig;
+import com.hlsofttech.platform.meituan.util.DateUtil;
+import com.hlsofttech.platform.meituan.util.DeliveryTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -110,12 +107,10 @@ public class MeituanDeliveryBulid {
         request.setTimestamp(DateUtil.unixTime());
         request.setVersion(OpenApiConfig.MEITUAN_VERSION);
 
-
         request.setDeliveryId(cancelOrderDTO.getDeliveryId());
         request.setMtPeisongId(cancelOrderDTO.getMtPeisongId());
         request.setCancelOrderReasonId(cancelOrderDTO.getCancelOrderReasonId());
         request.setCancelReason(cancelOrderDTO.getCancelReason());
-
 
         return request;
     }
@@ -131,6 +126,58 @@ public class MeituanDeliveryBulid {
 
         request.setDeliveryId(queryOrderDTO.getDeliveryId());
         request.setMtPeisongId(queryOrderDTO.getMtPeisongId());
+
+        return request;
+    }
+
+    /**
+     * 构建评价骑手请求信息
+     */
+    public static EvaluateRequest buildData(OrderEvaluateDTO orderEvaluateDTO) {
+        EvaluateRequest request = new EvaluateRequest();
+        request.setAppkey(OpenApiConfig.APP_KEY);
+        request.setTimestamp(DateUtil.unixTime());
+        request.setVersion(OpenApiConfig.MEITUAN_VERSION);
+
+        request.setDeliveryId(orderEvaluateDTO.getDeliveryId());
+        request.setMtPeisongId(orderEvaluateDTO.getMtPeisongId());
+        request.setScore(orderEvaluateDTO.getScore());
+        request.setCommentContent(orderEvaluateDTO.getCommentContent());
+
+        return request;
+    }
+
+    /**
+     * 构建评价骑手请求信息
+     */
+    public static CheckRequest buildData(OrderCheckDTO orderCheckDTO) {
+        CheckRequest request = new CheckRequest();
+        request.setAppkey(OpenApiConfig.APP_KEY);
+        request.setTimestamp(DateUtil.unixTime());
+        request.setVersion(OpenApiConfig.MEITUAN_VERSION);
+
+        request.setShopId(orderCheckDTO.getShopId());
+        request.setDeliveryServiceCode(orderCheckDTO.getDeliveryServiceCode());
+        request.setReceiverAddress(orderCheckDTO.getReceiverAddress());
+        request.setReceiverLng(orderCheckDTO.getReceiverLat());
+        request.setReceiverLat(orderCheckDTO.getReceiverLat());
+        request.setCheckType(orderCheckDTO.getCheckType());
+        request.setMockOrderTime(orderCheckDTO.getMockOrderTime());
+
+        return request;
+    }
+
+    /**
+     * 构建查询合作方配送范围请求信息
+     */
+    public static QueryShopAreaRequest buildData(QueryShopAreaDTO queryShopAreaDTO) {
+        QueryShopAreaRequest request = new QueryShopAreaRequest();
+        request.setAppkey(OpenApiConfig.APP_KEY);
+        request.setTimestamp(DateUtil.unixTime());
+        request.setVersion(OpenApiConfig.MEITUAN_VERSION);
+
+        request.setDeliveryServiceCode(queryShopAreaDTO.getDeliveryServiceCode());
+        request.setShopId(queryShopAreaDTO.getShopId());
 
         return request;
     }

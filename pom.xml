@@ -70,13 +70,6 @@
 			<version>0.0.1</version>
 		</dependency>
 
-		<!-- hlsofttech-drugstore-delivery -->
-		<dependency>
-			<groupId>com.hlsofttech</groupId>
-			<artifactId>drugstore-delivery</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 		<!-- AOP -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

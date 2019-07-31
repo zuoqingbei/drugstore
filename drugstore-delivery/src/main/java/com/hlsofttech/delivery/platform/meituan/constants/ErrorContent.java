@@ -27,4 +27,19 @@ public class ErrorContent {
      */
     public static final String QUERY_ORDER_ERROR = "查询美团订单失败！";
 
+    /**
+     * 评价骑手失败
+     */
+    public static final String ORDER_EVALUATE_ERROR = "查询美团订单失败！";
+
+    /**
+     * 配送能力校验
+     */
+    public static final String ORDER_CHECK_ERROR = "配送能力校验失败！";
+
+    /**
+     * 查询合作方配送范围
+     */
+    public static final String QUERY_SHOP_AREA_ERROR = "查询合作方配送范围失败！";
+
 }
