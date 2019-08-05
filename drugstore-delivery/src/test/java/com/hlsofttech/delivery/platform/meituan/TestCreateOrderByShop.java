@@ -1,6 +1,7 @@
 package com.hlsofttech.delivery.platform.meituan;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.constant.delivery.OrderTypeMeituan;
 import com.hlsofttech.delivery.platform.meituan.constants.RequestConstant;
 import com.hlsofttech.delivery.platform.meituan.request.CreateOrderByShopRequest;
@@ -40,6 +41,9 @@ public class TestCreateOrderByShop {
         CreateOrderByShopRequest request = buildMockRequest(appkey);
 
         Map<String, String> params = ParamBuilder.convertToMap(request);
+        JSONObject json = new JSONObject((Map) params);
+        System.out.println( json.toJSONString());
+
         String sign = SignHelper.generateSign(params, secret);
 
         params.put("sign", sign);

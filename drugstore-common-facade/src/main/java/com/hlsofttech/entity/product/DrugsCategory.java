@@ -1,4 +1,4 @@
-package com.hlsofttech.entity.user;
+package com.hlsofttech.entity.product;
 
 import java.io.Serializable;
 
@@ -9,41 +9,45 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.hlsofttech.base.BaseModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
- * 新闻收藏
- * @author suncy123
- * @date 2019-07-23
+ * 药品库-药品分类
+ * @author suncy
+ * @date 2019-08-02
  */
-@TableName("test_info")
-public class TestInfo extends BaseModel<TestInfo> {
+@TableName("drugs_category")
+public class DrugsCategory extends BaseModel<DrugsCategory> {
 
    private static final long serialVersionUID = 1L;
 
     /**
-     * 编号
+     * 主键
      */
-   @ApiModelProperty(name="id",value="编号",dataType="String")
+   @ApiModelProperty(name="id",value="主键",dataType="String")
    private String id;
     /**
-     * 用户编码
+     * 分类名称
      */
-   @ApiModelProperty(name="userId",value="用户编码",dataType="String")
-   @TableField("user_id")
-   private String userId;
+   @ApiModelProperty(name="title",value="分类名称",dataType="String")
+   private String title;
     /**
-     * 新闻编码编码
+     * 父ID
      */
-   @ApiModelProperty(name="newsId",value="新闻编码编码",dataType="String")
-   @TableField("news_id")
-   private String newsId;
+   @ApiModelProperty(name="parentId",value="父ID",dataType="String")
+   @TableField("parent_id")
+   private String parentId;
     /**
-     * 类型 媒体/社交/专利
+     * 级别1/2/3
      */
-   @ApiModelProperty(name="type",value="类型 媒体/社交/专利",dataType="String")
-   private String type;
+   @ApiModelProperty(name="level",value="级别1/2/3",dataType="String")
+   private String level;
     /**
-     * 创建者
+     * 状态（0启用1=停用）
      */
-   @ApiModelProperty(name="createBy",value="创建者",dataType="String")
+   @ApiModelProperty(name="status",value="状态（0启用1=停用）",dataType="String")
+   private String status;
+    /**
+     * 创建人
+     */
+   @ApiModelProperty(name="createBy",value="创建人",dataType="String")
    @TableField("create_by")
    private String createBy;
     /**
@@ -53,26 +57,26 @@ public class TestInfo extends BaseModel<TestInfo> {
    @TableField("create_date")
    private Date createDate;
     /**
-     * 更新者
+     * 修改人
      */
-   @ApiModelProperty(name="updateBy",value="更新者",dataType="String")
+   @ApiModelProperty(name="updateBy",value="修改人",dataType="String")
    @TableField("update_by")
    private String updateBy;
     /**
-     * 更新时间
+     * 修改时间
      */
-   @ApiModelProperty(name="updateDate",value="更新时间",dataType="Date")
+   @ApiModelProperty(name="updateDate",value="修改时间",dataType="Date")
    @TableField("update_date")
    private Date updateDate;
     /**
-     * 备注信息
+     * 备注
      */
-   @ApiModelProperty(name="remarks",value="备注信息",dataType="String")
+   @ApiModelProperty(name="remarks",value="备注",dataType="String")
    private String remarks;
     /**
-     * 删除标记
+     * 删除标识（1=已删除0未删除）
      */
-   @ApiModelProperty(name="delFlag",value="删除标记",dataType="String")
+   @ApiModelProperty(name="delFlag",value="删除标识（1=已删除0未删除）",dataType="String")
    @TableField("del_flag")
    private String delFlag;
 
@@ -85,28 +89,36 @@ public class TestInfo extends BaseModel<TestInfo> {
       this.id = id;
    }
 
-   public String getUserId() {
-      return userId;
+   public String getTitle() {
+      return title;
    }
 
-   public void setUserId(String userId) {
-      this.userId = userId;
+   public void setTitle(String title) {
+      this.title = title;
    }
 
-   public String getNewsId() {
-      return newsId;
+   public String getParentId() {
+      return parentId;
    }
 
-   public void setNewsId(String newsId) {
-      this.newsId = newsId;
+   public void setParentId(String parentId) {
+      this.parentId = parentId;
    }
 
-   public String getType() {
-      return type;
+   public String getLevel() {
+      return level;
    }
 
-   public void setType(String type) {
-      this.type = type;
+   public void setLevel(String level) {
+      this.level = level;
+   }
+
+   public String getStatus() {
+      return status;
+   }
+
+   public void setStatus(String status) {
+      this.status = status;
    }
 
    public String getCreateBy() {
@@ -164,11 +176,12 @@ public class TestInfo extends BaseModel<TestInfo> {
 
    @Override
    public String toString() {
-      return "TestInfo{" +
+      return "DrugsCategory{" +
          ", id=" + id +
-         ", userId=" + userId +
-         ", newsId=" + newsId +
-         ", type=" + type +
+         ", title=" + title +
+         ", parentId=" + parentId +
+         ", level=" + level +
+         ", status=" + status +
          ", createBy=" + createBy +
          ", createDate=" + createDate +
          ", updateBy=" + updateBy +

@@ -30,7 +30,7 @@ public class ErrorContent {
     /**
      * 评价骑手失败
      */
-    public static final String ORDER_EVALUATE_ERROR = "查询美团订单失败！";
+    public static final String ORDER_EVALUATE_ERROR = "评价骑手失败！";
 
     /**
      * 配送能力校验

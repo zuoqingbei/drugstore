@@ -24,63 +24,63 @@ public class DeliveryController extends BaseController {
     public DeliveryMeituanService deliveryMeituanService;
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "创建门店", notes = "创建门店-美团", httpMethod = "POST")
+    @ApiOperation(value = "创建门店-美团", notes = "创建门店-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/createShop")
     public Result createShop(ShopInfoDTO shopInfoDTO) {
         return deliveryMeituanService.createShop(shopInfoDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "创建门店", notes = "创建门店-美团", httpMethod = "GET")
+    @ApiOperation(value = "创建门店-美团", notes = "创建门店-美团", httpMethod = "GET")
     @GetMapping(value = "/api/delivery/meituan/queryShop/{shopId}")
     public Result queryShop(@PathVariable("shopId") String shopId) {
         return deliveryMeituanService.queryShop(shopId);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "创建订单", notes = "创建订单-美团", httpMethod = "POST")
+    @ApiOperation(value = "创建订单-美团", notes = "创建订单-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/createOrder")
     public Result createOrder(CreateOrderDTO createOrderDTO) {
         return deliveryMeituanService.createOrder(createOrderDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "取消订单", notes = "取消订单-美团", httpMethod = "POST")
+    @ApiOperation(value = "取消订单-美团", notes = "取消订单-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/cancelOrder")
     public Result cancelOrder(CancelOrderDTO cancelOrderDTO) {
         return deliveryMeituanService.cancelOrder(cancelOrderDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "查询订单状态", notes = "查询订单状态-美团", httpMethod = "POST")
+    @ApiOperation(value = "查询订单状态-美团", notes = "查询订单状态-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/queryOrder")
     public Result queryOrder(QueryOrderDTO queryOrderDTO) {
         return deliveryMeituanService.queryOrder(queryOrderDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "评价骑手", notes = "评价骑手-美团", httpMethod = "POST")
+    @ApiOperation(value = "评价骑手-美团", notes = "评价骑手-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/orderEvaluate")
     public Result orderEvaluate(OrderEvaluateDTO orderEvaluateDTO) {
         return deliveryMeituanService.orderEvaluate(orderEvaluateDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "配送能力校验", notes = "配送能力校验-美团", httpMethod = "POST")
+    @ApiOperation(value = "配送能力校验-美团", notes = "配送能力校验-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/orderCheck")
     public Result orderCheck(OrderCheckDTO orderCheckDTO) {
         return deliveryMeituanService.orderCheck(orderCheckDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "获取骑手位置", notes = "获取骑手位置-美团", httpMethod = "POST")
+    @ApiOperation(value = "获取骑手位置-美团", notes = "获取骑手位置-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/getRiderLocation")
     public Result getRiderLocation(QueryOrderDTO queryOrderDTO) {
         return deliveryMeituanService.getRiderLocation(queryOrderDTO);
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "查询合作方配送范围", notes = "查询合作方配送范围-美团", httpMethod = "POST")
+    @ApiOperation(value = "查询合作方配送范围-美团", notes = "查询合作方配送范围-美团", httpMethod = "POST")
     @PostMapping(value = "/api/delivery/meituan/queryShopArea")
     public Result queryShopArea(QueryShopAreaDTO queryShopAreaDTO) {
         return deliveryMeituanService.queryShopArea(queryShopAreaDTO);

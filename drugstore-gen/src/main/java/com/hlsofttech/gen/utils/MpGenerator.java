@@ -36,7 +36,7 @@ public class MpGenerator {
 		gc.setBaseResultMap(true);// XML ResultMap
 		gc.setBaseColumnList(true);// XML columList
 		//gc.setKotlin(true) 是否生成 kotlin 代码
-		gc.setAuthor("zuoqb");//3.谁生成的
+		gc.setAuthor("suncy");//3.谁生成的
 
 		// 自定义文件命名，注意 %s 会自动填充表实体属性！
 		gc.setMapperName("%sDao");
@@ -59,9 +59,9 @@ public class MpGenerator {
 			}
 		});
 		dsc.setDriverName("com.mysql.jdbc.Driver");
-		dsc.setUsername("citic");
-		dsc.setPassword("Citic@2019");
-		dsc.setUrl("jdbc:mysql://114.115.212.175:3306/citic?useSSL=false&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");//数据库链接
+		dsc.setUsername("root");
+		dsc.setPassword("Hailian8765QD@");
+		dsc.setUrl("jdbc:mysql://114.115.212.175:3306/drugstore?useSSL=false&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull");//数据库链接
 		mpg.setDataSource(dsc);
 
 		// 策略配置
@@ -69,7 +69,7 @@ public class MpGenerator {
 		// strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
 		strategy.setTablePrefix(new String[] { "" });// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude(new String[] {"test"}); // 需要生成的表
+		strategy.setInclude(new String[] {"drugs_category"}); // 需要生成的表
 		// strategy.setExclude(new String[]{"test"}); // 排除生成的表
 
 		// 自定义实体父类

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hlsofttech.product.dao.TestDao">
+<mapper namespace="com.hlsofttech.product.dao.DrugsCategoryDao">
 
    <!-- 通用查询映射结果 -->
-   <resultMap id="BaseResultMap" type="com.hlsofttech.entity.product.Test">
-      <result column="id" property="id" />
-      <result column="user_id" property="userId" />
-      <result column="news_id" property="newsId" />
-      <result column="type" property="type" />
+   <resultMap id="BaseResultMap" type="com.hlsofttech.entity.product.DrugsCategory">
+      <id column="id" property="id" />
+      <result column="title" property="title" />
+      <result column="parent_id" property="parentId" />
+      <result column="level" property="level" />
+      <result column="status" property="status" />
       <result column="create_by" property="createBy" />
       <result column="create_date" property="createDate" />
       <result column="update_by" property="updateBy" />
@@ -18,10 +19,10 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-      id,
-      user_id,
-      news_id,
-      type,
+      title,
+      parent_id,
+      level,
+      status,
       create_by,
       create_date,
       update_by,

@@ -27,12 +27,12 @@ public class MeituanUtils {
         }
     }
 
-    public static String signAndRequest(Map<String, String> params, String shopCreate) throws NoSuchAlgorithmException, IOException {
+    public static String signAndRequest(Map<String, String> params, String url) throws NoSuchAlgorithmException, IOException {
         String sign = SignHelper.generateSign(params, OpenApiConfig.SECRET);
 
         params.put("sign", sign);
 
-        String res = HttpClient.post(shopCreate, params);
+        String res = HttpClient.post(url, params);
         log.info(String.format("reponse data: %s", res));
         return res;
     }

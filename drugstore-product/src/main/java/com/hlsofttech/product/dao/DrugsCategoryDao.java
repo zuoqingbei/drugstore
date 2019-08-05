@@ -1,23 +1,23 @@
 package com.hlsofttech.product.dao;
-import com.hlsofttech.entity.product.Test;
+import com.hlsofttech.entity.product.DrugsCategory;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.github.pagehelper.PageInfo;
 import com.hlsofttech.base.BaseMappers;
 
 /**
-  * 新闻收藏Mapper接口
- * @author zuoqb123
- * @date 2019-07-18
+  * 药品库-药品分类Mapper接口
+ * @author suncy
+ * @date 2019-08-02
  */
  @Mapper
-public interface TestDao extends BaseMappers<Test> {
+public interface DrugsCategoryDao extends BaseMappers<DrugsCategory> {
  /**
      * @date   2019年3月8日10:53:29
      * @author zuoqb123
      * @todo   字典新增或者修改
      */
-	boolean saveOrUpdate(Test entity);
+	boolean saveOrUpdate(DrugsCategory entity);
 	/**
      * @date   2019年3月8日10:53:29
      * @author zuoqb123
@@ -30,14 +30,14 @@ public interface TestDao extends BaseMappers<Test> {
      * @author zuoqb123
      * @todo   字典单条数据查询
      */
-	Test getById(String id);
+	DrugsCategory getById(String id);
 	
 	/**
      * @date   2019年3月8日10:53:29
      * @author zuoqb123
      * @todo   字典分页查询
      */
-	PageInfo<Test> pageList(Test entity,Integer pageNum,Integer pageSize);
+	PageInfo<DrugsCategory> pageList(DrugsCategory entity, Integer pageNum, Integer pageSize);
 }
 
 

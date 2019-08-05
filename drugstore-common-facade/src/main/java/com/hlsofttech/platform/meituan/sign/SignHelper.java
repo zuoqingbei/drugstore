@@ -21,14 +21,13 @@ import java.util.TreeSet;
  */
 @Slf4j
 public class SignHelper {
-    private static final Log logger = LogFactory.getLog(SignHelper.class);
 
     public static String generateSign(Map<String, String> params, String secret)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
         String encodeString = getEncodeString(params, secret);
-        logger.info(String.format("encodeString: %s", encodeString));
+        log.info(String.format("encodeString: %s", encodeString));
         String sign = generateSign(encodeString);
-        logger.info(String.format("generateSign: %s", sign));
+        log.info(String.format("generateSign: %s", sign));
         return sign;
     }
 

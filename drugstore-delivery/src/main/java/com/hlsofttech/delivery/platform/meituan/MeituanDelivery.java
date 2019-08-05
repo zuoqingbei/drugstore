@@ -173,7 +173,7 @@ public class MeituanDelivery implements Delivery {
             e.printStackTrace();
         }
 
-        return new Result(false, ErrorContent.QUERY_ORDER_ERROR);
+        return new Result(false, ErrorContent.ORDER_EVALUATE_ERROR);
     }
 
     @Override
