@@ -31,7 +31,7 @@ public class DeliveryController extends BaseController {
     }
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "创建门店-美团", notes = "创建门店-美团", httpMethod = "GET")
+    @ApiOperation(value = "查询门店-美团", notes = "查询门店-美团", httpMethod = "GET")
     @GetMapping(value = "/api/delivery/meituan/queryShop/{shopId}")
     public Result queryShop(@PathVariable("shopId") String shopId) {
         return deliveryMeituanService.queryShop(shopId);

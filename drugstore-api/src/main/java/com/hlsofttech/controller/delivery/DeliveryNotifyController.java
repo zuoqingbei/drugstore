@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * @Description: 配送相关
  * @Date: 2019/7/29 14:49
@@ -37,7 +39,8 @@ public class DeliveryNotifyController extends BaseController {
         JSONObject jsonObject = (JSONObject) JSONObject.parse(param);
         boolean flag = false;
         try {
-            flag = SignHelper.signAndCheck(jsonObject);
+            Map<String, String> params = ParamNotifyBuilder.bulidParamsMapOrderStatus(jsonObject);
+            flag = SignHelper.signAndCheck(params);
         } catch (Exception e) {
             log.error("加密错误！");
         }
@@ -68,7 +71,8 @@ public class DeliveryNotifyController extends BaseController {
         JSONObject jsonObject = (JSONObject) JSONObject.parse(param);
         boolean flag = false;
         try {
-            flag = SignHelper.signAndCheck(jsonObject);
+            Map<String, String> params = ParamNotifyBuilder.bulidParamsMapOrderError(jsonObject);
+            flag = SignHelper.signAndCheck(params);
         } catch (Exception e) {
             log.error("加密错误！");
         }
@@ -99,7 +103,8 @@ public class DeliveryNotifyController extends BaseController {
         JSONObject jsonObject = (JSONObject) JSONObject.parse(param);
         boolean flag = false;
         try {
-            flag = SignHelper.signAndCheck(jsonObject);
+            Map<String, String> params = ParamNotifyBuilder.bulidParamsMapshopStatus(jsonObject);
+            flag = SignHelper.signAndCheck(params);
         } catch (Exception e) {
             log.error("加密错误！");
         }

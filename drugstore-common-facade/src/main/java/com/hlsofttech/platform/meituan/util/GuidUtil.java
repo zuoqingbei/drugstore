@@ -51,4 +51,8 @@ public class GuidUtil {
         String app_screct = gd.app_screct();
         System.out.println("app_screct: " + app_screct);
     }
+
+
+
+
 }

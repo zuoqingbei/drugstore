@@ -1,13 +1,9 @@
 package com.hlsofttech.platform.meituan.sign;
 
-import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.platform.meituan.constants.OpenApiConfig;
-import com.hlsofttech.platform.meituan.util.ParamNotifyBuilder;
 import com.hlsofttech.platform.meituan.util.SHA1Util;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -63,15 +59,28 @@ public class SignHelper {
     /***
      * @Description: 加密并比较
      * @Date: 2019/7/30 11:41
-     * @param jsonObject: 参数
+     * @param params
      * @return: boolean
      * @Author: suncy
      **/
-    public static boolean signAndCheck(JSONObject jsonObject)
+    public static boolean signAndCheck(Map<String, String> params)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        Map<String, String> params = ParamNotifyBuilder.bulidParamsMap(jsonObject);
-
         String nowSign = generateSign(params, OpenApiConfig.SECRET);
+        log.info("回调收到的sign【" + params.get("sign") + "】，参数加密后的sign【" + nowSign + "】");
+        return params.get("sign").equals(nowSign);
+    }
+
+    /***
+     * @Description: 传递动态的secret进行比较
+     * @Date: 2019/8/5 16:38
+     * @param params:
+     * @param secret:
+     * @return: boolean
+     * @Author: suncy
+     **/
+    public static boolean signAndCheck(Map<String, String> params, String secret)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        String nowSign = generateSign(params, secret);
         log.info("回调收到的sign【" + params.get("sign") + "】，参数加密后的sign【" + nowSign + "】");
         return params.get("sign").equals(nowSign);
     }
