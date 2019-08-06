@@ -54,7 +54,6 @@ public class ERPParamUtil {
         params.put("appkey", jsonObject.getString("appkey"));
         params.put("timestamp", jsonObject.getString("timestamp"));
         params.put("sign", jsonObject.getString("sign"));
-        params.put("version", jsonObject.getString("version"));
 
         params.put("data", jsonObject.getString("data"));
         return params;

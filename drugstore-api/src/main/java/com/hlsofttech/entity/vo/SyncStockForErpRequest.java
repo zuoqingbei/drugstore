@@ -1,7 +1,6 @@
 package com.hlsofttech.entity.vo;
 
 
-import com.hlsofttech.entity.erp.AbstractERPDTO;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -12,7 +11,7 @@ import javax.validation.Valid;
  * @Date: 2019/8/6
  **/
 @Data
-public class SyncStockForErpRequest extends AbstractERPDTO {
+public class SyncStockForErpRequest extends AbstractERPRequest {
     @Valid
     private SyncStockForErpListVO data;
 

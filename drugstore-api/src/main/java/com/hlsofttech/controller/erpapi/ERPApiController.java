@@ -1,11 +1,11 @@
 package com.hlsofttech.controller.erpapi;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.base.BaseController;
 import com.hlsofttech.common.Constant;
+import com.hlsofttech.entity.vo.*;
 import com.hlsofttech.entity.vo.OrderListForErpRequest;
 import com.hlsofttech.entity.vo.SyncStockForErpRequest;
 import com.hlsofttech.exception.CommonBizException;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,79 +46,74 @@ public class ERPApiController extends BaseController {
     /***
      * @Description: 门店对照关系同步(根据统一信用代码)
      * @Date: 2019/8/5 9:23
-     * @param param: 门店在ERP系统中的ID
+     * @param shopIdRequest: 请求参数
      * @return: java.lang.String 门店在购药平台的ID
      * @Author: suncy
      **/
     @SuppressWarnings("rawtypes")
     @ApiOperation(value = "ERP系统对接-门店批量同步", notes = "ERP系统对接-门店批量同步", httpMethod = "POST")
-    @PostMapping("/api/erpApi/shop/add")
-    public Result shopAdd(@RequestBody String param) {
+    @PostMapping("/api/erpApi/shop/getShopIds")
+    public Result getShopIds(@RequestBody @Validated ShopIdRequest shopIdRequest) {
 
-        log.info("ERP系统对接-门店批量同步:" + param);
-        Result result = null;
+        log.info("ERP系统对接-门店批量同步:" + shopIdRequest.toString());
 
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean flag = ERPParamUtil.checkInfo(param, app_secret);
-            if (flag) {
-                JSONObject json = JSONObject.parseObject(param);
-                JSONArray array = json.getJSONArray("data");
-
-                Map<String, String> shopIdMap = new HashMap<>();
-                for (int i = 0; i < array.size(); i++) {
-                    JSONObject jo = array.getJSONObject(i);
-                    String unifiedCreditCodeStr = jo.getString("unifiedCreditCode");
-
-                    // TODO: 2019/8/5  根据统一信用代码查询门店在平台中的门店ID
-                    String shopId = unifiedCreditCodeStr;
-                    shopIdMap.put(unifiedCreditCodeStr, shopId);
-                }
-                result = new Result(true, "同步成功", shopIdMap);
+            boolean checkFlag = ERPParamUtil.checkInfo(JSONObject.toJSON(shopIdRequest).toString(), app_secret);
+            if (!checkFlag) {
+                // 验签失败
+                return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
             }
+
+            // 验签成功
+            List<ShopIdVO> data = shopIdRequest.getData();
+            if (data != null && data.size() > 0) {
+                for (ShopIdVO shopIdVO : data) {
+                    shopIdVO.setShopId(shopIdVO.getCode() + "1");
+                }
+            }
+
+            return Result.newSuccessResult(data);
         } catch (Exception e) {
             e.printStackTrace();
-            result = new Result(false, "同步失败");
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
         }
-        return result;
     }
 
 
     /***
      * @Description: 药品信息同步
      * @Date: 2019/8/5 9:31
-     * @param param: 国标码、条形码、
+     * @param drugsAddRequest: 国标码、条形码、
      * @return: java.lang.String
      * @Author: suncy
      **/
     @SuppressWarnings("rawtypes")
     @ApiOperation(value = "ERP系统对接-药品信息批量同步", notes = "ERP系统对接-药品信息批量同步", httpMethod = "POST")
-    @PostMapping("/api/erpApi/drugs/add")
-    public Result drugsAdd(@RequestBody String param) {
-        log.info("ERP系统对接-药品信息批量同步:" + param);
-        Result result = null;
+    @PostMapping("/api/erpApi/drugs/drugsSyn")
+    public Result drugsSyn(@RequestBody @Validated DrugsAddRequest drugsAddRequest) {
+        log.info("ERP系统对接-药品信息批量同步:" + drugsAddRequest.toString());
 
         try {
-            boolean flag = ERPParamUtil.checkInfo(param, app_secret);
-            if (flag) {
-                JSONObject json = JSONObject.parseObject(param);
-                JSONArray array = json.getJSONArray("data");
-
-                for (int i = 0; i < array.size(); i++) {
-                    JSONObject jo = array.getJSONObject(i);
-
-
-                    //
-
-
-                }
-                result = new Result(true, "同步成功");
+            // 解析参数并进行验签处理，验签成功返回接收的参数
+            boolean checkFlag = ERPParamUtil.checkInfo(JSONObject.toJSON(drugsAddRequest).toString(), app_secret);
+            if (!checkFlag) {
+                // 验签失败
+                return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
             }
+
+            // 验签成功
+            List<DrugsAddVO> data = drugsAddRequest.getData();
+            if (data != null && data.size() > 0) {
+                for (DrugsAddVO drugsAddVO : data) {
+                    System.out.println(drugsAddVO.toString());
+                }
+            }
+            return Result.newSuccessResult();
         } catch (Exception e) {
             e.printStackTrace();
-            result = new Result(false, "同步失败");
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
         }
-        return result;
     }
 
     /***

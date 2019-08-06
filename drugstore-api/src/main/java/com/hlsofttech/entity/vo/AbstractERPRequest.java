@@ -1,4 +1,4 @@
-package com.hlsofttech.entity.erp;
+package com.hlsofttech.entity.vo;
 
 
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
  * @Author: suncy
  **/
 @Data
-public class AbstractERPDTO {
+public class AbstractERPRequest {
 
     /**
      * 每个appkey会绑定一个secret，用于计算签名。请妥善保管secret，避免泄密。如果secret意外泄露，可要求重新生成。
