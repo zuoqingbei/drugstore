@@ -1,6 +1,7 @@
 package com.hlsofttech.entity.vo;
 
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -18,6 +19,7 @@ public class SyncStockForErpListVO {
      * 门店唯一的key，可以是营业执照号、统一信用代码。。。
      */
     @NotBlank(message = "门店唯一的key不可为空")
+    @ApiModelProperty(value = "门店唯一的key，可以是营业执照号、统一信用代码。。。")
     private String code;
 
     /**

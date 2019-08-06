@@ -24,11 +24,10 @@ public class TestERPdrugsSyn {
 
     public static String appkey = "f91e95c6-ebb5-4451-bafa-5550d9dfd9b5";
     public static String app_secret = "7BB4DDA93C2972B9D9E447EE30E0A772";
-    public static String timestamp = String.valueOf(DateUtil.unixTime());
 
     @Test
     public void testERPdrugsSyn() {
-
+        String timestamp = String.valueOf(DateUtil.unixTime());
         try {
             // 组装参数
             Map<String, String> params = new HashMap<>();
@@ -37,7 +36,7 @@ public class TestERPdrugsSyn {
 
             List<DrugsAddVO> data = new ArrayList<>();
             DrugsAddVO vo1 = new DrugsAddVO();
-            vo1.setCode("code1");
+            vo1.setDrugCode("code1");
             vo1.setName("name1");
             vo1.setPrice(1111L);
             vo1.setStock(100);
@@ -45,15 +44,15 @@ public class TestERPdrugsSyn {
             data.add(vo1);
 
             DrugsAddVO vo2 = new DrugsAddVO();
-            vo2.setCode("code2");
+            vo2.setDrugCode("code2");
             vo2.setName("name2");
             vo2.setPrice(2222L);
             vo2.setStock(200);
             vo2.setUnit("袋");
             data.add(vo2);
 
-            params.put("data", JSON.toJSONString(data));
-            System.out.println("data:" + JSON.toJSONString(data));
+            params.put("data", JSONObject.toJSON(data).toString());
+            System.out.println("data:" + JSONObject.toJSON(data).toString());
 
             // 加密
             String sign = SignHelper.generateSign(params, app_secret);
