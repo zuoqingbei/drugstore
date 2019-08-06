@@ -5,6 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.base.BaseController;
 import com.hlsofttech.common.Constant;
+import com.hlsofttech.entity.vo.OrderListForErpRequest;
+import com.hlsofttech.entity.vo.OrderListForErpVO;
+import com.hlsofttech.exception.CommonBizException;
+import com.hlsofttech.exception.ExpCodeEnum;
 import com.hlsofttech.rsp.Result;
 import com.hlsofttech.service.product.DrugsCategoryService;
 import io.swagger.annotations.Api;
@@ -12,10 +16,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -112,6 +118,60 @@ public class ERPApiController extends BaseController {
             result = new Result(false, "同步失败");
         }
         return result;
+    }
+    /***
+     * @Author: suntf
+     * @Description:获取门店订单列表
+     * @Date: 2019/8/6
+     * @param orderListForErpRequest:
+     * @return: com.hlsofttech.rsp.Result
+     **/
+    @ApiOperation(value = "ERP系统对接-获取门店订单列表", notes = "ERP系统对接-获取门店订单列表", httpMethod = "POST")
+    @PostMapping("/api/erpApi/order/list")
+    public Result orderList(@RequestBody @Validated OrderListForErpRequest orderListForErpRequest) {
+
+        try {
+            // 解析参数并进行验签处理，验签成功返回接收的参数
+            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(orderListForErpRequest).toString(), app_secret);
+            if (checkSign) {
+                log.info("中台查询订单列表");
+
+            } else {
+                // 验签失败
+                return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
+        }
+        return Result.newSuccessResult("");
+    }
+    /***
+     * @Author: suntf
+     * @Description:库存同步,支持批量
+     * @Date: 2019/8/6
+     * @param orderListForErpRequest:
+     * @return: com.hlsofttech.rsp.Result
+     **/
+    @ApiOperation(value = "ERP系统对接-库存同步", notes = "ERP系统对接-库存同步", httpMethod = "POST")
+    @PostMapping("/api/erpApi/stock/sync")
+    public Result syncStock(@RequestBody OrderListForErpRequest orderListForErpRequest) {
+
+        try {
+            // 解析参数并进行验签处理，验签成功返回接收的参数
+            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(orderListForErpRequest).toString(), app_secret);
+            if (checkSign) {
+                log.info("中台查询订单列表");
+
+            } else {
+                // 验签失败
+                return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
+        }
+        return Result.newSuccessResult("");
     }
 }
 

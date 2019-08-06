@@ -1,15 +1,17 @@
 package com.hlsofttech.handle;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.hlsofttech.exception.CommonBizException;
 import com.hlsofttech.exception.ExpCodeEnum;
 import com.hlsofttech.rsp.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author zuoqb
@@ -24,6 +26,7 @@ public class ExceptionHandle {
 
     /**
      * 业务异常处理
+     *
      * @param exception
      * @param <T>
      * @return
@@ -35,6 +38,7 @@ public class ExceptionHandle {
 
     /**
      * 请求方法不正确
+     *
      * @param exception
      * @return
      */
@@ -45,13 +49,38 @@ public class ExceptionHandle {
 
     /**
      * 系统异常处理
+     *
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Result methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exception) {
+        logger.error("参数异常 ", exception);
+        BindingResult bindingResult = exception.getBindingResult();
+        StringBuffer errMessage = new StringBuffer(bindingResult.getFieldErrors().size() * 16);
+        errMessage.append("Invalid  Request:");
+        for (int i = 0; i < bindingResult.getFieldErrors().size(); i++) {
+            if (i > 0) {
+                errMessage.append(",");
+            }
+            FieldError fieldError = bindingResult.getFieldErrors().get(i);
+            errMessage.append(fieldError.getField());
+            errMessage.append(":");
+            errMessage.append(fieldError.getDefaultMessage());
+        }
+        return new Result(false, errMessage.toString());
+    }
+
+    /**
+     * 系统异常处理
+     *
      * @param exception
      * @return
      */
     @ExceptionHandler(Exception.class)
-    public <T> Result<T> sysExpHandler(Exception exception) {
-        logger.error("系统异常 ",exception);
-        return Result.newFailureResult(exception);
+    public Result sysExpHandler(Exception exception) {
+        logger.error("系统异常 ", exception);
+        return new Result(false, exception.getMessage());
     }
 
 }

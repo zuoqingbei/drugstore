@@ -31,8 +31,10 @@ public enum ExpCodeEnum implements Serializable {
     LOGIN_FAIL(UserExpPrefix + "003", "登录失败"),
     UNLOGIN(UserExpPrefix + "004", "尚未登录"),
     NO_PERMISSION(UserExpPrefix + "005", "没有权限"),
-    SERVER_ERROR(ComExpPrefix + "008", "服务异常")
-
+    SERVER_ERROR(ComExpPrefix + "008", "服务异常"),
+    /** ERP模块异常 */
+    SIGN_FAIL(ErpExpPrefix + "000", "签名不正确"),
+    SYS_ERROR(ErpExpPrefix + "008", "服务异常")
 
     ;
 

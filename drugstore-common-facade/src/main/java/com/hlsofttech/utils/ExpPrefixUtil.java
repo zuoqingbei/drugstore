@@ -7,19 +7,32 @@ package com.hlsofttech.utils;
  */
 public class ExpPrefixUtil {
 
-    /** 通用异常码前缀 */
+    /**
+     * 通用异常码前缀
+     */
     public static final String ComExpPrefix = "10";
 
-    /** User模块异常码前缀 */
+    /**
+     * User模块异常码前缀
+     */
     public static final String UserExpPrefix = "20";
 
-    /** Product模块异常码前缀 */
+    /**
+     * Product模块异常码前缀
+     */
     public static final String ProdExpPrefix = "30";
 
-    /** Order模块异常码前缀 */
+    /**
+     * Order模块异常码前缀
+     */
     public static final String OrderExpPrefix = "40";
 
-    /** Analysis模块异常码前缀 */
+    /**
+     * Analysis模块异常码前缀
+     */
     public static final String AnlsExpPrefix = "50";
-
+    /**
+     * ERP模块异常码前缀
+     */
+    public static final String ErpExpPrefix = "60";
 }
