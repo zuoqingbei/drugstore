@@ -3,9 +3,9 @@ package com.hlsofttech.delivery.platform.meituan;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.hlsofttech.entity.erp.UnifiedCreditCodeBean;
 import com.hlsofttech.platform.meituan.sign.SignHelper;
 import com.hlsofttech.platform.meituan.util.DateUtil;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -27,6 +27,11 @@ public class TestERPApi {
     public static String timestamp = String.valueOf(DateUtil.unixTime());
     public static String version = "1.0";
 
+    @Data
+    public class UnifiedCreditCodeDTO {
+        private String unifiedCreditCode;
+    }
+
     @Test
     public void testERPApi() {
 
@@ -37,7 +42,7 @@ public class TestERPApi {
             params.put("timestamp", timestamp);
             params.put("version", version);
 
-            List<UnifiedCreditCodeBean> beanList = getUnifiedCreditCodeBeans();
+            List<UnifiedCreditCodeDTO> beanList = getUnifiedCreditCodeBeans();
 
             params.put("data", JSON.toJSONString(beanList));
             System.out.println("data:" + JSON.toJSONString(beanList));
@@ -51,6 +56,8 @@ public class TestERPApi {
 
             System.out.println("传入参数加密完成：" + jsonString);
 
+
+
             // 验签
             JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
             Map<String, String> paramsMap = new HashMap<>();
@@ -59,17 +66,17 @@ public class TestERPApi {
             paramsMap.put("sign", jsonObject.getString("sign"));
             paramsMap.put("version", jsonObject.getString("version"));
 
-            JSONArray array = jsonObject.getJSONArray("data");
-            List<UnifiedCreditCodeBean> listBean = new ArrayList<>();
+            /*JSONArray array = jsonObject.getJSONArray("data");
+            List<UnifiedCreditCodeDTO> listBean = new ArrayList<>();
             for (int i = 0; i < array.size(); i++) {
-                UnifiedCreditCodeBean beanA = new UnifiedCreditCodeBean();
+                UnifiedCreditCodeDTO beanA = new UnifiedCreditCodeDTO();
                 JSONObject jo = array.getJSONObject(i);
                 String unifiedCreditCodeStr = jo.getString("unifiedCreditCode");
                 System.out.println(unifiedCreditCodeStr);
                 beanA.setUnifiedCreditCode(unifiedCreditCodeStr);
                 listBean.add(beanA);
-            }
-            paramsMap.put("data", JSON.toJSONString(listBean));
+            }*/
+            paramsMap.put("data", jsonObject.getString("data"));
 
             String nowSign = SignHelper.generateSign(paramsMap, app_secret);
             log.info("回调收到的sign【" + params.get("sign") + "】，参数加密后的sign【" + nowSign + "】");
@@ -87,17 +94,17 @@ public class TestERPApi {
         }
     }
 
-    private List<UnifiedCreditCodeBean> getUnifiedCreditCodeBeans() {
-        List<UnifiedCreditCodeBean> beanList = new ArrayList<>();
-        UnifiedCreditCodeBean bean = new UnifiedCreditCodeBean();
+    private List<UnifiedCreditCodeDTO> getUnifiedCreditCodeBeans() {
+        List<UnifiedCreditCodeDTO> beanList = new ArrayList<>();
+        UnifiedCreditCodeDTO bean = new UnifiedCreditCodeDTO();
         bean.setUnifiedCreditCode("44444444");
         beanList.add(bean);
 
-        UnifiedCreditCodeBean bean2 = new UnifiedCreditCodeBean();
+        UnifiedCreditCodeDTO bean2 = new UnifiedCreditCodeDTO();
         bean2.setUnifiedCreditCode("555555555");
         beanList.add(bean2);
 
-        UnifiedCreditCodeBean bean3 = new UnifiedCreditCodeBean();
+        UnifiedCreditCodeDTO bean3 = new UnifiedCreditCodeDTO();
         bean3.setUnifiedCreditCode("6666666666");
         beanList.add(bean3);
         return beanList;

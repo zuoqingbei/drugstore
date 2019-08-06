@@ -8,7 +8,10 @@ import lombok.Data;
  * @Author: suncy
  **/
 @Data
-public class UnifiedCreditCodeBean {
-    
-    private String unifiedCreditCode;
+public class DrugsDetailDTO extends DrugsDTO {
+
+    private String name;
+    private String code;
+
+
 }

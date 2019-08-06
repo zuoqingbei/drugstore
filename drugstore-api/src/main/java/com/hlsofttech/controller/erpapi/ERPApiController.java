@@ -3,7 +3,6 @@ package com.hlsofttech.controller.erpapi;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.base.BaseController;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.rsp.Result;
@@ -17,8 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -35,6 +33,9 @@ public class ERPApiController extends BaseController {
     @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
     public DrugsCategoryService iDrugsCategoryService;
 
+    // 测试
+    public static String app_secret = "7BB4DDA93C2972B9D9E447EE30E0A772";
+
     /***
      * @Description: 门店对照关系同步(根据统一信用代码)
      * @Date: 2019/8/5 9:23
@@ -43,35 +44,30 @@ public class ERPApiController extends BaseController {
      * @Author: suncy
      **/
     @SuppressWarnings("rawtypes")
-    @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
     @ApiOperation(value = "ERP系统对接-门店批量同步", notes = "ERP系统对接-门店批量同步", httpMethod = "POST")
     @PostMapping("/api/erpApi/shop/add")
     public Result shopAdd(@RequestBody String param) {
-
-        // 测试
-        String secret = "7BB4DDA93C2972B9D9E447EE30E0A772";
 
         log.info("ERP系统对接-门店批量同步:" + param);
         Result result = null;
 
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            Map<String, String> paramsMap = ERPParamUtil.checkInfo(param, secret);
-            if (paramsMap != null) {
+            boolean flag = ERPParamUtil.checkInfo(param, app_secret);
+            if (flag) {
                 JSONObject json = JSONObject.parseObject(param);
                 JSONArray array = json.getJSONArray("data");
 
-                List<String> shopIdList = new ArrayList<>();
+                Map<String, String> shopIdMap = new HashMap<>();
                 for (int i = 0; i < array.size(); i++) {
                     JSONObject jo = array.getJSONObject(i);
                     String unifiedCreditCodeStr = jo.getString("unifiedCreditCode");
-                    System.out.println(unifiedCreditCodeStr);
 
                     // TODO: 2019/8/5  根据统一信用代码查询门店在平台中的门店ID
                     String shopId = unifiedCreditCodeStr;
-                    shopIdList.add(shopId);
+                    shopIdMap.put(unifiedCreditCodeStr, shopId);
                 }
-                result = new Result(true, "同步成功", shopIdList);
+                result = new Result(true, "同步成功", shopIdMap);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,21 +80,38 @@ public class ERPApiController extends BaseController {
     /***
      * @Description: 药品信息同步
      * @Date: 2019/8/5 9:31
-     * @param param:
+     * @param param: 国标码、条形码、
      * @return: java.lang.String
      * @Author: suncy
      **/
-    /*@SuppressWarnings("rawtypes")
-    @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
-    @ApiOperation(value = "ERP系统对接-药品信息同步", notes = "ERP系统对接-药品信息同步", httpMethod = "POST")
+    @SuppressWarnings("rawtypes")
+    @ApiOperation(value = "ERP系统对接-药品信息批量同步", notes = "ERP系统对接-药品信息批量同步", httpMethod = "POST")
     @PostMapping("/api/erpApi/drugs/add")
-    public String drugsAdd(@RequestBody String param) {
-        log.info("ERP系统对接-药品分类新增或者修改:" + param);
-        if (checkInfo(param)) {
-            // TODO: 2019/8/5 处理业务
-        }
-        return null;
-    }*/
+    public Result drugsAdd(@RequestBody String param) {
+        log.info("ERP系统对接-药品信息批量同步:" + param);
+        Result result = null;
 
+        try {
+            boolean flag = ERPParamUtil.checkInfo(param, app_secret);
+            if (flag) {
+                JSONObject json = JSONObject.parseObject(param);
+                JSONArray array = json.getJSONArray("data");
+
+                for (int i = 0; i < array.size(); i++) {
+                    JSONObject jo = array.getJSONObject(i);
+
+
+                    //
+
+
+                }
+                result = new Result(true, "同步成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new Result(false, "同步失败");
+        }
+        return result;
+    }
 }
 
