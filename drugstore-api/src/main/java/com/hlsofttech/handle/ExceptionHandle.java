@@ -48,10 +48,10 @@ public class ExceptionHandle {
     }
 
     /**
-     * 系统异常处理
+     * 参数异常处理
      *
-     * @param exception
-     * @return
+     * @param exception MethodArgumentNotValidException
+     * @return Result
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exception) {
