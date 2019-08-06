@@ -10,10 +10,7 @@ import lombok.Data;
  **/
 @Data
 public class SyncStockForErpVO {
-    /**
-     * 门店唯一的key，可以是营业执照号、统一信用代码。。。
-     */
-    private String code;
+
     /**
      * 药品国标码
      */
@@ -22,5 +19,6 @@ public class SyncStockForErpVO {
      * 库存
      */
     private Integer stock;
+
 
 }

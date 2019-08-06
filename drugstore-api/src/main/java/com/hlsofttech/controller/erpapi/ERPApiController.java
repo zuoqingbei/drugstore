@@ -3,10 +3,11 @@ package com.hlsofttech.controller.erpapi;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.base.BaseController;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.entity.vo.OrderListForErpRequest;
-import com.hlsofttech.entity.vo.OrderListForErpVO;
+import com.hlsofttech.entity.vo.SyncStockForErpRequest;
 import com.hlsofttech.exception.CommonBizException;
 import com.hlsofttech.exception.ExpCodeEnum;
 import com.hlsofttech.rsp.Result;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,6 +119,7 @@ public class ERPApiController extends BaseController {
         }
         return result;
     }
+
     /***
      * @Author: suntf
      * @Description:获取门店订单列表
@@ -146,22 +147,24 @@ public class ERPApiController extends BaseController {
         }
         return Result.newSuccessResult("");
     }
+
     /***
      * @Author: suntf
      * @Description:库存同步,支持批量
      * @Date: 2019/8/6
-     * @param orderListForErpRequest:
+     * @param syncStockForErpRequest:
      * @return: com.hlsofttech.rsp.Result
      **/
+    @AuthPower(avoidSign = false, avoidLogin = true)
     @ApiOperation(value = "ERP系统对接-库存同步", notes = "ERP系统对接-库存同步", httpMethod = "POST")
     @PostMapping("/api/erpApi/stock/sync")
-    public Result syncStock(@RequestBody OrderListForErpRequest orderListForErpRequest) {
+    public Result syncStock(@RequestBody SyncStockForErpRequest syncStockForErpRequest) {
 
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(orderListForErpRequest).toString(), app_secret);
+            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(syncStockForErpRequest).toString(), app_secret);
             if (checkSign) {
-                log.info("中台查询订单列表");
+                log.info("中台同步药品库存");
 
             } else {
                 // 验签失败

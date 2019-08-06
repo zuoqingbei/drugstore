@@ -4,6 +4,8 @@ package com.hlsofttech.entity.vo;
 import com.hlsofttech.entity.erp.AbstractERPDTO;
 import lombok.Data;
 
+import javax.validation.Valid;
+
 /***
  * @Author: suntf
  * @Description:erp-同步库存
@@ -11,6 +13,7 @@ import lombok.Data;
  **/
 @Data
 public class SyncStockForErpRequest extends AbstractERPDTO {
-    private SyncStockForErpVO data;
+    @Valid
+    private SyncStockForErpListVO data;
 
 }
