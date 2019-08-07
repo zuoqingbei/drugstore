@@ -44,7 +44,6 @@ public class DrugsAddVO {
     /**
      * 单位
      */
-    @NotBlank(message = "药品单位不能为空")
     @ApiModelProperty(value = "单位")
     private String unit;
 

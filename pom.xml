@@ -119,9 +119,9 @@
 	<profiles>
 		<!-- 开发环境-->
 		<profile>
-			<id>test</id>
+			<id>dev</id>
 			<properties>
-				<profileActive>test</profileActive>
+				<profileActive>dev</profileActive>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -129,9 +129,9 @@
 		</profile>
 		<!-- 测试环境-->
 		<profile>
-			<id>dev</id>
+			<id>test</id>
 			<properties>
-				<profileActive>dev</profileActive>
+				<profileActive>test</profileActive>
 			</properties>
 		</profile>
 		<!-- 生产正式环境 -->

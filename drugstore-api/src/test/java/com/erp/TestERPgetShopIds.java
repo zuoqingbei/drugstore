@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description: 测试ERP加密
+ * @Description: 测试
  * @Date: 2019/8/5 14:53
  * @Author: suncy
  **/
@@ -42,12 +42,11 @@ public class TestERPgetShopIds {
             shopIdDetailVO2.setCode("A0000002");
             data.add(shopIdDetailVO2);
 
-            params.put("data", JSON.toJSONString(data));
-            System.out.println("data:" + JSON.toJSONString(data));
+            params.put("data", JSONObject.toJSON(data).toString());
+            System.out.println("data:" + JSONObject.toJSON(data).toString());
 
             // 加密
             String sign = SignHelper.generateSign(params, app_secret);
-
 
             Map<String, Object> params2 = new HashMap<>();
             params2.put("appkey", appkey);
