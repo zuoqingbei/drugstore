@@ -1,4 +1,4 @@
-package com.hlsofttech.product.service.impl;
+package com.hlsofttech.product.service;
 
 import com.hlsofttech.entity.product.DrugsCategory;
 import com.hlsofttech.product.dao.DrugsCategoryDao;
@@ -18,7 +18,6 @@ import org.apache.commons.lang.StringUtils;
  * @author suncy
  * 药品库-药品分类服务实现类
  */
-@Service(version = Constant.VERSION,group="com.hlsofttech.product",timeout=Constant.TIMEOUT)
 public class DrugsCategoryServiceImpl implements DrugsCategoryService,Constant {
 
     @Autowired
