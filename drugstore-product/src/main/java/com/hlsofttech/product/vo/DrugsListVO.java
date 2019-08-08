@@ -10,8 +10,10 @@ public class DrugsListVO {
      */
     private Integer id;
 
-    private String downcheck;
-
+    /**
+     * 是否有详情信息   0-有  1-非0代表该条数据有附件可供下载
+     */
+    private Integer downcheck;
     /**
      * 下载链接
      */
@@ -24,6 +26,10 @@ public class DrugsListVO {
      * 来源
      */
     private String source;
+    /**
+     * 0代表该条数据返回未拆分的正文内容，1代表该条数据有详细拆分的正文内容
+     */
+    private Integer xiangqing;
     /**
      * 总条数
      */

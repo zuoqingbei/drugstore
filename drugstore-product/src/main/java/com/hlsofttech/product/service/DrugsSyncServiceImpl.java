@@ -1,11 +1,12 @@
-package com.hlsofttech.product.service.impl;
+package com.hlsofttech.product.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.platform.meituan.util.HttpUtils;
-import com.hlsofttech.product.service.DrugsSyncService;
+import com.hlsofttech.service.product.DrugsSyncService;
+import com.hlsofttech.product.vo.DrugsInfoVO;
 import com.hlsofttech.product.vo.DrugsListVO;
 import com.hlsofttech.rsp.ResultYaoZhi;
 import com.hlsofttech.utils.MD5Util;
@@ -101,8 +102,113 @@ public class DrugsSyncServiceImpl implements DrugsSyncService {
             if (!jsonArray.isEmpty()) {
                 List<DrugsListVO> drugsListVOList = jsonArray.toJavaList(DrugsListVO.class);
                 for (DrugsListVO drugsListVO : drugsListVOList) {
-                    // TODO 此处更新药品信息到数据库
-                    System.out.println(syncDrugInfo(drugsListVO.getId()));
+                    if (StringUtils.isBlank(drugsListVO.getName())) {
+                        // 药品名字空不予添加
+                        continue;
+                    }
+                    DrugsInfoVO drugsInfoVO = new DrugsInfoVO();
+                    drugsInfoVO.setName(drugsListVO.getName());
+                    drugsInfoVO.setSource(drugsListVO.getSource());
+
+                    // 1.有详情
+                    if (drugsListVO.getDowncheck() == 0) {
+                        // 查询详情
+                        JSONObject drugsObj = syncDrugInfo(drugsListVO.getId());
+                        if (drugsObj != null) {
+                            // 取头信息
+                            if (drugsObj.containsKey("Title")) {
+                                // 保存药品 国药码！！！
+//                                System.out.println("id=" + drugsListVO.getId() + ",Title=" + drugsObj.getJSONObject("Title"));
+                            }
+                            // 药品图片
+
+                            // 药品详情------0代表该条数据返回未拆分的正文内容，1代表该条数据有详细拆分的正文内容
+                            if (drugsListVO.getXiangqing()==0) {
+                                String content = drugsObj.getJSONObject("Content").getString("content");
+                                if (StringUtils.isBlank(content)) {
+                                    log.warn(drugsListVO.getId() + "详情为空");
+                                    continue;
+                                }
+                                try {
+                                    // 截取药品适应症和用法用量
+                                    String[] temp1 = content.replaceAll(" ", "").
+                                            replace("【适应证】", "【适应症】").
+                                            split("【适应症】");
+                                    String mainFunction = temp1[1].substring(0, temp1[1].indexOf("【")).
+                                            replaceAll("<br>", "").
+                                            replaceAll("<p>", "").
+                                            replaceAll("<b>", "").
+                                            replaceAll("</b>", "");
+
+                                    String[] temp2 = content.replaceAll(" ", "").
+                                            replace("【用法与用量】", "【用法用量】").
+                                            replace("【用法和用量】", "【用法用量】").
+                                            split("【用法用量】");
+                                    String usageDosage = temp2[1].substring(0, temp2[1].indexOf("【")).
+                                            replaceAll("<br>", "").
+                                            replaceAll("<p>", "").
+                                            replaceAll("<b>", "").
+                                            replaceAll("</b>", "");
+                                    drugsInfoVO.setContent(content);
+                                    drugsInfoVO.setMainFunction(mainFunction);
+                                    drugsInfoVO.setUsageDosage(usageDosage);
+                                } catch (ArrayIndexOutOfBoundsException e) {
+                                    e.printStackTrace();
+                                    log.error(content);
+                                }
+
+                            } else if (drugsListVO.getXiangqing()==1){
+                                // 全面解析
+                                // 1.基本信息结果集
+                                if (drugsObj.containsKey("Jbxx")) {
+                                    String Jbxx = drugsObj.getString("Jbxx");
+                                    drugsInfoVO = JSONObject.parseObject(Jbxx, DrugsInfoVO.class);
+                                }
+
+                                // 2.功能主治结果集
+                                if (drugsObj.containsKey("Gnzz")) {
+                                    String Gnzz = drugsObj.getString("Gnzz");
+                                    drugsInfoVO = JSONObject.parseObject(Gnzz, DrugsInfoVO.class);
+                                }
+
+                                // 3.用法用量结果集
+                                if (drugsObj.containsKey("Yfyl")) {
+                                    String Yfyl = drugsObj.getString("Yfyl");
+                                    drugsInfoVO = JSONObject.parseObject(Yfyl, DrugsInfoVO.class);
+                                }
+
+                                // 4.不良反应结果集
+                                if (drugsObj.containsKey("Blfy")) {
+                                    String Blfy = drugsObj.getString("Blfy");
+                                    drugsInfoVO = JSONObject.parseObject(Blfy, DrugsInfoVO.class);
+                                }
+                                // 5.注意事项结果集
+                                if (drugsObj.containsKey("Zyss")) {
+                                    String Zyss = drugsObj.getString("Zyss");
+                                    drugsInfoVO = JSONObject.parseObject(Zyss, DrugsInfoVO.class);
+                                }
+                                // 6.特殊人群用药结果集
+                                if (drugsObj.containsKey("Ts")) {
+                                    String Ts = drugsObj.getString("Ts");
+                                    drugsInfoVO = JSONObject.parseObject(Ts, DrugsInfoVO.class);
+                                }
+                                // 7.药理作用结果集
+                                if (drugsObj.containsKey("Ylzy")) {
+                                    String Ylzy = drugsObj.getString("Ylzy");
+                                    drugsInfoVO = JSONObject.parseObject(Ylzy, DrugsInfoVO.class);
+                                }
+                                // 8.说明书修订日期结果集
+                                if (drugsObj.containsKey("Date")) {
+                                    String Date = drugsObj.getString("Date");
+                                    drugsInfoVO = JSONObject.parseObject(Date, DrugsInfoVO.class);
+                                }
+                            }
+                        }
+                    } else {
+                        // 无详情，保存附件下载链接
+                        drugsInfoVO.setDown(drugsListVO.getDown());
+                    }
+                    log.info("同步药品信息：" + drugsInfoVO.toString());
                 }
             }
         }

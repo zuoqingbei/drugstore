@@ -1,7 +1,7 @@
 package com.hlsofttech.product;
 
 import com.hlsofttech.platform.meituan.util.HttpUtils;
-import com.hlsofttech.product.service.DrugsSyncService;
+import com.hlsofttech.service.product.DrugsSyncService;
 import com.hlsofttech.utils.MD5Util;
 import com.hlsofttech.utils.UUIDUtils;
 import org.apache.commons.lang.StringUtils;

@@ -1,4 +1,4 @@
-package com.hlsofttech.product.service;
+package com.hlsofttech.service.product;
 
 /***
  * @Author: suntf
