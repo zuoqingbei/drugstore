@@ -31,7 +31,7 @@ public interface ShopCartService {
      * @param latitude: 店铺纬度
      * @return: Map
      **/
-    Map<String, List<CartOfShopDto>> getShopCartFromRedisOutShop(Long userId, double longitude, double latitude);
+    Map<String, List<CartOfShopDto>> getShopCartFromRedisOutShop(Long userId, Double longitude, Double latitude);
 
     /***
      * @Author: suntf

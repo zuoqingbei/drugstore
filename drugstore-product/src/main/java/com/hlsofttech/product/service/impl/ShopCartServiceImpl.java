@@ -40,7 +40,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     }
 
     @Override
-    public Map<String, List<CartOfShopDto>> getShopCartFromRedisOutShop(Long userId, double longitude, double latitude) {
+    public Map<String, List<CartOfShopDto>> getShopCartFromRedisOutShop(Long userId, Double longitude, Double latitude) {
         // 从缓存中找到当前登录人的购物车信息
         String redisKey = RedisPrefixUtil.User_Cart_Prefix + userId;
         // 当前用户购车产品列表
@@ -53,12 +53,13 @@ public class ShopCartServiceImpl implements ShopCartService {
                 // todo 根据shopId从数据库获取店铺详情（经纬度），判断店铺是否失效
                 CartOfShopDto shopDto = new CartOfShopDto();// from db
                 boolean isOpen = true;// from db
-
-                double range = DistanceUtils.getDistance(shopDto.getLongitude(), shopDto.getLatitude(), longitude, latitude);
-                if (!isOpen) {
-                    range = range * -1;
+                double range = 0;
+                if (longitude != null && latitude != null) {
+                    range = DistanceUtils.getDistance(shopDto.getLongitude(), shopDto.getLatitude(), longitude, latitude);
                 }
                 CartOfShopDto sortShopDto = new CartOfShopDto();
+                // 门店是否关闭
+                sortShopDto.setIsopen(isOpen ? 0 : 1);
                 sortShopDto.setShopId(shopId);
                 sortShopDto.setRange(range);
                 sortList.add(sortShopDto);

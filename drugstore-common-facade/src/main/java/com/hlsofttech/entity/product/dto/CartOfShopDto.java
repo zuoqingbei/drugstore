@@ -2,13 +2,15 @@ package com.hlsofttech.entity.product.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /***
  * @Author: suntf
  * @Description:购物车实体类
  * @Date: 2019/8/8
  **/
 @Data
-public class CartOfShopDto {
+public class CartOfShopDto implements Serializable {
     /**
      * 用户id
      */
@@ -61,4 +63,8 @@ public class CartOfShopDto {
      * 距离用户距离-单位千米
      */
     private double range;
+    /**
+     * 门店是否关闭
+     */
+    private Integer isopen;
 }
