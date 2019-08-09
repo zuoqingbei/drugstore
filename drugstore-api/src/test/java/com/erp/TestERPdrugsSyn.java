@@ -2,8 +2,8 @@ package com.erp;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.entity.vo.DrugsAddVO;
-import com.hlsofttech.platform.meituan.sign.SignHelper;
-import com.hlsofttech.platform.meituan.util.DateUtil;
+import com.hlsofttech.delivery.platform.meituan.sign.SignHelper;
+import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

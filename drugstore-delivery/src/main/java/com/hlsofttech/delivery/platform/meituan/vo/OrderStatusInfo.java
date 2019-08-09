@@ -1,6 +1,6 @@
 package com.hlsofttech.delivery.platform.meituan.vo;
 
-import com.hlsofttech.platform.meituan.constants.OrderStatus;
+import com.hlsofttech.delivery.platform.meituan.constants.OrderStatus;
 import lombok.Data;
 
 /**

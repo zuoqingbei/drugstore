@@ -1,21 +1,5 @@
 package com.hlsofttech.controller.analysis;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import com.hlsofttech.annotation.AuthPower;
@@ -27,6 +11,19 @@ import com.hlsofttech.entity.analysis.CommonInterfaceExc;
 import com.hlsofttech.req.analysis.CommonInterReq;
 import com.hlsofttech.rsp.Result;
 import com.hlsofttech.service.analysis.CommonInterfaceExcService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author zuoqb123
@@ -39,7 +36,7 @@ public class CommonInterfaceExcController extends CommonBaseController {
     private final Logger logger = LoggerFactory.getLogger(CommonInterfaceExcController.class);
 
     @Reference(version = Constant.VERSION, timeout = TIMEOUT, group = "com.hlsofttech.middleground")
-    public CommonInterfaceExcService iCommonInterfaceExcService;
+    public CommonInterfaceExcService commonInterfaceExcService;
 
 
     /**
@@ -64,7 +61,7 @@ public class CommonInterfaceExcController extends CommonBaseController {
         inter.setParams(params);
         inter.setDataSourceId(dataSourceId);
         inter.setVertical(isVertical);
-        return iCommonInterfaceExcService.getBySql(inter);
+        return commonInterfaceExcService.getBySql(inter);
 
     }
 
@@ -88,7 +85,7 @@ public class CommonInterfaceExcController extends CommonBaseController {
         CommonInterReq inter = new CommonInterReq();
         inter.setParams(params);
         inter.setDataType(dataType);
-        return iCommonInterfaceExcService.getByDataType(inter);
+        return commonInterfaceExcService.getByDataType(inter);
     }
 
 
@@ -151,7 +148,7 @@ public class CommonInterfaceExcController extends CommonBaseController {
     @ApiOperation(value = "统一接口单条数据查询", notes = "统一接口单条数据查询", httpMethod = "GET")
     @GetMapping(value = "/api/commonInterfaceExc/get/{id}")
     public Result<CommonInterfaceExc> getById(@PathVariable("id") String id) {
-        return Result.newSuccessResult(iCommonInterfaceExcService.getById(id));
+        return Result.newSuccessResult(commonInterfaceExcService.getById(id));
     }
 
     /**
@@ -164,7 +161,7 @@ public class CommonInterfaceExcController extends CommonBaseController {
     @GetMapping(value = "/api/commonInterfaceExc/list")
     public Result<PageInfo<CommonInterfaceExc>> pageList(CommonInterfaceExc entity, @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                                          @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
-        return Result.newSuccessResult(iCommonInterfaceExcService.pageList(entity, pageNum, pageSize));
+        return Result.newSuccessResult(commonInterfaceExcService.pageList(entity, pageNum, pageSize));
     }
 
 

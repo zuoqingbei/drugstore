@@ -24,11 +24,11 @@ public class CartOfShopDto {
     /**
      * 经度
      */
-    double longitude;
+    private double longitude;
     /**
      * 纬度
      */
-    double latitude;
+    private double latitude;
     /**
      * 商品id
      */
@@ -36,7 +36,7 @@ public class CartOfShopDto {
     /**
      * 商品名
      */
-    private Long skuName;
+    private String skuName;
     /**
      * 商品图片
      */

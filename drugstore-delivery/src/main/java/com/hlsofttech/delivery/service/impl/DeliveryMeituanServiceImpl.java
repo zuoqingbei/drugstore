@@ -14,7 +14,6 @@ import com.hlsofttech.service.delivery.DeliveryMeituanService;
  * @Author: suncy
  **/
 @Service(version = Constant.VERSION, group = "com.hlsofttech.delivery", timeout = Constant.TIMEOUT)
-@org.springframework.stereotype.Service
 public class DeliveryMeituanServiceImpl implements DeliveryMeituanService {
 
     DeliveryContext deliveryContext = new DeliveryContext(MeituanDelivery.getInstance());

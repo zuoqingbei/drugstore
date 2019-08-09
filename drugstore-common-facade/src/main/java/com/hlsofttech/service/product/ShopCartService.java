@@ -58,7 +58,7 @@ public interface ShopCartService {
      * @Description:获取各店铺购物车商品数量
      * @Date: 2019/8/8
      * @param userId:用户id
-     * @return: List
+     * @return: Map
      **/
-    List<Map<Integer, Integer>> getAnyShopCartNum(Long userId);
+    Map<Integer, Integer> getAnyShopCartNum(Long userId);
 }

@@ -1,6 +1,6 @@
-package com.hlsofttech.platform.meituan.response.notify;
+package com.hlsofttech.delivery.platform.meituan.response.notify;
 
-import com.hlsofttech.platform.meituan.constants.ExceptionCode;
+import com.hlsofttech.delivery.platform.meituan.constants.ExceptionCode;
 import lombok.Data;
 
 /***

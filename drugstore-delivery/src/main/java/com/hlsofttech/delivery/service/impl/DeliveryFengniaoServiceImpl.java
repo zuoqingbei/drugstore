@@ -14,7 +14,6 @@ import com.hlsofttech.service.delivery.DeliveryFengniaoService;
  * @Author: suncy
  **/
 @Service(version = Constant.VERSION, group = "com.hlsofttech.delivery", timeout = Constant.TIMEOUT)
-@org.springframework.stereotype.Service
 public class DeliveryFengniaoServiceImpl implements DeliveryFengniaoService {
 
     private DeliveryContext deliveryContext = new DeliveryContext(new FengniaoDelivery());

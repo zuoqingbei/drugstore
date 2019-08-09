@@ -1,6 +1,6 @@
-package com.hlsofttech.platform.meituan.response.notify;
+package com.hlsofttech.delivery.platform.meituan.response.notify;
 
-import com.hlsofttech.platform.meituan.constants.OrderStatus;
+import com.hlsofttech.delivery.platform.meituan.constants.OrderStatus;
 import lombok.Data;
 
 /***

@@ -1,4 +1,4 @@
-package com.hlsofttech.platform.meituan.util;
+package com.hlsofttech.delivery.platform.meituan.util;
 
 /***
  * @Description: 计算预计送达时间工具类

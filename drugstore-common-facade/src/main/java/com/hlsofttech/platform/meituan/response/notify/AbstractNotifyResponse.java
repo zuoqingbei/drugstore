@@ -1,4 +1,4 @@
-package com.hlsofttech.platform.meituan.response.notify;
+package com.hlsofttech.delivery.platform.meituan.response.notify;
 
 import lombok.Data;
 

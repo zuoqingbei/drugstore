@@ -1,4 +1,4 @@
-package com.hlsofttech.platform.meituan.constants;
+package com.hlsofttech.delivery.platform.meituan.constants;
 
 /**
  * @Description: 商品类型枚举

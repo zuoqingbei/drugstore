@@ -1,7 +1,7 @@
 package com.hlsofttech.controller.erpapi;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hlsofttech.platform.meituan.sign.SignHelper;
+import com.hlsofttech.delivery.platform.meituan.sign.SignHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 

@@ -1,4 +1,4 @@
-package com.hlsofttech.platform.meituan.util;
+package com.hlsofttech.delivery.platform.meituan.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

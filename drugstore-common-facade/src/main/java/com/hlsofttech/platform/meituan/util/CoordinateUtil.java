@@ -1,4 +1,4 @@
-package com.hlsofttech.platform.meituan.util;
+package com.hlsofttech.delivery.platform.meituan.util;
 
 import com.google.common.primitives.Ints;
 import org.apache.commons.logging.Log;

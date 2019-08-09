@@ -60,7 +60,7 @@ public class JedisConfig {
             config.setMaxTotal(1000);
             // 设置最大空闲连接数
             config.setMaxIdle(10);
-            JedisPool jedisPool = new JedisPool(config, host, port, redisProperties.getTimeout().getNano(), redisProperties.getPassword(), redisProperties.getDatabase(), null);
+            JedisPool jedisPool = new JedisPool(config, host, port, 3000, redisProperties.getPassword(), redisProperties.getDatabase(), null);
 
             return jedisPool;
         }
