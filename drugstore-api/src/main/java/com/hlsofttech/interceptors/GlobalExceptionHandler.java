@@ -1,10 +1,15 @@
 package com.hlsofttech.interceptors;
 
-import java.io.IOException;
-import java.net.ConnectException;
-
-import javax.servlet.ServletException;
-
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.hlsofttech.common.ResultDO;
+import com.hlsofttech.exception.AppWebException;
+import com.hlsofttech.exception.ErrorConstant;
+import com.hlsofttech.exception.OperationException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.ShiroException;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -18,11 +23,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.hlsofttech.common.ResultDO;
-import com.hlsofttech.exception.AppWebException;
-import com.hlsofttech.exception.ErrorConstant;
-import com.hlsofttech.exception.OperationException;
+import javax.servlet.ServletException;
+import java.io.IOException;
+import java.net.ConnectException;
 
 /**
  * @Description: 全局异常
@@ -30,11 +33,25 @@ import com.hlsofttech.exception.OperationException;
  * @date 2017/3/17 9:35
  * version V1.0.0
  */
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     protected static Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-
+    /**
+     * 功能描述: 拦截处理用户未登录异常
+     *
+     * @param e ShiroException
+     * @return java.lang.String
+     * @author suntf
+     * @date 2019/8/12
+     */
+    @ResponseBody
+    @ExceptionHandler({ShiroException.class, AuthorizationException.class, UnauthenticatedException.class})
+    public ResultDO<String> handlerShiroAuthenticationException(ShiroException e) {
+        log.error("ShiroException == > {}", e.getMessage());
+        return result(ErrorConstant.NOT_AUTHORIZATION.getCode(), ErrorConstant.NOT_AUTHORIZATION.getMsg(), e);
+    }
     //运行时异常
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
@@ -105,7 +122,7 @@ public class GlobalExceptionHandler {
         return result(ErrorConstant.BAD_REQUEST.getCode(), ErrorConstant.BAD_REQUEST.getMsg(), ex);
     }
 
-    @ExceptionHandler({ ServletException.class })
+    @ExceptionHandler({ServletException.class})
     @ResponseBody
     public ResultDO<String> http404(ServletException ex) {
         return result(ErrorConstant.NOT_FOUND_REQUEST.getCode(), ErrorConstant.NOT_FOUND_REQUEST.getMsg(), ex);
@@ -144,20 +161,21 @@ public class GlobalExceptionHandler {
     public ResultDO<String> jsonMappingException(JsonMappingException jsonMappingException) {
         return result(ErrorConstant.ERROR_FORMAT_PARAMETER.getCode(), ErrorConstant.ERROR_FORMAT_PARAMETER.getMsg(), jsonMappingException);
     }
+
     @ExceptionHandler(value = OperationException.class)
     @ResponseBody
-    public ResultDO<String> operationExceptionHandler(OperationException oe){
-        return  result(oe.getCode(), oe.getMsg(),oe);
+    public ResultDO<String> operationExceptionHandler(OperationException oe) {
+        return result(oe.getCode(), oe.getMsg(), oe);
     }
-
     /**
      * 结果集
+     *
      * @param errCode
      * @param errMsg
      * @param e
      * @return
      */
-    private ResultDO<String> result(int errCode, String errMsg, Exception e){
+    private ResultDO<String> result(int errCode, String errMsg, Exception e) {
         ResultDO<String> resultDO = new ResultDO<String>();
         resultDO.setErrCode(errCode);
         resultDO.setErrMsg(errMsg);
@@ -169,12 +187,13 @@ public class GlobalExceptionHandler {
 
     /**
      * 异常记录
+     *
      * @param e
      */
-    private void logException(Exception e){
-        if(e instanceof  AppWebException){
+    private void logException(Exception e) {
+        if (e instanceof AppWebException) {
             LOGGER.warn(e.getMessage(), e);
-        }else{
+        } else {
             LOGGER.error(e.getMessage(), e);
         }
     }

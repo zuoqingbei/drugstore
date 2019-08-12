@@ -26,4 +26,8 @@ public class RedisPrefixUtil {
      * 用户购物车信息
      */
     public static final String User_Cart_Prefix = "CART:";
+    /**
+     * 用户搜索历史相关
+     */
+    public static final String User_Query_History_Prefix = "QUERY_HISTORY:";
 }

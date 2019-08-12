@@ -3,7 +3,6 @@ package com.hlsofttech.common;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
  * @author Jack
  * @date 2018/1/22
  */
@@ -15,9 +14,9 @@ public class TokenConstants {
     public static final String X_PLATFORM = "X-Platform";
 
     /**
-     * 过期时间
+     * 过期时间  3个月
      */
-    public static final long TOKEN_EXPIRES_TIME = 60*30;
+    public static final int TOKEN_EXPIRES_TIME = 60 * 60 * 24 * 30 * 3;
     /**
      * 过期时间单位
      */
@@ -36,7 +35,7 @@ public class TokenConstants {
     /**
      * 当前登录用户
      */
-    public static final String CURRENT_LOGIN_TOKEN = "CURRENT_LOGIN_TOKEN";
-    
-    public static final String JWT_KEY="USER_ID";
+    public static final String CURRENT_LOGIN_TOKEN = "CURRENT_LOGIN_TOKEN:";
+
+    public static final String JWT_KEY = "USER_ID";
 }

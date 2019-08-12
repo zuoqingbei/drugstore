@@ -9,6 +9,7 @@ import com.hlsofttech.service.product.ShopCartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -36,9 +36,24 @@ public class JWTConstant {
 	/**
 	 * jwt
 	 */
+	/**
+	 * JWT-currentTimeMillis:
+	 */
+	/**
+	 * JWT-account:
+	 */
+	public final static String ACCOUNT = "account";
+	/**
+	 * JWT-password:
+	 */
+	public final static String PASS = "password";
+	/**
+	 * JWT-currentTimeMillis:
+	 */
+	public final static String CURRENT_TIME_MILLIS = "currentTimeMillis";
 	public static final String JWT_ID = "5236A";										//jwtid
 	public static final String JWT_SECERT = "7786df7fc3a34e26a61c034d5ec8245d";			//密匙
-	public static final long JWT_TTL = 5*60 * 60 * 1000;									//token有效时间(秒)
-	public static final long REFRESH_TIME = 10 * 60 * 1000;							//刷新令牌时间(毫秒)
+	public static final long JWT_TTL = 5*60 * 60 * 1000;									//token有效时间(秒) 5h
+	public static final int REFRESH_TIME = 30 * 60 * 1000;							//刷新令牌时间(毫秒) 30min
 	
 }
