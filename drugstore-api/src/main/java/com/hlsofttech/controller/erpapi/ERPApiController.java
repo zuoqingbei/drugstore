@@ -5,26 +5,21 @@ import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.base.BaseController;
 import com.hlsofttech.common.Constant;
+import com.hlsofttech.entity.shop.DrugsShopInfo;
 import com.hlsofttech.entity.vo.*;
-import com.hlsofttech.entity.vo.OrderListForErpRequest;
-import com.hlsofttech.entity.vo.SyncStockForErpRequest;
 import com.hlsofttech.exception.CommonBizException;
 import com.hlsofttech.exception.ExpCodeEnum;
 import com.hlsofttech.rsp.Result;
-import com.hlsofttech.service.product.DrugsCategoryService;
+import com.hlsofttech.service.shop.DrugsShopInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Description: 对接药店ERP系统API
@@ -35,10 +30,10 @@ import java.util.Map;
 @RestController
 @Api(tags = "ERP系统对接", value = "ERP系统对接", description = "ERP系统对接 @author suncy")
 public class ERPApiController extends BaseController {
-    private final Logger logger = LoggerFactory.getLogger(ERPApiController.class);
 
     @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
-    public DrugsCategoryService iDrugsCategoryService;
+    private DrugsShopInfoService drugsShopInfoService;
+
 
     // 测试
     public static String app_secret = "7BB4DDA93C2972B9D9E447EE30E0A772";
@@ -56,10 +51,14 @@ public class ERPApiController extends BaseController {
     public Result getShopIds(@RequestBody @Validated ShopIdRequest shopIdRequest) {
 
         log.info("ERP系统对接-门店批量同步:" + shopIdRequest.toString());
-
+        DrugsShopInfo drugsShopInfo = drugsShopInfoService.getByAppKey(shopIdRequest.getAppkey());
+        if (drugsShopInfo == null) {
+            // appkey不存在
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
+        }
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean checkFlag = ERPParamUtil.checkInfo(JSONObject.toJSON(shopIdRequest).toString(), app_secret);
+            boolean checkFlag = ERPParamUtil.checkInfo(JSONObject.toJSON(shopIdRequest).toString(), drugsShopInfo.getAppSecret());
             if (!checkFlag) {
                 // 验签失败
                 return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
@@ -93,10 +92,14 @@ public class ERPApiController extends BaseController {
     @PostMapping("/api/erpApi/drugs/drugsSyn")
     public Result drugsSyn(@RequestBody @Validated DrugsAddRequest drugsAddRequest) {
         log.info("ERP系统对接-药品信息批量同步:" + drugsAddRequest.toString());
-
+        DrugsShopInfo drugsShopInfo = drugsShopInfoService.getByAppKey(drugsAddRequest.getAppkey());
+        if (drugsShopInfo == null) {
+            // appkey不存在
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
+        }
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean checkFlag = ERPParamUtil.checkInfo(JSONObject.toJSON(drugsAddRequest).toString(), app_secret);
+            boolean checkFlag = ERPParamUtil.checkInfo(JSONObject.toJSON(drugsAddRequest).toString(), drugsShopInfo.getAppSecret());
             if (!checkFlag) {
                 // 验签失败
                 return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
@@ -126,10 +129,14 @@ public class ERPApiController extends BaseController {
     @ApiOperation(value = "ERP系统对接-获取门店订单列表", notes = "ERP系统对接-获取门店订单列表", httpMethod = "POST")
     @PostMapping("/api/erpApi/order/list")
     public Result orderList(@RequestBody @Validated OrderListForErpRequest orderListForErpRequest) {
-
+        DrugsShopInfo drugsShopInfo = drugsShopInfoService.getByAppKey(orderListForErpRequest.getAppkey());
+        if (drugsShopInfo == null) {
+            // appkey不存在
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
+        }
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(orderListForErpRequest).toString(), app_secret);
+            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(orderListForErpRequest).toString(), drugsShopInfo.getAppSecret());
             if (checkSign) {
                 log.info("中台查询订单列表");
 
@@ -155,12 +162,49 @@ public class ERPApiController extends BaseController {
     @ApiOperation(value = "ERP系统对接-库存同步", notes = "ERP系统对接-库存同步", httpMethod = "POST")
     @PostMapping("/api/erpApi/stock/sync")
     public Result syncStock(@RequestBody SyncStockForErpRequest syncStockForErpRequest) {
-
+        DrugsShopInfo drugsShopInfo = drugsShopInfoService.getByAppKey(syncStockForErpRequest.getAppkey());
+        if (drugsShopInfo == null) {
+            // appkey不存在
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
+        }
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(syncStockForErpRequest).toString(), app_secret);
+            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(syncStockForErpRequest).toString(), drugsShopInfo.getAppSecret());
             if (checkSign) {
                 log.info("中台同步药品库存");
+
+            } else {
+                // 验签失败
+                return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
+        }
+        return Result.newSuccessResult("");
+    }
+
+    /***
+     * @Author: suntf
+     * @Description:退货款状态同步
+     * @Date: 2019/8/6
+     * @param syncRefundStatusRequest:
+     * @return: com.hlsofttech.rsp.Result
+     **/
+    @AuthPower(avoidSign = false, avoidLogin = true)
+    @ApiOperation(value = "ERP系统对接-退货款状态同步", notes = "ERP系统对接-退货款状态同步", httpMethod = "POST")
+    @PostMapping("/api/erpApi/refund/syncStatus")
+    public Result syncRefundStatus(@RequestBody SyncRefundStatusRequest syncRefundStatusRequest) {
+        DrugsShopInfo drugsShopInfo = drugsShopInfoService.getByAppKey(syncRefundStatusRequest.getAppkey());
+        if (drugsShopInfo == null) {
+            // appkey不存在
+            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
+        }
+        try {
+            // 解析参数并进行验签处理，验签成功返回接收的参数
+            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(syncRefundStatusRequest).toString(), drugsShopInfo.getAppSecret());
+            if (checkSign) {
+                log.info("中台同步退货款状态");
 
             } else {
                 // 验签失败

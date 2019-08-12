@@ -41,6 +41,7 @@ public enum ExpCodeEnum implements Serializable {
      * ERP模块异常
      */
     SIGN_FAIL(ErpExpPrefix + "000", "签名不正确"),
+    SECRET_FAIL(ErpExpPrefix + "001", "当前用户不存在"),
     SYS_ERROR(ErpExpPrefix + "008", "服务异常");
 
     private String code;
