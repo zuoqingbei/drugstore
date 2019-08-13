@@ -112,7 +112,7 @@ public class ERPApiController extends BaseController {
                     System.out.println(drugsAddVO.toString());
                 }
             }
-            return Result.newSuccessResult();
+            return Result.newSuccessResult(data);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
