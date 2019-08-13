@@ -121,38 +121,6 @@ public class ERPApiController extends BaseController {
 
     /***
      * @Author: suntf
-     * @Description:获取门店订单列表
-     * @Date: 2019/8/6
-     * @param orderListForErpRequest:
-     * @return: com.hlsofttech.rsp.Result
-     **/
-    @ApiOperation(value = "ERP系统对接-获取门店订单列表", notes = "ERP系统对接-获取门店订单列表", httpMethod = "POST")
-    @PostMapping("/api/erpApi/order/list")
-    public Result orderList(@RequestBody @Validated OrderListForErpRequest orderListForErpRequest) {
-        DrugsShopInfo drugsShopInfo = drugsShopInfoService.getByAppKey(orderListForErpRequest.getAppkey());
-        if (drugsShopInfo == null) {
-            // appkey不存在
-            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
-        }
-        try {
-            // 解析参数并进行验签处理，验签成功返回接收的参数
-            boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(orderListForErpRequest).toString(), drugsShopInfo.getAppSecret());
-            if (checkSign) {
-                log.info("中台查询订单列表");
-
-            } else {
-                // 验签失败
-                return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
-        }
-        return Result.newSuccessResult("");
-    }
-
-    /***
-     * @Author: suntf
      * @Description:库存同步,支持批量
      * @Date: 2019/8/6
      * @param syncStockForErpRequest:

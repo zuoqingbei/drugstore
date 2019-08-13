@@ -15,18 +15,17 @@ import javax.validation.constraints.NotNull;
 public class DrugsAddVO {
 
     /**
-     * 药品名称
-     */
-    @NotBlank(message = "药品名称不能为空")
-    @ApiModelProperty(value = "药品名称")
-    private String name;
-    /**
      * 药品统一编码（国药准字）
      */
     @NotBlank(message = "药品统一编码（国药准字）不能为空")
     @ApiModelProperty(value = "药品统一编码（国药准字）")
     private String drugCode;
-
+    /**
+     * 药品名称
+     */
+    @NotBlank(message = "药品名称不能为空")
+    @ApiModelProperty(value = "药品名称")
+    private String name;
     /**
      * 药品价格
      */
