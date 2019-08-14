@@ -1,9 +1,9 @@
 package com.erp;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hlsofttech.entity.vo.DrugsAddVO;
-import com.hlsofttech.delivery.platform.meituan.sign.SignHelper;
 import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
+import com.hlsofttech.entity.vo.DrugsAddVO;
+import com.hlsofttech.platform.meituan.sign.SignHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -39,9 +39,6 @@ public class TestERPdrugsSyn {
             Map<String, Object> params = getParams(timestamp, data, sign);
 
             // 发送 http请求
-
-
-
 
 
         } catch (Exception e) {

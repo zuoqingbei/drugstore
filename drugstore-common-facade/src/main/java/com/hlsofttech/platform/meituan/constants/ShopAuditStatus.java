@@ -1,4 +1,4 @@
-package com.hlsofttech.delivery.platform.meituan.constants;
+package com.hlsofttech.platform.meituan.constants;
 
 /**
  * @Description: 门店审核状态

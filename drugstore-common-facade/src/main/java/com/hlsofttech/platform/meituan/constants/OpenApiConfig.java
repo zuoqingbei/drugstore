@@ -1,4 +1,4 @@
-package com.hlsofttech.delivery.platform.meituan.constants;
+package com.hlsofttech.platform.meituan.constants;
 
 /**
  * @Description: 开放平台账号配置信息

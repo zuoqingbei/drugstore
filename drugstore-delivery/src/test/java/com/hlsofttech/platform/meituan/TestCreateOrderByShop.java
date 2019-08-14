@@ -1,4 +1,4 @@
-package com.hlsofttech.delivery.platform.meituan;
+package com.hlsofttech.platform.meituan;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -6,13 +6,13 @@ import com.hlsofttech.constant.delivery.OrderTypeMeituan;
 import com.hlsofttech.delivery.platform.meituan.constants.RequestConstant;
 import com.hlsofttech.delivery.platform.meituan.request.CreateOrderByShopRequest;
 import com.hlsofttech.delivery.platform.meituan.response.CreateOrderResponse;
+import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
+import com.hlsofttech.delivery.platform.meituan.util.HttpClient;
 import com.hlsofttech.delivery.platform.meituan.util.ParamBuilder;
 import com.hlsofttech.delivery.platform.meituan.vo.OpenApiGood;
 import com.hlsofttech.delivery.platform.meituan.vo.OpenApiGoods;
-import com.hlsofttech.delivery.platform.meituan.constants.OpenApiConfig;
-import com.hlsofttech.delivery.platform.meituan.sign.SignHelper;
-import com.hlsofttech.delivery.platform.meituan.util.DateUtil;
-import com.hlsofttech.delivery.platform.meituan.util.HttpClient;
+import com.hlsofttech.platform.meituan.constants.OpenApiConfig;
+import com.hlsofttech.platform.meituan.sign.SignHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class TestCreateOrderByShop {
 
         Map<String, String> params = ParamBuilder.convertToMap(request);
         JSONObject json = new JSONObject((Map) params);
-        System.out.println( json.toJSONString());
+        System.out.println(json.toJSONString());
 
         String sign = SignHelper.generateSign(params, secret);
 
