@@ -62,7 +62,17 @@
             <artifactId>spring-boot-starter-dubbo</artifactId>
             <version>1.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.6.4</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!-- hlsofttech-common-service-facade -->
         <dependency>
             <groupId>com.hlsofttech</groupId>
@@ -142,7 +152,7 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.8.0</version>
+            <version>1.9.9</version>
         </dependency>
 
         <!-- 交易中心 -->
