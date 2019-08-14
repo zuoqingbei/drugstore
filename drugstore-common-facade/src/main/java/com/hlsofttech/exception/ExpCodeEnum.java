@@ -1,7 +1,5 @@
 package com.hlsofttech.exception;
 
-import com.hlsofttech.utils.ExpPrefixUtil;
-
 import java.io.Serializable;
 
 import static com.hlsofttech.utils.ExpPrefixUtil.*;

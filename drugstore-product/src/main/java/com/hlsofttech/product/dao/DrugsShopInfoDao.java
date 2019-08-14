@@ -15,28 +15,28 @@ import org.apache.ibatis.annotations.Mapper;
 public interface DrugsShopInfoDao extends BaseMappers<DrugsShopInfo> {
     /**
      * @date 2019年3月8日10:53:29
-     * @author zuoqb123
+     * @author suncy
      * @todo 字典新增或者修改
      */
     boolean saveOrUpdate(DrugsShopInfo entity);
 
     /**
      * @date 2019年3月8日10:53:29
-     * @author zuoqb123
+     * @author suncy
      * @todo 字典逻辑删除
      */
     boolean deleteLogic(String id);
 
     /**
      * @date 2018-10-11
-     * @author zuoqb123
+     * @author suncy
      * @todo 字典单条数据查询
      */
     DrugsShopInfo getById(String id);
 
     /**
      * @date 2019年3月8日10:53:29
-     * @author zuoqb123
+     * @author suncy
      * @todo 字典分页查询
      */
     PageInfo<DrugsShopInfo> pageList(DrugsShopInfo entity, Integer pageNum, Integer pageSize);
