@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.bjucloud.common:common-core:2.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://D:/maven/com/bjucloud/common/common-core/2.0.0-SNAPSHOT/common-core-2.0.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/maven/com/bjucloud/common/common-core/2.0.0-SNAPSHOT/common-core-2.0.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/maven/com/bjucloud/common/common-core/2.0.0-SNAPSHOT/common-core-2.0.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
