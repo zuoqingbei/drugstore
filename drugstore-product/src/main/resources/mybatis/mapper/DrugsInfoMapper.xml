@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hlsofttech.product.dao.DrugsInfoDao">
+
+   <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="com.hlsofttech.entity.product.DrugsInfo">
+      <id column="id" property="id" />
+      <result column="guid" property="guid" />
+      <result column="drug_name" property="drugName" />
+      <result column="c1_id" property="c1Id" />
+      <result column="c2_id" property="c2Id" />
+      <result column="c3_id" property="c3Id" />
+      <result column="tags" property="tags" />
+      <result column="is_external_used" property="isExternalUsed" />
+      <result column="otc_or_rx" property="otcOrRx" />
+      <result column="otc_level" property="otcLevel" />
+      <result column="price" property="price" />
+      <result column="common_name" property="commonName" />
+      <result column="product_name" property="productName" />
+      <result column="approval_number" property="approvalNumber" />
+      <result column="manufacturer" property="manufacturer" />
+      <result column="product_images" property="productImages" />
+      <result column="specification" property="specification" />
+      <result column="validity_period" property="validityPeriod" />
+      <result column="formulation" property="formulation" />
+      <result column="indication" property="indication" />
+      <result column="dosage" property="dosage" />
+      <result column="adverse_reactions" property="adverseReactions" />
+      <result column="tips" property="tips" />
+      <result column="chocolate_ingredient" property="chocolateIngredient" />
+      <result column="traits" property="traits" />
+      <result column="effect_category" property="effectCategory" />
+      <result column="taboo" property="taboo" />
+      <result column="precautions" property="precautions" />
+      <result column="medicine_interactions" property="medicineInteractions" />
+      <result column="pharmacological_action" property="pharmacologicalAction" />
+      <result column="storage" property="storage" />
+      <result column="subpackage" property="subpackage" />
+      <result column="status" property="status" />
+      <result column="create_by" property="createBy" />
+      <result column="create_date" property="createDate" />
+      <result column="update_by" property="updateBy" />
+      <result column="update_date" property="updateDate" />
+      <result column="remarks" property="remarks" />
+      <result column="del_flag" property="delFlag" />
+   </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+      guid,
+      drug_name,
+      c1_id,
+      c2_id,
+      c3_id,
+      tags,
+      is_external_used,
+      otc_or_rx,
+      otc_level,
+      price,
+      common_name,
+      product_name,
+      approval_number,
+      manufacturer,
+      product_images,
+      specification,
+      validity_period,
+      formulation,
+      indication,
+      dosage,
+      adverse_reactions,
+      tips,
+      chocolate_ingredient,
+      traits,
+      effect_category,
+      taboo,
+      precautions,
+      medicine_interactions,
+      pharmacological_action,
+      storage,
+      subpackage,
+      status,
+      create_by,
+      create_date,
+      update_by,
+      update_date,
+      remarks,
+      del_flag,
+</sql>
+
+</mapper>

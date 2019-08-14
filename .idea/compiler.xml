@@ -16,5 +16,16 @@
         <module name="drugstore-user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="drugstore" target="1.8" />
+      <module name="drugstore-analysis" target="1.8" />
+      <module name="drugstore-api" target="1.8" />
+      <module name="drugstore-common-facade" target="1.8" />
+      <module name="drugstore-delivery" target="1.8" />
+      <module name="drugstore-gen" target="1.8" />
+      <module name="drugstore-order" target="1.8" />
+      <module name="drugstore-product" target="1.8" />
+      <module name="drugstore-user" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
