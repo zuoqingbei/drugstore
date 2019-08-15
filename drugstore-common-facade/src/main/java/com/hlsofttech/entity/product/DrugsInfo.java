@@ -40,26 +40,21 @@ public class DrugsInfo extends BaseModel<DrugsInfo> {
     /**
      * 一级分类
      */
-    @ApiModelProperty(name = "c1Id", value = "一级分类", dataType = "Integer")
+    @ApiModelProperty(name = "c1Id", value = "一级分类", dataType = "String")
     @TableField("c1_id")
-    private Integer c1Id;
+    private String c1Id;
     /**
      * 二级分类
      */
-    @ApiModelProperty(name = "c2Id", value = "二级分类", dataType = "Integer")
+    @ApiModelProperty(name = "c2Id", value = "二级分类", dataType = "String")
     @TableField("c2_id")
-    private Integer c2Id;
+    private String c2Id;
     /**
      * 三级分类
      */
-    @ApiModelProperty(name = "c3Id", value = "三级分类", dataType = "Integer")
+    @ApiModelProperty(name = "c3Id", value = "三级分类", dataType = "String")
     @TableField("c3_id")
-    private Integer c3Id;
-    /**
-     * 标签
-     */
-    @ApiModelProperty(name = "tags", value = "标签", dataType = "String")
-    private String tags;
+    private String c3Id;
     /**
      * 是否外用药
      */
@@ -67,9 +62,9 @@ public class DrugsInfo extends BaseModel<DrugsInfo> {
     @TableField("is_external_used")
     private String isExternalUsed;
     /**
-     * 是否OTC
+     * 0=OTC1=RX
      */
-    @ApiModelProperty(name = "otcOrRx", value = "是否OTC", dataType = "String")
+    @ApiModelProperty(name = "otcOrRx", value = "0=OTC1=RX", dataType = "String")
     @TableField("otc_or_rx")
     private String otcOrRx;
     /**
@@ -89,6 +84,24 @@ public class DrugsInfo extends BaseModel<DrugsInfo> {
     @ApiModelProperty(name = "commonName", value = "通用名", dataType = "String")
     @TableField("common_name")
     private String commonName;
+    /**
+     * 汉语拼音
+     */
+    @ApiModelProperty(name = "fullPinyin", value = "汉语拼音", dataType = "String")
+    @TableField("full_pinyin")
+    private String fullPinyin;
+    /**
+     * 拼音简码
+     */
+    @ApiModelProperty(name = "pinyinShortCode", value = "拼音简码", dataType = "String")
+    @TableField("pinyin_short_code")
+    private String pinyinShortCode;
+    /**
+     * 英文名称
+     */
+    @ApiModelProperty(name = "englishName", value = "英文名称", dataType = "String")
+    @TableField("english_name")
+    private String englishName;
     /**
      * 商品名称
      */
@@ -118,11 +131,11 @@ public class DrugsInfo extends BaseModel<DrugsInfo> {
     @ApiModelProperty(name = "specification", value = "规格", dataType = "String")
     private String specification;
     /**
-     * 有效期
+     * 有效期（月）
      */
-    @ApiModelProperty(name = "validityPeriod", value = "有效期", dataType = "Date")
+    @ApiModelProperty(name = "validityPeriod", value = "有效期（月）", dataType = "Integer")
     @TableField("validity_period")
-    private Date validityPeriod;
+    private Integer validityPeriod;
     /**
      * 剂型
      */
@@ -198,6 +211,58 @@ public class DrugsInfo extends BaseModel<DrugsInfo> {
      */
     @ApiModelProperty(name = "subpackage", value = "包装", dataType = "String")
     private String subpackage;
+    /**
+     * 执行标准
+     */
+    @ApiModelProperty(name = "executiveStandard", value = "执行标准", dataType = "String")
+    @TableField("executive_standard")
+    private String executiveStandard;
+    /**
+     * 品牌
+     */
+    @ApiModelProperty(name = "brand", value = "品牌", dataType = "String")
+    private String brand;
+    /**
+     * 孕妇及哺乳期妇女用药
+     */
+    @ApiModelProperty(name = "pregnantAndLactatingWomen", value = "孕妇及哺乳期妇女用药", dataType = "String")
+    @TableField("pregnant_and_lactating_women")
+    private String pregnantAndLactatingWomen;
+    /**
+     * 儿童用药
+     */
+    @ApiModelProperty(name = "childMedication", value = "儿童用药", dataType = "String")
+    @TableField("child_medication")
+    private String childMedication;
+    /**
+     * 老年用药
+     */
+    @ApiModelProperty(name = "elderlyPatientsMedication", value = "老年用药", dataType = "String")
+    @TableField("elderly_patients_medication")
+    private String elderlyPatientsMedication;
+    /**
+     * 药理毒理
+     */
+    @ApiModelProperty(name = "pharmacologyAndToxicology", value = "药理毒理", dataType = "String")
+    @TableField("pharmacology_and_toxicology")
+    private String pharmacologyAndToxicology;
+    /**
+     * 药代动力学
+     */
+    @ApiModelProperty(name = "pharmacokinetics", value = "药代动力学", dataType = "String")
+    private String pharmacokinetics;
+    /**
+     * 说明书
+     */
+    @ApiModelProperty(name = "instructionManual", value = "说明书", dataType = "String")
+    @TableField("instruction_manual")
+    private String instructionManual;
+    /**
+     * 原地址
+     */
+    @ApiModelProperty(name = "originalUrl", value = "原地址", dataType = "String")
+    @TableField("original_url")
+    private String originalUrl;
     /**
      * 状态（0启用1=停用）
      */
