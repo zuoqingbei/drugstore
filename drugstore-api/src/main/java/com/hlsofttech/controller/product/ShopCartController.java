@@ -21,7 +21,7 @@ import java.util.Map;
  * @Date: 2019/8/9
  **/
 @RestController
-@Api(tags = "购物车", value = "购物车", description = "购物车 @author suntf")
+@Api(tags = "用户端-购物车", value = "用户端-购物车", description = "用户端-购物车 @author suntf")
 public class ShopCartController {
     @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     ShopCartService shopCartService;

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  **/
 @Slf4j
 @RestController
-@Api(tags = "用户端首页", value = "用户端首页", description = "用户端首页 @author suncy")
+@Api(tags = "用户端-首页", value = "用户端-首页", description = "用户端-首页 @author suncy")
 public class IndexController extends BaseController implements ProcessBusiness {
 
     @Reference(version = Constant.VERSION_ZT, timeout = Constant.TIMEOUT)

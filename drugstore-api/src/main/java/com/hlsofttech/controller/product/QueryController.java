@@ -29,7 +29,7 @@ import java.util.Map;
  * @Date: 2019/8/12
  **/
 @RestController
-@Api(tags = "搜索", value = "搜索", description = "搜索 @author suntf")
+@Api(tags = "用户端-搜索", value = "用户端-搜索", description = "用户端-搜索 @author suntf")
 public class QueryController {
 
     @Resource
