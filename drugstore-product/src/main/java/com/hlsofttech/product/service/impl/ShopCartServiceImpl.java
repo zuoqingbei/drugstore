@@ -19,7 +19,7 @@ import java.util.*;
  * @Description:店铺购物车服务
  * @Date: 2019/8/8
  **/
-@Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 public class ShopCartServiceImpl implements ShopCartService {
 
     @Resource

@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2019-08-14
  */
 @Slf4j
-@Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 public class DrugsInfoServiceImpl implements DrugsInfoService, Constant {
 
     @Autowired

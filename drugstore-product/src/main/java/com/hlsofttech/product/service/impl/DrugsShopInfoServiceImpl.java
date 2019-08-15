@@ -20,7 +20,7 @@ import java.util.List;
  * 药店签约信息服务实现类
  * @date 2019-08-12
  */
-@Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 @org.springframework.stereotype.Service
 public class DrugsShopInfoServiceImpl implements DrugsShopInfoService, Constant {
 

@@ -33,7 +33,7 @@ import java.util.List;
 @Api(tags = "ERP系统对接", value = "ERP系统对接", description = "ERP系统对接 @author suncy")
 public class ERPApiController extends BaseController {
 
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     private DrugsShopInfoService drugsShopInfoService;
 
     @Autowired

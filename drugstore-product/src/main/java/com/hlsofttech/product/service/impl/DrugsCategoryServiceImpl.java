@@ -20,7 +20,7 @@ import java.util.List;
  * 药品库-药品分类服务实现类
  * @date 2019-08-02
  */
-@Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 public class DrugsCategoryServiceImpl implements DrugsCategoryService, Constant {
 
     @Autowired

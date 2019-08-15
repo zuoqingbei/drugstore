@@ -17,7 +17,7 @@ import java.util.Map;
  * @Date: 2019/8/7
  **/
 @Slf4j
-@Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 public class DrugsSyncErpServiceImpl implements DrugsSyncErpService {
     private static final String erpurl = "http://openapi-dev.yaozh.com/instruct";
     private static final String version = "v1";

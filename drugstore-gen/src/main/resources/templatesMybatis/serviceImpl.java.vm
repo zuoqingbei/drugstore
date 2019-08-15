@@ -18,8 +18,7 @@ import org.apache.commons.lang.StringUtils;
  * @author ${author}
  * $!{table.comment}服务实现类
  */
-@Service(version = Constant.VERSION,group="$!{package.Xml}",timeout=Constant.TIMEOUT)
-@org.springframework.stereotype.Service
+@Service(version = Constant.VERSION,timeout=Constant.TIMEOUT)
 public class ${table.serviceImplName} implements ${table.serviceName},Constant {
 
     @Autowired
