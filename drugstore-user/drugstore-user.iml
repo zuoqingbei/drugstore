@@ -164,6 +164,7 @@
     <orderEntry type="library" name="Maven: com.bjucloud.tradecenter:tradecenter-export:2.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.bjucloud.goodscenter:goodscenter-export:2.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.bjucloud.storecenter:storecenter-export:2.0.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.bjucloud.contentcenter:contentcenter-export:2.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.bjucloud.esf:esf-registry:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.bjucloud.common:common-core:2.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.apache.curator:curator-framework:2.12.0" level="project" />

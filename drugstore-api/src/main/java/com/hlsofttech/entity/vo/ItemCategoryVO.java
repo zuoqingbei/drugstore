@@ -1,4 +1,4 @@
-package com.hlsofttech.entity.user.dto;
+package com.hlsofttech.entity.vo;
 
 import lombok.Data;
 
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /***
- * @Description: 药品分类
+ * @Description: 药品分类VO
  * @Date: 2019/8/13 10:35
  * @Author: suncy
  **/
 @Data
-public class CategoryDTO implements Serializable {
+public class ItemCategoryVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -78,5 +78,5 @@ public class CategoryDTO implements Serializable {
     /**
      * 子集
      */
-    private List<CategoryDTO> childNode = new ArrayList<>();
+    private List<ItemCategoryVO> childNode = new ArrayList<>();
 }

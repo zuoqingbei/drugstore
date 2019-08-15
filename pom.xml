@@ -196,6 +196,19 @@
             </exclusions>
         </dependency>
 
+        <!-- 内容中心 -->
+        <dependency>
+            <groupId>com.bjucloud.contentcenter</groupId>
+            <artifactId>contentcenter-export</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
 
         <!-- 注册 -->
         <dependency>
@@ -203,12 +216,14 @@
             <artifactId>esf-registry</artifactId>
             <version>1.0.0</version>
         </dependency>
+
         <!-- 中台common -->
         <dependency>
             <groupId>com.bjucloud.common</groupId>
             <artifactId>common-core</artifactId>
             <version>2.0.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
