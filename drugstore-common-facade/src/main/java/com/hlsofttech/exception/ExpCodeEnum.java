@@ -23,7 +23,7 @@ public enum ExpCodeEnum implements Serializable {
     SESSION_NULL(ComExpPrefix + "004", "请求头中SessionId不存在"),
     HTTP_REQ_METHOD_ERROR(ComExpPrefix + "005", "HTTP请求方法不正确"),
     JSONERROR(ComExpPrefix + "006", "JSON解析异常"),
-    LIST_DTO_TO_VO(ComExpPrefix + "007", "DTO转VO异常"),
+    LIST_DTO_TO_VO(ComExpPrefix + "007", "List-DTO转List-VO异常"),
 
     /**
      * User模块异常
