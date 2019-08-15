@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class DrugsCategoryController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(DrugsCategoryController.class);
 
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     public DrugsCategoryService iDrugsCategoryService;
 
 

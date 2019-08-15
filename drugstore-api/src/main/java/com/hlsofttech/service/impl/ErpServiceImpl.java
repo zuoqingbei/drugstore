@@ -24,10 +24,10 @@ import java.util.Set;
 @Service
 public class ErpServiceImpl implements ErpService {
 
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     private DrugsInfoService drugsInfoService;
 
-    @Reference(version = Constant.VERSION, group = "com.bjucloud.goodscenter", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION_ZT, timeout = Constant.TIMEOUT)
     private ItemExportService itemExportService;
 
 

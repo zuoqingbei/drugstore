@@ -9,6 +9,7 @@ import com.hlsofttech.entity.product.DrugsInfo;
 import com.hlsofttech.product.dao.DrugsInfoDao;
 import com.hlsofttech.service.product.DrugsInfoService;
 import com.hlsofttech.utils.UUIDUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import sun.plugin.services.WIExplorerBrowserService;
@@ -21,8 +22,8 @@ import java.util.List;
  * 药品库-药品信息表服务实现类
  * @date 2019-08-14
  */
+@Slf4j
 @Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
-@org.springframework.stereotype.Service
 public class DrugsInfoServiceImpl implements DrugsInfoService, Constant {
 
     @Autowired

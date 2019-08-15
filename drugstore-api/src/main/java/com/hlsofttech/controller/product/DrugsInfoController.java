@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "药品库-药品信息表", value = "药品库-药品信息表", description = "药品库-药品信息表 @author suncy")
 public class DrugsInfoController extends BaseController {
 
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
-    public DrugsInfoService iDrugsInfoService;
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
+    DrugsInfoService drugsInfoService;
 
 
     /**
@@ -37,7 +37,7 @@ public class DrugsInfoController extends BaseController {
     @ApiOperation(value = "药品库-药品信息表新增或者修改", notes = "药品库-药品信息表新增或者修改", httpMethod = "POST")
     @PostMapping("/api/drugsInfo/creation")
     public Result creation(DrugsInfo entity) {
-        if ((entity = iDrugsInfoService.saveOrUpdate(entity)) != null) {
+        if ((entity = drugsInfoService.saveOrUpdate(entity)) != null) {
             return Result.newSuccessResult(entity);
         }
         return Result.newFailureResult();
@@ -53,7 +53,7 @@ public class DrugsInfoController extends BaseController {
     @ApiOperation(value = "删除药品库-药品信息表", notes = "删除药品库-药品信息表", httpMethod = "DELETE")
     @DeleteMapping("/api/drugsInfo/delete/{id}")
     public Result deleteLogic(@PathVariable("id") String id) {
-        return Result.newSuccessResult(iDrugsInfoService.deleteLogic(id));
+        return Result.newSuccessResult(drugsInfoService.deleteLogic(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class DrugsInfoController extends BaseController {
     @ApiOperation(value = "药品库-药品信息表单条数据查询", notes = "药品库-药品信息表单条数据查询", httpMethod = "GET")
     @GetMapping(value = "/api/drugsInfo/{id}")
     public Result<DrugsInfo> getById(@PathVariable("id") String id) {
-        if (iDrugsInfoService.deleteLogic(id)) {
+        if (drugsInfoService.deleteLogic(id)) {
             return Result.newSuccessResult();
         }
         return Result.newFailureResult();
@@ -81,7 +81,7 @@ public class DrugsInfoController extends BaseController {
     @GetMapping(value = "/api/drugsInfo/list")
     public Result<PageInfo<DrugsInfo>> pageList(DrugsInfo entity, @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                                 @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
-        return Result.newSuccessResult(iDrugsInfoService.pageList(entity, pageNum, pageSize));
+        return Result.newSuccessResult(drugsInfoService.pageList(entity, pageNum, pageSize));
     }
 
 

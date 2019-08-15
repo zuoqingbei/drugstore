@@ -1,13 +1,15 @@
 package com.hlsofttech.configuration.shiro.cache;
 
+import com.bjucloud.redis.client.RedisAccessException;
+import com.bjucloud.redis.client.RedisTemplate;
 import com.hlsofttech.constant.JWTConstant;
-import com.hlsofttech.redis.JedisUtil;
 import com.hlsofttech.util.JwtUtil;
-import com.hlsofttech.utils.SerializableUtil;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 
-import java.util.*;
+import javax.annotation.Resource;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * 功能描述: 重写Shiro的Cache保存读取
@@ -16,6 +18,8 @@ import java.util.*;
  * @date 2019/2/27 21:14
  */
 public class CustomCache<K, V> implements Cache<K, V> {
+    @Resource
+    RedisTemplate redisTemplate;
     /**
      * redis-key-前缀-shiro:cache:
      */
@@ -38,10 +42,15 @@ public class CustomCache<K, V> implements Cache<K, V> {
      */
     @Override
     public Object get(Object key) throws CacheException {
-        if (!JedisUtil.getJedis().exists(this.getKey(key))) {
+        try {
+            if (!redisTemplate.exists(this.getKey(key))) {
+                return null;
+            }
+            return redisTemplate.getObject(this.getKey(key));
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
             return null;
         }
-        return JedisUtil.getObject(this.getKey(key));
     }
 
     /**
@@ -50,7 +59,12 @@ public class CustomCache<K, V> implements Cache<K, V> {
     @Override
     public Object put(Object key, Object value) throws CacheException {
         // 设置Redis的Shiro缓存
-        return JedisUtil.setObject(this.getKey(key), value, JWTConstant.REFRESH_TIME);
+        try {
+            return redisTemplate.setObject(this.getKey(key), value, JWTConstant.REFRESH_TIME);
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -58,10 +72,15 @@ public class CustomCache<K, V> implements Cache<K, V> {
      */
     @Override
     public Object remove(Object key) throws CacheException {
-        if (!JedisUtil.exists(this.getKey(key))) {
-            return null;
+        try {
+            if (!redisTemplate.exists(this.getKey(key))) {
+                return null;
+            }
+            redisTemplate.del(this.getKey(key));
+
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
         }
-        JedisUtil.delKey(this.getKey(key));
         return null;
     }
 
@@ -70,7 +89,7 @@ public class CustomCache<K, V> implements Cache<K, V> {
      */
     @Override
     public void clear() throws CacheException {
-        JedisUtil.getJedis().flushDB();
+
     }
 
     /**
@@ -78,8 +97,7 @@ public class CustomCache<K, V> implements Cache<K, V> {
      */
     @Override
     public int size() {
-        Long size = JedisUtil.getJedis().dbSize();
-        return size.intValue();
+        return 0;
     }
 
     /**
@@ -87,12 +105,7 @@ public class CustomCache<K, V> implements Cache<K, V> {
      */
     @Override
     public Set keys() {
-        Set<byte[]> keys = JedisUtil.getJedis().keys(new String("*").getBytes());
-        Set<Object> set = new HashSet<>();
-        for (byte[] bs : keys) {
-            set.add(SerializableUtil.unserializable(bs));
-        }
-        return set;
+        return null;
     }
 
     /**
@@ -100,11 +113,7 @@ public class CustomCache<K, V> implements Cache<K, V> {
      */
     @Override
     public Collection values() {
-        Set keys = this.keys();
-        List<Object> values = new ArrayList<>();
-        for (Object key : keys) {
-            values.add(JedisUtil.getObject(this.getKey(key)));
-        }
-        return values;
+
+        return null;
     }
 }

@@ -9,12 +9,12 @@ public class CopyPropertites {
 		try {
 			// 获取属性
 			BeanInfo sourceBean = Introspector.getBeanInfo(source.getClass(),
-					java.lang.Object.class);
+					Object.class);
 			PropertyDescriptor[] sourceProperty = sourceBean
 					.getPropertyDescriptors();
 
 			BeanInfo destBean = Introspector.getBeanInfo(to.getClass(),
-					java.lang.Object.class);
+					Object.class);
 			PropertyDescriptor[] destProperty = destBean
 					.getPropertyDescriptors();
 

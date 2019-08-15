@@ -2,14 +2,16 @@ package com.hlsofttech.product.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONArray;
+import com.bjucloud.redis.client.RedisAccessException;
+import com.bjucloud.redis.client.RedisTemplate;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.entity.product.dto.CartOfShopDto;
-import com.hlsofttech.redis.JedisUtil;
 import com.hlsofttech.service.product.ShopCartService;
 import com.hlsofttech.utils.DistanceUtils;
 import com.hlsofttech.utils.RedisPrefixUtil;
 import org.apache.commons.lang.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /***
@@ -20,6 +22,9 @@ import java.util.*;
 @Service(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
 public class ShopCartServiceImpl implements ShopCartService {
 
+    @Resource
+    RedisTemplate redisTemplate;
+
     @Override
     public List<CartOfShopDto> getShopCartFromRedisOnShop(Long userId, Integer shopId) {
 
@@ -27,7 +32,12 @@ public class ShopCartServiceImpl implements ShopCartService {
         String redisKey = RedisPrefixUtil.User_Cart_Prefix + userId;
         String hashKey = shopId.toString();
         // 当前用户在当前店铺的购车产品列表
-        String redisSkus = JedisUtil.getJedis().hget(redisKey, hashKey);
+        String redisSkus = null;
+        try {
+            redisSkus = redisTemplate.hget(redisKey, hashKey);
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+        }
         if (!StringUtils.isBlank(redisSkus)) {
             JSONArray skusArray = JSONArray.parseArray(redisSkus);
             // 购物车中有商品
@@ -44,8 +54,13 @@ public class ShopCartServiceImpl implements ShopCartService {
         // 从缓存中找到当前登录人的购物车信息
         String redisKey = RedisPrefixUtil.User_Cart_Prefix + userId;
         // 当前用户购车产品列表
-        Map<String, String> redisSkus = JedisUtil.getJedis().hgetAll(redisKey);
-        if (redisSkus.size() > 0) {
+        Map<String, String> redisSkus = null;
+        try {
+            redisSkus = redisTemplate.hgetAll(redisKey);
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+        }
+        if (redisSkus != null && redisSkus.size() > 0) {
             List<CartOfShopDto> sortList = new ArrayList<>();
             // 循环店铺计算距离，判断是否失效
             for (String key : redisSkus.keySet()) {
@@ -85,7 +100,12 @@ public class ShopCartServiceImpl implements ShopCartService {
         String redisKey = RedisPrefixUtil.User_Cart_Prefix + cartOfShopDto.getUserId();
         String hashKey = cartOfShopDto.getShopId().toString();
         // 当前用户在当前店铺的购车产品列表
-        String redisSkus = JedisUtil.getJedis().hget(redisKey, hashKey);
+        String redisSkus = null;
+        try {
+            redisSkus = redisTemplate.hget(redisKey, hashKey);
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+        }
         List<CartOfShopDto> list = new ArrayList<>();
         if (!StringUtils.isBlank(redisSkus)) {
             JSONArray skusArray = JSONArray.parseArray(redisSkus);
@@ -108,7 +128,11 @@ public class ShopCartServiceImpl implements ShopCartService {
             list.add(cartOfShopDto);
         }
         JSONArray redisRet = getJSONArrayByList(list);
-        JedisUtil.getJedis().hset(redisKey, hashKey, redisRet.toString());
+        try {
+            redisTemplate.hset(redisKey, hashKey, redisRet.toString());
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -118,7 +142,12 @@ public class ShopCartServiceImpl implements ShopCartService {
         String redisKey = RedisPrefixUtil.User_Cart_Prefix + userId;
         String hashKey = shopId.toString();
         // 当前用户在当前店铺的购车产品列表
-        String redisSkus = JedisUtil.getJedis().hget(redisKey, hashKey);
+        String redisSkus = null;
+        try {
+            redisSkus = redisTemplate.hget(redisKey, hashKey);
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+        }
         if (!StringUtils.isBlank(redisSkus)) {
             List<CartOfShopDto> ret = new ArrayList<>();
             JSONArray skusArray = JSONArray.parseArray(redisSkus);
@@ -133,10 +162,14 @@ public class ShopCartServiceImpl implements ShopCartService {
             }
             // 重置redis中购物车数据
             JSONArray jsonArray = getJSONArrayByList(ret);
-            if (jsonArray.size() > 0) {
-                JedisUtil.getJedis().hset(redisKey, hashKey, jsonArray.toString());
-            } else {
-                JedisUtil.getJedis().hdel(redisKey, hashKey);
+            try {
+                if (jsonArray.size() > 0) {
+                    redisTemplate.hset(redisKey, hashKey, jsonArray.toString());
+                } else {
+                    redisTemplate.hdel(redisKey, hashKey);
+                }
+            } catch (RedisAccessException e) {
+                e.printStackTrace();
             }
         }
         return true;
@@ -147,8 +180,13 @@ public class ShopCartServiceImpl implements ShopCartService {
         // 从缓存中找到当前登录人的购物车信息
         String redisKey = RedisPrefixUtil.User_Cart_Prefix + userId;
         // 当前用户购车产品列表
-        Map<String, String> redisSkus = JedisUtil.getJedis().hgetAll(redisKey);
-        if (redisSkus.size() > 0) {
+        Map<String, String> redisSkus = null;
+        try {
+            redisSkus = redisTemplate.hgetAll(redisKey);
+        } catch (RedisAccessException e) {
+            e.printStackTrace();
+        }
+        if (redisSkus != null && redisSkus.size() > 0) {
             Map<Integer, Integer> ret = new HashMap<>();
             // 循环店铺统计各个店铺购物车商品数量
             for (String key : redisSkus.keySet()) {

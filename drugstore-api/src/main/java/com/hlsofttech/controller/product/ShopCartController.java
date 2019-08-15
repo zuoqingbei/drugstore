@@ -23,7 +23,7 @@ import java.util.Map;
 @RestController
 @Api(tags = "购物车", value = "购物车", description = "购物车 @author suntf")
 public class ShopCartController {
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     ShopCartService shopCartService;
 
     /***

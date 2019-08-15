@@ -2,6 +2,7 @@ package com.hlsofttech.delivery.platform.meituan.util;
 
 import com.hlsofttech.platform.meituan.constants.OpenApiConfig;
 import com.hlsofttech.platform.meituan.sign.SignHelper;
+import com.hlsofttech.platform.meituan.util.HttpClient;
 import com.hlsofttech.rsp.Result;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +32,7 @@ public class MeituanUtils {
 
         params.put("sign", sign);
 
-        String res = com.hlsofttech.delivery.platform.meituan.util.HttpClient.post(url, params);
+        String res = HttpClient.post(url, params);
         log.info(String.format("reponse data: %s", res));
         return res;
     }

@@ -15,7 +15,7 @@ public interface Constant {
             "yyyy-MM-dd HH:mm:ss");
     public static final String Default_X_SIGN = "hlsofttech";// 默认SQL接口签名
     public static final String VERTICAL_DATA_FORMAT = "H";// 横向数据格式
-    public static final int TIMEOUT = 300000;//dubbo请求超时时间
+    public static final int TIMEOUT = 60000;//dubbo请求超时时间
     public static final String VERSION = "2.0.0";//dubbo服务版本
-
+    public static final String VERSION_ZT = "2.0.0-SNAPSHOT";//中台dubbo服务版本
 }

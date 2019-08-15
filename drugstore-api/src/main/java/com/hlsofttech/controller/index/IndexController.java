@@ -31,8 +31,8 @@ import java.util.stream.Collectors;
 @Api(tags = "用户端首页", value = "用户端首页", description = "用户端首页 @author suncy")
 public class IndexController extends BaseController implements ProcessBusiness {
 
-    @Reference(version = Constant.VERSION, group = "com.bjucloud.contentcenter", timeout = Constant.TIMEOUT)
-    public AdvertisementService advertisementService;
+    @Reference(version = Constant.VERSION_ZT, timeout = Constant.TIMEOUT)
+    AdvertisementService advertisementService;
 
     /**
      * @Description: 查询用户首页轮播图

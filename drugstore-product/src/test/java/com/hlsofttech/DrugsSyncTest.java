@@ -1,6 +1,6 @@
 package com.hlsofttech;
 
-import com.hlsofttech.delivery.platform.meituan.util.HttpUtils;
+import com.hlsofttech.platform.meituan.util.HttpUtils;
 import com.hlsofttech.service.product.DrugsSyncService;
 import com.hlsofttech.utils.MD5Util;
 import com.hlsofttech.utils.UUIDUtils;
@@ -27,6 +27,17 @@ public class DrugsSyncTest extends BaseTest {
     public static String appSecret = "b6ec3f178d98e40b114ca3580e5aabfe";
     @Resource
     DrugsSyncService drugsSyncService;
+//
+//    @Resource
+//    DrugsProductService drugsProductService;
+//
+//    @Test
+//    public void testZTService() {
+//        List list = drugsProductService.ItemExportService();
+//        for (Object o : list) {
+//            System.out.println(o.toString());
+//        }
+//    }
 
     @Test
     public void testService() {

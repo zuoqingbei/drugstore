@@ -10,12 +10,10 @@ import com.hlsofttech.entity.vo.*;
 import com.hlsofttech.exception.CommonBizException;
 import com.hlsofttech.exception.ExpCodeEnum;
 import com.hlsofttech.rsp.Result;
-import com.hlsofttech.service.ErpService;
 import com.hlsofttech.service.shop.DrugsShopInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,11 +31,12 @@ import java.util.List;
 @Api(tags = "ERP系统对接", value = "ERP系统对接", description = "ERP系统对接 @author suncy")
 public class ERPApiController extends BaseController {
 
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.product", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     private DrugsShopInfoService drugsShopInfoService;
 
-    @Autowired
-    private ErpService erpService;
+
+    // 测试
+    public static String app_secret = "7BB4DDA93C2972B9D9E447EE30E0A772";
 
     /***
      * @Description: 门店对照关系同步(根据统一信用代码)
@@ -69,9 +68,6 @@ public class ERPApiController extends BaseController {
             List<ShopIdVO> data = shopIdRequest.getData();
             if (data != null && data.size() > 0) {
                 for (ShopIdVO shopIdVO : data) {
-                    //
-
-
                     shopIdVO.setShopId(shopIdVO.getCode() + "1");
                 }
             }
@@ -109,8 +105,14 @@ public class ERPApiController extends BaseController {
                 return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
             }
 
-            // 验签成功，进行业务处理
-            return erpService.drugsSyn(drugsAddRequest);
+            // 验签成功
+            List<DrugsAddVO> data = drugsAddRequest.getData();
+            if (data != null && data.size() > 0) {
+                for (DrugsAddVO drugsAddVO : data) {
+                    System.out.println(drugsAddVO.toString());
+                }
+            }
+            return Result.newSuccessResult(data);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));

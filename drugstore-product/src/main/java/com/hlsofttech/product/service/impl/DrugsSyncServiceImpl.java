@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hlsofttech.common.Constant;
-import com.hlsofttech.delivery.platform.meituan.util.HttpUtils;
+import com.hlsofttech.platform.meituan.util.HttpUtils;
 import com.hlsofttech.product.vo.DrugsInfoVO;
 import com.hlsofttech.product.vo.DrugsListVO;
 import com.hlsofttech.rsp.ResultYaoZhi;

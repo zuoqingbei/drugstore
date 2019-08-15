@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "配送相关", value = "配送相关", description = "配送相关 @author suncy")
 public class DeliveryController extends BaseController {
 
-    @Reference(version = Constant.VERSION, group = "com.hlsofttech.delivery", timeout = Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION, timeout = Constant.TIMEOUT)
     public DeliveryMeituanService deliveryMeituanService;
 
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = true, avoidPlatform = true)
