@@ -13,7 +13,7 @@ import com.hlsofttech.service.delivery.DeliveryFengniaoService;
  * @Date: 2019/7/25 17:10
  * @Author: suncy
  **/
-@Service(version = Constant.VERSION, group = "com.hlsofttech.delivery", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 public class DeliveryFengniaoServiceImpl implements DeliveryFengniaoService {
 
     private DeliveryContext deliveryContext = new DeliveryContext(new FengniaoDelivery());

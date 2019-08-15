@@ -13,7 +13,7 @@ import com.hlsofttech.service.delivery.DeliveryMeituanService;
  * @Date: 2019/7/25 17:10
  * @Author: suncy
  **/
-@Service(version = Constant.VERSION, group = "com.hlsofttech.delivery", timeout = Constant.TIMEOUT)
+@Service(version = Constant.VERSION, timeout = Constant.TIMEOUT)
 public class DeliveryMeituanServiceImpl implements DeliveryMeituanService {
 
     DeliveryContext deliveryContext = new DeliveryContext(MeituanDelivery.getInstance());
