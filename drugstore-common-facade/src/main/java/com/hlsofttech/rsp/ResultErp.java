@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 /***
  * @Author: suntf
- * @Description:请求药质网返回对象
+ * @Description:请求ERP返回对象
  * @Date: 2019/8/7
  **/
 @Data
-public class ResultYaoZhi implements Serializable {
+public class ResultErp implements Serializable {
 
     /**
      * 返回码

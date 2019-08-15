@@ -13,6 +13,7 @@ import com.hlsofttech.utils.RedisPrefixUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +44,7 @@ public class QueryController {
      * @Date: 2019/8/12
      * @return: com.hlsofttech.rsp.Result
      **/
+    @RequiresAuthentication
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = false, avoidPlatform = true)
     @ApiOperation(value = "搜索-搜索商品/店铺", notes = "搜索-搜索商品/店铺", httpMethod = "GET")
     @GetMapping("/api/drugsQuery/query/queryProductOrShop")

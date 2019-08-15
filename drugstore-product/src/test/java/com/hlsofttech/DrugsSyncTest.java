@@ -1,7 +1,7 @@
 package com.hlsofttech;
 
 import com.hlsofttech.platform.meituan.util.HttpUtils;
-import com.hlsofttech.service.product.DrugsSyncService;
+import com.hlsofttech.service.product.DrugsSyncErpService;
 import com.hlsofttech.utils.MD5Util;
 import com.hlsofttech.utils.UUIDUtils;
 import org.apache.commons.lang.StringUtils;
@@ -26,7 +26,7 @@ public class DrugsSyncTest extends BaseTest {
     // 药智网提供的appsecret（密文,不可泄漏）
     public static String appSecret = "b6ec3f178d98e40b114ca3580e5aabfe";
     @Resource
-    DrugsSyncService drugsSyncService;
+    DrugsSyncErpService drugsSyncErpService;
 //
 //    @Resource
 //    DrugsProductService drugsProductService;
@@ -41,7 +41,7 @@ public class DrugsSyncTest extends BaseTest {
 
     @Test
     public void testService() {
-        drugsSyncService.syncDrugsStart();
+        drugsSyncErpService.syncErpOrder(null, null);
     }
 
     @Test
