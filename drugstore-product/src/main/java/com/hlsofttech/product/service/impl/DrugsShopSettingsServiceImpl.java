@@ -89,6 +89,12 @@ public class DrugsShopSettingsServiceImpl implements DrugsShopSettingsService, C
         return page;
     }
 
+    @Override
+    public DrugsShopSettings getByDrugsShopId(String drugsShopId) {
+        DrugsShopSettings drugsShopSettings = new DrugsShopSettings();
+        drugsShopSettings.setDrugsShopId(drugsShopId);
+        return drugsShopSettingsDao.selectOne(drugsShopSettings);
+    }
 
     /**
      * @date 2019-08-16

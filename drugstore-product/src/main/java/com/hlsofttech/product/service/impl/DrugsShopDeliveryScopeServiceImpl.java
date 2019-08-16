@@ -103,6 +103,10 @@ public class DrugsShopDeliveryScopeServiceImpl implements DrugsShopDeliveryScope
         if (entity.getId() != null && StringUtils.isNotBlank(String.valueOf(entity.getId()))) {
             wrapper.like("id", String.valueOf(entity.getId()));
         }
+        //根据药店ID
+        if (entity.getDrugsShopId() != null && StringUtils.isNotBlank(String.valueOf(entity.getDrugsShopId()))) {
+            wrapper.eq("drugs_shop_id", String.valueOf(entity.getDrugsShopId()));
+        }
         //根据自定义范围名称模糊查询
         if (entity.getTitle() != null && StringUtils.isNotBlank(String.valueOf(entity.getTitle()))) {
             wrapper.like("title", String.valueOf(entity.getTitle()));

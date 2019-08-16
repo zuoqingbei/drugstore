@@ -45,15 +45,6 @@ public interface DrugsInfoDao extends BaseMappers<DrugsInfo> {
      */
     PageInfo<DrugsInfo> pageList(DrugsInfo entity, Integer pageNum, Integer pageSize);
 
-    /**
-     * @date 2019年3月8日10:53:29
-     * @author suncy
-     * @todo 查询列表
-     */
-    @Override
-    List<DrugsInfo> selectList(Wrapper<DrugsInfo> wrapper);
-
-
 }
 
 

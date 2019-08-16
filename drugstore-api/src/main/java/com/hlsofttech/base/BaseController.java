@@ -1,22 +1,21 @@
 package com.hlsofttech.base;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hlsofttech.common.Constant;
+import com.hlsofttech.common.Constant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import com.hlsofttech.common.Constant;
 import com.hlsofttech.constant.ESWebStatusEnum;
 import com.hlsofttech.constant.ResponseVo;
 
-public class BaseController implements Constant{
+public class BaseController implements Constant {
   /*@Reference(version = Constant.VERSION, timeout = TIMEOUT)
   public RedisService redisService;*/
 //  @Reference(version = Constant.VERSION, timeout = TIMEOUT)

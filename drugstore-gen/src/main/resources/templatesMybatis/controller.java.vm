@@ -45,8 +45,8 @@ public class ${table.controllerName} extends BaseController{
 
     @Reference(version = Constant.VERSION,#*group="$!{package.Xml}",*#timeout=Constant.TIMEOUT)
     public ${table.serviceName} i${entity}Service;
-    
-  
+
+
     /**
      * @date   @date   ${date}
      * @author ${author}
@@ -62,7 +62,7 @@ public class ${table.controllerName} extends BaseController{
     	}
     	return Result.newFailureResult();
 	}
-	
+
     /**
      * @date   @date   ${date}
      * @author ${author}
@@ -84,10 +84,7 @@ public class ${table.controllerName} extends BaseController{
 	@ApiOperation(value = "$!{table.comment}单条数据查询", notes = "$!{table.comment}单条数据查询", httpMethod = "GET")
 	@GetMapping(value = "/api/${table.entityPath}/{id}")
 	public Result<${entity}> getById(@PathVariable("id") String id) {
-		if(i${entity}Service.deleteLogic(id)){
-			return Result.newSuccessResult();
-		}
-		return Result.newFailureResult();
+	    return Result.newSuccessResult(i${entity}Service.getById(id));
 	}
 	/**
      * @date   @date   ${date}
@@ -101,7 +98,7 @@ public class ${table.controllerName} extends BaseController{
 			@RequestParam(value="pageSize",required = false,defaultValue="10") Integer pageSize) {
 		return Result.newSuccessResult(i${entity}Service.pageList(entity,pageNum,pageSize));
 	}
-    
-  
+
+
 }
 

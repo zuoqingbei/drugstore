@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.hlsofttech.entity.shop.DrugsShopDeliveryScope">
         <id column="id" property="id"/>
+        <result column="drugs_shop_id" property="drugsShopId"/>
         <result column="title" property="title"/>
         <result column="start_price" property="startPrice"/>
         <result column="scope_begin" property="scopeBegin"/>
@@ -18,10 +19,10 @@
         <result column="remarks" property="remarks"/>
         <result column="del_flag" property="delFlag"/>
     </resultMap>
-
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
       title,
+      drugs_shop_id,
       start_price,
       scope_begin,
       scope_end,

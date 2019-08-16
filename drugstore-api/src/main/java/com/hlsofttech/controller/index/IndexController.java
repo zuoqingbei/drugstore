@@ -7,6 +7,7 @@ import com.bjucloud.goodscenter.dto.ItemCategoryDTO;
 import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.base.BaseController;
 import com.hlsofttech.common.Constant;
+import com.hlsofttech.common.ConstantZT;
 import com.hlsofttech.entity.vo.AdvertisementVO;
 import com.hlsofttech.entity.vo.ItemCategoryVO;
 import com.hlsofttech.rsp.Result;
@@ -49,7 +50,7 @@ public class IndexController extends BaseController implements ProcessBusiness {
 
         // 查询中台的广告图列表
         AdvertisementDTO searchDTO = new AdvertisementDTO();
-        searchDTO.setZoneId("2");// 广告位ID,中台提供
+        searchDTO.setZoneId(ConstantZT.adZoneId);// 广告位ID,中台提供
         searchDTO.setYn("1"); // 是否有效标识位，固定1
         List<AdvertisementDTO> advertisementDTOList = advertisementService.getListByCondition(searchDTO).getResult();
 
@@ -59,7 +60,7 @@ public class IndexController extends BaseController implements ProcessBusiness {
             advertisementVOList = advertisementDTOList.stream().map(advertisementDTO -> this.convertTarget(advertisementDTO, AdvertisementVO::new))
                     .collect(Collectors.toList());
         } else {
-            log.error("[--查询用户首页轮播图 itemCategoryDTOList 失败--],advertisementDTOList:" + advertisementDTOList);
+            log.error("[--查询用户首页轮播图 itemCategoryDTOList 失败或者未查询到数据--],advertisementDTOList:" + advertisementDTOList);
         }
         return Result.newSuccessResult(advertisementVOList);
     }
@@ -91,9 +92,6 @@ public class IndexController extends BaseController implements ProcessBusiness {
 
         return Result.newSuccessResult(itemCategoryVOList);
     }
-
-
-
 
 
 }
