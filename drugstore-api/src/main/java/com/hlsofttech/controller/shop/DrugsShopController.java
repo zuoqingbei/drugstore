@@ -10,11 +10,16 @@ import com.bjucloud.storecenter.service.ShopCategorySellerExportService;
 import com.bjucloud.storecenter.service.ShopExportService;
 import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.common.Constant;
+import com.hlsofttech.entity.vo.ShopVO;
 import com.hlsofttech.rsp.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /***
  * @Author: suntf
@@ -48,7 +53,21 @@ public class DrugsShopController {
         ExecuteResult<DataGrid<ShopDTO>> result = shopExportService.findShopInfoByCondition(shopDTO, pager);
         if (result.isSuccess() && result.getResult() != null) {
             DataGrid<ShopDTO> data = result.getResult();
-            return Result.newSuccessResult(data);
+            List<ShopDTO> list = data.getRows();
+            // 返回对象
+            DataGrid<ShopVO> retData = new DataGrid<>();
+            retData.setPages(data.getPages());
+            retData.setSize(data.getSize());
+
+            List<ShopVO> retList = new ArrayList<>();
+            // 对象转换
+            for (ShopDTO shop : list) {
+                ShopVO shopVO = new ShopVO();
+                BeanUtils.copyProperties(shop, shopVO);
+                retList.add(shopVO);
+            }
+            retData.setRows(retList);
+            return Result.newSuccessResult(retData);
         } else {
             return null;
         }
