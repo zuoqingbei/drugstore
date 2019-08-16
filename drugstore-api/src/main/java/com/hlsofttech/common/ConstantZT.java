@@ -15,7 +15,7 @@ public class ConstantZT {
      */
     public static String adZoneId;
 
-    @Value("${common.wxpay.notifyUrl}")
+    @Value("${constant.zt.ad,zoneid}")
     public void setAdZoneId(String adZoneId) {
         this.adZoneId = adZoneId;
     }
