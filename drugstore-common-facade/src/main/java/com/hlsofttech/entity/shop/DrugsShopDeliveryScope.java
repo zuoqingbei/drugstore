@@ -2,6 +2,7 @@ package com.hlsofttech.entity.shop;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hlsofttech.base.BaseModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -26,6 +27,12 @@ public class DrugsShopDeliveryScope extends BaseModel<DrugsShopDeliveryScope> {
      */
     @ApiModelProperty(name = "id", value = "主键id", dataType = "Long")
     private String id;
+    /**
+     * 药店ID
+     */
+    @ApiModelProperty(name = "drugsShopId", value = "药店ID", dataType = "String")
+    @TableField("drugs_shop_id")
+    private String drugsShopId;
     /**
      * 自定义范围名称
      */
@@ -65,35 +72,41 @@ public class DrugsShopDeliveryScope extends BaseModel<DrugsShopDeliveryScope> {
      */
     @ApiModelProperty(name = "createBy", value = "创建人", dataType = "String")
     @TableField("create_by")
+    @JsonIgnore
     private String createBy;
     /**
      * 创建时间
      */
     @ApiModelProperty(name = "createDate", value = "创建时间", dataType = "Date")
     @TableField("create_date")
+    @JsonIgnore
     private Date createDate;
     /**
      * 修改人
      */
     @ApiModelProperty(name = "updateBy", value = "修改人", dataType = "String")
     @TableField("update_by")
+    @JsonIgnore
     private String updateBy;
     /**
      * 修改时间
      */
     @ApiModelProperty(name = "updateDate", value = "修改时间", dataType = "Date")
     @TableField("update_date")
+    @JsonIgnore
     private Date updateDate;
     /**
      * 备注
      */
     @ApiModelProperty(name = "remarks", value = "备注", dataType = "String")
+    @JsonIgnore
     private String remarks;
     /**
      * 删除标识（1=已删除0未删除）
      */
     @ApiModelProperty(name = "delFlag", value = "删除标识（1=已删除0未删除）", dataType = "String")
     @TableField("del_flag")
+    @JsonIgnore
     private String delFlag;
 
 
