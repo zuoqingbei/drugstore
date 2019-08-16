@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 对接药店ERP系统API
@@ -130,12 +131,13 @@ public class ERPApiController extends BaseController {
             // appkey不存在
             return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SECRET_FAIL));
         }
+        Map<String, Integer> ret;
         try {
             // 解析参数并进行验签处理，验签成功返回接收的参数
             boolean checkSign = ERPParamUtil.checkInfo(JSONObject.toJSON(syncStockForErpRequest).toString(), drugsShopInfo.getAppSecret());
             if (checkSign) {
                 log.info("中台同步药品库存");
-
+                ret = erpService.drugsStockSyn(syncStockForErpRequest.getData().getSyncStockForErpVOList());
             } else {
                 // 验签失败
                 return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SIGN_FAIL));
@@ -144,7 +146,7 @@ public class ERPApiController extends BaseController {
             e.printStackTrace();
             return Result.newFailureResult(new CommonBizException(ExpCodeEnum.SYS_ERROR));
         }
-        return Result.newSuccessResult("");
+        return Result.newSuccessResult(ret);
     }
 
     /***

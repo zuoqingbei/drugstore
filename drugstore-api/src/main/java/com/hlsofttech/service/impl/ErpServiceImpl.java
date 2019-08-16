@@ -1,12 +1,16 @@
 package com.hlsofttech.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.bjucloud.common.ExecuteResult;
 import com.bjucloud.goodscenter.dto.ItemDTO;
 import com.bjucloud.goodscenter.service.ItemExportService;
+import com.bjucloud.tradecenter.service.TradeOrderExportService;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.entity.product.DrugsInfo;
 import com.hlsofttech.entity.vo.DrugsAddRequest;
 import com.hlsofttech.entity.vo.DrugsAddVO;
+import com.hlsofttech.entity.vo.SyncRefundStatusVO;
+import com.hlsofttech.entity.vo.SyncStockForErpVO;
 import com.hlsofttech.exception.CommonBizException;
 import com.hlsofttech.exception.ExpCodeEnum;
 import com.hlsofttech.rsp.Result;
@@ -15,10 +19,7 @@ import com.hlsofttech.service.product.DrugsInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -30,6 +31,8 @@ public class ErpServiceImpl implements ErpService {
     @Reference(version = Constant.VERSION_ZT, timeout = Constant.TIMEOUT)
     private ItemExportService itemExportService;
 
+    @Reference(version = Constant.VERSION_ZT, timeout = Constant.TIMEOUT)
+    TradeOrderExportService tradeOrderExportService;
 
     @Override
     public Result drugsSyn(DrugsAddRequest drugsAddRequest) {
@@ -74,5 +77,36 @@ public class ErpServiceImpl implements ErpService {
         }
 
         return Result.newSuccessResult(dataNotIn);
+    }
+
+    @Override
+    public Map<String, Integer> drugsStockSyn(List<SyncStockForErpVO> syncStockForErpVOS) {
+        int success = 0;
+        int fail = 0;
+        Map<String, Integer> ret = new HashMap<>(2);
+        for (SyncStockForErpVO stockForErpVO : syncStockForErpVOS) {
+            ItemDTO itemDTO = new ItemDTO();
+//            TODO 中台提供商品关联字段---药品批准文号
+            itemDTO.setInventory(stockForErpVO.getStock());
+            ExecuteResult<ItemDTO> result = itemExportService.modifyItemById(itemDTO);
+            if (result.isSuccess() && result.getResult() != null) {
+                success += 1;
+            } else {
+                fail += 1;
+            }
+        }
+        if (fail > 0) {
+            log.warn("药品库存同步结果：success【" + success + "】个，fail【" + fail + "】个");
+        }
+        ret.put("success", success);
+        ret.put("fail", fail);
+        return ret;
+    }
+
+    @Override
+    public Boolean drugsRefundResult(SyncRefundStatusVO refundStatusVO) {
+//        TODO 待中台提供退货款服务
+        tradeOrderExportService.modifyOrderStatus(1L,1);
+        return null;
     }
 }

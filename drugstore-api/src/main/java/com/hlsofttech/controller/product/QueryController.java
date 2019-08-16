@@ -44,7 +44,6 @@ public class QueryController {
      * @Date: 2019/8/12
      * @return: com.hlsofttech.rsp.Result
      **/
-    @RequiresAuthentication
     @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = false, avoidPlatform = true)
     @ApiOperation(value = "搜索-搜索商品/店铺", notes = "搜索-搜索商品/店铺", httpMethod = "GET")
     @GetMapping("/api/drugsQuery/query/queryProductOrShop")
