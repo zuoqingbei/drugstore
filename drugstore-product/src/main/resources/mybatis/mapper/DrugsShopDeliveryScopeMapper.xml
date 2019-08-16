@@ -3,7 +3,7 @@
 <mapper namespace="com.hlsofttech.product.dao.DrugsShopDeliveryScopeDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.hlsofttech.entity.product.DrugsShopDeliveryScope">
+    <resultMap id="BaseResultMap" type="com.hlsofttech.entity.shop.DrugsShopDeliveryScope">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="start_price" property="startPrice"/>
