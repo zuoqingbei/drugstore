@@ -10,14 +10,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 药店签约信息
+ * 药店-配送范围
  *
- * @author suntf123
- * @date 2019-08-12
+ * @author suncy
+ * @date 2019-08-16
  */
 @Data
-@TableName("drugs_shop_info")
-public class DrugsShopInfo extends BaseModel<DrugsShopInfo> {
+@TableName("drugs_shop_delivery_scope")
+public class DrugsShopDeliveryScope extends BaseModel<DrugsShopDeliveryScope> {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,22 +27,39 @@ public class DrugsShopInfo extends BaseModel<DrugsShopInfo> {
     @ApiModelProperty(name = "id", value = "主键id", dataType = "Long")
     private String id;
     /**
-     * 营业执照统一信用代码
+     * 自定义范围名称
      */
-    @ApiModelProperty(name = "code", value = "营业执照统一信用代码", dataType = "String")
-    private String code;
+    @ApiModelProperty(name = "title", value = "自定义范围名称", dataType = "String")
+    private String title;
     /**
-     * 签约方key
+     * 起送价
      */
-    @ApiModelProperty(name = "appKey", value = "签约方key", dataType = "String")
-    @TableField("app_key")
-    private String appKey;
+    @ApiModelProperty(name = "startPrice", value = "起送价", dataType = "Integer")
+    @TableField("start_price")
+    private Integer startPrice;
     /**
-     * 签约密钥
+     * 配送范围开始
      */
-    @ApiModelProperty(name = "appSecret", value = "签约密钥", dataType = "String")
-    @TableField("app_secret")
-    private String appSecret;
+    @ApiModelProperty(name = "scopeBegin", value = "配送范围开始", dataType = "Integer")
+    @TableField("scope_begin")
+    private Integer scopeBegin;
+    /**
+     * 配送范围结束
+     */
+    @ApiModelProperty(name = "scopeEnd", value = "配送范围结束", dataType = "Integer")
+    @TableField("scope_end")
+    private Integer scopeEnd;
+    /**
+     * 配送费（分）
+     */
+    @ApiModelProperty(name = "deliveryFee", value = "配送费（分）", dataType = "Integer")
+    @TableField("delivery_fee")
+    private Integer deliveryFee;
+    /**
+     * 状态（0启用1=停用）
+     */
+    @ApiModelProperty(name = "status", value = "状态（0启用1=停用）", dataType = "String")
+    private String status;
     /**
      * 创建人
      */
@@ -78,6 +95,7 @@ public class DrugsShopInfo extends BaseModel<DrugsShopInfo> {
     @ApiModelProperty(name = "delFlag", value = "删除标识（1=已删除0未删除）", dataType = "String")
     @TableField("del_flag")
     private String delFlag;
+
 
     @Override
     protected Serializable pkVal() {

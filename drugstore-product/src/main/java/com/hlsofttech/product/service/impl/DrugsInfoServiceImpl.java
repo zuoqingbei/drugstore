@@ -119,7 +119,7 @@ public class DrugsInfoServiceImpl implements DrugsInfoService, Constant {
 
     /**
      * @date 2019-08-15
-     * @author suncy123
+     * @author suncy
      * @todo   药品库-药品信息表构建查询条件-以后扩展
      */
     private EntityWrapper<DrugsInfo> searchWrapper(DrugsInfo entity) {

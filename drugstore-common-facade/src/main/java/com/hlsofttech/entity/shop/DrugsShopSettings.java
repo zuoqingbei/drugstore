@@ -1,7 +1,9 @@
 package com.hlsofttech.entity.shop;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.hlsofttech.base.BaseModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -10,14 +12,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 药店签约信息
+ * 药店-相关设置
  *
- * @author suntf123
- * @date 2019-08-12
+ * @author suncy
+ * @date 2019-08-16
  */
 @Data
-@TableName("drugs_shop_info")
-public class DrugsShopInfo extends BaseModel<DrugsShopInfo> {
+@TableName("drugs_shop_settings")
+public class DrugsShopSettings extends BaseModel<DrugsShopSettings> {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,22 +29,46 @@ public class DrugsShopInfo extends BaseModel<DrugsShopInfo> {
     @ApiModelProperty(name = "id", value = "主键id", dataType = "Long")
     private String id;
     /**
-     * 营业执照统一信用代码
+     * 药店ID
      */
-    @ApiModelProperty(name = "code", value = "营业执照统一信用代码", dataType = "String")
-    private String code;
+    @ApiModelProperty(name = "drugsShopId", value = "药店ID", dataType = "String")
+    @TableField("drugs_shop_id")
+    private String drugsShopId;
     /**
-     * 签约方key
+     * 配送方式（0=店家配送，1=骑手配送）
      */
-    @ApiModelProperty(name = "appKey", value = "签约方key", dataType = "String")
-    @TableField("app_key")
-    private String appKey;
+    @ApiModelProperty(name = "deliveryWay", value = "配送方式（0=店家配送，1=骑手配送）", dataType = "String")
+    @TableField("delivery_way")
+    private String deliveryWay;
     /**
-     * 签约密钥
+     * 常规时间开始
      */
-    @ApiModelProperty(name = "appSecret", value = "签约密钥", dataType = "String")
-    @TableField("app_secret")
-    private String appSecret;
+    @ApiModelProperty(name = "routineTimeBegin", value = "常规时间开始", dataType = "String")
+    @TableField("routine_time_begin")
+    private String routineTimeBegin;
+    /**
+     * 常规时间结束
+     */
+    @ApiModelProperty(name = "routineTimeEnd", value = "常规时间结束", dataType = "String")
+    @TableField("routine_time_end")
+    private String routineTimeEnd;
+    /**
+     * 特殊时间开始
+     */
+    @ApiModelProperty(name = "specialTimeBegin", value = "特殊时间开始", dataType = "String")
+    @TableField("special_time_begin")
+    private String specialTimeBegin;
+    /**
+     * 特殊时间结束
+     */
+    @ApiModelProperty(name = "specialTimeEnd", value = "特殊时间结束", dataType = "String")
+    @TableField("special_time_end")
+    private String specialTimeEnd;
+    /**
+     * 状态（0启用1=停用）
+     */
+    @ApiModelProperty(name = "status", value = "状态（0启用1=停用）", dataType = "String")
+    private String status;
     /**
      * 创建人
      */

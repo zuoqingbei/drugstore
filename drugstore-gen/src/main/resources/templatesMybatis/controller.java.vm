@@ -43,7 +43,7 @@ public class ${table.controllerName} extends BaseController{
 #end
     private final Logger logger = LoggerFactory.getLogger(${table.controllerName}.class);
 
-    @Reference(version = Constant.VERSION,group="$!{package.Xml}",timeout=Constant.TIMEOUT)
+    @Reference(version = Constant.VERSION,#*group="$!{package.Xml}",*#timeout=Constant.TIMEOUT)
     public ${table.serviceName} i${entity}Service;
     
   

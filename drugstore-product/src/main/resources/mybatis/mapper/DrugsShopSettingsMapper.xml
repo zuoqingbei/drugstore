@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hlsofttech.product.dao.DrugsShopSettingsDao">
+
+   <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="com.hlsofttech.entity.product.DrugsShopSettings">
+      <id column="id" property="id" />
+      <result column="drugs_shop_id" property="drugsShopId" />
+      <result column="delivery_way" property="deliveryWay" />
+      <result column="routine_time_begin" property="routineTimeBegin" />
+      <result column="routine_time_end" property="routineTimeEnd" />
+      <result column="special_time_begin" property="specialTimeBegin" />
+      <result column="special_time_end" property="specialTimeEnd" />
+      <result column="status" property="status" />
+      <result column="create_by" property="createBy" />
+      <result column="create_date" property="createDate" />
+      <result column="update_by" property="updateBy" />
+      <result column="update_date" property="updateDate" />
+      <result column="remarks" property="remarks" />
+      <result column="del_flag" property="delFlag" />
+   </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+      drugs_shop_id,
+      delivery_way,
+      routine_time_begin,
+      routine_time_end,
+      special_time_begin,
+      special_time_end,
+      status,
+      create_by,
+      create_date,
+      update_by,
+      update_date,
+      remarks,
+      del_flag,
+</sql>
+
+</mapper>
