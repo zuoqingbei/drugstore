@@ -34,6 +34,8 @@ public enum ExpCodeEnum implements Serializable {
     LOGIN_FAIL(UserExpPrefix + "003", "登录失败"),
     UNLOGIN(UserExpPrefix + "004", "尚未登录"),
     NO_PERMISSION(UserExpPrefix + "005", "没有权限"),
+    NO_USER(UserExpPrefix + "006", "用户不存在或未开通店铺权限"),
+    NAME_OR_PWD_ERROR(UserExpPrefix + "007", "用户名或密码不正确"),
     SERVER_ERROR(ComExpPrefix + "008", "服务异常"),
 
     /**

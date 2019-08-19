@@ -12,6 +12,7 @@ import com.hlsofttech.annotation.AuthPower;
 import com.hlsofttech.common.Constant;
 import com.hlsofttech.entity.vo.ShopVO;
 import com.hlsofttech.rsp.Result;
+import com.hlsofttech.utils.RexUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -64,6 +65,10 @@ public class DrugsShopController {
             for (ShopDTO shop : list) {
                 ShopVO shopVO = new ShopVO();
                 BeanUtils.copyProperties(shop, shopVO);
+                if (shop.getMobile() != null) {
+                    // 手机号脱敏
+                    shopVO.setMobile(RexUtils.mobileEncrypt(shop.getMobile().toString()));
+                }
                 retList.add(shopVO);
             }
             retData.setRows(retList);
@@ -72,26 +77,6 @@ public class DrugsShopController {
             return null;
         }
     }
-//
-//    /***
-//     * @Author: suntf
-//     * @Description:根据id查询药店详细信息
-//     * @Date: 2019/8/15
-//     * @return: com.hlsofttech.rsp.Result
-//     **/
-//    @AuthPower(avoidVersion = false, avoidPower = true, avoidSign = true, avoidLogin = false, avoidPlatform = true)
-//    @ApiOperation(value = "药店详情", notes = "药店详情", httpMethod = "GET")
-//    @GetMapping("/api/drugsShop/info")
-//    public Result queryShopInfo(Long shopId) {
-//
-//        ExecuteResult<ShopDTO> result = shopExportService.findShopInfoById(shopId);
-//        if (result.isSuccess() && result.getResult() != null) {
-//            return Result.newSuccessResult(result.getResult());
-//        } else {
-//            return null;
-//        }
-//    }
-
 
     /***
      * @Author: suntf

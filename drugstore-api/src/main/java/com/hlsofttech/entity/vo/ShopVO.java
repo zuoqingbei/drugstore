@@ -34,7 +34,7 @@ public class ShopVO {
      * 商家电话
      */
     @ApiModelProperty(value = "商家电话")
-    private Long mobile;
+    private String mobile;
     /**
      * 评价星级
      */

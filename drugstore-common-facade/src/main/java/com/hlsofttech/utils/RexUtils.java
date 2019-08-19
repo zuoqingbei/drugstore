@@ -1,5 +1,7 @@
 package com.hlsofttech.utils;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -108,4 +110,20 @@ public class RexUtils {
 		System.out.println("正则表达匹配" + str.matches(regx));
 		return str.matches(regx);
 	}
+	// 手机号码前三后四脱敏
+	public static String mobileEncrypt(String mobile) {
+		if (StringUtils.isEmpty(mobile) || (mobile.length() != 11)) {
+			return mobile;
+		}
+		return mobile.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+	}
+
+	//身份证前三后四脱敏
+	public static String idEncrypt(String id) {
+		if (StringUtils.isEmpty(id) || (id.length() < 8)) {
+			return id;
+		}
+		return id.replaceAll("(?<=\\w{3})\\w(?=\\w{4})", "*");
+	}
+
 }
