@@ -91,7 +91,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 	private List<Parameter> setHeaderToken() {
         ParameterBuilder tokenPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<>();
-        tokenPar.name("token").description("token").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        tokenPar.name("authorization").description("authorization").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
         pars.add(tokenPar.build());
         return pars;
     }
